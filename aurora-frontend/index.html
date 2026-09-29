@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Aurora — Início</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+  <style>
+    @layer base { html,body { margin:0; padding:0; } body { overscroll-behavior:none; } }
+    ::-webkit-scrollbar { display:none; }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#00021d",
+            "primary-container": "#0f194a",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#7983b9",
+            "secondary": "#25638f",
+            "secondary-container": "#95ccfe",
+            "on-secondary-container": "#125783",
+            "secondary-fixed": "#cde5ff",
+            "on-secondary-fixed": "#001d32",
+            "surface": "#fbf9f3",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f5f3ee",
+            "surface-container": "#f0eee8",
+            "surface-container-high": "#eae8e2",
+            "surface-container-highest": "#e4e2dd",
+            "outline": "#767680",
+            "on-surface": "#1b1c19",
+            "on-surface-variant": "#46464f",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a"
+          },
+          fontFamily: {
+            "body-md": ["Open Sans"],
+            "body-sm": ["Open Sans"],
+            "body-lg": ["Open Sans"],
+            "headline-lg": ["Montserrat"],
+            "headline-md": ["Montserrat"],
+            "headline-sm": ["Montserrat"],
+            "title-lg": ["Montserrat"],
+            "title-md": ["Montserrat"],
+            "label-lg": ["Montserrat"],
+            "label-md": ["Montserrat"],
+            "label-sm": ["Montserrat"]
+          },
+          spacing: {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2.5rem",
+            "space-2xl": "4rem"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+
+  <!-- Sidebar Lateral Fixa -->
+  <aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between">
+    <div class="flex flex-col">
+      <div class="h-20 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest">
+        <img alt="Logo Aurora" class="w-10 h-10 object-contain rounded-lg shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4_hfr9QgE7zVzPZcFdzSCr_OMhZJZHUmproxdnurvcw10WupCiLg0jxPaH4ZOphd5wMNpkXOffVNQG1LQ33dXlcynF27AKwSPgP_nmgxSgRy_Rr_sd1hFtc1RfrGqvdyZx35fjYyreedJuTkako80KzpgfE0IDzgHb3gXNDYvQ9KV4LNeObCgt9Rcu0fpUeKacMHGYQleKgerES_5nk1j6p_s0xn-fDeWkiQ-YXL2_FMrukEu9ZLOqv_UB76v0yl83pQ">
+        <div class="flex flex-col">
+          <span class="font-title-lg text-title-lg text-primary-container tracking-tight font-bold">Aurora</span>
+          <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Aluguel de Livros</span>
+        </div>
+      </div>
+
+      <div class="px-space-md py-space-sm">
+        <nav class="flex flex-col gap-space-xs">
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="inicio" href="index.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">auto_stories</span>
+              <span>Início</span>
+            </div>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="prateleira" href="prateleira.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">shelves</span>
+              <span>Prateleira</span>
+            </div>
+            <span class="px-space-xs py-0.5 bg-secondary-container text-on-secondary-container rounded-full font-label-sm text-xs font-bold">Catálogo</span>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="sugestoes" href="sugestoes.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">recommend</span>
+              <span>Sugestões</span>
+            </div>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="ja-lidos" href="ja-lidos.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">library_books</span>
+              <span>Já Lidos</span>
+            </div>
+            <span class="px-space-xs py-0.5 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm text-xs font-bold">0</span>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="lista-de-desejos" href="desejos.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">bookmark_heart</span>
+              <span>Lista de Desejos</span>
+            </div>
+            <span class="px-space-xs py-0.5 bg-secondary-fixed text-on-secondary-fixed rounded-full font-label-sm text-xs font-bold">0</span>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="avaliar-livros" href="avaliar.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">rate_review</span>
+              <span>Avaliar Livros</span>
+            </div>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="configuracoes" href="configuracoes.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">settings</span>
+              <span>Configurações</span>
+            </div>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Perfil do Usuário na Sidebar -->
+    <div class="p-space-md flex flex-col gap-space-sm bg-surface-container-lowest">
+      <div class="flex items-center gap-space-sm p-space-sm rounded-xl bg-surface-container-low">
+        <img alt="Perfil" class="w-8 h-8 rounded-full object-cover ring-2 ring-secondary-fixed user-display-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80">
+        <div class="flex flex-col min-w-0 flex-1">
+          <span class="font-label-lg text-label-lg text-on-surface truncate user-display-name">Carregando...</span>
+          <span class="font-label-sm text-label-sm text-secondary truncate user-display-role">Leitor</span>
+        </div>
+      </div>
+      <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg hover:bg-error-container hover:text-on-error-container transition-all group" data-path="login" href="#">
+        <span class="material-symbols-outlined text-outline group-hover:text-error transition-colors">logout</span>
+        <span>Sair</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Área Principal -->
+  <div class="pl-72 flex flex-col min-h-screen">
+    <header class="fixed top-0 left-72 right-0 h-20 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg">
+      <div class="flex items-center gap-space-md flex-1 max-w-xl">
+        <form class="relative flex items-center w-full" onsubmit="event.preventDefault(); window.location.href='prateleira.html?search=' + encodeURIComponent(this.querySelector('input').value);">
+          <span class="material-symbols-outlined absolute left-4 text-on-surface-variant pointer-events-none">search</span>
+          <input class="w-full h-11 pl-11 pr-4 bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm rounded-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-all" placeholder="Pesquise títulos, autores ou gêneros..." type="text">
+        </form>
+      </div>
+
+      <div class="flex items-center gap-space-md">
+        <a class="h-11 px-space-md bg-primary-container text-on-primary rounded-xl font-label-lg flex items-center gap-space-sm hover:opacity-95 shadow-sm transition-all" data-path="sacola-de-alugueis" href="#alugueis-ativos">
+          <span class="material-symbols-outlined text-secondary-fixed">shopping_bag</span>
+          <span class="hidden md:inline">Aluguéis Ativos</span>
+          <span class="ml-1 px-1.5 py-0.5 bg-secondary text-on-secondary rounded-full font-label-sm text-xs font-bold">0</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="w-full pt-24 pb-16 flex-1 px-space-md lg:px-space-xl max-w-7xl mx-auto flex flex-col gap-space-2xl">
+      <!-- 1. Banner Principal de Boas-Vindas -->
+      <section class="relative overflow-hidden rounded-3xl bg-primary-container text-on-primary shadow-xl p-space-lg lg:p-space-2xl">
+        <div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-secondary-fixed/20 blur-3xl pointer-events-none"></div>
+        <div class="relative z-10 flex flex-col gap-space-md max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-space-sm py-1 rounded-full bg-surface-container-lowest/10 backdrop-blur-md w-fit">
+            <span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
+            <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed">Leitura Compartilhada & Sustentável</span>
+          </div>
+          <h1 class="font-headline-lg text-3xl lg:text-4xl text-on-primary font-bold tracking-tight">
+            Bem-vindo à Aurora: onde histórias encontram leitores
+          </h1>
+          <p class="font-body-lg text-on-primary-container text-base leading-relaxed">
+            Um refúgio literário dedicado ao conhecimento. Na Aurora, cada título conta com limite de 3 cópias físicas na rede, garantindo rotação comunitária justa e cuidado permanente com cada exemplar.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md pt-space-md">
+            <div class="flex items-center gap-space-sm p-space-sm rounded-2xl bg-surface-container-lowest/5 backdrop-blur-sm">
+              <span class="material-symbols-outlined text-secondary-fixed text-2xl">menu_book</span>
+              <div class="flex flex-col">
+                <span class="font-title-md text-on-primary font-bold">3 Cópias por Título</span>
+                <span class="font-label-sm text-on-primary-container text-xs">Rotação justa (RN-003)</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-space-sm p-space-sm rounded-2xl bg-surface-container-lowest/5 backdrop-blur-sm">
+              <span class="material-symbols-outlined text-secondary-fixed text-2xl">schedule</span>
+              <div class="flex flex-col">
+                <span class="font-title-md text-on-primary font-bold">15 ou 30 Dias</span>
+                <span class="font-label-sm text-on-primary-container text-xs">Prazo por páginas</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-space-sm p-space-sm rounded-2xl bg-surface-container-lowest/5 backdrop-blur-sm">
+              <span class="material-symbols-outlined text-secondary-fixed text-2xl">autorenew</span>
+              <div class="flex flex-col">
+                <span class="font-title-md text-on-primary font-bold">Até 2 Extensões</span>
+                <span class="font-label-sm text-on-primary-container text-xs">Direto no painel</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Como Funciona o Aluguel (Conforme Spec v3.0) -->
+      <section class="flex flex-col gap-space-lg">
+        <div>
+          <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">Transparência & Regras de Negócio</span>
+          <h2 class="font-headline-lg text-2xl text-primary-container font-bold tracking-tight">Como funciona o Aluguel na Aurora (Spec v3.0)</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+          <div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm border border-surface-container/60 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-secondary-fixed/40 flex items-center justify-center text-secondary mb-3">
+                <span class="material-symbols-outlined text-2xl">book</span>
+              </div>
+              <h3 class="font-title-lg text-primary-container font-bold mb-1">1. Aluguel com 1 Clique</h3>
+              <p class="font-body-sm text-on-surface-variant text-sm">
+                Se houver cópias disponíveis na estante (1 a 3), você pode alugar na hora. O leitor pode ter até 3 livros alugados simultaneamente.
+              </p>
+            </div>
+          </div>
+          <div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm border border-surface-container/60 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-secondary-container/40 flex items-center justify-center text-secondary mb-3">
+                <span class="material-symbols-outlined text-2xl">hourglass_bottom</span>
+              </div>
+              <h3 class="font-title-lg text-primary-container font-bold mb-1">2. Prazo Proporcional</h3>
+              <p class="font-body-sm text-on-surface-variant text-sm">
+                Livros com até 150 páginas recebem prazo de 15 dias. Obras maiores ganham 30 dias para uma leitura tranquila e completa.
+              </p>
+            </div>
+          </div>
+          <div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm border border-surface-container/60 flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-surface-container-high flex items-center justify-center text-on-surface mb-3">
+                <span class="material-symbols-outlined text-2xl">event_repeat</span>
+              </div>
+              <h3 class="font-title-lg text-primary-container font-bold mb-1">3. Renovação ou Devolução</h3>
+              <p class="font-body-sm text-on-surface-variant text-sm">
+                Renove até 2 vezes se não estiver em atraso. Em caso de esgotamento total das 3 cópias, o botão fica indisponível até a próxima devolução.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Seção Novidades da Aurora -->
+      <section class="flex flex-col gap-space-lg">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">Lançamentos Recentes</span>
+            <h2 class="font-headline-lg text-2xl text-primary-container font-bold tracking-tight">Novidades da Aurora</h2>
+          </div>
+          <a href="prateleira.html" class="text-secondary font-label-md text-sm font-semibold hover:underline flex items-center gap-1">
+            Ver catálogo completo <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md" id="novidadesGrid">
+          <div class="col-span-full py-8 text-center text-on-surface-variant text-sm">Carregando novidades do acervo...</div>
+        </div>
+      </section>
+
+      <!-- 4. Seção Destaques da Aurora -->
+      <section class="flex flex-col gap-space-lg">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">Mais Populares e Bem Avaliados</span>
+            <h2 class="font-headline-lg text-2xl text-primary-container font-bold tracking-tight">Destaques da Comunidade</h2>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md" id="destaquesGrid">
+          <div class="col-span-full py-8 text-center text-on-surface-variant text-sm">Carregando destaques...</div>
+        </div>
+      </section>
+
+      <!-- 5. Seção Aluguéis Ativos do Usuário -->
+      <section class="flex flex-col gap-space-lg" id="alugueis-ativos">
+        <div>
+          <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">Seus Livros em Mãos</span>
+          <h2 class="font-headline-lg text-2xl text-primary-container font-bold tracking-tight">Aluguéis Ativos</h2>
+        </div>
+        <div id="activeRentalsContainer" class="flex flex-col gap-space-md">
+          <div class="p-6 rounded-2xl bg-surface-container-lowest border border-surface-container text-center text-on-surface-variant text-sm">
+            Carregando seus aluguéis...
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/aurora-api.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await AuroraAPI.initSidebar('inicio');
+      loadNovidades();
+      loadDestaques();
+      loadMyActiveRentals();
+    });
+
+    async function loadNovidades() {
+      const container = document.getElementById('novidadesGrid');
+      try {
+        const books = await AuroraAPI.getNovidades();
+        if (!books || books.length === 0) {
+          container.innerHTML = '<div class="col-span-full py-6 text-center text-on-surface-variant text-sm">Nenhum lançamento recente encontrado.</div>';
+          return;
+        }
+
+        container.innerHTML = books.slice(0, 4).map(book => createBookCardHtml(book)).join('');
+      } catch (e) {
+        container.innerHTML = '<div class="col-span-full py-6 text-center text-error text-sm">Erro ao carregar novidades do catálogo.</div>';
+      }
+    }
+
+    async function loadDestaques() {
+      const container = document.getElementById('destaquesGrid');
+      try {
+        const books = await AuroraAPI.getDestaques();
+        if (!books || books.length === 0) {
+          container.innerHTML = '<div class="col-span-full py-6 text-center text-on-surface-variant text-sm">Nenhum destaque encontrado no momento.</div>';
+          return;
+        }
+
+        container.innerHTML = books.slice(0, 4).map(book => createBookCardHtml(book)).join('');
+      } catch (e) {
+        container.innerHTML = '<div class="col-span-full py-6 text-center text-error text-sm">Erro ao carregar destaques.</div>';
+      }
+    }
+
+    function createBookCardHtml(book) {
+      const isAvailable = book.disponivel && book.copiasDisponiveis > 0;
+      const coverUrl = book.capaUrl || 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400&q=80';
+      const rating = Number(book.avaliacaoMedia || 0).toFixed(1);
+
+      return `
+        <div class="group relative bg-surface-container-lowest rounded-2xl p-space-md shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between border border-surface-container/60">
+          <div class="flex flex-col gap-space-sm">
+            <div class="relative w-full aspect-[2/3] rounded-xl overflow-hidden shadow-md bg-surface-container-high">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${coverUrl}" alt="${book.titulo}" onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80'">
+              <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-[11px] font-bold shadow-sm">
+                ${book.genero || 'Geral'}
+              </span>
+            </div>
+            <div class="flex flex-col pt-1">
+              <div class="flex items-center justify-between text-secondary text-xs font-semibold mb-1">
+                <span class="flex items-center gap-1 text-amber-500">
+                  <span class="material-symbols-outlined text-[16px]">star</span>
+                  <span class="font-label-md text-on-surface">${rating}</span>
+                </span>
+                <span class="font-label-md text-on-surface-variant font-medium">(${book.totalAvaliacoes || 0} avaliações)</span>
+              </div>
+              <h3 class="font-title-md text-primary font-bold group-hover:text-secondary transition-colors line-clamp-1 text-sm">${book.titulo}</h3>
+              <p class="font-body-sm text-on-surface-variant text-xs truncate">${book.autor}</p>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2 pt-space-sm mt-space-sm bg-surface-container-low/50 p-space-sm rounded-xl">
+            <div class="flex items-center justify-between">
+              <span class="font-label-sm text-on-surface-variant text-xs">Aluguel:</span>
+              <span class="font-title-md text-primary-container font-bold text-sm">R$ ${Number(book.precoAluguel || 0).toFixed(2).replace('.', ',')}</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full ${isAvailable ? 'bg-secondary' : 'bg-outline'}"></span>
+                <span class="font-label-sm ${isAvailable ? 'text-secondary' : 'text-outline'} font-bold text-xs">
+                  ${isAvailable ? `${book.copiasDisponiveis} de 3 livres` : 'Indisponível'}
+                </span>
+              </div>
+              ${isAvailable ? `
+                <button onclick="handleRentBook(${book.id}, '${book.titulo.replace(/'/g, "\\'")}')" class="px-3 py-1 bg-primary-container hover:bg-primary text-on-primary rounded-lg font-label-sm text-xs font-bold transition-all shadow-sm">
+                  Alugar
+                </button>
+              ` : `
+                <span class="px-2 py-0.5 bg-surface-container text-outline rounded text-xs font-medium">3 alugadas</span>
+              `}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    async function handleRentBook(bookId, title) {
+      if (!AuroraAPI.isAuthenticated()) {
+        window.location.href = 'login.html';
+        return;
+      }
+      try {
+        await AuroraAPI.rentBook(bookId);
+        AuroraAPI.showToast(`"${title}" alugado com sucesso!`, 'check_circle');
+        loadMyActiveRentals();
+        loadNovidades();
+        loadDestaques();
+      } catch (err) {
+        AuroraAPI.showToast(err.message || 'Não foi possível alugar o livro.', 'error', true);
+      }
+    }
+
+    async function loadMyActiveRentals() {
+      const container = document.getElementById('activeRentalsContainer');
+      try {
+        const rentals = await AuroraAPI.getMyRentals();
+        const active = (rentals || []).filter(r => r.status === 'ativo');
+
+        if (active.length === 0) {
+          container.innerHTML = `
+            <div class="p-8 rounded-2xl bg-surface-container-lowest border border-surface-container/70 flex flex-col items-center justify-center text-center gap-2">
+              <span class="material-symbols-outlined text-4xl text-outline">menu_book</span>
+              <p class="font-title-md text-primary font-bold">Você não possui aluguéis ativos</p>
+              <p class="font-body-sm text-on-surface-variant text-xs max-w-sm">
+                Explore a Prateleira e descubra milhares de histórias esperando por você. Cada leitor pode alugar até 3 livros simultaneamente!
+              </p>
+              <a href="prateleira.html" class="mt-3 px-4 py-2 bg-primary-container text-on-primary rounded-xl font-label-md text-xs font-bold hover:bg-primary transition-all">
+                Explorar Prateleira
+              </a>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = active.map(r => `
+          <div class="p-space-lg bg-surface-container-lowest rounded-2xl border border-surface-container shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-md">
+            <div class="flex items-center gap-space-md min-w-0">
+              <div class="w-12 h-16 rounded-lg bg-surface-container-high overflow-hidden shrink-0 shadow-sm flex items-center justify-center">
+                <span class="material-symbols-outlined text-secondary text-2xl">book</span>
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="font-label-sm text-secondary uppercase text-[11px] font-bold">Exemplar #${r.bookCopyId}</span>
+                <h4 class="font-title-lg text-primary font-bold truncate">${r.bookTitle}</h4>
+                <div class="flex items-center gap-3 text-xs text-on-surface-variant mt-1">
+                  <span>Devolução prevista: <strong class="text-primary">${formatDate(r.dataDevolucaoPrevista)}</strong></span>
+                  <span>•</span>
+                  <span>Extensões: <strong class="text-secondary">${r.extensaoContador}/2 usadas</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-space-sm shrink-0">
+              ${r.extensaoContador < 2 ? `
+                <button onclick="handleExtendRental(${r.id})" class="px-3.5 py-2 bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-container rounded-xl font-label-sm text-xs font-bold transition-all flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-[16px]">autorenew</span>
+                  Renovar (+15/30d)
+                </button>
+              ` : `
+                <span class="px-3 py-1 bg-surface-container text-outline rounded-lg text-xs font-semibold">
+                  Extensões esgotadas
+                </span>
+              `}
+              <button onclick="handleMarkAsRead(${r.bookId})" class="px-3.5 py-2 bg-surface-container-low hover:bg-surface-container-high text-on-surface rounded-xl font-label-sm text-xs font-semibold transition-all flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
+                Já Lido
+              </button>
+            </div>
+          </div>
+        `).join('');
+      } catch (err) {
+        container.innerHTML = '<div class="p-6 text-center text-error text-sm">Não foi possível carregar os aluguéis ativos.</div>';
+      }
+    }
+
+    async function handleExtendRental(rentalId) {
+      try {
+        await AuroraAPI.extendRental(rentalId);
+        AuroraAPI.showToast('Aluguel estendido com sucesso!', 'autorenew');
+        loadMyActiveRentals();
+      } catch (err) {
+        AuroraAPI.showToast(err.message || 'Não foi possível estender o aluguel.', 'error', true);
+      }
+    }
+
+    async function handleMarkAsRead(bookId) {
+      try {
+        await AuroraAPI.markAsRead(bookId);
+        AuroraAPI.showToast('Livro adicionado aos seus Já Lidos!', 'bookmark_added');
+        AuroraAPI.initSidebar('inicio');
+      } catch (err) {
+        AuroraAPI.showToast(err.message || 'Erro ao marcar como lido.', 'error', true);
+      }
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '—';
+      const parts = dateStr.split('-');
+      if (parts.length === 3) {
+        return `${parts[2]}/${parts[1]}/${parts[0]}`;
+      }
+      return dateStr;
+    }
+  </script>
+</body>
+</html>
