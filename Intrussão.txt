@@ -1,0 +1,102 @@
+Passo 1: Iniciar o Back-end
+
+Abra um terminal PowerShell e rode:
+
+powershell
+# 1. Configurar o Java
+$env:JAVA_HOME = "C:\Program Files\Java\jdk-26.0.1"
+$env:Path = "$env:JAVA_HOME\bin;$env:Path"
+# 2. Entrar na pasta do backend
+cd c:\Users\User\Documents\Repositorio-Biblioteca\aurora-backend
+# 3A. Para rodar com banco LOCAL (H2 - sem Supabase):
+.\mvnw.cmd spring-boot:run
+# 3B. OU para rodar apontando para o SUPABASE (Perfil de produção):
+.\mvnw.cmd spring-boot:run -Dspring-boot.run.profiles=prod
+
+Quando o terminal exibir:
+
+text
+Tomcat started on port 8080 (http) with context path ''
+Started AuroraApplication in X.XXX seconds
+
+O backend estará pronto e escutando requisições em http://localhost:8080.
+
+Passo 2: Servir o Front-end
+
+Abra outro terminal para o frontend. Como o front é HTML/JS puro, você pode servi-lo usando qualquer servidor HTTP simples:
+
+Com Python (se tiver instalado):
+
+powershell
+cd c:\Users\User\Documents\Repositorio-Biblioteca\aurora-frontend
+python -m http.server 3000
+
+Ou com Node.js (npx):
+
+powershell
+cd c:\Users\User\Documents\Repositorio-Biblioteca\aurora-frontend
+npx serve -l 3000 .
+
+Ou usando a extensão "Live Server" do VS Code: basta clicar com botão direito em login.html 
+→
+→ Open with Live Server.
+
+Depois acesse no navegador: http://localhost:3000/login.html (ou a porta informada pelo seu servidor).
+
+Passo 3: Roteiro de Teste do Fluxo Completo (Checklist)
+
+Siga este roteiro no navegador para validar que tudo está integrado:
+
+1. Autenticação e Login
+Acesse login.html.
+Faça login com um usuário já criado pelo seed:
+E-mail: aluno@aurora.local
+Senha: aluno123
+O que deve acontecer: O botão exibe estado de carregamento, o token JWT é salvo no navegador (localStorage), e você é redirecionado automaticamente para index.html.
+Teste de erro: Tente colocar uma senha errada para confirmar que o alerta #auth-alert exibe "Credenciais inválidas".
+Teste de cadastro: Alterne para a aba "Novo Cadastro", informe nome, e-mail novo e senha com no mínimo 6 caracteres. O cadastro criará o usuário e já redirecionará logado.
+2. Tela Início (index.html)
+O nome do usuário e tipo "Leitor Aurora" devem aparecer na barra lateral esquerda (carregados via /api/auth/me).
+As seções Novidades da Semana e Destaques da Comunidade devem listar os livros cadastrados com capas e dados reais vindos da API.
+3. Prateleira e Filtros (prateleira.html)
+Clique em Prateleira no menu lateral.
+Digite parte do título ou autor no campo de busca (ex: "Machado" ou "1984") 
+→
+→ a listagem deve filtrar em tempo real com debounce.
+Teste os botões de filtro de tamanho: Todos, Pequeno, Médio, Grande.
+Observe os botões dos livros:
+Livros com exemplares disponíveis exibem o botão azul "Alugar".
+Livros com 0 cópias disponíveis exibem "Indisponível (0/3)" desabilitado (conforme a spec v3.0, sem fila de espera).
+4. Realizar um Aluguel
+Na Prateleira, clique em Alugar em um dos livros disponíveis.
+Um toast verde de confirmação aparecerá no canto inferior: "Livro alugado com sucesso!".
+Volte para a tela Início (index.html): o livro alugado agora aparece no painel de Meus Aluguéis Ativos, com a data de devolução calculada (15 ou 30 dias de acordo com o tamanho do livro).
+5. Renovação e Marcar como Lido
+No card do livro alugado na tela Início:
+Clique em "Renovar": o prazo é estendido e o contador de renovações vai para 1/2.
+Clique em "Já Lido": o livro é registrado na sua coleção de leituras concluídas (/api/collections/read).
+6. Livros Já Lidos (ja-lidos.html)
+Clique em Já Lidos no menu lateral.
+O livro recém-marcado aparecerá listado com selo de devolução confirmada.
+Há a opção de "Remover" ou "Alugar Novamente".
+7. Avaliar Livro (avaliar.html)
+Clique em Avaliar Livros no menu lateral.
+O livro lido aparecerá na seção "Livros Lidos Aguardando Avaliação".
+Clique em "Avaliar": abrirá o modal de avaliação.
+Selecione uma nota de 1 a 5 estrelas e clique em "Enviar Avaliação".
+O livro passará para a seção inferior de "Minhas Avaliações", e a média do livro no acervo será recalculada.
+8. Lista de Desejos (desejos.html)
+Na Prateleira, clique no ícone de coração/marcador de um livro para adicionar à Lista de Desejos.
+Acesse a página Lista de Desejos: o livro estará lá, permitindo removê-lo ou alugá-lo diretamente assim que houver cópia livre.
+9. Configurações da Conta (configuracoes.html)
+Acesse Configurações.
+Os dados do usuário logado virão preenchidos nos campos.
+Altere seu nome ou preencha os dados de endereço (CEP, Rua, Número, Bairro, Cidade, UF) e clique em "Salvar".
+Um aviso verde confirmará a alteração e o nome na barra lateral atualizará dinamicamente.
+10. Logout
+Clique no botão "Sair" na barra lateral. O token será removido e você retornará à tela de login. Tentar acessar qualquer página diretamente sem login redirecionará de volta para login.html.
+
+3 usuários com hashes BCrypt reais de 10 rounds: Administrador (admin@aurora.local / admin123), Bibliotecário (biblio@aurora.local / biblio123) e Aluno/Leitor (aluno@aurora.local / aluno123).
+14 livros distribuídos entre os 4 tamanhos da spec v3.0 (pequeno, medio_pequeno, medio_padrao, grande).
+3 exemplares por livro (42 exemplares no total, todos catalogados com status DISPONIVEL).
+Parâmetros da biblioteca configurados (multa diária de R$ 1,00, limites de 15/30 dias por tamanho, máximo 2 renovações).
