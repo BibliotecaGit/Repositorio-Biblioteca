@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Configurações – Aurora</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<style>
+  @layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}
+  ::-webkit-scrollbar{display:none;}
+  .settings-panel { display:none; }
+  .settings-panel.active { display:flex; flex-direction:column; gap:1.5rem; }
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-tertiary": "#ffffff", "surface-container": "#f0eee8", "surface-bright": "#fbf9f3", "inverse-surface": "#30312d", "inverse-primary": "#bac3fe", "primary": "#00021d", "surface": "#fbf9f3", "primary-fixed": "#dee0ff", "outline-variant": "#c6c5d0", "error-container": "#ffdad6", "on-primary-fixed-variant": "#3a4375", "on-error": "#ffffff", "surface-tint": "#525b8f", "surface-dim": "#dcdad4", "outline": "#767680", "surface-container-lowest": "#ffffff", "tertiary-fixed-dim": "#a9cbe5", "on-surface-variant": "#46464f", "surface-container-high": "#eae8e2", "surface-container-low": "#f5f3ee", "error": "#ba1a1a", "surface-variant": "#e4e2dd", "secondary-container": "#95ccfe", "on-primary-fixed": "#0c1648", "tertiary": "#00060c", "tertiary-container": "#002132", "on-primary": "#ffffff", "on-secondary-container": "#125783", "on-secondary-fixed": "#001d32", "surface-container-highest": "#e4e2dd", "on-tertiary-fixed": "#001e2e", "inverse-on-surface": "#f2f1eb", "on-secondary-fixed-variant": "#004b74", "on-background": "#1b1c19", "background": "#fbf9f3", "on-error-container": "#93000a", "on-surface": "#1b1c19", "on-tertiary-fixed-variant": "#284a60", "secondary": "#25638f", "primary-fixed-dim": "#bac3fe", "on-secondary": "#ffffff", "tertiary-fixed": "#c8e6ff", "secondary-fixed": "#cde5ff", "primary-container": "#0f194a", "on-primary-container": "#7983b9", "on-tertiary-container": "#698aa2", "secondary-fixed-dim": "#95ccfe" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xl": "2.5rem", "margin-mobile": "1.25rem", "space-lg": "1.5rem", "space-md": "1rem", "margin": "2.5rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "gutter": "1.5rem", "gutter-mobile": "1rem", "space-2xl": "4rem" }, "fontFamily": { "body-lg": ["Open Sans"], "display-lg": ["Montserrat"], "body-md": ["Open Sans"], "label-md": ["Montserrat"], "body-sm": ["Open Sans"], "label-lg": ["Montserrat"], "headline-md": ["Montserrat"], "display-lg-mobile": ["Montserrat"], "headline-sm": ["Montserrat"], "title-lg": ["Montserrat"], "label-sm": ["Montserrat"], "title-md": ["Montserrat"], "headline-lg-mobile": ["Montserrat"], "headline-lg": ["Montserrat"] }, "fontSize": { "body-lg": ["18px",{"lineHeight":"28px","fontWeight":"400"}], "display-lg": ["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}], "body-md": ["15px",{"lineHeight":"24px","fontWeight":"400"}], "label-md": ["12px",{"lineHeight":"16px","letterSpacing":"0.06em","fontWeight":"600"}], "body-sm": ["13px",{"lineHeight":"20px","fontWeight":"400"}], "label-lg": ["14px",{"lineHeight":"20px","letterSpacing":"0.04em","fontWeight":"600"}], "headline-md": ["28px",{"lineHeight":"36px","fontWeight":"600"}], "display-lg-mobile": ["32px",{"lineHeight":"40px","letterSpacing":"-0.01em","fontWeight":"700"}], "headline-sm": ["22px",{"lineHeight":"30px","fontWeight":"600"}], "title-lg": ["18px",{"lineHeight":"26px","fontWeight":"600"}], "label-sm": ["11px",{"lineHeight":"14px","letterSpacing":"0.08em","fontWeight":"700"}], "title-md": ["16px",{"lineHeight":"24px","fontWeight":"600"}], "headline-lg-mobile": ["26px",{"lineHeight":"34px","fontWeight":"700"}], "headline-lg": ["36px",{"lineHeight":"44px","letterSpacing":"-0.015em","fontWeight":"700"}] } } } };
+</script>
+<script src="js/aurora-api.js"></script>
+</head>
+<body class="bg-background font-body-md text-on-surface antialiased">
+
+<!-- Sidebar -->
+<aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between">
+  <div class="flex flex-col">
+    <div class="h-20 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest">
+      <img alt="Logo Aurora" class="w-10 h-10 object-contain rounded-lg" src="https://lh3.googleusercontent.com/aida/AEtjO1Vl0ovc58Z8FmVMNKvb05Ma0aTILPIO9JOPXsj2IF5CawjY5P-6BRC8pamuGqFbgclo-iP4nFSdWgblkn_iFgtR7hx5sEcXNDFQ9fbV-AwJfBx4pCeFmFPQVTNr3t4DZioVSZRrVP6EFMUp-f0KhQcApiY6tZP5kOR8zziL8a2vgSRU63YEX8g5BImR1JA8aEfj3fYjlk7XEfKL4Bq4XmUQx0I5I8RhoN87iEfOGuAivbWkNSYommjR_9YtExwHeZv_id0WCc67WRs">
+      <div class="flex flex-col">
+        <span class="font-title-lg text-title-lg text-primary-container tracking-tight">Aurora</span>
+        <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Aluguel de Livros</span>
+      </div>
+    </div>
+    <div class="px-space-md py-space-sm">
+      <nav class="flex flex-col gap-space-xs">
+        <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" href="index.html"><span>Início</span></a>
+        <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" href="prateleira.html"><span>Prateleira</span></a>
+        <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" href="sugestoes.html"><span>Sugestões</span></a>
+        <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" href="ja-lidos.html"><span>Já Lidos</span></a>
+        <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" href="desejos.html"><span>Lista de Desejos</span></a>
+        <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" href="avaliar.html"><span>Avaliar Livros</span></a>
+        <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl bg-primary-container text-on-primary font-bold shadow-sm" href="configuracoes.html"><span>Configurações</span></a>
+      </nav>
+    </div>
+  </div>
+  <div class="p-space-md flex flex-col gap-space-sm bg-surface-container-lowest">
+    <div class="flex items-center gap-space-sm p-space-sm rounded-xl bg-surface-container-low">
+      <div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center">
+        <span class="material-symbols-outlined text-on-secondary-container text-[18px]">person</span>
+      </div>
+      <div class="flex flex-col min-w-0 flex-1">
+        <span class="font-label-lg text-label-lg text-on-surface truncate" id="sidebar-nome">Usuário</span>
+        <span class="font-label-sm text-label-sm text-secondary truncate" id="sidebar-tipo">Leitor Aurora</span>
+      </div>
+    </div>
+    <button onclick="AuroraAPI.logout()" class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-error-container hover:text-on-error-container transition-all w-full text-left">
+      <span class="material-symbols-outlined text-outline">logout</span>
+      <span>Sair</span>
+    </button>
+  </div>
+</aside>
+
+<!-- Content -->
+<div class="pl-72 flex flex-col min-h-screen">
+  <header class="fixed top-0 left-72 right-0 h-20 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg">
+    <h2 class="font-headline-sm text-headline-sm text-primary-container">Configurações da Conta</h2>
+    <div class="opacity-0 transition-opacity duration-300 flex items-center gap-space-xs px-space-md py-space-xs rounded-xl bg-surface-container text-primary-container shadow-sm" id="save-notification">
+      <span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
+      <span class="font-label-sm text-label-sm">Alterações salvas</span>
+    </div>
+  </header>
+
+  <main class="w-full pt-20 bg-background flex-1">
+    <div class="max-w-[1280px] w-full mx-auto px-margin-mobile md:px-gutter lg:px-margin py-space-xl">
+      
+      <!-- Loading state -->
+      <div id="loading-overlay" class="flex items-center justify-center py-space-2xl">
+        <div class="animate-spin w-10 h-10 border-4 border-primary-container border-t-transparent rounded-full"></div>
+      </div>
+
+      <!-- Main layout (hidden until data loads) -->
+      <div class="hidden grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start" id="settings-layout">
+        <!-- Left nav -->
+        <aside class="lg:col-span-4 flex flex-col gap-space-md sticky top-28">
+          <div class="bg-surface-container-lowest rounded-xl p-space-sm shadow-sm flex flex-col gap-space-xs">
+            <button class="settings-tab-btn flex items-center justify-between p-space-md rounded-lg text-left transition-all bg-primary-container text-on-primary font-label-lg text-label-lg shadow-sm" onclick="switchTab('perfil')" id="tab-perfil">
+              <div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-secondary-fixed">badge</span><span>Informações de Perfil</span></div>
+              <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+            </button>
+            <button class="settings-tab-btn flex items-center justify-between p-space-md rounded-lg text-left transition-all text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-lg text-label-lg" onclick="switchTab('endereco')" id="tab-endereco">
+              <div class="flex items-center gap-space-sm"><span class="material-symbols-outlined text-secondary">local_shipping</span><span>Endereço</span></div>
+              <span class="material-symbols-outlined text-[18px] opacity-60">chevron_right</span>
+            </button>
+          </div>
+
+          <!-- Account info card -->
+          <div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-sm shadow-sm">
+            <div class="flex items-center justify-between">
+              <span class="px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">Conta Ativa</span>
+              <span class="material-symbols-outlined text-secondary">verified</span>
+            </div>
+            <div class="flex flex-col">
+              <h4 class="font-title-md text-title-md text-primary-container font-bold" id="card-nome">—</h4>
+              <p class="font-body-sm text-body-sm text-on-surface-variant" id="card-email">—</p>
+              <p class="font-label-sm text-label-sm text-secondary mt-1" id="card-tipo">—</p>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Right panels -->
+        <main class="lg:col-span-8 flex flex-col gap-space-lg">
+          <!-- Alert -->
+          <div class="hidden rounded-xl bg-error-container text-on-error-container p-space-md font-body-sm text-body-sm" id="form-error"></div>
+
+          <!-- Panel: Perfil -->
+          <section class="settings-panel active" id="panel-perfil">
+            <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-lg">
+              <h3 class="font-title-lg text-title-lg text-primary-container font-bold flex items-center gap-space-sm">
+                <span class="material-symbols-outlined text-secondary">person</span>
+                Informações de Perfil
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+                <div class="flex flex-col gap-space-xs">
+                  <label class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold" for="input-nome">Nome Completo</label>
+                  <input class="h-12 px-space-md bg-surface-container-low text-on-surface rounded-xl font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 transition-all shadow-sm" id="input-nome" type="text" placeholder="Seu nome completo">
+                </div>
+                <div class="flex flex-col gap-space-xs">
+                  <label class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold" for="input-email">E-mail</label>
+                  <input class="h-12 px-space-md bg-surface-container-low text-on-surface rounded-xl font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 transition-all shadow-sm" id="input-email" type="email" placeholder="seu@email.com">
+                </div>
+                <div class="flex flex-col gap-space-xs">
+                  <label class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold" for="input-foto">URL da Foto de Perfil</label>
+                  <input class="h-12 px-space-md bg-surface-container-low text-on-surface rounded-xl font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 transition-all shadow-sm" id="input-foto" type="url" placeholder="https://...">
+                </div>
+              </div>
+              <div class="flex justify-end">
+                <button onclick="saveProfile()" id="btn-save-perfil" class="h-11 px-space-lg bg-primary-container text-on-primary font-label-lg text-label-lg rounded-xl shadow-sm hover:opacity-95 transition-opacity flex items-center gap-space-xs">
+                  <span class="material-symbols-outlined text-[20px]">save</span>
+                  <span>Salvar Perfil</span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Panel: Endereço -->
+          <section class="settings-panel" id="panel-endereco">
+            <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-lg">
+              <h3 class="font-title-lg text-title-lg text-primary-container font-bold flex items-center gap-space-sm">
+                <span class="material-symbols-outlined text-secondary">local_shipping</span>
+                Endereço de Entrega
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-space-md">
+                <div class="md:col-span-4 flex flex-col gap-space-xs">
+                  <label class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold" for="input-cep">CEP</label>
+                  <input class="h-12 px-space-md bg-surface-container-low text-on-surface rounded-xl font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-secondary/40 shadow-sm" id="input-cep" type="text" placeholder="00000-000">
+                </div>
+                <div class="md:col-span-8 flex flex-col gap-space-xs">
+                  <label class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold" for="input-logradouro">Logradouro / Rua</label>
+                  <input class="h-12 px-space-md bg-surface-container-low text-on-surface rounded-xl font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-secondary/40 shadow-sm" id="input-logradouro" type="text" placeholder="Rua, Avenida...">
+                </div>
+                <div class="md:col-span-3 flex flex-col gap-space-xs">
+                  <label class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold" for="input-numero">Número</label>
+                  <input class="h-12 px-space-md bg-surface-container-low text-on-surface rounded-xl font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-secondary/40 shadow-sm" id="input-numero" type="text" placeholder="000">
+                </div>
+                <div class="md:col-span-4 flex flex-col gap-space-xs">
+                  <label class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold" for="input-complemento">Complemento</label>
+                  <input class="h-12 px-space-md bg-surface-container-low text-on-surface rounded-xl font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-secondary/40 shadow-sm" id="input-complemento" type="text" placeholder="Apto, Bloco...">
+                </div>
+                <div class="md:col-span-5 flex flex-col gap-space-xs">
+                  <label class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold" for="input-bairro">Bairro</label>
+                  <input class="h-12 px-space-md bg-surface-container-low text-on-surface rounded-xl font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-secondary/40 shadow-sm" id="input-bairro" type="text" placeholder="Bairro">
+                </div>
+                <div class="md:col-span-9 flex flex-col gap-space-xs">
+                  <label class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold" for="input-cidade">Cidade</label>
+                  <input class="h-12 px-space-md bg-surface-container-low text-on-surface rounded-xl font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-secondary/40 shadow-sm" id="input-cidade" type="text" placeholder="Cidade">
+                </div>
+                <div class="md:col-span-3 flex flex-col gap-space-xs">
+                  <label class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-bold" for="input-uf">UF</label>
+                  <input class="h-12 px-space-md bg-surface-container-low text-on-surface rounded-xl font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-secondary/40 shadow-sm uppercase text-center" id="input-uf" type="text" maxlength="2" placeholder="SP">
+                </div>
+              </div>
+              <div class="flex justify-end">
+                <button onclick="saveAddress()" id="btn-save-endereco" class="h-11 px-space-lg bg-primary-container text-on-primary font-label-lg text-label-lg rounded-xl shadow-sm hover:opacity-95 transition-opacity flex items-center gap-space-xs">
+                  <span class="material-symbols-outlined text-[20px]">save</span>
+                  <span>Salvar Endereço</span>
+                </button>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Toast -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-primary-container text-on-primary px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3" id="toast">
+  <span class="material-symbols-outlined text-secondary-container">check_circle</span>
+  <span class="font-body-sm text-body-sm" id="toast-message">Ação executada com sucesso.</span>
+</div>
+
+<script>
+  if (!AuroraAPI.isAuthenticated()) window.location.href = 'login.html';
+
+  let profileData = null;
+
+  function switchTab(tab) {
+    document.querySelectorAll('.settings-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.settings-tab-btn').forEach(b => {
+      b.classList.remove('bg-primary-container', 'text-on-primary', 'shadow-sm');
+      b.classList.add('text-on-surface-variant', 'hover:bg-surface-container-high', 'hover:text-on-surface');
+    });
+    const panel = document.getElementById(`panel-${tab}`);
+    if (panel) panel.classList.add('active');
+    const btn = document.getElementById(`tab-${tab}`);
+    if (btn) {
+      btn.classList.add('bg-primary-container', 'text-on-primary', 'shadow-sm');
+      btn.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-high', 'hover:text-on-surface');
+    }
+  }
+
+  async function initPage() {
+    try {
+      profileData = await AuroraAPI.apiFetch('/user/profile');
+      populateForm(profileData);
+      document.getElementById('loading-overlay').style.display = 'none';
+      const layout = document.getElementById('settings-layout');
+      layout.classList.remove('hidden');
+      layout.classList.add('grid');
+    } catch (e) {
+      document.getElementById('loading-overlay').innerHTML = `<div class="text-center"><p class="font-body-md text-body-md text-error">${e.message || 'Erro ao carregar perfil.'}</p><button onclick="initPage()" class="mt-4 h-10 px-6 rounded-xl bg-primary-container text-on-primary font-label-lg text-label-lg">Tentar novamente</button></div>`;
+    }
+  }
+
+  function populateForm(u) {
+    // Sidebar
+    document.getElementById('sidebar-nome').textContent = u.nome || u.email;
+    document.getElementById('sidebar-tipo').textContent = u.tipo === 'ADMIN' ? 'Administrador' : u.tipo === 'BIBLIOTECARIO' ? 'Bibliotecário' : 'Leitor Aurora';
+    // Header card
+    document.getElementById('card-nome').textContent = u.nome || '—';
+    document.getElementById('card-email').textContent = u.email || '—';
+    document.getElementById('card-tipo').textContent = u.tipo === 'ADMIN' ? 'Administrador' : u.tipo === 'BIBLIOTECARIO' ? 'Bibliotecário' : 'Leitor Aurora';
+    // Perfil inputs
+    document.getElementById('input-nome').value = u.nome || '';
+    document.getElementById('input-email').value = u.email || '';
+    document.getElementById('input-foto').value = u.fotoUrl || '';
+    // Endereço inputs
+    document.getElementById('input-cep').value = u.endCep || '';
+    document.getElementById('input-logradouro').value = u.endLogradouro || '';
+    document.getElementById('input-numero').value = u.endNumero || '';
+    document.getElementById('input-complemento').value = u.endComplemento || '';
+    document.getElementById('input-bairro').value = u.endBairro || '';
+    document.getElementById('input-cidade').value = u.endCidade || u.cidade || '';
+    document.getElementById('input-uf').value = u.endUf || u.uf || '';
+  }
+
+  async function saveProfile() {
+    const btn = document.getElementById('btn-save-perfil');
+    btn.disabled = true;
+    btn.textContent = 'Salvando...';
+    const errEl = document.getElementById('form-error');
+    errEl.classList.add('hidden');
+    try {
+      const updated = await AuroraAPI.apiFetch('/user/profile', {
+        method: 'PUT',
+        body: JSON.stringify({
+          nome: document.getElementById('input-nome').value.trim(),
+          email: document.getElementById('input-email').value.trim(),
+          fotoUrl: document.getElementById('input-foto').value.trim() || null,
+        })
+      });
+      profileData = updated;
+      populateForm(updated);
+      AuroraAPI.setUser(updated);
+      showSaved();
+      showToast('Perfil atualizado com sucesso!');
+    } catch (e) {
+      errEl.textContent = e.message || 'Erro ao salvar perfil.';
+      errEl.classList.remove('hidden');
+    }
+    btn.disabled = false;
+    btn.innerHTML = '<span class="material-symbols-outlined text-[20px]">save</span> <span>Salvar Perfil</span>';
+  }
+
+  async function saveAddress() {
+    const btn = document.getElementById('btn-save-endereco');
+    btn.disabled = true;
+    btn.textContent = 'Salvando...';
+    const errEl = document.getElementById('form-error');
+    errEl.classList.add('hidden');
+    try {
+      const updated = await AuroraAPI.apiFetch('/user/profile', {
+        method: 'PUT',
+        body: JSON.stringify({
+          endCep: document.getElementById('input-cep').value.trim(),
+          endLogradouro: document.getElementById('input-logradouro').value.trim(),
+          endNumero: document.getElementById('input-numero').value.trim(),
+          endComplemento: document.getElementById('input-complemento').value.trim(),
+          endBairro: document.getElementById('input-bairro').value.trim(),
+          endCidade: document.getElementById('input-cidade').value.trim(),
+          endUf: document.getElementById('input-uf').value.trim().toUpperCase(),
+        })
+      });
+      profileData = updated;
+      populateForm(updated);
+      AuroraAPI.setUser(updated);
+      showSaved();
+      showToast('Endereço atualizado com sucesso!');
+    } catch (e) {
+      errEl.textContent = e.message || 'Erro ao salvar endereço.';
+      errEl.classList.remove('hidden');
+    }
+    btn.disabled = false;
+    btn.innerHTML = '<span class="material-symbols-outlined text-[20px]">save</span> <span>Salvar Endereço</span>';
+  }
+
+  function showSaved() {
+    const notif = document.getElementById('save-notification');
+    notif.style.opacity = '1';
+    setTimeout(() => { notif.style.opacity = '0'; }, 2000);
+  }
+
+  function showToast(msg, isError = false) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toast-message').textContent = msg;
+    toast.classList.toggle('bg-error-container', isError);
+    toast.classList.toggle('text-on-error-container', isError);
+    toast.classList.toggle('bg-primary-container', !isError);
+    toast.classList.toggle('text-on-primary', !isError);
+    toast.classList.remove('translate-y-20','opacity-0');
+    toast.classList.add('translate-y-0','opacity-100');
+    setTimeout(()=>{
+      toast.classList.remove('translate-y-0','opacity-100');
+      toast.classList.add('translate-y-20','opacity-0');
+    }, 3500);
+  }
+
+  initPage();
+</script>
+</body>
+</html>

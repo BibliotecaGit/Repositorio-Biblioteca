@@ -6,7 +6,7 @@ echo ===================================================
 echo           Iniciando Aurora Frontend
 echo ===================================================
 
-cd /d "%~dp0aurora-frontend"
+cd /d "%~dp0"
 
 echo Servidor local ativo em http://localhost:3000
 echo Abrindo o navegador automaticamente...

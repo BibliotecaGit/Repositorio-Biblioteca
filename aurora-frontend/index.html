@@ -292,7 +292,8 @@
     </main>
   </div>
 
-  <script src="js/aurora-api.js"></script>
+  <script src="aurora-api.js"></script>
+  <script>if (!window.AuroraAPI) document.write('<script src="js/aurora-api.js"><\/script>');</script>
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
       await AuroraAPI.initSidebar('inicio');

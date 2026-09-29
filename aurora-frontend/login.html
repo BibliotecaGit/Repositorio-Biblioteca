@@ -123,6 +123,25 @@
         <span>Acessar Biblioteca Aurora</span>
         <span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1" id="login-btn-icon">arrow_forward</span>
       </button>
+
+      <!-- Acesso Rápido para Demonstração no GitHub Pages -->
+      <div class="pt-3 border-t border-surface-container flex flex-col gap-2">
+        <span class="text-[11px] font-semibold text-secondary flex items-center gap-1">
+          <span class="material-symbols-outlined text-[15px]">bolt</span>
+          Acesso Rápido (Demonstração / Testes):
+        </span>
+        <div class="grid grid-cols-3 gap-1.5">
+          <button type="button" onclick="quickFill('aluno@aurora.local', 'aluno123')" class="px-2 py-1.5 bg-secondary-fixed text-on-secondary-fixed rounded-lg text-[11px] font-bold hover:opacity-90 transition-all text-center truncate shadow-sm">
+            Aluno
+          </button>
+          <button type="button" onclick="quickFill('biblio@aurora.local', 'biblio123')" class="px-2 py-1.5 bg-surface-container text-on-surface rounded-lg text-[11px] font-bold hover:bg-surface-container-high transition-all text-center truncate">
+            Bibliotecário
+          </button>
+          <button type="button" onclick="quickFill('admin@aurora.local', 'admin123')" class="px-2 py-1.5 bg-surface-container text-on-surface rounded-lg text-[11px] font-bold hover:bg-surface-container-high transition-all text-center truncate">
+            Admin
+          </button>
+        </div>
+      </div>
     </form>
 
     <!-- 2. Formulário de Cadastro -->
@@ -361,8 +380,14 @@
         showAlert(err.message || 'Erro ao realizar cadastro. Verifique os dados.', 'error');
         submitBtn.disabled = false;
         submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
-        submitBtn.querySelector('span:first-child').textContent = 'Concluir Cadastro & Acessar';
       }
+    }
+
+    function quickFill(email, senha) {
+      switchAuthTab('login');
+      document.getElementById('login-email').value = email;
+      document.getElementById('login-password').value = senha;
+      document.getElementById('form-login').requestSubmit();
     }
   </script>
 </body>
