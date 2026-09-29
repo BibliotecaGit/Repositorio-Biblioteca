@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Aurora — Portal do Leitor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#00021d",
+            "primary-container": "#0f194a",
+            "on-primary": "#ffffff",
+            "secondary": "#25638f",
+            "secondary-container": "#95ccfe",
+            "secondary-fixed": "#cde5ff",
+            "on-secondary-fixed": "#001d32",
+            "surface": "#fbf9f3",
+            "surface-container-low": "#f5f3ee",
+            "surface-container": "#f0eee8",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#767680",
+            "on-surface": "#1b1c19",
+            "on-surface-variant": "#46464f",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a"
+          },
+          fontFamily: {
+            "body-md": ["Open Sans"],
+            "body-sm": ["Open Sans"],
+            "headline-sm": ["Montserrat"],
+            "label-md": ["Montserrat"],
+            "label-lg": ["Montserrat"],
+            "label-sm": ["Montserrat"]
+          },
+          spacing: {
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased min-h-screen flex items-center justify-center p-4">
+
+  <main class="w-full max-w-md bg-surface-container-lowest rounded-3xl p-6 sm:p-8 shadow-2xl border border-surface-container/60 my-8">
+    <!-- Header com Logo Editorial -->
+    <div class="flex flex-col items-center text-center mb-space-lg">
+      <div class="relative w-20 h-20 mb-space-sm rounded-full overflow-hidden shadow-sm bg-surface-container-low flex items-center justify-center">
+        <img alt="Biblioteca Aurora" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4_hfr9QgE7zVzPZcFdzSCr_OMhZJZHUmproxdnurvcw10WupCiLg0jxPaH4ZOphd5wMNpkXOffVNQG1LQ33dXlcynF27AKwSPgP_nmgxSgRy_Rr_sd1hFtc1RfrGqvdyZx35fjYyreedJuTkako80KzpgfE0IDzgHb3gXNDYvQ9KV4LNeObCgt9Rcu0fpUeKacMHGYQleKgerES_5nk1j6p_s0xn-fDeWkiQ-YXL2_FMrukEu9ZLOqv_UB76v0yl83pQ">
+      </div>
+      <span class="font-label-sm text-secondary uppercase tracking-widest text-[10px]">Portal do Leitor</span>
+      <h1 class="font-headline-sm text-primary tracking-tight mt-1 text-2xl font-bold">Biblioteca Aurora</h1>
+      <p class="font-body-sm text-on-surface-variant max-w-xs mt-1 text-xs">
+        Seu refúgio literário contemporâneo com acervo físico compartilhado e rotatividade justa.
+      </p>
+    </div>
+
+    <!-- Seletor de Abas Login / Cadastro -->
+    <div class="grid grid-cols-2 p-1 bg-surface-container rounded-xl mb-space-lg">
+      <button class="py-2.5 px-3 rounded-lg font-label-md transition-all duration-200 flex items-center justify-center gap-1.5 bg-surface-container-lowest text-primary shadow-sm" id="tab-login-btn" onclick="switchAuthTab('login')" type="button">
+        <span class="material-symbols-outlined text-[18px]">key</span>
+        <span>Entrar na Conta</span>
+      </button>
+      <button class="py-2.5 px-3 rounded-lg font-label-md transition-all duration-200 hover:text-primary flex items-center justify-center gap-1.5 text-on-surface-variant" id="tab-register-btn" onclick="switchAuthTab('register')" type="button">
+        <span class="material-symbols-outlined text-[18px]">person_add</span>
+        <span>Novo Cadastro</span>
+      </button>
+    </div>
+
+    <!-- Alert / Notificação de Status e Erros -->
+    <div class="hidden mb-4 p-3.5 rounded-xl flex items-center gap-2.5 font-body-sm text-xs transition-all duration-300" id="auth-alert">
+      <span class="material-symbols-outlined text-[20px] shrink-0" id="auth-alert-icon">info</span>
+      <span id="auth-alert-text"></span>
+    </div>
+
+    <!-- 1. Formulário de Login -->
+    <form class="flex flex-col space-y-4" id="form-login" onsubmit="handleLoginSubmit(event)">
+      <div>
+        <label class="block font-label-md text-primary mb-1.5 text-xs font-semibold" for="login-email">
+          E-mail de Leitor
+        </label>
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">mail</span>
+          <input class="w-full pl-11 pr-4 py-3 bg-surface-container-low rounded-xl font-body-md text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 focus:outline-none transition-all text-sm" id="login-email" placeholder="seu.email@exemplo.com" required type="email" autocomplete="email">
+        </div>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between mb-1.5">
+          <label class="font-label-md text-primary text-xs font-semibold" for="login-password">
+            Senha de Acesso
+          </label>
+          <span class="font-label-sm text-outline text-[11px]" title="Recuperação disponível diretamente no balcão de atendimento">
+            Esqueceu a senha?
+          </span>
+        </div>
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">lock</span>
+          <input class="w-full pl-11 pr-11 py-3 bg-surface-container-low rounded-xl font-body-md text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 focus:outline-none transition-all text-sm" id="login-password" placeholder="••••••••••••" required type="password" autocomplete="current-password">
+          <button class="absolute right-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary p-0.5" onclick="togglePasswordVisibility('login-password', this)" type="button">
+            <span class="material-symbols-outlined text-[18px]">visibility</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex items-center pt-0.5">
+        <label class="flex items-center gap-2 cursor-pointer select-none">
+          <input class="w-4 h-4 rounded text-primary-container accent-primary-container cursor-pointer" id="login-remember-me" type="checkbox" checked>
+          <span class="font-body-sm text-on-surface-variant text-xs">Lembrar desta sessão</span>
+        </label>
+      </div>
+
+      <button class="w-full py-3.5 px-4 bg-primary-container text-on-primary rounded-xl font-label-lg shadow-md hover:bg-primary transition-all duration-200 flex items-center justify-center gap-2 group mt-2" id="login-submit-btn" type="submit">
+        <span>Acessar Biblioteca Aurora</span>
+        <span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1" id="login-btn-icon">arrow_forward</span>
+      </button>
+    </form>
+
+    <!-- 2. Formulário de Cadastro -->
+    <form class="flex flex-col space-y-4 hidden" id="form-register" onsubmit="handleRegisterSubmit(event)">
+      <div>
+        <label class="block font-label-md text-primary mb-1 text-xs font-semibold" for="reg-name">
+          Nome Completo
+        </label>
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">person</span>
+          <input class="w-full pl-11 pr-4 py-2.5 bg-surface-container-low rounded-xl font-body-md text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 focus:outline-none transition-all text-sm" id="reg-name" placeholder="Clarice Lispector" required type="text" autocomplete="name">
+        </div>
+      </div>
+
+      <div>
+        <label class="block font-label-md text-primary mb-1 text-xs font-semibold" for="reg-email">
+          E-mail Principal
+        </label>
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">mail</span>
+          <input class="w-full pl-11 pr-4 py-2.5 bg-surface-container-low rounded-xl font-body-md text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 focus:outline-none transition-all text-sm" id="reg-email" placeholder="seu.email@exemplo.com" required type="email" autocomplete="email">
+        </div>
+      </div>
+
+      <div>
+        <label class="block font-label-md text-primary mb-1 text-xs font-semibold" for="reg-password">
+          Senha (mínimo 6 caracteres)
+        </label>
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">lock_reset</span>
+          <input class="w-full pl-11 pr-11 py-2.5 bg-surface-container-low rounded-xl font-body-md text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 focus:outline-none transition-all text-sm" id="reg-password" minlength="6" placeholder="Mínimo 6 caracteres" required type="password" autocomplete="new-password">
+          <button class="absolute right-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary p-0.5" onclick="togglePasswordVisibility('reg-password', this)" type="button">
+            <span class="material-symbols-outlined text-[18px]">visibility</span>
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <label class="block font-label-md text-primary mb-1 text-xs font-semibold" for="reg-password-confirm">
+          Confirmar Senha
+        </label>
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">lock_clock</span>
+          <input class="w-full pl-11 pr-11 py-2.5 bg-surface-container-low rounded-xl font-body-md text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 focus:outline-none transition-all text-sm" id="reg-password-confirm" minlength="6" placeholder="Repita sua senha" required type="password" autocomplete="new-password">
+          <button class="absolute right-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary p-0.5" onclick="togglePasswordVisibility('reg-password-confirm', this)" type="button">
+            <span class="material-symbols-outlined text-[18px]">visibility</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="p-3 bg-surface-container-low rounded-xl space-y-2">
+        <label class="flex items-start gap-2.5 cursor-pointer select-none">
+          <input class="mt-1 w-4 h-4 rounded text-primary-container accent-primary-container cursor-pointer flex-shrink-0" id="terms-check" required type="checkbox">
+          <span class="font-body-sm text-on-surface-variant text-xs leading-tight">
+            Assumo o <strong class="text-primary font-label-sm">Termo de Preservação Aurora</strong>: cuidar dos exemplares físicos com respeito, cumprindo prazos de entrega e integridade das páginas (Spec v3.0).
+          </span>
+        </label>
+      </div>
+
+      <button class="w-full py-3.5 px-4 bg-primary-container text-on-primary rounded-xl font-label-lg shadow-md hover:bg-primary transition-all duration-200 flex items-center justify-center gap-2 group mt-2" id="reg-submit-btn" type="submit">
+        <span>Concluir Cadastro & Acessar</span>
+        <span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1" id="reg-btn-icon">auto_stories</span>
+      </button>
+    </form>
+
+    <!-- Badges Editoriais / Regras Oficiais Aurora v3.0 -->
+    <div class="mt-space-lg pt-space-md bg-surface-container-low rounded-xl p-3.5 space-y-2.5">
+      <div class="flex items-center gap-2.5">
+        <div class="w-7 h-7 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary flex-shrink-0">
+          <span class="material-symbols-outlined text-[16px]">menu_book</span>
+        </div>
+        <div class="text-left">
+          <span class="font-label-sm text-primary block leading-tight text-xs font-semibold">3 Cópias Físicas por Livro</span>
+          <span class="font-body-sm text-on-surface-variant text-[11px] leading-tight">Rotatividade comunitária sustentável de títulos</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2.5">
+        <div class="w-7 h-7 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary flex-shrink-0">
+          <span class="material-symbols-outlined text-[16px]">schedule</span>
+        </div>
+        <div class="text-left">
+          <span class="font-label-sm text-primary block leading-tight text-xs font-semibold">Prazos de 15 ou 30 Dias</span>
+          <span class="font-body-sm text-on-surface-variant text-[11px] leading-tight">Calculados proporcionalmente ao tamanho do livro</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2.5">
+        <div class="w-7 h-7 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary flex-shrink-0">
+          <span class="material-symbols-outlined text-[16px]">autorenew</span>
+        </div>
+        <div class="text-left">
+          <span class="font-label-sm text-primary block leading-tight text-xs font-semibold">Renovação Descomplicada</span>
+          <span class="font-body-sm text-on-surface-variant text-[11px] leading-tight">Até 2 extensões diretamente pelo seu painel</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-space-md text-center">
+      <span class="font-body-sm text-outline text-[12px]">
+        Biblioteca Aurora © 2026 • Onde histórias encontram leitores
+      </span>
+    </div>
+  </main>
+
+  <script src="js/aurora-api.js"></script>
+  <script>
+    // Se o usuário já tiver sessão ativa válida, redireciona para a Início
+    if (AuroraAPI.isAuthenticated()) {
+      window.location.href = 'index.html';
+    }
+
+    // Alerta se redirecionado por sessão expirada
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('expired')) {
+      showAlert('Sua sessão expirou após 30 minutos de inatividade. Por favor, entre novamente.', 'warning');
+    }
+
+    function switchAuthTab(type) {
+      const loginForm = document.getElementById('form-login');
+      const regForm = document.getElementById('form-register');
+      const loginBtn = document.getElementById('tab-login-btn');
+      const regBtn = document.getElementById('tab-register-btn');
+      hideAlert();
+
+      if (type === 'login') {
+        loginForm.classList.remove('hidden');
+        regForm.classList.add('hidden');
+
+        loginBtn.className = 'py-2.5 px-3 rounded-lg font-label-md transition-all duration-200 flex items-center justify-center gap-1.5 bg-surface-container-lowest text-primary shadow-sm';
+        regBtn.className = 'py-2.5 px-3 rounded-lg font-label-md transition-all duration-200 hover:text-primary flex items-center justify-center gap-1.5 text-on-surface-variant';
+      } else {
+        loginForm.classList.add('hidden');
+        regForm.classList.remove('hidden');
+
+        regBtn.className = 'py-2.5 px-3 rounded-lg font-label-md transition-all duration-200 flex items-center justify-center gap-1.5 bg-surface-container-lowest text-primary shadow-sm';
+        loginBtn.className = 'py-2.5 px-3 rounded-lg font-label-md transition-all duration-200 hover:text-primary flex items-center justify-center gap-1.5 text-on-surface-variant';
+      }
+    }
+
+    function togglePasswordVisibility(inputId, btn) {
+      const input = document.getElementById(inputId);
+      const icon = btn.querySelector('.material-symbols-outlined');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.textContent = 'visibility_off';
+      } else {
+        input.type = 'password';
+        icon.textContent = 'visibility';
+      }
+    }
+
+    function showAlert(message, type = 'error') {
+      const alertBox = document.getElementById('auth-alert');
+      const alertText = document.getElementById('auth-alert-text');
+      const alertIcon = document.getElementById('auth-alert-icon');
+
+      alertBox.classList.remove('hidden', 'bg-error-container', 'text-on-error-container', 'bg-secondary-fixed', 'text-on-secondary-fixed', 'bg-amber-100', 'text-amber-900');
+
+      if (type === 'error') {
+        alertBox.classList.add('bg-error-container', 'text-on-error-container');
+        alertIcon.textContent = 'error';
+      } else if (type === 'success') {
+        alertBox.classList.add('bg-secondary-fixed', 'text-on-secondary-fixed');
+        alertIcon.textContent = 'verified';
+      } else if (type === 'warning') {
+        alertBox.classList.add('bg-amber-100', 'text-amber-900');
+        alertIcon.textContent = 'warning';
+      }
+
+      alertText.textContent = message;
+    }
+
+    function hideAlert() {
+      document.getElementById('auth-alert').classList.add('hidden');
+    }
+
+    async function handleLoginSubmit(e) {
+      e.preventDefault();
+      hideAlert();
+
+      const email = document.getElementById('login-email').value.trim();
+      const senha = document.getElementById('login-password').value;
+      const remember = document.getElementById('login-remember-me').checked;
+      const submitBtn = document.getElementById('login-submit-btn');
+
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+      submitBtn.querySelector('span:first-child').textContent = 'Autenticando...';
+
+      try {
+        await AuroraAPI.login(email, senha, remember);
+        showAlert('Acesso liberado! Redirecionando para a Aurora...', 'success');
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 600);
+      } catch (err) {
+        showAlert(err.message || 'E-mail ou senha incorretos. Tente novamente.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+        submitBtn.querySelector('span:first-child').textContent = 'Acessar Biblioteca Aurora';
+      }
+    }
+
+    async function handleRegisterSubmit(e) {
+      e.preventDefault();
+      hideAlert();
+
+      const nome = document.getElementById('reg-name').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const senha = document.getElementById('reg-password').value;
+      const confirmSenha = document.getElementById('reg-password-confirm').value;
+      const submitBtn = document.getElementById('reg-submit-btn');
+
+      if (senha.length < 6) {
+        showAlert('A senha deve conter no mínimo 6 caracteres.', 'error');
+        return;
+      }
+
+      if (senha !== confirmSenha) {
+        showAlert('As senhas informadas não coincidem.', 'error');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+      submitBtn.querySelector('span:first-child').textContent = 'Cadastrando...';
+
+      try {
+        await AuroraAPI.register(nome, email, senha, true);
+        showAlert('Cadastro realizado com sucesso! Conectando...', 'success');
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 800);
+      } catch (err) {
+        showAlert(err.message || 'Erro ao realizar cadastro. Verifique os dados.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+        submitBtn.querySelector('span:first-child').textContent = 'Concluir Cadastro & Acessar';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -9,6 +9,7 @@ import com.aurora.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -37,6 +38,16 @@ public class FineController {
     public ResponseEntity<List<FineResponse>> getMyFines(Authentication authentication) {
         User user = getUser(authentication);
         List<Fine> fines = fineRepository.findByUserId(user.getId());
+        List<FineResponse> responses = fines.stream()
+                .map(this::mapToFineResponse)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(responses);
+    }
+
+    @GetMapping("/all")
+    @PreAuthorize("hasAnyRole('BIBLIOTECARIO', 'ADMINISTRADOR')")
+    public ResponseEntity<List<FineResponse>> getAllFines() {
+        List<Fine> fines = fineRepository.findAll();
         List<FineResponse> responses = fines.stream()
                 .map(this::mapToFineResponse)
                 .collect(Collectors.toList());

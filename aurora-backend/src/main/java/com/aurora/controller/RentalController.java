@@ -59,4 +59,16 @@ public class RentalController {
         User user = getUser(authentication);
         return ResponseEntity.ok(rentalService.getUserRentals(user.getId()));
     }
+
+    @GetMapping("/all")
+    @PreAuthorize("hasAnyRole('BIBLIOTECARIO', 'ADMINISTRADOR')")
+    public ResponseEntity<List<RentalResponse>> getAllRentals() {
+        return ResponseEntity.ok(rentalService.getAllRentals());
+    }
+
+    @PostMapping("/return-copy/{copyId}")
+    @PreAuthorize("hasAnyRole('BIBLIOTECARIO', 'ADMINISTRADOR')")
+    public ResponseEntity<RentalResponse> returnBookByCopy(@PathVariable Long copyId) {
+        return ResponseEntity.ok(rentalService.returnBookByCopyId(copyId));
+    }
 }

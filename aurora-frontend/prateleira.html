@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Aurora — Prateleira</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+  <style>
+    @layer base { html,body { margin:0; padding:0; } body { overscroll-behavior:none; } }
+    ::-webkit-scrollbar { display:none; }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#00021d",
+            "primary-container": "#0f194a",
+            "on-primary": "#ffffff",
+            "secondary": "#25638f",
+            "secondary-container": "#95ccfe",
+            "on-secondary-container": "#125783",
+            "secondary-fixed": "#cde5ff",
+            "on-secondary-fixed": "#001d32",
+            "surface": "#fbf9f3",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f5f3ee",
+            "surface-container": "#f0eee8",
+            "surface-container-high": "#eae8e2",
+            "surface-container-highest": "#e4e2dd",
+            "outline": "#767680",
+            "on-surface": "#1b1c19",
+            "on-surface-variant": "#46464f",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a"
+          },
+          fontFamily: {
+            "body-md": ["Open Sans"],
+            "body-sm": ["Open Sans"],
+            "headline-lg": ["Montserrat"],
+            "headline-md": ["Montserrat"],
+            "title-lg": ["Montserrat"],
+            "title-md": ["Montserrat"],
+            "label-lg": ["Montserrat"],
+            "label-md": ["Montserrat"],
+            "label-sm": ["Montserrat"]
+          },
+          spacing: {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2.5rem"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+
+  <!-- Sidebar Lateral Fixa -->
+  <aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between">
+    <div class="flex flex-col">
+      <div class="h-20 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest">
+        <img alt="Logo Aurora" class="w-10 h-10 object-contain rounded-lg shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4_hfr9QgE7zVzPZcFdzSCr_OMhZJZHUmproxdnurvcw10WupCiLg0jxPaH4ZOphd5wMNpkXOffVNQG1LQ33dXlcynF27AKwSPgP_nmgxSgRy_Rr_sd1hFtc1RfrGqvdyZx35fjYyreedJuTkako80KzpgfE0IDzgHb3gXNDYvQ9KV4LNeObCgt9Rcu0fpUeKacMHGYQleKgerES_5nk1j6p_s0xn-fDeWkiQ-YXL2_FMrukEu9ZLOqv_UB76v0yl83pQ">
+        <div class="flex flex-col">
+          <span class="font-title-lg text-title-lg text-primary-container tracking-tight font-bold">Aurora</span>
+          <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Aluguel de Livros</span>
+        </div>
+      </div>
+
+      <div class="px-space-md py-space-sm">
+        <nav class="flex flex-col gap-space-xs">
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="inicio" href="index.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">auto_stories</span>
+              <span>Início</span>
+            </div>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="prateleira" href="prateleira.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">shelves</span>
+              <span>Prateleira</span>
+            </div>
+            <span class="px-space-xs py-0.5 bg-secondary-container text-on-secondary-container rounded-full font-label-sm text-xs font-bold">Catálogo</span>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="sugestoes" href="sugestoes.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">recommend</span>
+              <span>Sugestões</span>
+            </div>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="ja-lidos" href="ja-lidos.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">library_books</span>
+              <span>Já Lidos</span>
+            </div>
+            <span class="px-space-xs py-0.5 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm text-xs font-bold">0</span>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="lista-de-desejos" href="desejos.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">bookmark_heart</span>
+              <span>Lista de Desejos</span>
+            </div>
+            <span class="px-space-xs py-0.5 bg-secondary-fixed text-on-secondary-fixed rounded-full font-label-sm text-xs font-bold">0</span>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="avaliar-livros" href="avaliar.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">rate_review</span>
+              <span>Avaliar Livros</span>
+            </div>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="configuracoes" href="configuracoes.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">settings</span>
+              <span>Configurações</span>
+            </div>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Perfil do Usuário na Sidebar -->
+    <div class="p-space-md flex flex-col gap-space-sm bg-surface-container-lowest">
+      <div class="flex items-center gap-space-sm p-space-sm rounded-xl bg-surface-container-low">
+        <img alt="Perfil" class="w-8 h-8 rounded-full object-cover ring-2 ring-secondary-fixed user-display-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80">
+        <div class="flex flex-col min-w-0 flex-1">
+          <span class="font-label-lg text-label-lg text-on-surface truncate user-display-name">Carregando...</span>
+          <span class="font-label-sm text-label-sm text-secondary truncate user-display-role">Leitor</span>
+        </div>
+      </div>
+      <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg hover:bg-error-container hover:text-on-error-container transition-all group" data-path="login" href="#">
+        <span class="material-symbols-outlined text-outline group-hover:text-error transition-colors">logout</span>
+        <span>Sair</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Área Principal -->
+  <div class="pl-72 flex flex-col min-h-screen">
+    <header class="fixed top-0 left-72 right-0 h-20 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg">
+      <div class="flex items-center gap-space-md flex-1 max-w-xl">
+        <div class="relative flex items-center w-full">
+          <span class="material-symbols-outlined absolute left-4 text-on-surface-variant pointer-events-none">search</span>
+          <input id="searchInput" class="w-full h-11 pl-11 pr-4 bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm rounded-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-all" placeholder="Pesquise títulos, autores ou gêneros..." type="text">
+        </div>
+      </div>
+
+      <div class="flex items-center gap-space-md">
+        <a class="h-11 px-space-md bg-primary-container text-on-primary rounded-xl font-label-lg flex items-center gap-space-sm hover:opacity-95 shadow-sm transition-all" data-path="sacola-de-alugueis" href="index.html#alugueis-ativos">
+          <span class="material-symbols-outlined text-secondary-fixed">shopping_bag</span>
+          <span class="hidden md:inline">Aluguéis Ativos</span>
+          <span class="ml-1 px-1.5 py-0.5 bg-secondary text-on-secondary rounded-full font-label-sm text-xs font-bold">0</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="w-full pt-24 pb-16 flex-1 px-space-md lg:px-space-xl max-w-7xl mx-auto flex flex-col gap-space-lg">
+      <!-- Cabeçalho da Página e Filtros -->
+      <section class="flex flex-col gap-space-md bg-surface-container-lowest p-space-lg rounded-3xl shadow-sm border border-surface-container/60">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h1 class="font-headline-lg text-2xl lg:text-3xl text-primary-container font-bold tracking-tight">Prateleira de Livros</h1>
+            <p class="font-body-sm text-on-surface-variant text-xs mt-1">
+              Catálogo oficial de exemplares físicos com 3 cópias por título e rotação justa.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs text-on-surface-variant">Total: <strong id="totalCount" class="text-primary font-bold">0</strong> títulos</span>
+          </div>
+        </div>
+
+        <!-- Abas de Filtro -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 border-b border-surface-container">
+          <button class="filter-tab px-4 py-2 rounded-xl font-label-md text-xs font-bold transition-all bg-primary-container text-on-primary shadow-sm" id="tab-tamanho" onclick="switchTab('tamanho')">
+            Por Tamanho
+          </button>
+          <button class="filter-tab px-4 py-2 rounded-xl font-label-md text-xs font-bold transition-all bg-surface-container-high text-on-surface-variant hover:text-on-surface" id="tab-genero" onclick="switchTab('genero')">
+            Gênero
+          </button>
+          <button class="filter-tab px-4 py-2 rounded-xl font-label-md text-xs font-bold transition-all bg-surface-container-high text-on-surface-variant hover:text-on-surface" id="tab-autor" onclick="switchTab('autor')">
+            Autor
+          </button>
+          <button class="filter-tab px-4 py-2 rounded-xl font-label-md text-xs font-bold transition-all bg-surface-container-high text-on-surface-variant hover:text-on-surface" id="tab-novidades" onclick="switchTab('novidades')">
+            Novidades
+          </button>
+          <button class="filter-tab px-4 py-2 rounded-xl font-label-md text-xs font-bold transition-all bg-surface-container-high text-on-surface-variant hover:text-on-surface" id="tab-destaques" onclick="switchTab('destaques')">
+            Destaques
+          </button>
+          <button class="filter-tab px-4 py-2 rounded-xl font-label-md text-xs font-bold transition-all bg-surface-container-high text-on-surface-variant hover:text-on-surface" id="tab-infantis" onclick="switchTab('infantis')">
+            Infantis
+          </button>
+        </div>
+
+        <!-- Painel Tamanho -->
+        <div class="tab-content flex flex-col gap-2 pt-2" id="content-tamanho">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <button class="size-pill p-3 rounded-xl bg-surface-container-low hover:bg-secondary-fixed text-left transition-all border border-surface-container" onclick="selectSizeFilter('pequeno', this)">
+              <div class="font-title-md text-xs font-bold text-primary">Pequeno</div>
+              <div class="text-[11px] text-on-surface-variant">Até 100 págs (15d)</div>
+            </button>
+            <button class="size-pill p-3 rounded-xl bg-surface-container-low hover:bg-secondary-fixed text-left transition-all border border-surface-container" onclick="selectSizeFilter('medio_pequeno', this)">
+              <div class="font-title-md text-xs font-bold text-primary">Médio-Pequeno</div>
+              <div class="text-[11px] text-on-surface-variant">101 a 150 págs (15d)</div>
+            </button>
+            <button class="size-pill p-3 rounded-xl bg-surface-container-low hover:bg-secondary-fixed text-left transition-all border border-surface-container" onclick="selectSizeFilter('medio_padrao', this)">
+              <div class="font-title-md text-xs font-bold text-primary">Médio-Padrão</div>
+              <div class="text-[11px] text-on-surface-variant">151 a 250 págs (30d)</div>
+            </button>
+            <button class="size-pill p-3 rounded-xl bg-surface-container-low hover:bg-secondary-fixed text-left transition-all border border-surface-container" onclick="selectSizeFilter('grande', this)">
+              <div class="font-title-md text-xs font-bold text-primary">Grande</div>
+              <div class="text-[11px] text-on-surface-variant">+250 págs (30d)</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Painel Gênero -->
+        <div class="tab-content hidden flex-wrap gap-2 pt-2" id="content-genero">
+          <button class="genre-chip px-3.5 py-1.5 rounded-full text-xs font-semibold bg-surface-container text-on-surface-variant hover:bg-secondary hover:text-on-secondary transition-all" onclick="selectGenre('Ficção Científica', this)">Ficção Científica</button>
+          <button class="genre-chip px-3.5 py-1.5 rounded-full text-xs font-semibold bg-surface-container text-on-surface-variant hover:bg-secondary hover:text-on-secondary transition-all" onclick="selectGenre('Romance', this)">Romance</button>
+          <button class="genre-chip px-3.5 py-1.5 rounded-full text-xs font-semibold bg-surface-container text-on-surface-variant hover:bg-secondary hover:text-on-secondary transition-all" onclick="selectGenre('Drama', this)">Drama</button>
+          <button class="genre-chip px-3.5 py-1.5 rounded-full text-xs font-semibold bg-surface-container text-on-surface-variant hover:bg-secondary hover:text-on-secondary transition-all" onclick="selectGenre('Fantasia', this)">Fantasia</button>
+          <button class="genre-chip px-3.5 py-1.5 rounded-full text-xs font-semibold bg-surface-container text-on-surface-variant hover:bg-secondary hover:text-on-secondary transition-all" onclick="selectGenre('Infantil', this)">Infantil</button>
+          <button class="genre-chip px-3.5 py-1.5 rounded-full text-xs font-semibold bg-surface-container text-on-surface-variant hover:bg-secondary hover:text-on-secondary transition-all" onclick="selectGenre('Clássico', this)">Clássico</button>
+        </div>
+
+        <!-- Painel Autor -->
+        <div class="tab-content hidden flex-wrap gap-2 pt-2" id="content-autor">
+          <button class="author-chip px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-surface-container text-on-surface-variant hover:bg-primary-container hover:text-on-primary transition-all" onclick="selectAuthor('Machado de Assis', this)">Machado de Assis</button>
+          <button class="author-chip px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-surface-container text-on-surface-variant hover:bg-primary-container hover:text-on-primary transition-all" onclick="selectAuthor('George Orwell', this)">George Orwell</button>
+          <button class="author-chip px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-surface-container text-on-surface-variant hover:bg-primary-container hover:text-on-primary transition-all" onclick="selectAuthor('Gabriel García Márquez', this)">Gabriel García Márquez</button>
+          <button class="author-chip px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-surface-container text-on-surface-variant hover:bg-primary-container hover:text-on-primary transition-all" onclick="selectAuthor('Jane Austen', this)">Jane Austen</button>
+        </div>
+
+        <!-- Barra de Filtros Ativos -->
+        <div class="pt-2 flex items-center justify-between text-xs text-on-surface-variant border-t border-surface-container/60">
+          <div class="flex items-center gap-2">
+            <span>Filtro ativo:</span>
+            <span class="px-2.5 py-0.5 bg-secondary-fixed text-on-secondary-fixed rounded-md font-bold" id="activeFilterBadge">Todos os livros</span>
+          </div>
+          <button class="text-secondary hover:underline flex items-center gap-1 font-semibold" onclick="resetAllFilters()">
+            <span class="material-symbols-outlined text-sm">restart_alt</span>
+            <span>Limpar filtros</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Grid de Livros Dinâmico -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-space-md" id="booksGrid">
+        <div class="col-span-full py-12 text-center text-on-surface-variant text-sm">Carregando acervo de livros...</div>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/aurora-api.js"></script>
+  <script>
+    let currentFilterParams = {};
+    let readBookIds = new Set();
+    let wishlistBookIds = new Set();
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await AuroraAPI.initSidebar('prateleira');
+
+      // Lê parâmetros de URL caso venha da busca do Header
+      const urlParams = new URLSearchParams(window.location.search);
+      const searchParam = urlParams.get('search');
+      if (searchParam) {
+        document.getElementById('searchInput').value = searchParam;
+        currentFilterParams.search = searchParam;
+        updateBadge(`Busca: "${searchParam}"`);
+      }
+
+      // Busca dados de coleções do usuário para marcar corações e checks
+      if (AuroraAPI.isAuthenticated()) {
+        try {
+          const [read, wish] = await Promise.all([
+            AuroraAPI.getReadBooks().catch(() => []),
+            AuroraAPI.getWishlist().catch(() => [])
+          ]);
+          readBookIds = new Set(read.map(b => b.id));
+          wishlistBookIds = new Set(wish.map(b => b.id));
+        } catch (e) {}
+      }
+
+      loadBooks();
+
+      // Busca com debounce
+      let debounceTimeout;
+      document.getElementById('searchInput').addEventListener('input', (e) => {
+        clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(() => {
+          const q = e.target.value.trim();
+          if (q) {
+            currentFilterParams.search = q;
+            updateBadge(`Busca: "${q}"`);
+          } else {
+            delete currentFilterParams.search;
+            updateBadge('Todos os livros');
+          }
+          loadBooks();
+        }, 400);
+      });
+    });
+
+    async function loadBooks() {
+      const container = document.getElementById('booksGrid');
+      container.innerHTML = '<div class="col-span-full py-12 text-center text-on-surface-variant text-sm">Atualizando prateleira...</div>';
+
+      try {
+        const books = await AuroraAPI.getBooks(currentFilterParams);
+        document.getElementById('totalCount').textContent = books.length;
+
+        if (books.length === 0) {
+          container.innerHTML = `
+            <div class="col-span-full py-16 text-center text-on-surface-variant flex flex-col items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-4xl text-outline">search_off</span>
+              <p class="font-title-md text-primary font-bold">Nenhum livro encontrado</p>
+              <p class="text-xs">Tente ajustar os filtros ou a palavra-chave de busca.</p>
+              <button onclick="resetAllFilters()" class="mt-2 px-3 py-1.5 bg-secondary-fixed text-on-secondary-fixed rounded-lg text-xs font-bold">Limpar Filtros</button>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = books.map(book => {
+          const isAvailable = book.disponivel && book.copiasDisponiveis > 0;
+          const isWish = wishlistBookIds.has(book.id);
+          const isRead = readBookIds.has(book.id);
+          const coverUrl = book.capaUrl || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80';
+          const rating = Number(book.avaliacaoMedia || 0).toFixed(1);
+
+          return `
+            <div class="book-card flex flex-col bg-surface-container-lowest rounded-2xl p-space-md shadow-sm hover:shadow-xl transition-all duration-300 relative group border border-surface-container/60">
+              <div class="relative w-full aspect-[2/3] rounded-xl overflow-hidden bg-surface-container-high mb-space-sm shadow-inner">
+                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${coverUrl}" alt="${book.titulo}" onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80'">
+                <div class="absolute top-2 right-2 flex flex-col gap-1.5 z-10">
+                  <button aria-label="Lista de Desejos" class="w-8 h-8 rounded-full bg-surface-container-lowest/90 backdrop-blur-md ${isWish ? 'text-error' : 'text-outline'} hover:text-error flex items-center justify-center transition-all shadow-sm" onclick="toggleWishlist(this, ${book.id})">
+                    <span class="material-symbols-outlined text-lg">bookmark_heart</span>
+                  </button>
+                  <button aria-label="Já Lido" class="w-8 h-8 rounded-full bg-surface-container-lowest/90 backdrop-blur-md ${isRead ? 'text-secondary' : 'text-outline'} hover:text-secondary flex items-center justify-center transition-all shadow-sm" onclick="toggleRead(this, ${book.id})">
+                    <span class="material-symbols-outlined text-lg">check_circle</span>
+                  </button>
+                </div>
+                <span class="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-primary-container/80 text-on-primary backdrop-blur-md font-label-sm text-[10px] uppercase font-bold">
+                  ${book.faixaTamanho ? book.faixaTamanho.replace('_', ' ') : ''}
+                </span>
+              </div>
+
+              <div class="flex flex-col flex-1 justify-between">
+                <div>
+                  <div class="flex items-center justify-between text-xs mb-1">
+                    <span class="flex items-center gap-0.5 text-amber-500">
+                      <span class="material-symbols-outlined text-[15px]">star</span>
+                      <strong class="text-on-surface font-label-md">${rating}</strong>
+                    </span>
+                    <span class="text-on-surface-variant text-[11px]">${book.numPaginas} págs</span>
+                  </div>
+                  <h3 class="font-title-md text-primary font-bold group-hover:text-secondary transition-colors line-clamp-1 text-sm">${book.titulo}</h3>
+                  <p class="font-body-sm text-on-surface-variant text-xs truncate">${book.autor}</p>
+                </div>
+
+                <div class="mt-3 pt-2.5 border-t border-surface-container/60 flex flex-col gap-2">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[11px] text-on-surface-variant">Aluguel:</span>
+                    <span class="font-bold text-primary-container text-xs">R$ ${Number(book.precoAluguel || 0).toFixed(2).replace('.', ',')}</span>
+                  </div>
+
+                  <div class="flex items-center justify-between gap-1">
+                    <div class="flex items-center gap-1">
+                      <span class="w-2 h-2 rounded-full ${isAvailable ? 'bg-secondary' : 'bg-outline'}"></span>
+                      <span class="text-[11px] font-bold ${isAvailable ? 'text-secondary' : 'text-outline'}">
+                        ${isAvailable ? `${book.copiasDisponiveis} de 3 livres` : '0/3 livres'}
+                      </span>
+                    </div>
+
+                    ${isAvailable ? `
+                      <button onclick="handleRent(${book.id}, '${book.titulo.replace(/'/g, "\\'")}')" class="px-3 py-1.5 bg-primary-container text-on-primary hover:bg-primary rounded-lg text-xs font-bold transition-all shadow-sm">
+                        Alugar
+                      </button>
+                    ` : `
+                      <button disabled class="px-2.5 py-1.5 bg-surface-container text-outline rounded-lg text-[11px] font-semibold cursor-not-allowed">
+                        Indisponível
+                      </button>
+                    `}
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      } catch (err) {
+        container.innerHTML = '<div class="col-span-full py-12 text-center text-error text-sm">Erro ao carregar acervo da biblioteca.</div>';
+      }
+    }
+
+    async function handleRent(bookId, title) {
+      if (!AuroraAPI.isAuthenticated()) {
+        window.location.href = 'login.html';
+        return;
+      }
+      try {
+        await AuroraAPI.rentBook(bookId);
+        AuroraAPI.showToast(`"${title}" alugado com sucesso!`, 'check_circle');
+        loadBooks();
+        AuroraAPI.initSidebar('prateleira');
+      } catch (err) {
+        AuroraAPI.showToast(err.message || 'Erro ao realizar aluguel.', 'error', true);
+      }
+    }
+
+    async function toggleWishlist(btn, bookId) {
+      if (!AuroraAPI.isAuthenticated()) {
+        window.location.href = 'login.html';
+        return;
+      }
+      const isWish = btn.classList.contains('text-error');
+      try {
+        if (isWish) {
+          await AuroraAPI.removeFromWishlist(bookId);
+          wishlistBookIds.delete(bookId);
+          btn.classList.remove('text-error');
+          btn.classList.add('text-outline');
+          AuroraAPI.showToast('Removido da Lista de Desejos', 'bookmark_remove');
+        } else {
+          await AuroraAPI.addToWishlist(bookId);
+          wishlistBookIds.add(bookId);
+          btn.classList.add('text-error');
+          btn.classList.remove('text-outline');
+          AuroraAPI.showToast('Salvo na sua Lista de Desejos', 'bookmark_added');
+        }
+        AuroraAPI.initSidebar('prateleira');
+      } catch (e) {
+        AuroraAPI.showToast(e.message || 'Erro ao atualizar lista de desejos', 'error', true);
+      }
+    }
+
+    async function toggleRead(btn, bookId) {
+      if (!AuroraAPI.isAuthenticated()) {
+        window.location.href = 'login.html';
+        return;
+      }
+      const isRead = btn.classList.contains('text-secondary');
+      try {
+        if (isRead) {
+          await AuroraAPI.unmarkAsRead(bookId);
+          readBookIds.delete(bookId);
+          btn.classList.remove('text-secondary');
+          btn.classList.add('text-outline');
+          AuroraAPI.showToast('Desmarcado como lido', 'remove_done');
+        } else {
+          await AuroraAPI.markAsRead(bookId);
+          readBookIds.add(bookId);
+          btn.classList.add('text-secondary');
+          btn.classList.remove('text-outline');
+          AuroraAPI.showToast('Marcado como Lido!', 'check_circle');
+        }
+        AuroraAPI.initSidebar('prateleira');
+      } catch (e) {
+        AuroraAPI.showToast(e.message || 'Erro ao atualizar leitura', 'error', true);
+      }
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.filter-tab').forEach(t => {
+        t.className = 'filter-tab px-4 py-2 rounded-xl font-label-md text-xs font-bold transition-all bg-surface-container-high text-on-surface-variant hover:text-on-surface';
+      });
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+
+      const activeBtn = document.getElementById('tab-' + tabId);
+      if (activeBtn) {
+        activeBtn.className = 'filter-tab px-4 py-2 rounded-xl font-label-md text-xs font-bold transition-all bg-primary-container text-on-primary shadow-sm';
+      }
+
+      if (tabId === 'novidades') {
+        currentFilterParams = { novidades: true };
+        updateBadge('Novidades (últimos 6 meses)');
+        loadBooks();
+      } else if (tabId === 'destaques') {
+        currentFilterParams = { destaques: true };
+        updateBadge('Destaques da comunidade');
+        loadBooks();
+      } else if (tabId === 'infantis') {
+        currentFilterParams = { infantis: true };
+        updateBadge('Literatura Infantil');
+        loadBooks();
+      } else {
+        const content = document.getElementById('content-' + tabId);
+        if (content) content.classList.remove('hidden');
+      }
+    }
+
+    function selectSizeFilter(sizeKey, btn) {
+      document.querySelectorAll('.size-pill').forEach(p => {
+        p.classList.remove('bg-secondary-fixed', 'border-secondary');
+        p.classList.add('bg-surface-container-low');
+      });
+      btn.classList.remove('bg-surface-container-low');
+      btn.classList.add('bg-secondary-fixed', 'border-secondary');
+
+      currentFilterParams = { tamanho: sizeKey };
+      const labels = {
+        'pequeno': 'Tamanho: Pequeno (até 100 págs)',
+        'medio_pequeno': 'Tamanho: Médio-Pequeno (101-150 págs)',
+        'medio_padrao': 'Tamanho: Médio-Padrão (151-250 págs)',
+        'grande': 'Tamanho: Grande (+250 págs)'
+      };
+      updateBadge(labels[sizeKey] || sizeKey);
+      loadBooks();
+    }
+
+    function selectGenre(genre, btn) {
+      document.querySelectorAll('.genre-chip').forEach(c => {
+        c.className = 'genre-chip px-3.5 py-1.5 rounded-full text-xs font-semibold bg-surface-container text-on-surface-variant hover:bg-secondary hover:text-on-secondary transition-all';
+      });
+      btn.className = 'genre-chip px-3.5 py-1.5 rounded-full text-xs font-semibold bg-primary-container text-on-primary shadow-sm';
+
+      currentFilterParams = { genero: genre };
+      updateBadge(`Gênero: ${genre}`);
+      if (AuroraAPI.isAuthenticated()) {
+        AuroraAPI.recordFilterUsage('genero', genre).catch(() => {});
+      }
+      loadBooks();
+    }
+
+    function selectAuthor(author, btn) {
+      document.querySelectorAll('.author-chip').forEach(c => {
+        c.className = 'author-chip px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-surface-container text-on-surface-variant hover:bg-primary-container hover:text-on-primary transition-all';
+      });
+      btn.className = 'author-chip px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-primary-container text-on-primary shadow-sm';
+
+      currentFilterParams = { autor: author };
+      updateBadge(`Autor: ${author}`);
+      if (AuroraAPI.isAuthenticated()) {
+        AuroraAPI.recordFilterUsage('autor', author).catch(() => {});
+      }
+      loadBooks();
+    }
+
+    function updateBadge(text) {
+      document.getElementById('activeFilterBadge').textContent = text;
+    }
+
+    function resetAllFilters() {
+      currentFilterParams = {};
+      document.getElementById('searchInput').value = '';
+      updateBadge('Todos os livros');
+      document.querySelectorAll('.size-pill').forEach(p => {
+        p.classList.remove('bg-secondary-fixed', 'border-secondary');
+        p.classList.add('bg-surface-container-low');
+      });
+      switchTab('tamanho');
+      loadBooks();
+    }
+  </script>
+</body>
+</html>
