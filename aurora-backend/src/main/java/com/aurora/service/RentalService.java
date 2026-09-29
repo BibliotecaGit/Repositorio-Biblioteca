@@ -202,6 +202,21 @@ public class RentalService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
+    public List<RentalResponse> getAllRentals() {
+        return rentalRepository.findAll()
+                .stream()
+                .map(this::mapToRentalResponse)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public RentalResponse returnBookByCopyId(Long copyId) {
+        Rental rental = rentalRepository.findFirstByBookCopyIdAndStatus(copyId, RentalStatus.ativo)
+                .orElseThrow(() -> new IllegalArgumentException("Nenhum aluguel ativo encontrado para a cópia " + copyId));
+        return returnBook(rental.getId());
+    }
+
     @Scheduled(cron = "0 0 0 * * ?")
     @Transactional
     public void processDailyOverdueRentals() {

@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME:org.postgresql.Driver}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  h2:
+    console:
+      enabled: false
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+aurora:
+  jwt:
+    secret: ${AURORA_JWT_SECRET:9a6f8b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a}
+    expiration-ms: ${AURORA_JWT_EXPIRATION_MS:1800000}
+
+server:
+  port: ${PORT:8080}

@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import com.aurora.entity.enums.BookSize;
+
 import java.util.List;
 
 @RestController
@@ -21,9 +23,20 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping
-    public ResponseEntity<List<BookResponse>> getAllBooks(@RequestParam(required = false) String search) {
+    public ResponseEntity<List<BookResponse>> getAllBooks(
+            @RequestParam(required = false) String search,
+            @RequestParam(required = false) BookSize tamanho,
+            @RequestParam(required = false) String genero,
+            @RequestParam(required = false) String autor,
+            @RequestParam(required = false) Boolean novidades,
+            @RequestParam(required = false) Boolean destaques,
+            @RequestParam(required = false) Boolean infantis) {
         if (search != null && !search.isBlank()) {
             return ResponseEntity.ok(bookService.searchBooks(search));
+        }
+        if (tamanho != null || (genero != null && !genero.isBlank()) || (autor != null && !autor.isBlank())
+                || Boolean.TRUE.equals(novidades) || Boolean.TRUE.equals(destaques) || Boolean.TRUE.equals(infantis)) {
+            return ResponseEntity.ok(bookService.filterBooks(tamanho, genero, autor, novidades, destaques, infantis));
         }
         return ResponseEntity.ok(bookService.getAllBooks());
     }
