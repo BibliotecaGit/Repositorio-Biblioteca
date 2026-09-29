@@ -1,540 +1,290 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-tertiary": "#ffffff", "surface-container": "#f0eee8", "surface-bright": "#fbf9f3", "inverse-surface": "#30312d", "inverse-primary": "#bac3fe", "primary": "#00021d", "surface": "#fbf9f3", "primary-fixed": "#dee0ff", "outline-variant": "#c6c5d0", "error-container": "#ffdad6", "on-primary-fixed-variant": "#3a4375", "on-error": "#ffffff", "surface-tint": "#525b8f", "surface-dim": "#dcdad4", "outline": "#767680", "surface-container-lowest": "#ffffff", "tertiary-fixed-dim": "#a9cbe5", "on-surface-variant": "#46464f", "surface-container-high": "#eae8e2", "surface-container-low": "#f5f3ee", "error": "#ba1a1a", "surface-variant": "#e4e2dd", "secondary-container": "#95ccfe", "on-primary-fixed": "#0c1648", "tertiary": "#00060c", "tertiary-container": "#002132", "on-primary": "#ffffff", "on-secondary-container": "#125783", "on-secondary-fixed": "#001d32", "surface-container-highest": "#e4e2dd", "on-tertiary-fixed": "#001e2e", "inverse-on-surface": "#f2f1eb", "on-secondary-fixed-variant": "#004b74", "on-background": "#1b1c19", "background": "#fbf9f3", "on-error-container": "#93000a", "on-surface": "#1b1c19", "on-tertiary-fixed-variant": "#284a60", "secondary": "#25638f", "primary-fixed-dim": "#bac3fe", "on-secondary": "#ffffff", "tertiary-fixed": "#c8e6ff", "secondary-fixed": "#cde5ff", "primary-container": "#0f194a", "on-primary-container": "#7983b9", "on-tertiary-container": "#698aa2", "secondary-fixed-dim": "#95ccfe" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xl": "2.5rem", "margin-mobile": "1.25rem", "space-lg": "1.5rem", "space-md": "1rem", "margin": "2.5rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "gutter": "1.5rem", "gutter-mobile": "1rem", "space-2xl": "4rem" }, "fontFamily": { "body-lg": [ "Open Sans" ], "display-lg": [ "Montserrat" ], "body-md": [ "Open Sans" ], "label-md": [ "Montserrat" ], "body-sm": [ "Open Sans" ], "label-lg": [ "Montserrat" ], "headline-md": [ "Montserrat" ], "display-lg-mobile": [ "Montserrat" ], "headline-sm": [ "Montserrat" ], "title-lg": [ "Montserrat" ], "label-sm": [ "Montserrat" ], "title-md": [ "Montserrat" ], "headline-lg-mobile": [ "Montserrat" ], "headline-lg": [ "Montserrat" ] }, "fontSize": { "body-lg": [ "18px", { "lineHeight": "28px", "fontWeight": "400" } ], "display-lg": [ "48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "body-md": [ "15px", { "lineHeight": "24px", "fontWeight": "400" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "600" } ], "body-sm": [ "13px", { "lineHeight": "20px", "fontWeight": "400" } ], "label-lg": [ "14px", { "lineHeight": "20px", "letterSpacing": "0.04em", "fontWeight": "600" } ], "headline-md": [ "28px", { "lineHeight": "36px", "fontWeight": "600" } ], "display-lg-mobile": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "headline-sm": [ "22px", { "lineHeight": "30px", "fontWeight": "600" } ], "title-lg": [ "18px", { "lineHeight": "26px", "fontWeight": "600" } ], "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "700" } ], "title-md": [ "16px", { "lineHeight": "24px", "fontWeight": "600" } ], "headline-lg-mobile": [ "26px", { "lineHeight": "34px", "fontWeight": "700" } ], "headline-lg": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.015em", "fontWeight": "700" } ] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed"><aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between"><div class="flex flex-col"><div class="h-20 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest"><img alt="Logo Aurora" class="w-10 h-10 object-contain rounded-lg" src="https://lh3.googleusercontent.com/aida/AEtjO1Vl0ovc58Z8FmVMNKvb05Ma0aTILPIO9JOPXsj2IF5CawjY5P-6BRC8pamuGqFbgclo-iP4nFSdWgblkn_iFgtR7hx5sEcXNDFQ9fbV-AwJfBx4pCeFmFPQVTNr3t4DZioVSZRrVP6EFMUp-f0KhQcApiY6tZP5kOR8zziL8a2vgSRU63YEX8g5BImR1JA8aEfj3fYjlk7XEfKL4Bq4XmUQx0I5I8RhoN87iEfOGuAivbWkNSYommjR_9YtExwHeZv_id0WCc67WRs"><div class="flex flex-col"><span class="font-title-lg text-title-lg text-primary-container tracking-tight">Aurora</span><span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Aluguel de Livros</span></div></div><div class="px-space-md py-space-sm"><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-bold shadow-[0_4px_20px_-2px_rgba(15,25,74,0.04)]"><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="inicio" href="#"><span class="">Início</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="prateleira" href="#"><span class="">Prateleira</span><span class="px-space-xs py-0.5 bg-secondary-container text-on-secondary-container rounded-full font-label-sm text-label-sm">Novo</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="sugestoes" href="#"><span class="">Sugestões</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="ja-lidos" href="#"><span class="">Já Lidos</span><span class="px-space-xs py-0.5 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm text-label-sm">34</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="lista-de-desejos" href="#"><span class="">Lista de Desejos</span><span class="px-space-xs py-0.5 bg-secondary-fixed text-on-secondary-fixed rounded-full font-label-sm text-label-sm">12</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="avaliar-livros" href="#"><span class="">Avaliar Livros</span></a><a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all group" data-path="configuracoes" href="#"><span class="">Configurações</span></a></nav></div></div><div class="p-space-md flex flex-col gap-space-sm bg-surface-container-lowest"><div class="flex items-center gap-space-sm p-space-sm rounded-xl bg-surface-container-low"><img alt="Helena Souza" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1Vl0ovc58Z8FmVMNKvb05Ma0aTILPIO9JOPXsj2IF5CawjY5P-6BRC8pamuGqFbgclo-iP4nFSdWgblkn_iFgtR7hx5sEcXNDFQ9fbV-AwJfBx4pCeFmFPQVTNr3t4DZioVSZRrVP6EFMUp-f0KhQcApiY6tZP5kOR8zziL8a2vgSRU63YEX8g5BImR1JA8aEfj3fYjlk7XEfKL4Bq4XmUQx0I5I8RhoN87iEfOGuAivbWkNSYommjR_9YtExwHeZv_id0WCc67WRs"><div class="flex flex-col min-w-0 flex-1"><span class="font-label-lg text-label-lg text-on-surface truncate">Helena Souza</span><span class="font-label-sm text-label-sm text-secondary truncate">Leitora Aurora Plus</span></div></div><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-error-container hover:text-on-error-container transition-all group" data-path="sair" href="#"><span class="">Sair</span></a></div></aside><div class="pl-72 flex flex-col min-h-screen"><header class="fixed top-0 left-72 right-0 h-20 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md flex-1 max-w-xl"><div class="relative flex items-center w-full"><span class="material-symbols-outlined absolute left-4 text-on-surface-variant pointer-events-none">search</span><input class="w-full h-11 pl-11 pr-4 bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm rounded-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-all" placeholder="Pesquise títulos, autores, coleções ou ISBN..." type="text"></div><div class="hidden xl:flex items-center gap-space-xs"><button class="h-11 px-space-md bg-surface-container-low hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded-xl transition-colors flex items-center gap-space-xs"><span class="material-symbols-outlined text-secondary">category</span><span class="">Gênero</span></button></div></div><div class="flex items-center gap-space-md"><button aria-label="Notificações" class="relative w-11 h-11 rounded-xl bg-surface-container-lowest flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><span class="material-symbols-outlined">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-secondary ring-2 ring-surface-container-lowest"></span></button><a class="h-11 px-space-md bg-primary-container text-on-primary rounded-xl font-label-lg text-label-lg flex items-center gap-space-sm hover:opacity-95 shadow-[0_4px_20px_-2px_rgba(15,25,74,0.04)] transition-all" data-path="sacola-de-alugueis" href="#"><span class="material-symbols-outlined text-secondary-fixed">shopping_bag</span><span class="hidden md:inline">Sacola &amp; Aluguéis</span><span class="ml-1 px-1.5 py-0.5 bg-secondary text-on-secondary rounded-full font-label-sm text-label-sm">2</span></a><div class="flex items-center pl-space-xs"><img alt="Helena Souza" class="w-8 h-8 rounded-full object-cover ring-2 ring-secondary-fixed" src="https://lh3.googleusercontent.com/aida/AEtjO1Vl0ovc58Z8FmVMNKvb05Ma0aTILPIO9JOPXsj2IF5CawjY5P-6BRC8pamuGqFbgclo-iP4nFSdWgblkn_iFgtR7hx5sEcXNDFQ9fbV-AwJfBx4pCeFmFPQVTNr3t4DZioVSZRrVP6EFMUp-f0KhQcApiY6tZP5kOR8zziL8a2vgSRU63YEX8g5BImR1JA8aEfj3fYjlk7XEfKL4Bq4XmUQx0I5I8RhoN87iEfOGuAivbWkNSYommjR_9YtExwHeZv_id0WCc67WRs"></div></div></header><main class="w-full pt-20 bg-background flex-1" style="background-color: rgb(251, 249, 243); background-image: linear-gradient(rgba(251, 249, 243, 0.15) 0%, rgba(251, 249, 243, 0.85) 550px, rgba(251, 249, 243, 0.98) 100%), url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDpcWGB2rWedHKEx_ZtzkmHk3YTPN8HZ5gNMujAr4w-4V3hkz_vh3PRGjxizdpf0sy9GDkO1N7W011J118uTLAUFWr6WjFWCCmtBzSuytmrRd1exrgBViKBxNsPExC6TLQjninP6KvyEWZe9tyYBc_WqAH3QaiSGSNhe5hwHD9kFpL0mohlApAysnI9ipKkLBTK5GXM-6FlXGhsFFvwM6KtxeHStqIz4fjg_HOhnB95PxOayr214SHKmFRpKIQpEiAWQhE&quot;); background-size: 100%; background-position: center top; background-repeat: no-repeat; background-attachment: fixed;"><div class="flex flex-col w-full">
-<div class="w-full relative px-space-md md:px-space-xl py-space-lg flex flex-col gap-space-xl">
-<!-- Hero / Profile Affinity Summary Panel -->
-<div class="relative w-full rounded-2xl overflow-hidden shadow-sm bg-surface-container-lowest p-space-lg md:p-space-xl">
-<!-- Ambient Gradient Backdrop from Interface asset -->
-<div class="absolute inset-0 opacity-15 pointer-events-none bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCGgJ3lOrd8aw9ZcXU0IateQifRud6kOTlr09WVSyryMvqvpKCr02QwfmT8fjvBjYFNv651hV33hkwKT1gSHSnrLxNHjr5_Lf2hV5pSBf4cdYjt8QKjxuNVA_SXoObertuV-wuOsbVYKPRuKoJYYbfjv8JKPq-uUb3wDDKFkOpM6-W9Rwb3xa5B8UD9WsRO9xAfOzFdpTSO5XErabGyQGSHJEtmnnXUk0X_Jw7M21rPFiuzSAkcoOZZAcDEPEXSZXhNRIM');"></div>
-<div class="absolute inset-0 bg-gradient-to-r from-surface-container-lowest via-surface-container-lowest/90 to-surface-container-lowest/40 pointer-events-none"></div>
-<div class="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-lg">
-<div class="max-w-3xl flex flex-col gap-space-xs">
-<div class="flex items-center gap-2">
-<span class="inline-flex items-center justify-center w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-<span class="font-label-sm text-label-sm uppercase text-secondary tracking-widest">
-              RECOMENDAÇÕES INTELIGENTES • Baseado no seu perfil de leitura
-            </span>
-</div>
-<h1 class="font-headline-lg text-headline-lg text-primary-container tracking-tight">
-            Sugestões Personalizadas
-          </h1>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-            Cruzamos seus filtros mais acessados (tamanho Médio-padrão, Romance &amp; Ficção Científica, autores contemporâneos) para criar recomendações exclusivas para o seu ritmo.
-          </p>
-</div>
-<div class="flex items-center gap-space-sm self-start lg:self-center">
-<button class="px-space-md py-2.5 bg-surface-container-low hover:bg-surface-container text-on-surface rounded-xl font-label-md text-label-md flex items-center gap-2 shadow-sm transition-all hover:shadow" id="btn-recalcular-top">
-<span class="material-symbols-outlined text-secondary text-lg animate-spin-hover">sync</span>
-<span class="">Recalcular</span>
-</button>
-<a class="px-space-md py-2.5 bg-primary-container text-on-primary rounded-xl font-label-md text-label-md flex items-center gap-2 shadow-md hover:bg-primary transition-all" href="#">
-<span class="material-symbols-outlined text-secondary-fixed text-lg">tune</span>
-<span class="">Ajustar Afinidades</span>
-</a>
-</div>
-</div>
-<!-- Active Preferences Strip Bento -->
-<div class="relative z-10 mt-space-lg pt-space-md bg-surface-container-low/70 rounded-xl p-space-md">
-<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-secondary text-xl">psychology</span>
-<span class="font-title-md text-title-md text-primary-container">Seus Padrões de Preferência Ativos</span>
-</div>
-<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-lowest px-2.5 py-1 rounded-full shadow-sm">
-            Algoritmo Aurora v3.8 • 94% assertividade
-          </span>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-sm mt-space-sm">
-<!-- Item 1: Tamanho -->
-<div class="bg-surface-container-lowest rounded-lg p-space-sm shadow-sm flex flex-col justify-between">
-<span class="font-label-sm text-label-sm text-outline uppercase">Tamanho Favorito</span>
-<div class="mt-1 flex items-baseline gap-1.5">
-<span class="font-title-md text-title-md text-on-surface font-semibold">Médio-padrão</span>
-<span class="font-body-sm text-body-sm text-secondary">(150-250 págs)</span>
-</div>
-</div>
-<!-- Item 2: Gêneros -->
-<div class="bg-surface-container-lowest rounded-lg p-space-sm shadow-sm flex flex-col justify-between">
-<span class="font-label-sm text-label-sm text-outline uppercase">Gêneros Frequentes</span>
-<div class="mt-1 flex items-center gap-1.5 flex-wrap">
-<span class="px-2 py-0.5 bg-secondary-fixed/50 text-on-secondary-fixed font-label-sm text-label-sm rounded-md">Ficção Científica</span>
-<span class="px-2 py-0.5 bg-secondary-fixed/50 text-on-secondary-fixed font-label-sm text-label-sm rounded-md">Romance</span>
-</div>
-</div>
-<!-- Item 3: Autores -->
-<div class="bg-surface-container-lowest rounded-lg p-space-sm shadow-sm flex flex-col justify-between">
-<span class="font-label-sm text-label-sm text-outline uppercase">Autores Mais Buscados</span>
-<div class="mt-1 font-body-sm text-body-sm text-on-surface truncate">
-<strong class="font-title-md text-title-md font-semibold">G. Orwell</strong> &amp; <strong class="font-title-md text-title-md font-semibold">C. Lispector</strong>
-</div>
-</div>
-<!-- Item 4: Conclusão -->
-<div class="bg-surface-container-lowest rounded-lg p-space-sm shadow-sm flex flex-col justify-between">
-<span class="font-label-sm text-label-sm text-outline uppercase">Taxa de Conclusão</span>
-<div class="mt-1 flex items-center gap-2">
-<span class="font-headline-sm text-headline-sm text-primary-container font-bold">94%</span>
-<div class="flex-1 bg-surface-container-high h-2 rounded-full overflow-hidden">
-<div class="bg-secondary h-full rounded-full" style="width: 94%;"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Section 1: Combinações Perfeitas para Você -->
-<section class="flex flex-col gap-space-md">
-<div class="flex items-end justify-between">
-<div>
-<span class="font-label-sm text-label-sm uppercase text-secondary tracking-wider font-semibold">Curadoria Algorítmica</span>
-<h2 class="font-headline-md text-headline-md text-primary-container">Combinações Perfeitas para Você</h2>
-</div>
-<div class="hidden sm:flex items-center gap-2 text-on-surface-variant font-label-md text-label-md">
-<span class="material-symbols-outlined text-secondary text-base">auto_awesome</span>
-<span class="">Atualizado há 14 minutos</span>
-</div>
-</div>
-<!-- Carousel / Bento Grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
-<!-- Book Card 1 -->
-<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
-<div class="flex gap-space-md">
-<!-- Cover with Spine Effect -->
-<div class="relative w-28 h-40 shrink-0 rounded-lg overflow-hidden shadow-md bg-surface-container">
-<img class="w-full h-full object-cover" data-alt="Cover of a classic dystopian science fiction book with geometric typography, retro midnight blue design and gold accents, vintage editorial style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrfCr1-EwdUmEj_aa0JOe_3a1Ym68DoVxU62EE7gIyuVE00ekkDBFmxwbt9jfSdJ4T79YzlZ9V-udp4C6GQmFEs-pxj0xTYhWIA2szkEtJPaB0x0Nhuock5Qi1NMBLJtiaJqUxN9kAdrwf1dvL8ZYj8I94gCtW_uuzmAKbNEy5UhGoCRXLLpjinGrRucDuGwU_HPk93OvgD5nt9ZsJDlpriYqbu-nryIy8z1rIg2tiVaNfhFUBM9xIQA">
-<div class="absolute inset-y-0 left-0 w-2.5 bg-gradient-to-r from-primary/30 via-primary/10 to-transparent pointer-events-none"></div>
-</div>
-<!-- Metadata -->
-<div class="flex flex-col flex-1 min-w-0 justify-between">
-<div>
-<div class="flex items-center justify-between gap-1">
-<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded-full font-label-sm text-label-sm font-semibold">98% afinidade</span>
-<span class="flex items-center gap-0.5 font-label-md text-label-md text-on-surface">
-<span class="material-symbols-outlined text-sm text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
-                    4.9
-                  </span>
-</div>
-<h3 class="font-title-md text-title-md text-primary-container font-semibold mt-1.5 truncate group-hover:text-secondary transition-colors">
-                  Fahrenheit 451
-                </h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Ray Bradbury</p>
-<div class="mt-2 text-label-sm font-label-sm text-outline flex items-center gap-1.5">
-<span class="material-symbols-outlined text-sm text-secondary">menu_book</span>
-<span class="">214 págs • Médio-padrão</span>
-</div>
-<span class="inline-block mt-1 text-label-sm font-label-sm text-secondary bg-secondary-fixed/40 px-2 py-0.5 rounded">Ficção Científica</span>
-</div>
-<div class="mt-2 pt-2 flex items-baseline justify-between">
-<span class="font-headline-sm text-headline-sm font-bold text-primary-container">R$ 8,50<span class="font-body-sm text-body-sm text-outline font-normal">/mês</span></span>
-<span class="font-label-sm text-label-sm text-secondary font-semibold flex items-center gap-1">
-<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> 2 cópias livres
-                </span>
-</div>
-</div>
-</div>
-<!-- Bottom Actions & Explanation Tooltip trigger -->
-<div class="mt-space-md pt-space-sm bg-surface-container-low/50 -mx-space-md -mb-space-md p-space-sm rounded-b-2xl flex flex-col gap-2">
-<div class="flex items-center gap-2">
-<button class="flex-1 py-2 bg-primary-container hover:bg-primary text-on-primary rounded-xl font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm transition-all">
-<span class="material-symbols-outlined text-base text-secondary-fixed">bookmark_add</span>
-<span class="">Alugar Agora</span>
-</button>
-<button aria-label="Adicionar à Lista" class="w-9 h-9 flex items-center justify-center bg-surface-container-lowest text-on-surface-variant hover:text-primary-container hover:bg-surface-container rounded-xl transition-colors shadow-sm">
-<span class="material-symbols-outlined text-lg">playlist_add</span>
-</button>
-</div>
-<button class="why-trigger text-left font-label-sm text-label-sm text-on-surface-variant hover:text-secondary flex items-center gap-1 transition-colors px-1">
-<span class="material-symbols-outlined text-sm">info</span>
-<span class="">Por que foi sugerido?</span>
-</button>
-<div class="why-content hidden text-body-sm text-on-surface bg-surface-container-lowest p-2.5 rounded-lg shadow-sm">
-              Coincide com seu interesse por George Orwell, temática de controle social e preferência exata por volumes de 200 páginas.
-            </div>
-</div>
-</div>
-<!-- Book Card 2 -->
-<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
-<div class="flex gap-space-md">
-<div class="relative w-28 h-40 shrink-0 rounded-lg overflow-hidden shadow-md bg-surface-container">
-<img class="w-full h-full object-cover" data-alt="Cover of an introspective literary fiction book with abstract oil paint brush strokes in beige, navy, and sky blue tones, minimalist high-end typography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyXZ9LxSqBfF4EZteWZ2ZDVcCZo-te_4OYp4gc-WMrjpzH3WPeg71fJ5-eGbvL84pgiGdF-S7LGHx0i56eJz2YbdktgktovA9S7TnxKfcse6ZV2jTcCUrTMZltLs-ACWjYGdUe5235hKtgsVIZ6fRJgcYpgLwne69Wxhay7aCEiWXNvOGoz6A4S-R86J5fz5851sXPW7QqDvdVureeAc685WRbx0H9fnmyYQoTo68K--fI9luNQeC__A">
-<div class="absolute inset-y-0 left-0 w-2.5 bg-gradient-to-r from-primary/30 via-primary/10 to-transparent pointer-events-none"></div>
-</div>
-<div class="flex flex-col flex-1 min-w-0 justify-between">
-<div>
-<div class="flex items-center justify-between gap-1">
-<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded-full font-label-sm text-label-sm font-semibold">96% afinidade</span>
-<span class="flex items-center gap-0.5 font-label-md text-label-md text-on-surface">
-<span class="material-symbols-outlined text-sm text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
-                    4.8
-                  </span>
-</div>
-<h3 class="font-title-md text-title-md text-primary-container font-semibold mt-1.5 truncate group-hover:text-secondary transition-colors">
-                  Água Viva
-                </h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Clarice Lispector</p>
-<div class="mt-2 text-label-sm font-label-sm text-outline flex items-center gap-1.5">
-<span class="material-symbols-outlined text-sm text-secondary">menu_book</span>
-<span class="">160 págs • Médio-padrão</span>
-</div>
-<span class="inline-block mt-1 text-label-sm font-label-sm text-secondary bg-secondary-fixed/40 px-2 py-0.5 rounded">Romance Lírico</span>
-</div>
-<div class="mt-2 pt-2 flex items-baseline justify-between">
-<span class="font-headline-sm text-headline-sm font-bold text-primary-container">R$ 7,90<span class="font-body-sm text-body-sm text-outline font-normal">/mês</span></span>
-<span class="font-label-sm text-label-sm text-secondary font-semibold flex items-center gap-1">
-<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> 3 cópias livres
-                </span>
-</div>
-</div>
-</div>
-<div class="mt-space-md pt-space-sm bg-surface-container-low/50 -mx-space-md -mb-space-md p-space-sm rounded-b-2xl flex flex-col gap-2">
-<div class="flex items-center gap-2">
-<button class="flex-1 py-2 bg-primary-container hover:bg-primary text-on-primary rounded-xl font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm transition-all">
-<span class="material-symbols-outlined text-base text-secondary-fixed">bookmark_add</span>
-<span class="">Alugar Agora</span>
-</button>
-<button aria-label="Adicionar à Lista" class="w-9 h-9 flex items-center justify-center bg-surface-container-lowest text-on-surface-variant hover:text-primary-container hover:bg-surface-container rounded-xl transition-colors shadow-sm">
-<span class="material-symbols-outlined text-lg">playlist_add</span>
-</button>
-</div>
-<button class="why-trigger text-left font-label-sm text-label-sm text-on-surface-variant hover:text-secondary flex items-center gap-1 transition-colors px-1">
-<span class="material-symbols-outlined text-sm">info</span>
-<span class="">Por que foi sugerido?</span>
-</button>
-<div class="why-content hidden text-body-sm text-on-surface bg-surface-container-lowest p-2.5 rounded-lg shadow-sm">
-              Você já concluiu 2 obras da autora com avaliação média 5.0 e lê textos densos em menos de 4 dias.
-            </div>
-</div>
-</div>
-<!-- Book Card 3 -->
-<div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
-<div class="flex gap-space-md">
-<div class="relative w-28 h-40 shrink-0 rounded-lg overflow-hidden shadow-md bg-surface-container">
-<img class="w-full h-full object-cover" data-alt="Modern book cover of a futuristic sci-fi romance novel, clean geometric lines, soft warm ambient lighting, elegant deep navy and azure hues" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAduDZEVFld03U4Cuv-QkoxpGayq4HpRvSqy4APfDeseejW2eZjrSATWwfeajKQXzSDsCchZm3QFqblFh1Locmx5PPXbC4TPYXXUlX4IM1UhQd_ijT3yUpnh-EkaLM2qM-kKBG0I1GxGTb4l88-cefqLSGx-armnrCfQBtWl3-Rf1UjRcJS8Oxz9-gNL_H_rNSELySz7NO-JiiosziOu46XZQumf9PnAGbtYFs4Hg97nLQdnSXcnN9N7g">
-<div class="absolute inset-y-0 left-0 w-2.5 bg-gradient-to-r from-primary/30 via-primary/10 to-transparent pointer-events-none"></div>
-</div>
-<div class="flex flex-col flex-1 min-w-0 justify-between">
-<div>
-<div class="flex items-center justify-between gap-1">
-<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded-full font-label-sm text-label-sm font-semibold">95% afinidade</span>
-<span class="flex items-center gap-0.5 font-label-md text-label-md text-on-surface">
-<span class="material-symbols-outlined text-sm text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
-                    4.7
-                  </span>
-</div>
-<h3 class="font-title-md text-title-md text-primary-container font-semibold mt-1.5 truncate group-hover:text-secondary transition-colors">
-                  Flores para Algernon
-                </h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant truncate">Daniel Keyes</p>
-<div class="mt-2 text-label-sm font-label-sm text-outline flex items-center gap-1.5">
-<span class="material-symbols-outlined text-sm text-secondary">menu_book</span>
-<span class="">288 págs • Médio-padrão</span>
-</div>
-<span class="inline-block mt-1 text-label-sm font-label-sm text-secondary bg-secondary-fixed/40 px-2 py-0.5 rounded">Ficção Especulativa</span>
-</div>
-<div class="mt-2 pt-2 flex items-baseline justify-between">
-<span class="font-headline-sm text-headline-sm font-bold text-primary-container">R$ 9,20<span class="font-body-sm text-body-sm text-outline font-normal">/mês</span></span>
-<span class="font-label-sm text-label-sm text-secondary font-semibold flex items-center gap-1">
-<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> 1 cópia livre
-                </span>
-</div>
-</div>
-</div>
-<div class="mt-space-md pt-space-sm bg-surface-container-low/50 -mx-space-md -mb-space-md p-space-sm rounded-b-2xl flex flex-col gap-2">
-<div class="flex items-center gap-2">
-<button class="flex-1 py-2 bg-primary-container hover:bg-primary text-on-primary rounded-xl font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm transition-all">
-<span class="material-symbols-outlined text-base text-secondary-fixed">bookmark_add</span>
-<span class="">Alugar Agora</span>
-</button>
-<button aria-label="Adicionar à Lista" class="w-9 h-9 flex items-center justify-center bg-surface-container-lowest text-on-surface-variant hover:text-primary-container hover:bg-surface-container rounded-xl transition-colors shadow-sm">
-<span class="material-symbols-outlined text-lg">playlist_add</span>
-</button>
-</div>
-<button class="why-trigger text-left font-label-sm text-label-sm text-on-surface-variant hover:text-secondary flex items-center gap-1 transition-colors px-1">
-<span class="material-symbols-outlined text-sm">info</span>
-<span class="">Por que foi sugerido?</span>
-</button>
-<div class="why-content hidden text-body-sm text-on-surface bg-surface-container-lowest p-2.5 rounded-lg shadow-sm">
-              Alta correlação emocional com leitores que amam Ficção Científica humanista e desenvolvimento psicológico.
-            </div>
-</div>
-</div>
-</div>
-</section>
-<!-- Section 2: Sugestões por Ritmo de Leitura (Tamanho) -->
-<section class="flex flex-col gap-space-md mt-space-sm">
-<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-sm">
-<div>
-<span class="font-label-sm text-label-sm uppercase text-secondary tracking-wider font-semibold">Volume &amp; Tempo de Foco</span>
-<h2 class="font-headline-md text-headline-md text-primary-container">Sugestões por Ritmo de Leitura (Tamanho)</h2>
-</div>
-<!-- Quick Switch Tabs -->
-<div class="inline-flex bg-surface-container-high p-1 rounded-xl shadow-inner self-start">
-<button class="px-space-md py-1.5 rounded-lg font-label-md text-label-md font-semibold transition-all bg-surface-container-lowest text-primary-container shadow-sm" id="tab-rapidas">
-            Leituras Rápidas (Pequeno/Médio-peq)
-          </button>
-<button class="px-space-md py-1.5 rounded-lg font-label-md text-label-md font-semibold transition-all text-on-surface-variant hover:text-primary-container" id="tab-profundas">
-            Imersões Profundas (Médio-padrão/Grande)
-          </button>
-</div>
-</div>
-<!-- Tab Content 1: Leituras Rápidas (Default Active) -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md transition-opacity duration-300" id="grid-rapidas">
-<!-- Item 1 -->
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-<div>
-<div class="relative w-full aspect-[2/3] rounded-lg overflow-hidden shadow-sm bg-surface-container mb-space-sm">
-<img class="w-full h-full object-cover" data-alt="Classic book cover of The Metamorphosis by Franz Kafka, minimalist modernist aesthetic, dark navy and ivory illustration, fine line typography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCszYVo2oAdEiVv1ZjflAjoVqcwYOFE4jpRnmBGnihE898e1dMfNBaXKvAPkarazzdsZkKBMycTWOtpRS0FfSrVIn3cH96bN_FOgL1yHtQJekuqe-68jSd5dQ4FDTzCSGPIGzXT6d1VWCh3m8YFJXvYjuCTiYGyfGKlPJh13KhH2diPnD0aL8CFbC7QecPaOQGYJbxpgBdQRyCGHefaUJqvCPsnFFD9VsPxElWwW2XiuILOmupdfU0iWg">
-<span class="absolute top-2 left-2 px-2 py-0.5 bg-surface-container-lowest/90 backdrop-blur text-primary-container rounded font-label-sm text-label-sm font-bold shadow-sm">
-                Pequeno (96 págs)
-              </span>
-</div>
-<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Clássico / Ficção</span>
-<h4 class="font-title-md text-title-md text-primary-container font-semibold mt-0.5 line-clamp-1">A Metamorfose</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Franz Kafka</p>
-</div>
-<div class="mt-space-md pt-space-xs flex items-center justify-between">
-<span class="font-title-md text-title-md font-bold text-primary-container">R$ 5,50<span class="font-body-sm text-body-sm text-outline font-normal">/mês</span></span>
-<button class="px-3 py-1.5 bg-surface-container-low hover:bg-primary-container hover:text-on-primary text-primary-container rounded-lg font-label-sm text-label-sm font-semibold transition-colors flex items-center gap-1">
-<span class="">Alugar</span>
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-</div>
-</div>
-<!-- Item 2 -->
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-<div>
-<div class="relative w-full aspect-[2/3] rounded-lg overflow-hidden shadow-sm bg-surface-container mb-space-sm">
-<img class="w-full h-full object-cover" data-alt="Cover of The Old Man and the Sea book, deep ocean cyan waves and solitary skiff, editorial letterpress styling, artistic book jacket" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPvcjkYrDZD8aZCHn49qfxrJWcOglH5xK0FP3qrtGEDHUCj__cL77bxW-hNm2--WXOApJwqBXr8OgsgmIUlHaLHolI7kcwH_ZWtQm8ZGDpVyDNJr1PK4aPTil5P_AJ5DKx6a70ujzusRwkISzcW-WcVc1IMa2bfUbMoqod_TEMyaj12Uko1Ou3BZFchsMg9BmkGteakHSKZoU14o8LH6WbFNyYtSc1qFl9DpAJTJmd-6S0AfDDIOG1lw">
-<span class="absolute top-2 left-2 px-2 py-0.5 bg-surface-container-lowest/90 backdrop-blur text-primary-container rounded font-label-sm text-label-sm font-bold shadow-sm">
-                Médio-pequeno (128 págs)
-              </span>
-</div>
-<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Aventura Literária</span>
-<h4 class="font-title-md text-title-md text-primary-container font-semibold mt-0.5 line-clamp-1">O Velho e o Mar</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Ernest Hemingway</p>
-</div>
-<div class="mt-space-md pt-space-xs flex items-center justify-between">
-<span class="font-title-md text-title-md font-bold text-primary-container">R$ 6,00<span class="font-body-sm text-body-sm text-outline font-normal">/mês</span></span>
-<button class="px-3 py-1.5 bg-surface-container-low hover:bg-primary-container hover:text-on-primary text-primary-container rounded-lg font-label-sm text-label-sm font-semibold transition-colors flex items-center gap-1">
-<span class="">Alugar</span>
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-</div>
-</div>
-<!-- Item 3 -->
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-<div>
-<div class="relative w-full aspect-[2/3] rounded-lg overflow-hidden shadow-sm bg-surface-container mb-space-sm">
-<img class="w-full h-full object-cover" data-alt="Cover of The Stranger by Albert Camus, Mediterranean sun blinding minimalist graphic, warm yellow ochre and dark navy contrast, French literature layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoIHEyi8zS4z9OIA319O7YnVv4RLhtCyf9jT2-fWqq54AJx6rLTBx71h_sHMYyexEsZQJ76XK4pZ8kvOtZNrd0gpTbZAhEvlUyszgqgBM1sqnt4Lm8WMokPgZJfYVR_6rbenqxnsqWgKS1W6CILkFojB1WvPfPVtapceKppv-grJMJV_yDAjfuo4zUBO-E6tJtp3RsJuK2cggQPqxaCTTPpysgHcAHBfB2q8_W1lQfDITiidj7QZkr7g">
-<span class="absolute top-2 left-2 px-2 py-0.5 bg-surface-container-lowest/90 backdrop-blur text-primary-container rounded font-label-sm text-label-sm font-bold shadow-sm">
-                Médio-pequeno (144 págs)
-              </span>
-</div>
-<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Filosofia &amp; Ficção</span>
-<h4 class="font-title-md text-title-md text-primary-container font-semibold mt-0.5 line-clamp-1">O Estrangeiro</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Albert Camus</p>
-</div>
-<div class="mt-space-md pt-space-xs flex items-center justify-between">
-<span class="font-title-md text-title-md font-bold text-primary-container">R$ 6,50<span class="font-body-sm text-body-sm text-outline font-normal">/mês</span></span>
-<button class="px-3 py-1.5 bg-surface-container-low hover:bg-primary-container hover:text-on-primary text-primary-container rounded-lg font-label-sm text-label-sm font-semibold transition-colors flex items-center gap-1">
-<span class="">Alugar</span>
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-</div>
-</div>
-<!-- Item 4 -->
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-<div>
-<div class="relative w-full aspect-[2/3] rounded-lg overflow-hidden shadow-sm bg-surface-container mb-space-sm">
-<img class="w-full h-full object-cover" data-alt="Book cover of The Hour of the Star by Clarice Lispector, atmospheric black and white portrait with ethereal blue overlay typography, Brazilian literary classic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTmETBetW7du7Y5daJC7to6U6pAiMaXUJxHvKzV8k44tmKhJbRrFQgWG0KEafgJxbkwmR1jrGqy2H9wBoZtFsQPmCnlhkZdQ4x3TUqhFuAmgYQDjQJ44XovhsENMGaU6AETxFRkF8mNRpuSixTzzhRYi3xgsBD2glocKQvzC48UpwxX_5QmQvi1g5jP5GqW0cJN-X_lHUfFrZDN_9IX4SVwTLaM_nWCyWF7e1V20cnorMHeg9A8Dy6PA">
-<span class="absolute top-2 left-2 px-2 py-0.5 bg-surface-container-lowest/90 backdrop-blur text-primary-container rounded font-label-sm text-label-sm font-bold shadow-sm">
-                Pequeno (88 págs)
-              </span>
-</div>
-<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Romance Brasileiro</span>
-<h4 class="font-title-md text-title-md text-primary-container font-semibold mt-0.5 line-clamp-1">A Hora da Estrela</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Clarice Lispector</p>
-</div>
-<div class="mt-space-md pt-space-xs flex items-center justify-between">
-<span class="font-title-md text-title-md font-bold text-primary-container">R$ 5,90<span class="font-body-sm text-body-sm text-outline font-normal">/mês</span></span>
-<button class="px-3 py-1.5 bg-surface-container-low hover:bg-primary-container hover:text-on-primary text-primary-container rounded-lg font-label-sm text-label-sm font-semibold transition-colors flex items-center gap-1">
-<span class="">Alugar</span>
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-</div>
-</div>
-</div>
-<!-- Tab Content 2: Imersões Profundas (Hidden by Default) -->
-<div class="hidden grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md transition-opacity duration-300" id="grid-profundas">
-<!-- Item 1 -->
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-<div>
-<div class="relative w-full aspect-[2/3] rounded-lg overflow-hidden shadow-sm bg-surface-container mb-space-sm">
-<img class="w-full h-full object-cover" data-alt="Cover of Dune science fiction novel, sweeping desert sand dunes under astronomical twin moons, epic high fantasy and sci-fi aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSjhleSPu7WpR53aCxsA3J0HJEhXYDm2l1isfFljBzLFeHYt3cp3OjJMV7NGDnFE25z0fu_lR1zCjgI016g2E9GBruzgsZ_x-kcGWLM_MJVS9QzzaWxFNFESJp_CbTshsCp7F6Bkg0jdNqV3t93aF7eKJmfLFtlSyr8FLP5i_gXmj7s2eUxokg-1HaUwb4hLpkcQX2dakEvDnnR8IqLnGiJP0JcuynOJFkaUl8qgUVUz4BZmgIN3Qvsw">
-<span class="absolute top-2 left-2 px-2 py-0.5 bg-surface-container-lowest/90 backdrop-blur text-primary-container rounded font-label-sm text-label-sm font-bold shadow-sm">
-                Grande (680 págs)
-              </span>
-</div>
-<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Sci-Fi Épico</span>
-<h4 class="font-title-md text-title-md text-primary-container font-semibold mt-0.5 line-clamp-1">Duna</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Frank Herbert</p>
-</div>
-<div class="mt-space-md pt-space-xs flex items-center justify-between">
-<span class="font-title-md text-title-md font-bold text-primary-container">R$ 11,50<span class="font-body-sm text-body-sm text-outline font-normal">/mês</span></span>
-<button class="px-3 py-1.5 bg-surface-container-low hover:bg-primary-container hover:text-on-primary text-primary-container rounded-lg font-label-sm text-label-sm font-semibold transition-colors flex items-center gap-1">
-<span class="">Alugar</span>
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-</div>
-</div>
-<!-- Item 2 -->
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-<div>
-<div class="relative w-full aspect-[2/3] rounded-lg overflow-hidden shadow-sm bg-surface-container mb-space-sm">
-<img class="w-full h-full object-cover" data-alt="Cover of 1984 by George Orwell, totalitarian surveillance eye motif, dark steel tones with deep blue and white accents, vintage design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhUfrdWnefcA3nYJgZOTpmKiYUHU0819pi5jj2VtSXprXfpQlO_1fdY6T1XjpwQfwaad4frShhw6lcg5CBJMZDexQ8QEQWY9nApAng8Uq9KLveKNt4DGlraYz7NNI8KHG3GXL6HVVYMwwd4nuBY_2-FtK2lZARHPVubMUcDsDmns0v2yvMFNsjeq-v0-Z2s0QF2litHGfqCM_75ViEIVDssyvSBfOEXBeIwZQ96eek4QJ99g_hWbTRiQ">
-<span class="absolute top-2 left-2 px-2 py-0.5 bg-surface-container-lowest/90 backdrop-blur text-primary-container rounded font-label-sm text-label-sm font-bold shadow-sm">
-                Médio-padrão (336 págs)
-              </span>
-</div>
-<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Distopia Política</span>
-<h4 class="font-title-md text-title-md text-primary-container font-semibold mt-0.5 line-clamp-1">1984</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant">George Orwell</p>
-</div>
-<div class="mt-space-md pt-space-xs flex items-center justify-between">
-<span class="font-title-md text-title-md font-bold text-primary-container">R$ 8,90<span class="font-body-sm text-body-sm text-outline font-normal">/mês</span></span>
-<button class="px-3 py-1.5 bg-surface-container-low hover:bg-primary-container hover:text-on-primary text-primary-container rounded-lg font-label-sm text-label-sm font-semibold transition-colors flex items-center gap-1">
-<span class="">Alugar</span>
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-</div>
-</div>
-<!-- Item 3 -->
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-<div>
-<div class="relative w-full aspect-[2/3] rounded-lg overflow-hidden shadow-sm bg-surface-container mb-space-sm">
-<img class="w-full h-full object-cover" data-alt="Book cover of One Hundred Years of Solitude, magical realism lush jungle butterfly and golden parchment illustrations, Latin American literature" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9D6ErHxXGhofKvHjGBAvBpMjTKqZ5nHX3IX2Sxo1QCjTqZWnMZPwotEdi53fEKswPU8GTgodPR7C1a_O0ceClnEaSsB50oiW8w9iF6xB7g76gPKL2fsC00KZieu3kMnsM_cEsZi6fIBJp_7O_aMjDTJO9J2NrON9bWx-yumxX7kplVn4uX-FDOr_zUb3v-XVAVK6NqNfoDBHpEia-qoMVXQgXWS8aRQNvIE3J6nQcv146cUpobxnWig">
-<span class="absolute top-2 left-2 px-2 py-0.5 bg-surface-container-lowest/90 backdrop-blur text-primary-container rounded font-label-sm text-label-sm font-bold shadow-sm">
-                Médio-padrão (448 págs)
-              </span>
-</div>
-<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Realismo Mágico</span>
-<h4 class="font-title-md text-title-md text-primary-container font-semibold mt-0.5 line-clamp-1">Cem Anos de Solidão</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Gabriel García Márquez</p>
-</div>
-<div class="mt-space-md pt-space-xs flex items-center justify-between">
-<span class="font-title-md text-title-md font-bold text-primary-container">R$ 9,50<span class="font-body-sm text-body-sm text-outline font-normal">/mês</span></span>
-<button class="px-3 py-1.5 bg-surface-container-low hover:bg-primary-container hover:text-on-primary text-primary-container rounded-lg font-label-sm text-label-sm font-semibold transition-colors flex items-center gap-1">
-<span class="">Alugar</span>
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-</div>
-</div>
-<!-- Item 4 -->
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-<div>
-<div class="relative w-full aspect-[2/3] rounded-lg overflow-hidden shadow-sm bg-surface-container mb-space-sm">
-<img class="w-full h-full object-cover" data-alt="Cover of Foundation by Isaac Asimov, interstellar galactic empire architecture, deep cosmic blue sky with star cluster, sci-fi masterpiece" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLVuf4u33m4lAo-GEqzb0Yfsi7jG6RDR-NWv-DFP41DkkghblduJZWu0qJLTECHfdoh-BusP85VrqmrFt98szPw6JVndJJluKUceMQ9rgemjd5naY0wFMW0ctJrqADcctAQa0QRhTKibG160GHf1J22lTXZRM4qyG2DC67-QHOPwyP7WayOiYzlE0CL-J4ZhYmJ3tu8rS-BTX3n6tWZBAP9Jfm0VwYJB4xIbWJyok8FeUl1D89JMVcxQ">
-<span class="absolute top-2 left-2 px-2 py-0.5 bg-surface-container-lowest/90 backdrop-blur text-primary-container rounded font-label-sm text-label-sm font-bold shadow-sm">
-                Médio-padrão (296 págs)
-              </span>
-</div>
-<span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Ficção Científica</span>
-<h4 class="font-title-md text-title-md text-primary-container font-semibold mt-0.5 line-clamp-1">Fundação</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Isaac Asimov</p>
-</div>
-<div class="mt-space-md pt-space-xs flex items-center justify-between">
-<span class="font-title-md text-title-md font-bold text-primary-container">R$ 8,70<span class="font-body-sm text-body-sm text-outline font-normal">/mês</span></span>
-<button class="px-3 py-1.5 bg-surface-container-low hover:bg-primary-container hover:text-on-primary text-primary-container rounded-lg font-label-sm text-label-sm font-semibold transition-colors flex items-center gap-1">
-<span class="">Alugar</span>
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-</div>
-</div>
-</div>
-</section>
-<!-- Rodapé Informativo Elegante -->
-<div class="mt-space-sm mb-space-md bg-gradient-to-r from-primary-container via-primary-container/95 to-secondary/80 text-on-primary rounded-2xl p-space-lg md:p-space-xl flex flex-col md:flex-row items-center justify-between gap-space-lg shadow-md relative overflow-hidden">
-<!-- Ambient light decorative bubble -->
-<div class="absolute -right-12 -bottom-12 w-64 h-64 bg-secondary-container/20 rounded-full blur-3xl pointer-events-none"></div>
-<div class="flex items-center gap-space-md relative z-10">
-<div class="w-12 h-12 rounded-xl bg-surface-container-lowest/10 backdrop-blur flex items-center justify-center shrink-0">
-<span class="material-symbols-outlined text-secondary-fixed text-2xl">auto_stories</span>
-</div>
-<div class="flex flex-col">
-<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed font-semibold">Descubra Novos Horizontes</span>
-<p class="font-title-md text-title-md font-medium text-surface-bright mt-0.5">
-            Sugestões atualizadas a cada devolução ou avaliação concluída.
-          </p>
-<span class="font-body-sm text-body-sm text-surface-container-high/80">
-            Quanto mais livros você ler na Aurora, mais calibrado seu ritmo literário se torna.
-          </span>
-</div>
-</div>
-<div class="shrink-0 relative z-10 w-full md:w-auto">
-<button class="w-full md:w-auto px-space-lg py-3 bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-container rounded-xl font-label-md text-label-md font-semibold flex items-center justify-center gap-2 shadow transition-all" id="btn-recalcular-bottom">
-<span class="material-symbols-outlined text-lg">refresh</span>
-<span class="">Recalcular Recomendações</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-<script>
-  // Interactive Micro-behavior for "Por que foi sugerido?"
-  document.querySelectorAll('.why-trigger').forEach(trigger => {
-    trigger.addEventListener('click', () => {
-      const content = trigger.nextElementSibling;
-      if (content) {
-        content.classList.toggle('hidden');
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Aurora — Sugestões Personalizadas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+  <style>
+    @layer base { html,body { margin:0; padding:0; } body { overscroll-behavior:none; } }
+    ::-webkit-scrollbar { display:none; }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#00021d",
+            "primary-container": "#0f194a",
+            "on-primary": "#ffffff",
+            "secondary": "#25638f",
+            "secondary-container": "#95ccfe",
+            "on-secondary-container": "#125783",
+            "secondary-fixed": "#cde5ff",
+            "on-secondary-fixed": "#001d32",
+            "surface": "#fbf9f3",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f5f3ee",
+            "surface-container": "#f0eee8",
+            "surface-container-high": "#eae8e2",
+            "outline": "#767680",
+            "on-surface": "#1b1c19",
+            "on-surface-variant": "#46464f",
+            "error": "#ba1a1a"
+          },
+          fontFamily: {
+            "body-md": ["Open Sans"],
+            "body-sm": ["Open Sans"],
+            "headline-lg": ["Montserrat"],
+            "headline-md": ["Montserrat"],
+            "title-lg": ["Montserrat"],
+            "title-md": ["Montserrat"],
+            "label-lg": ["Montserrat"],
+            "label-md": ["Montserrat"],
+            "label-sm": ["Montserrat"]
+          },
+          spacing: {
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2.5rem"
+          }
+        }
       }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+
+  <!-- Sidebar Lateral Fixa -->
+  <aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between">
+    <div class="flex flex-col">
+      <div class="h-20 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest">
+        <img alt="Logo Aurora" class="w-10 h-10 object-contain rounded-lg shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4_hfr9QgE7zVzPZcFdzSCr_OMhZJZHUmproxdnurvcw10WupCiLg0jxPaH4ZOphd5wMNpkXOffVNQG1LQ33dXlcynF27AKwSPgP_nmgxSgRy_Rr_sd1hFtc1RfrGqvdyZx35fjYyreedJuTkako80KzpgfE0IDzgHb3gXNDYvQ9KV4LNeObCgt9Rcu0fpUeKacMHGYQleKgerES_5nk1j6p_s0xn-fDeWkiQ-YXL2_FMrukEu9ZLOqv_UB76v0yl83pQ">
+        <div class="flex flex-col">
+          <span class="font-title-lg text-title-lg text-primary-container tracking-tight font-bold">Aurora</span>
+          <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Aluguel de Livros</span>
+        </div>
+      </div>
+
+      <div class="px-space-md py-space-sm">
+        <nav class="flex flex-col gap-space-xs">
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="inicio" href="index.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">auto_stories</span>
+              <span>Início</span>
+            </div>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="prateleira" href="prateleira.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">shelves</span>
+              <span>Prateleira</span>
+            </div>
+            <span class="px-space-xs py-0.5 bg-secondary-container text-on-secondary-container rounded-full font-label-sm text-xs font-bold">Catálogo</span>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="sugestoes" href="sugestoes.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">recommend</span>
+              <span>Sugestões</span>
+            </div>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="ja-lidos" href="ja-lidos.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">library_books</span>
+              <span>Já Lidos</span>
+            </div>
+            <span class="px-space-xs py-0.5 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm text-xs font-bold">0</span>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="lista-de-desejos" href="desejos.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">bookmark_heart</span>
+              <span>Lista de Desejos</span>
+            </div>
+            <span class="px-space-xs py-0.5 bg-secondary-fixed text-on-secondary-fixed rounded-full font-label-sm text-xs font-bold">0</span>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="avaliar-livros" href="avaliar.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">rate_review</span>
+              <span>Avaliar Livros</span>
+            </div>
+          </a>
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="configuracoes" href="configuracoes.html">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined text-secondary">settings</span>
+              <span>Configurações</span>
+            </div>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Perfil do Usuário na Sidebar -->
+    <div class="p-space-md flex flex-col gap-space-sm bg-surface-container-lowest">
+      <div class="flex items-center gap-space-sm p-space-sm rounded-xl bg-surface-container-low">
+        <img alt="Perfil" class="w-8 h-8 rounded-full object-cover ring-2 ring-secondary-fixed user-display-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80">
+        <div class="flex flex-col min-w-0 flex-1">
+          <span class="font-label-lg text-label-lg text-on-surface truncate user-display-name">Carregando...</span>
+          <span class="font-label-sm text-label-sm text-secondary truncate user-display-role">Leitor</span>
+        </div>
+      </div>
+      <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg hover:bg-error-container hover:text-on-error-container transition-all group" data-path="login" href="#">
+        <span class="material-symbols-outlined text-outline group-hover:text-error transition-colors">logout</span>
+        <span>Sair</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Área Principal -->
+  <div class="pl-72 flex flex-col min-h-screen">
+    <header class="fixed top-0 left-72 right-0 h-20 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg">
+      <div class="flex items-center gap-space-md flex-1 max-w-xl">
+        <div class="relative flex items-center w-full">
+          <span class="material-symbols-outlined absolute left-4 text-on-surface-variant pointer-events-none">search</span>
+          <input class="w-full h-11 pl-11 pr-4 bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm rounded-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-all" placeholder="Pesquise títulos, autores ou gêneros..." type="text" onkeydown="if(event.key === 'Enter') window.location.href='prateleira.html?search=' + encodeURIComponent(this.value)">
+        </div>
+      </div>
+
+      <div class="flex items-center gap-space-md">
+        <a class="h-11 px-space-md bg-primary-container text-on-primary rounded-xl font-label-lg flex items-center gap-space-sm hover:opacity-95 shadow-sm transition-all" data-path="sacola-de-alugueis" href="index.html#alugueis-ativos">
+          <span class="material-symbols-outlined text-secondary-fixed">shopping_bag</span>
+          <span class="hidden md:inline">Aluguéis Ativos</span>
+          <span class="ml-1 px-1.5 py-0.5 bg-secondary text-on-secondary rounded-full font-label-sm text-xs font-bold">0</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="w-full pt-24 pb-16 flex-1 px-space-md lg:px-space-xl max-w-7xl mx-auto flex flex-col gap-space-xl">
+      <!-- Painel de Sugestões Baseado em Afinidades -->
+      <section class="relative w-full rounded-3xl overflow-hidden shadow-sm bg-surface-container-lowest p-space-lg md:p-space-xl border border-surface-container/60">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-lg">
+          <div class="max-w-2xl flex flex-col gap-space-xs">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+              <span class="font-label-sm text-label-sm uppercase text-secondary tracking-widest font-bold text-xs">
+                RECOMENDAÇÕES PERSONALIZADAS • Algoritmo Aurora
+              </span>
+            </div>
+            <h1 class="font-headline-lg text-2xl lg:text-3xl text-primary-container font-bold tracking-tight">
+              Sugestões para o Seu Ritmo
+            </h1>
+            <p class="font-body-md text-on-surface-variant text-sm leading-relaxed">
+              O motor de recomendações da Aurora analisa suas buscas frequentes, seus gêneros mais explorados e os títulos que você marcou como lidos para sugerir próximas leituras ideais.
+            </p>
+          </div>
+          <button onclick="recalculateSuggestions()" class="px-space-md py-2.5 bg-primary-container text-on-primary rounded-xl font-label-md text-xs font-bold flex items-center gap-2 shadow-sm hover:bg-primary transition-all self-start lg:self-center">
+            <span class="material-symbols-outlined text-secondary-fixed text-lg">sync</span>
+            <span>Recalcular Sugestões</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Grade de Livros Sugeridos -->
+      <section class="flex flex-col gap-space-md">
+        <div class="flex items-center justify-between">
+          <h2 class="font-headline-md text-xl text-primary-container font-bold">Livros Recomendados para Você</h2>
+          <span class="text-xs text-on-surface-variant font-medium">Ordenado por afinidade literária</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-space-md" id="suggestionsGrid">
+          <div class="col-span-full py-12 text-center text-on-surface-variant text-sm">Calculando recomendações personalizadas...</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/aurora-api.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await AuroraAPI.initSidebar('sugestoes');
+      loadSuggestions();
     });
-  });
 
-  // Tab switching logic for Pace of Reading (Tamanho)
-  const tabRapidas = document.getElementById('tab-rapidas');
-  const tabProfundas = document.getElementById('tab-profundas');
-  const gridRapidas = document.getElementById('grid-rapidas');
-  const gridProfundas = document.getElementById('grid-profundas');
+    async function loadSuggestions() {
+      const container = document.getElementById('suggestionsGrid');
+      container.innerHTML = '<div class="col-span-full py-12 text-center text-on-surface-variant text-sm">Carregando sugestões...</div>';
 
-  if (tabRapidas && tabProfundas && gridRapidas && gridProfundas) {
-    tabRapidas.addEventListener('click', () => {
-      tabRapidas.classList.add('bg-surface-container-lowest', 'text-primary-container', 'shadow-sm');
-      tabRapidas.classList.remove('text-on-surface-variant');
+      try {
+        const books = await AuroraAPI.getSuggestions();
 
-      tabProfundas.classList.remove('bg-surface-container-lowest', 'text-primary-container', 'shadow-sm');
-      tabProfundas.classList.add('text-on-surface-variant');
+        if (!books || books.length === 0) {
+          container.innerHTML = `
+            <div class="col-span-full py-16 text-center text-on-surface-variant flex flex-col items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-4xl text-outline">recommend</span>
+              <p class="font-title-md text-primary font-bold">Ainda não temos dados suficientes</p>
+              <p class="text-xs max-w-sm">Navegue pela Prateleira e use os filtros de autor e gênero para que o sistema aprenda suas preferências!</p>
+              <a href="prateleira.html" class="mt-2 px-4 py-2 bg-primary-container text-on-primary rounded-xl text-xs font-bold hover:bg-primary transition-all">Explorar Prateleira</a>
+            </div>
+          `;
+          return;
+        }
 
-      gridRapidas.classList.remove('hidden');
-      gridRapidas.classList.add('grid');
-      gridProfundas.classList.add('hidden');
-      gridProfundas.classList.remove('grid');
-    });
+        container.innerHTML = books.map(book => {
+          const isAvailable = book.disponivel && book.copiasDisponiveis > 0;
+          const coverUrl = book.capaUrl || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80';
+          const rating = Number(book.avaliacaoMedia || 0).toFixed(1);
 
-    tabProfundas.addEventListener('click', () => {
-      tabProfundas.classList.add('bg-surface-container-lowest', 'text-primary-container', 'shadow-sm');
-      tabProfundas.classList.remove('text-on-surface-variant');
+          return `
+            <div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between border border-surface-container/60">
+              <div class="flex flex-col gap-space-sm">
+                <div class="relative w-full aspect-[2/3] rounded-xl overflow-hidden shadow-md bg-surface-container-high">
+                  <img class="w-full h-full object-cover" src="${coverUrl}" alt="${book.titulo}" onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80'">
+                  <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-[11px] font-bold shadow-sm">
+                    ${book.genero || 'Recomendado'}
+                  </span>
+                </div>
+                <div class="flex flex-col pt-1">
+                  <div class="flex items-center justify-between text-secondary text-xs font-semibold mb-1">
+                    <span class="flex items-center gap-1 text-amber-500">
+                      <span class="material-symbols-outlined text-[16px]">star</span>
+                      <span class="font-label-md text-on-surface">${rating}</span>
+                    </span>
+                    <span class="text-on-surface-variant text-[11px]">${book.numPaginas} págs</span>
+                  </div>
+                  <h3 class="font-title-md text-primary font-bold line-clamp-1 text-sm">${book.titulo}</h3>
+                  <p class="font-body-sm text-on-surface-variant text-xs truncate">${book.autor}</p>
+                </div>
+              </div>
 
-      tabRapidas.classList.remove('bg-surface-container-lowest', 'text-primary-container', 'shadow-sm');
-      tabRapidas.classList.add('text-on-surface-variant');
+              <div class="mt-3 pt-2.5 border-t border-surface-container/60 flex items-center justify-between">
+                <div class="flex flex-col">
+                  <span class="text-[10px] text-on-surface-variant">Aluguel:</span>
+                  <span class="font-bold text-primary-container text-xs">R$ ${Number(book.precoAluguel || 0).toFixed(2).replace('.', ',')}</span>
+                </div>
+                ${isAvailable ? `
+                  <button onclick="handleRentBook(${book.id}, '${book.titulo.replace(/'/g, "\\'")}')" class="px-3.5 py-1.5 bg-primary-container text-on-primary hover:bg-primary rounded-lg text-xs font-bold transition-all shadow-sm">
+                    Alugar Agora
+                  </button>
+                ` : `
+                  <span class="px-2.5 py-1 bg-surface-container text-outline rounded text-xs font-medium">3 alugadas</span>
+                `}
+              </div>
+            </div>
+          `;
+        }).join('');
+      } catch (err) {
+        container.innerHTML = '<div class="col-span-full py-12 text-center text-error text-sm">Erro ao processar sugestões.</div>';
+      }
+    }
 
-      gridProfundas.classList.remove('hidden');
-      gridProfundas.classList.add('grid');
-      gridRapidas.classList.add('hidden');
-      gridRapidas.classList.remove('grid');
-    });
-  }
+    async function recalculateSuggestions() {
+      AuroraAPI.showToast('Recalculando afinidades do perfil...', 'sync');
+      await loadSuggestions();
+      AuroraAPI.showToast('Sugestões atualizadas!', 'check_circle');
+    }
 
-  // Visual simulation for Recalculate button
-  function handleRecalculate(btn) {
-    const icon = btn.querySelector('.material-symbols-outlined');
-    if (icon) icon.classList.add('animate-spin');
-    setTimeout(() => {
-      if (icon) icon.classList.remove('animate-spin');
-    }, 900);
-  }
-
-  const btnTop = document.getElementById('btn-recalcular-top');
-  const btnBottom = document.getElementById('btn-recalcular-bottom');
-  if (btnTop) btnTop.addEventListener('click', () => handleRecalculate(btnTop));
-  if (btnBottom) btnBottom.addEventListener('click', () => handleRecalculate(btnBottom));
-</script></main></div>
-
-</body></html>
+    async function handleRentBook(bookId, title) {
+      try {
+        await AuroraAPI.rentBook(bookId);
+        AuroraAPI.showToast(`"${title}" alugado com sucesso!`, 'check_circle');
+        loadSuggestions();
+        AuroraAPI.initSidebar('sugestoes');
+      } catch (err) {
+        AuroraAPI.showToast(err.message || 'Erro ao realizar aluguel.', 'error', true);
+      }
+    }
+  </script>
+</body>
+</html>
