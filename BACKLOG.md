@@ -91,7 +91,7 @@ Quando o usuário acessa algumas abas da sidebar, os ícones da sidebar, a logo 
 ## Extra 
 Quando o usuario tenta traduzir o site para portugues (mesmo que o site ja esteja em portugues), as fontes mudam e parecem ficar totalmete bugadas. 
 ## Supabase 
-Novos usuários não estão sendo registrados no banco de dados que está no supabase. Além de alguns outros problemas ja mencionados (como livros aparecendo ja alugados mesmo o login sendo novo, etc) 
+Novos usuários não estão sendo registrados no banco de dados que está no supabase. Além de alguns outros problemas ja mencionados (como livros aparecendo ja alugados mesmo o login sendo novo, etc). Em resumo: o banco de dados não parece estar conectado à api 
 ## Perfis exclusivos
 Quero dois perfis exclusivos : Para administrador e bibliotecario
 ### Administrador : 
