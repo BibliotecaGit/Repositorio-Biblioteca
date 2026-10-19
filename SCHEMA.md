@@ -1,24 +1,65 @@
+# Aurora — Schema do Banco de Dados (Supabase / PostgreSQL 15+)
+
+Este arquivo descreve e fornece o esquema SQL completo do **Aurora** adaptado para **Supabase (PostgreSQL 15+)**, em conformidade com a Especificação v3.0 (`SPEC.md`) e o Backlog (`TASKS.md`).
+
+Você também pode utilizar o arquivo [`schema.sql`](./schema.sql) diretamente no **SQL Editor** do Supabase.
+
+---
+
+## Como Utilizar no Supabase
+
+1. Acesse o painel do seu projeto no Supabase: `https://supabase.com/dashboard/project/<seu-projeto>`.
+2. No menu lateral esquerdo, clique em **SQL Editor**.
+3. Clique em **New query**.
+4. Copie e cole todo o conteúdo abaixo (ou do arquivo `schema.sql`).
+5. Clique em **Run**.
+
+---
+
+## Esquema SQL Completo
+
+```sql
 -- ============================================================================
 -- AURORA — Sistema de Biblioteca com Aluguel de Livros
--- Schema para Supabase (PostgreSQL 15+) — adaptado da Spec v3.0 (§6.3)
--- Gerado em: 2026-09-28
---
--- NOTAS DE ADAPTAÇÃO MySQL → Postgres/Supabase:
---   * ENGINE InnoDB / utf8mb4  → Postgres nativo (UTF-8)
---   * BIGINT UNSIGNED AUTO_INCREMENT → BIGSERIAL
---   * DATETIME                 → TIMESTAMPTZ
---   * ENUM(...)                → CREATE TYPE ... AS ENUM
---   * ON DELETE RESTRICT       → Postgres default (sem ON DELETE = RESTRICT)
---   * Triggers p/ avaliacao_media, updated_at e faixa de tamanho inclusos
+-- Esquema SQL Completo para Supabase (PostgreSQL 15+)
+-- Adaptado da Espec v3.0 (SPEC.md) e Backlog Detalhado (TASKS.md)
 -- ============================================================================
 
 -- ----------------------------------------------------------------------------
--- 0. EXTENSÕES
+-- 0. LIMPEZA / DROPS (para re-execução segura no SQL Editor do Supabase)
 -- ----------------------------------------------------------------------------
-create extension if not exists "pgcrypto";  -- gen_random_uuid(), se necessário
+drop view if exists vw_destaques cascade;
+drop view if exists vw_novidades cascade;
+
+drop table if exists contato_suporte cascade;
+drop table if exists configuracao cascade;
+drop table if exists multa cascade;
+drop table if exists uso_filtro cascade;
+drop table if exists avaliacao cascade;
+drop table if exists lista_desejos cascade;
+drop table if exists ja_lidos cascade;
+drop table if exists aluguel cascade;
+drop table if exists exemplar cascade;
+drop table if exists livro cascade;
+drop table if exists usuario cascade;
+
+drop type if exists tipo_filtro cascade;
+drop type if exists multa_status cascade;
+drop type if exists multa_tipo cascade;
+drop type if exists aluguel_status cascade;
+drop type if exists exemplar_status cascade;
+drop type if exists faixa_tamanho cascade;
+drop type if exists usuario_tema cascade;
+drop type if exists usuario_idioma cascade;
+drop type if exists usuario_tipo cascade;
 
 -- ----------------------------------------------------------------------------
--- 1. ENUMS (§6.2 — máquinas de estado consolidadas)
+-- 1. EXTENSÕES
+-- ----------------------------------------------------------------------------
+create extension if not exists "pgcrypto";
+
+-- ----------------------------------------------------------------------------
+-- 2. ENUMS (§6.2 da Spec v3.0)
 -- ----------------------------------------------------------------------------
 create type usuario_tipo     as enum ('aluno', 'bibliotecario', 'administrador');
 create type usuario_idioma   as enum ('pt-BR', 'en');
@@ -31,7 +72,7 @@ create type multa_status     as enum ('pendente', 'pago');
 create type tipo_filtro      as enum ('tamanho', 'genero', 'autor');
 
 -- ----------------------------------------------------------------------------
--- 2. TABELAS
+-- 3. TABELAS (§6.3 da Spec v3.0)
 -- ----------------------------------------------------------------------------
 
 -- USUARIO -------------------------------------------------------------------
@@ -160,7 +201,7 @@ create table multa (
   created_at      timestamptz not null default now()
 );
 
--- CONTATO_SUPORTE (RF-029.3 — pendência de decisão da spec, tabela proposta) --
+-- CONTATO_SUPORTE (RF-029.3 — comunicação de suporte) ----------------------
 create table contato_suporte (
   id            bigint generated always as identity primary key,
   id_usuario    bigint references usuario (id_usuario) on delete set null,
@@ -171,19 +212,15 @@ create table contato_suporte (
   created_at    timestamptz not null default now()
 );
 
--- CONFIGURACAO (texto institucional editável — pendência de decisão, CA-018.1)
+-- CONFIGURACAO (texto institucional editável, CA-018.1) ----------------------
 create table configuracao (
   chave       varchar(80) primary key,
   valor       text not null,
   updated_at  timestamptz not null default now()
 );
 
-insert into configuracao (chave, valor) values
-  ('descricao_institucional',
-   'A Aurora é uma biblioteca comunitária de aluguel de livros, com a missão de incentivar a leitura. Nosso acervo possui 3 cópias por título.');
-
 -- ----------------------------------------------------------------------------
--- 3. ÍNDICES (§6.4 — com justificativas em comentário)
+-- 4. ÍNDICES DE PERFORMANCE (§6.4)
 -- ----------------------------------------------------------------------------
 create index idx_livro_titulo           on livro (titulo);                    -- busca parcial vitrine (RF-009)
 create index idx_livro_autor            on livro (autor);
@@ -198,14 +235,11 @@ create index idx_aluguel_data_prevista  on aluguel (data_devolucao_prevista); --
 create index idx_aluguel_usuario_status on aluguel (id_usuario, status);      -- elegibilidade < 3 ativos (RN-006)
 create index idx_multa_usuario_status   on multa (id_usuario, status);        -- bloqueio por multa pendente (RN-006) + tela RF-015
 
--- Opcional (escala): busca full-text em título/autor
--- create index idx_livro_fts on livro using gin (to_tsvector('portuguese', titulo || ' ' || autor));
-
 -- ----------------------------------------------------------------------------
--- 4. FUNÇÕES E TRIGGERS
+-- 5. FUNÇÕES E TRIGGERS
 -- ----------------------------------------------------------------------------
 
--- 4.1 updated_at automático ---------------------------------------------------
+-- 5.1 Touch updated_at automático ---------------------------------------------
 create or replace function fn_touch_updated_at() returns trigger as $$
 begin
   new.updated_at := now();
@@ -213,15 +247,14 @@ begin
 end;
 $$ language plpgsql;
 
-create trigger trg_usuario_updated  before update on usuario  for each row execute function fn_touch_updated_at();
-create trigger trg_livro_updated    before update on livro    for each row execute function fn_touch_updated_at();
-create trigger trg_exemplar_updated before update on exemplar for each row execute function fn_touch_updated_at();
-create trigger trg_aluguel_updated  before update on aluguel  for each row execute function fn_touch_updated_at();
+create trigger trg_usuario_updated    before update on usuario    for each row execute function fn_touch_updated_at();
+create trigger trg_livro_updated      before update on livro      for each row execute function fn_touch_updated_at();
+create trigger trg_exemplar_updated   before update on exemplar   for each row execute function fn_touch_updated_at();
+create trigger trg_aluguel_updated    before update on aluguel    for each row execute function fn_touch_updated_at();
 create trigger trg_uso_filtro_updated before update on uso_filtro for each row execute function fn_touch_updated_at();
+create trigger trg_config_updated     before update on configuracao for each row execute function fn_touch_updated_at();
 
--- 4.2 Faixa de tamanho automática (RN-001 / CA-004.2) -------------------------
--- Regra: até 100 pág = pequeno | >100–150 = medio_pequeno
---        >150–250 = medio_padrao | >250 = grande
+-- 5.2 Faixa de tamanho e flag infantil automática (RN-001 / CA-004.2 / CA-008.3)
 create or replace function calcular_faixa_tamanho(p_paginas integer) returns faixa_tamanho as $$
 begin
   if p_paginas <= 100 then return 'pequeno';
@@ -252,7 +285,7 @@ create trigger trg_livro_faixa_tamanho
   before insert or update of num_paginas, genero on livro
   for each row execute function fn_livro_faixa_tamanho();
 
--- 4.3 Recálculo de avaliacao_media (RN-009 / RNF-004 — denormalização §6.6) ---
+-- 5.3 Recálculo de avaliacao_media e total_avaliacoes (RN-009 / RNF-004) ------
 create or replace function fn_recalc_avaliacao() returns trigger as $$
 declare
   v_livro_id bigint := coalesce(new.id_livro, old.id_livro);
@@ -270,7 +303,7 @@ create trigger trg_avaliacao_recalc
   for each row execute function fn_recalc_avaliacao();
 
 -- ----------------------------------------------------------------------------
--- 5. VIEWS DE NEGÓCIO
+-- 6. VIEWS DE NEGÓCIO
 -- ----------------------------------------------------------------------------
 
 -- Novidades (RN-011): lançamentos dos últimos 6 meses, catálogo ativo
@@ -292,11 +325,11 @@ select l.*
   from livro l, percentil p
  where l.deleted_at is null
    and l.avaliacao_media >= 4.5
-   and l.alugueis_ultimo_ano >= p.p80
+   and l.alugueis_ultimo_ano >= coalesce(p.p80, 0)
  order by l.alugueis_ultimo_ano desc;
 
 -- ----------------------------------------------------------------------------
--- 6. FUNÇÕES AUXILIARES DE NEGÓCIO (usadas pela aplicação/jobs)
+-- 7. FUNÇÕES AUXILIARES DE NEGÓCIO
 -- ----------------------------------------------------------------------------
 
 -- RN-001: prazo de aluguel em dias (15 ou 30)
@@ -314,28 +347,21 @@ end;
 $$ language plpgsql immutable;
 
 -- ----------------------------------------------------------------------------
--- 7. SEEDS MÍNIMOS (opcional — descomente para popular)
+-- 8. SEEDS MÍNIMOS E CONFIGURAÇÃO INICIAL
 -- ----------------------------------------------------------------------------
--- insert into usuario (nome, email, senha_hash, tipo) values
---   ('Admin Aurora',    'admin@aurora.local',    '<hash bcrypt>', 'administrador'),
---   ('Biblio Aurora',   'biblio@aurora.local',   '<hash bcrypt>', 'bibliotecario'),
---   ('Aluno Teste',     'aluno@aurora.local',    '<hash bcrypt>', 'aluno');
+insert into configuracao (chave, valor) values
+  ('descricao_institucional',
+   'A Aurora é uma biblioteca comunitária de aluguel de livros, com a missão de incentivar a leitura. Nosso acervo possui 3 cópias por título.')
+on conflict (chave) do update set valor = excluded.valor;
 
 -- ----------------------------------------------------------------------------
--- 8. ROW LEVEL SECURITY (Supabase) — HABILITE CONFORME A ARQUITETURA DE AUTH
+-- 9. ROW LEVEL SECURITY (Supabase RLS)
 -- ----------------------------------------------------------------------------
--- Se usar auth.users do Supabase, crie uma coluna auth_user_id uuid unique em
--- "usuario" e vincule as políticas abaixo a auth.uid().
--- Exemplo de política para coleções pessoais:
---
+-- Para ativar RLS no Supabase para coleções e ações do usuário:
 -- alter table ja_lidos enable row level security;
--- create policy "usuario_gerencia_proprios_lidos"
---   on ja_lidos for all
---   using (id_usuario = (select id_usuario from usuario where auth_user_id = auth.uid()))
---   with check (id_usuario = (select id_usuario from usuario where auth_user_id = auth.uid()));
---
--- (Replicar o padrão para lista_desejos, avaliacao, uso_filtro, multa, aluguel.)
--- Regras de aluguel/devolução/multa com transações (INT-1) DEVEM passar por
--- funções SECURITY DEFINER ou API própria, nunca por RLS direto.
-
--- Fim do schema — Aurora v3.0 para Supabase
+-- alter table lista_desejos enable row level security;
+-- alter table avaliacao enable row level security;
+-- alter table uso_filtro enable row level security;
+-- alter table aluguel enable row level security;
+-- alter table multa enable row level security;
+```
