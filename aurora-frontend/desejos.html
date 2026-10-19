@@ -169,7 +169,7 @@
   }
 
   function buildCard(book) {
-    const copies = typeof book.exemplariesDisponiveis === 'number' ? book.exemplariesDisponiveis : (book.copiesAvailable ?? 0);
+    const copies = typeof book.copiasDisponiveis === 'number' ? book.copiasDisponiveis : (typeof book.exemplariesDisponiveis === 'number' ? book.exemplariesDisponiveis : (book.copiesAvailable ?? 0));
     const available = copies > 0;
     const coverUrl = book.capaUrl || '';
     const article = document.createElement('article');

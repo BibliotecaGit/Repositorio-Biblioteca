@@ -779,12 +779,14 @@
       }
     });
   }
-</script></div></main></div>
-
-
-
-
-
-
-
+</script>
+<script src="js/aurora-api.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.AuroraAPI) {
+      AuroraAPI.initSidebar('estoque-de-livros');
+    }
+  });
+</script>
+</div></main></div>
 </body></html>

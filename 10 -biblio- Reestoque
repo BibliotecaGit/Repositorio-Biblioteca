@@ -599,12 +599,14 @@
     document.getElementById('previewLabel').innerText = 'Nova Obra';
     updatePaceBadge(0);
   }
-</script></div></main></div>
-
-
-
-
-
-
-
+</script>
+<script src="js/aurora-api.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.AuroraAPI) {
+      AuroraAPI.initSidebar('reestoque');
+    }
+  });
+</script>
+</div></main></div>
 </body></html>

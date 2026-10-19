@@ -656,11 +656,12 @@
 </div>
 </section>
 </div></div></main></div>
-
-
-
-
-
-
-
+<script src="js/aurora-api.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.AuroraAPI) {
+      AuroraAPI.initSidebar('cadastros');
+    }
+  });
+</script>
 </body></html>

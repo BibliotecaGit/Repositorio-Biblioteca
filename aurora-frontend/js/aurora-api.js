@@ -3,7 +3,11 @@
  * Suporta conexão com Spring Boot REST API e fallback automático para armazenamento local / demo no GitHub Pages.
  */
 
-const API_BASE = window.AURORA_API_BASE || (window.location.protocol === 'https:' ? null : 'http://localhost:8080/api');
+const API_BASE = window.AURORA_API_BASE || (
+  window.location.protocol === 'https:' || window.location.hostname.includes('github.io')
+    ? null
+    : 'http://localhost:8080/api'
+);
 
 // =============================================================================
 // CATÁLOGO OFICIAL DE LIVROS (14 títulos da Spec v3.0 / schema-jules.sql)
@@ -338,15 +342,21 @@ const AuroraMockStore = {
       const book = DEFAULT_BOOKS.find(b => b.id === 8) || DEFAULT_BOOKS[0];
       const prazoDias = (book.faixaTamanho === 'pequeno' || book.faixaTamanho === 'medio_pequeno') ? 15 : 30;
       const now = Date.now();
+      const prevDate = new Date(now + (prazoDias - 3) * 86400000).toISOString().split('T')[0];
       rentals = [
         {
           id: 101,
           idLivro: book.id,
+          bookId: book.id,
+          bookTitle: book.titulo,
+          bookCopyId: 1,
           livro: book,
-          dataAluguel: new Date(now - 3 * 86400000).toISOString(),
-          dataPrevistaDevolucao: new Date(now + (prazoDias - 3) * 86400000).toISOString(),
+          dataAluguel: new Date(now - 3 * 86400000).toISOString().split('T')[0],
+          dataPrevistaDevolucao: prevDate,
+          dataDevolucaoPrevista: prevDate,
           status: 'ativo',
           extensoes: 0,
+          extensaoContador: 0,
           valorAluguel: book.precoAluguel
         }
       ];
@@ -381,7 +391,16 @@ const AuroraMockStore = {
 
   getRatings() {
     return this._get('ratings', [
-      { id: 1, idLivro: 1, nota: 5, comentario: 'Uma das obras mais doces e reflexivas já escritas.', dataCriacao: new Date().toISOString() }
+      {
+        id: 1,
+        idLivro: 1,
+        bookId: 1,
+        bookTitle: 'O Pequeno Príncipe',
+        nota: 5,
+        comentario: 'Uma das obras mais doces e reflexivas já escritas.',
+        dataCriacao: new Date().toISOString(),
+        dataAvaliacao: new Date().toISOString()
+      }
     ]);
   },
 
@@ -512,14 +531,20 @@ const AuroraMockStore = {
       this.saveBooks(books);
 
       const prazoDias = (book.faixaTamanho === 'pequeno' || book.faixaTamanho === 'medio_pequeno') ? 15 : 30;
+      const targetDate = new Date(Date.now() + prazoDias * 86400000).toISOString().split('T')[0];
       const newRental = {
         id: Date.now(),
         idLivro: book.id,
+        bookId: book.id,
+        bookTitle: book.titulo,
+        bookCopyId: 1,
         livro: book,
-        dataAluguel: new Date().toISOString(),
-        dataPrevistaDevolucao: new Date(Date.now() + prazoDias * 86400000).toISOString(),
+        dataAluguel: new Date().toISOString().split('T')[0],
+        dataPrevistaDevolucao: targetDate,
+        dataDevolucaoPrevista: targetDate,
         status: 'ativo',
         extensoes: 0,
+        extensaoContador: 0,
         valorAluguel: book.precoAluguel
       };
       rentals.unshift(newRental);
@@ -539,13 +564,18 @@ const AuroraMockStore = {
       const rentals = this.getRentals();
       const rental = rentals.find(r => r.id === rentalId);
       if (!rental) throw new Error('Aluguel não encontrado.');
-      if (rental.extensoes >= 2) {
+      const currentExt = (rental.extensaoContador ?? rental.extensoes ?? 0);
+      if (currentExt >= 2) {
         throw new Error('Limite de 2 renovações atingido para este aluguel (RN-001).');
       }
-      rental.extensoes = (rental.extensoes || 0) + 1;
-      const prevDate = new Date(rental.dataPrevistaDevolucao).getTime();
-      const extraDias = (rental.livro && (rental.livro.faixaTamanho === 'pequeno' || rental.livro.faixaTamanho === 'medio_pequeno')) ? 15 : 30;
-      rental.dataPrevistaDevolucao = new Date(prevDate + extraDias * 86400000).toISOString();
+      rental.extensoes = currentExt + 1;
+      rental.extensaoContador = rental.extensoes;
+      const prevDate = new Date(rental.dataDevolucaoPrevista || rental.dataPrevistaDevolucao).getTime();
+      const book = rental.livro || this.getBooks().find(b => b.id === (rental.idLivro || rental.bookId));
+      const extraDias = (book && (book.faixaTamanho === 'pequeno' || book.faixaTamanho === 'medio_pequeno')) ? 15 : 30;
+      const newDateStr = new Date(prevDate + extraDias * 86400000).toISOString().split('T')[0];
+      rental.dataPrevistaDevolucao = newDateStr;
+      rental.dataDevolucaoPrevista = newDateStr;
       this.saveRentals(rentals);
       return rental;
     }
@@ -623,12 +653,17 @@ const AuroraMockStore = {
       const bookId = parseInt(rateMatch[1], 10);
       const body = JSON.parse(options.body || '{}');
       const ratings = this.getRatings();
+      const books = this.getBooks();
+      const book = books.find(b => b.id === bookId);
       ratings.unshift({
         id: Date.now(),
         idLivro: bookId,
+        bookId: bookId,
+        bookTitle: book ? book.titulo : `Livro #${bookId}`,
         nota: Number(body.nota || 5),
         comentario: body.comentario || '',
-        dataCriacao: new Date().toISOString()
+        dataCriacao: new Date().toISOString(),
+        dataAvaliacao: new Date().toISOString()
       });
       this.saveRatings(ratings);
       return { message: 'Avaliação enviada com sucesso!' };
@@ -637,14 +672,22 @@ const AuroraMockStore = {
       return this.getRatings();
     }
 
-    // 14. Sugestões
+    // 14. Sugestões (Retorna List<BookResponse> para compatibilidade com o front e API)
     if (url === '/suggestions') {
       const books = this.getBooks();
-      return {
-        populares: books.slice().sort((a, b) => (b.alugueisUltimoAno || 0) - (a.alugueisUltimoAno || 0)).slice(0, 4),
-        recentes: books.slice().sort((a, b) => new Date(b.dataLancamento) - new Date(a.dataLancamento)).slice(0, 4),
-        destaques: books.filter(b => b.avaliacaoMedia >= 4.8).slice(0, 4)
-      };
+      const list = [
+        ...books.slice().sort((a, b) => (b.alugueisUltimoAno || 0) - (a.alugueisUltimoAno || 0)).slice(0, 4),
+        ...books.slice().sort((a, b) => new Date(b.dataLancamento) - new Date(a.dataLancamento)).slice(0, 4)
+      ];
+      const unique = [];
+      const seen = new Set();
+      for (const b of list) {
+        if (!seen.has(b.id)) {
+          seen.add(b.id);
+          unique.push(b);
+        }
+      }
+      return unique;
     }
     if (url.startsWith('/suggestions/record-filter')) {
       return { message: 'Filtro registrado.' };
@@ -940,7 +983,12 @@ const AuroraAPI = {
   // Sugestões, Multas e Perfil
   // ---------------------------------------------------------------------------
   async getSuggestions() {
-    return await this.apiFetch('/suggestions');
+    const res = await this.apiFetch('/suggestions');
+    if (Array.isArray(res)) return res;
+    if (res && res.populares) {
+      return [...(res.populares || []), ...(res.destaques || [])];
+    }
+    return [];
   },
 
   async recordFilterUsage(filterType, valor) {
@@ -1041,23 +1089,27 @@ const AuroraAPI = {
       'lista-de-desejos': 'desejos.html',
       'avaliar-livros': 'avaliar.html',
       'configuracoes': 'configuracoes.html',
+      'estoque-de-livros': 'estoque.html',
+      'reestoque': 'reestoque.html',
+      'cadastros': 'cadastros.html',
+      'fila': 'fila.html',
+      'pendente': 'pendente.html',
       'sacola-de-alugueis': 'index.html#alugueis-ativos'
     };
 
-    document.querySelectorAll('nav a[data-path]').forEach(link => {
+    document.querySelectorAll('nav a[data-path], aside a[data-path]').forEach(link => {
       const path = link.getAttribute('data-path');
       if (routes[path]) {
         link.href = routes[path];
       }
 
       if (path === activePath) {
-        link.className = 'flex items-center justify-between px-space-md py-space-sm rounded-xl bg-primary-container text-on-primary font-bold shadow-[0_4px_20px_-2px_rgba(15,25,74,0.04)] transition-all group';
-        const icon = link.querySelector('.material-symbols-outlined');
-        if (icon) icon.className = 'material-symbols-outlined text-secondary-fixed';
-      } else {
-        link.className = 'flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all group';
-        const icon = link.querySelector('.material-symbols-outlined');
-        if (icon) icon.className = 'material-symbols-outlined text-secondary group-hover:text-primary-container transition-colors';
+        link.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-high');
+        link.classList.add('bg-primary-container', 'text-on-primary', 'font-bold', 'shadow-[0_4px_20px_-2px_rgba(15,25,74,0.04)]');
+        const icon = link.querySelector('.material-symbols-outlined, svg');
+        if (icon && icon.classList.contains('material-symbols-outlined')) {
+          icon.className = 'material-symbols-outlined text-secondary-fixed';
+        }
       }
     });
 
@@ -1069,6 +1121,11 @@ const AuroraAPI = {
 
     if (user) {
       document.querySelectorAll('.user-display-name').forEach(el => el.textContent = user.nome || 'Helena Souza');
+      document.querySelectorAll('aside span').forEach(el => {
+        if (el.textContent.trim() === 'Helena Souza' || el.textContent.trim() === 'Helena V.') {
+          el.textContent = user.nome;
+        }
+      });
       document.querySelectorAll('.user-display-role').forEach(el => {
         const roles = {
           'aluno': 'Leitor Aurora',
@@ -1081,6 +1138,22 @@ const AuroraAPI = {
         if (user.fotoUrl) img.src = user.fotoUrl;
       });
     }
+
+    // Tratamento global para imagens com 403/404 de CDN expirada
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('error', function() {
+        if (!this.getAttribute('data-error-handled')) {
+          this.setAttribute('data-error-handled', 'true');
+          const isAvatar = this.classList.contains('rounded-full') || (this.alt && (this.alt.toLowerCase().includes('profile') || this.alt.toLowerCase().includes('avatar') || this.alt.toLowerCase().includes('administrador')));
+          if (isAvatar) {
+            const name = (user && user.nome) ? encodeURIComponent(user.nome) : 'Aurora';
+            this.src = `https://ui-avatars.com/api/?name=${name}&background=0f194a&color=95ccfe&bold=true`;
+          } else {
+            this.src = 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80';
+          }
+        }
+      });
+    });
 
     // Atualização dos badges numéricos na sidebar
     try {

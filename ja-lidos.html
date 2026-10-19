@@ -189,7 +189,7 @@
     const article = document.createElement('article');
     article.className = 'group bg-surface-container-lowest rounded-2xl p-space-md shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1';
 
-    const availableCopies = typeof book.exemplariesDisponiveis === 'number' ? book.exemplariesDisponiveis : (book.copiesAvailable ?? '?');
+    const availableCopies = typeof book.copiasDisponiveis === 'number' ? book.copiasDisponiveis : (typeof book.exemplariesDisponiveis === 'number' ? book.exemplariesDisponiveis : (book.copiesAvailable ?? 0));
     const coverUrl = book.capaUrl || '';
     const tamanho = book.tamanho ? book.tamanho.replace('_', '-') : '';
     const paginas = book.numeroPaginas ? `${book.numeroPaginas} págs` : '';

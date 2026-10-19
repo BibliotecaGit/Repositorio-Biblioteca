@@ -204,5 +204,14 @@
       }, 1500);
     }, 900);
   }
-</script></main></div>
+</script>
+<script src="js/aurora-api.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.AuroraAPI) {
+      AuroraAPI.initSidebar('fila');
+    }
+  });
+</script>
+</main></div>
 </body></html>

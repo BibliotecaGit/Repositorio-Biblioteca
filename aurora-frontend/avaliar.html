@@ -237,6 +237,8 @@
     }
     myRatings.forEach(r => {
       const stars = Math.round(Number(r.nota));
+      const title = r.bookTitle || (r.livro && r.livro.titulo) || r.titulo || 'Livro Aurora';
+      const bId = r.bookId || r.idLivro || r.id;
       const card = document.createElement('div');
       card.className = 'bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col gap-space-sm hover:shadow-md transition-shadow';
       card.innerHTML = `
@@ -244,9 +246,9 @@
           <span class="text-amber-500 text-lg">${'★'.repeat(stars)}${'☆'.repeat(5 - stars)}</span>
           <span class="font-title-md text-title-md text-primary font-bold">${Number(r.nota).toFixed(1)}</span>
         </div>
-        <h4 class="font-title-md text-title-md text-primary-container">${escHtml(r.bookTitle)}</h4>
+        <h4 class="font-title-md text-title-md text-primary-container">${escHtml(title)}</h4>
         <span class="font-body-sm text-body-sm text-on-surface-variant">${r.dataAvaliacao ? new Date(r.dataAvaliacao).toLocaleDateString('pt-BR') : ''}</span>
-        <button onclick="openModal(${r.bookId}, '${escHtml(r.bookTitle)}', '', ${r.nota})"
+        <button onclick="openModal(${bId}, '${escHtml(title).replace(/'/g, "\\'")}', '', ${r.nota})"
           class="self-start h-9 px-space-md rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition-colors">
           <span class="material-symbols-outlined text-[16px] text-secondary">edit</span>
           Editar

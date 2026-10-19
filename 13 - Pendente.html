@@ -260,5 +260,13 @@
       if (btnClose) btnClose.addEventListener('click', fecharModal);
     })();
   </script>
+  <script src="js/aurora-api.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.AuroraAPI) {
+        AuroraAPI.initSidebar('pendente');
+      }
+    });
+  </script>
 </div></main></div>
 </body></html>

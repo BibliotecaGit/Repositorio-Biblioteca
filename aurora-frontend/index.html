@@ -421,24 +421,31 @@
           return;
         }
 
-        container.innerHTML = active.map(r => `
+        container.innerHTML = active.map(r => {
+          const title = r.bookTitle || (r.livro && r.livro.titulo) || 'Livro Aurora';
+          const copyId = r.bookCopyId || r.idLivro || r.id;
+          const prevDate = r.dataDevolucaoPrevista || r.dataPrevistaDevolucao;
+          const extensionsUsed = r.extensaoContador ?? r.extensoes ?? 0;
+          const bId = r.bookId || r.idLivro || r.id;
+
+          return `
           <div class="p-space-lg bg-surface-container-lowest rounded-2xl border border-surface-container shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-md">
             <div class="flex items-center gap-space-md min-w-0">
               <div class="w-12 h-16 rounded-lg bg-surface-container-high overflow-hidden shrink-0 shadow-sm flex items-center justify-center">
                 <span class="material-symbols-outlined text-secondary text-2xl">book</span>
               </div>
               <div class="flex flex-col min-w-0">
-                <span class="font-label-sm text-secondary uppercase text-[11px] font-bold">Exemplar #${r.bookCopyId}</span>
-                <h4 class="font-title-lg text-primary font-bold truncate">${r.bookTitle}</h4>
+                <span class="font-label-sm text-secondary uppercase text-[11px] font-bold">Exemplar #${copyId}</span>
+                <h4 class="font-title-lg text-primary font-bold truncate">${title}</h4>
                 <div class="flex items-center gap-3 text-xs text-on-surface-variant mt-1">
-                  <span>Devolução prevista: <strong class="text-primary">${formatDate(r.dataDevolucaoPrevista)}</strong></span>
+                  <span>Devolução prevista: <strong class="text-primary">${formatDate(prevDate)}</strong></span>
                   <span>•</span>
-                  <span>Extensões: <strong class="text-secondary">${r.extensaoContador}/2 usadas</strong></span>
+                  <span>Extensões: <strong class="text-secondary">${extensionsUsed}/2 usadas</strong></span>
                 </div>
               </div>
             </div>
-            <div class="flex items-center gap-space-sm shrink-0">
-              ${r.extensaoContador < 2 ? `
+            <div class="flex items-center gap-space-sm shrink-0 flex-wrap">
+              ${extensionsUsed < 2 ? `
                 <button onclick="handleExtendRental(${r.id})" class="px-3.5 py-2 bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-container rounded-xl font-label-sm text-xs font-bold transition-all flex items-center gap-1.5">
                   <span class="material-symbols-outlined text-[16px]">autorenew</span>
                   Renovar (+15/30d)
@@ -448,15 +455,32 @@
                   Extensões esgotadas
                 </span>
               `}
-              <button onclick="handleMarkAsRead(${r.bookId})" class="px-3.5 py-2 bg-surface-container-low hover:bg-surface-container-high text-on-surface rounded-xl font-label-sm text-xs font-semibold transition-all flex items-center gap-1.5">
+              <button onclick="handleReturnRental(${r.id}, '${title.replace(/'/g, "\\'")}')" class="px-3.5 py-2 bg-error-container hover:bg-red-200 text-on-error-container rounded-xl font-label-sm text-xs font-semibold transition-all flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px]">assignment_return</span>
+                Devolver
+              </button>
+              <button onclick="handleMarkAsRead(${bId})" class="px-3.5 py-2 bg-surface-container-low hover:bg-surface-container-high text-on-surface rounded-xl font-label-sm text-xs font-semibold transition-all flex items-center gap-1.5">
                 <span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
                 Já Lido
               </button>
             </div>
           </div>
-        `).join('');
+        `;
+        }).join('');
       } catch (err) {
         container.innerHTML = '<div class="p-6 text-center text-error text-sm">Não foi possível carregar os aluguéis ativos.</div>';
+      }
+    }
+
+    async function handleReturnRental(rentalId, title) {
+      try {
+        await AuroraAPI.returnRental(rentalId);
+        AuroraAPI.showToast(`"${title}" devolvido com sucesso!`, 'check_circle');
+        loadMyActiveRentals();
+        loadNovidades();
+        loadDestaques();
+      } catch (err) {
+        AuroraAPI.showToast(err.message || 'Erro ao devolver livro.', 'error', true);
       }
     }
 
@@ -482,7 +506,8 @@
 
     function formatDate(dateStr) {
       if (!dateStr) return '—';
-      const parts = dateStr.split('-');
+      const clean = String(dateStr).split('T')[0];
+      const parts = clean.split('-');
       if (parts.length === 3) {
         return `${parts[2]}/${parts[1]}/${parts[0]}`;
       }
