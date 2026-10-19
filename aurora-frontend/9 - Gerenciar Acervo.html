@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><title>Aurora - Gerenciar Acervo</title><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "primary-container": "#0f194a", "secondary": "#25638f", "background": "#fbf9f3", "surface-container-low": "#f5f3ee", "surface-container-lowest": "#ffffff" }, "fontFamily": { "headline-lg": ["Montserrat"], "body-md": ["Open Sans"] } } } };</script></head>
+<body class="bg-background font-body-md text-on-surface antialiased">
+<div class="flex min-h-screen">
+<aside class="w-72 bg-surface-container-lowest p-space-lg shadow-md flex flex-col justify-between">
+  <div class="flex flex-col gap-space-lg">
+    <div class="flex items-center gap-space-sm">
+      <div class="w-10 h-10 rounded-lg bg-primary-container text-white flex items-center justify-center font-bold font-headline-lg">A</div>
+      <div>
+        <h1 class="font-headline-lg text-title-lg text-primary-container">Aurora</h1>
+        <span class="text-label-sm text-secondary uppercase font-bold">Painel do Bibliotecário</span>
+      </div>
+    </div>
+    <nav class="flex flex-col gap-2">
+      <a class="p-3 rounded-xl bg-primary-container text-white font-bold flex items-center gap-3" href="9 - Gerenciar Acervo.html"><span class="material-symbols-outlined">library_add</span>Gerenciar Acervo</a>
+      <a class="p-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low flex items-center gap-3" href="10 - Devoluções e Multas.html"><span class="material-symbols-outlined">assignment_return</span>Devoluções & Multas</a>
+      <a class="p-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low flex items-center gap-3" href="11 - Categorização e Exclusão.html"><span class="material-symbols-outlined">category</span>Categorias & Moderações</a>
+      <a class="p-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low flex items-center gap-3" href="12 - Gestão de Usuários.html"><span class="material-symbols-outlined">group</span>Gestão de Usuários</a>
+      <a class="p-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low flex items-center gap-3" href="13 - Suporte e Relatórios.html"><span class="material-symbols-outlined">support_agent</span>Suporte & Relatórios</a>
+    </nav>
+  </div>
+</aside>
+
+<main class="flex-1 p-8">
+  <header class="flex justify-between items-center mb-8">
+    <div>
+      <h1 class="text-3xl font-bold font-headline-lg text-primary-container">Cadastro & Edição de Títulos</h1>
+      <p class="text-on-surface-variant">Cadastre novos títulos com cálculo automático da faixa de tamanho e 3 exemplares por padrão.</p>
+    </div>
+  </header>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+      <h2 class="text-xl font-bold font-headline-lg text-primary-container mb-4">Novo Título no Acervo</h2>
+      <form class="space-y-4" onsubmit="event.preventDefault(); alert('Livro cadastrado com sucesso com 3 exemplares disponíveis!');">
+        <div>
+          <label class="block text-sm font-bold text-gray-700 mb-1">Título do Livro</label>
+          <input type="text" required placeholder="Ex.: O Senhor dos Anéis" class="w-full p-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-secondary/40">
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1">Autor</label>
+            <input type="text" required placeholder="J.R.R. Tolkien" class="w-full p-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-secondary/40">
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1">Gênero</label>
+            <input type="text" required placeholder="Fantasia" class="w-full p-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-secondary/40">
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-4">
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1">Número de Páginas</label>
+            <input type="number" id="paginasInput" required min="1" placeholder="180" oninput="recalcTamanho(this.value)" class="w-full p-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-secondary/40">
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1">Valor do Livro (R$)</label>
+            <input type="number" step="0.01" required placeholder="80.00" class="w-full p-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-secondary/40">
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1">Preço do Aluguel (R$)</label>
+            <input type="number" step="0.01" required placeholder="12.00" class="w-full p-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-secondary/40">
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-bold text-gray-700 mb-1">Faixa de Tamanho Calculada</label>
+          <input type="text" id="faixaTamanhoBox" readonly value="Médio-padrão (150 a 250 págs)" class="w-full p-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-600 font-semibold">
+        </div>
+        <div>
+          <label class="block text-sm font-bold text-gray-700 mb-1">URL da Capa</label>
+          <input type="url" placeholder="https://..." class="w-full p-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-secondary/40">
+        </div>
+        <div>
+          <label class="block text-sm font-bold text-gray-700 mb-1">Data de Lançamento (opcional)</label>
+          <input type="date" class="w-full p-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-secondary/40">
+        </div>
+        <button type="submit" class="w-full py-3 px-6 bg-primary-container text-white font-bold rounded-xl hover:opacity-95 transition-opacity">Salvar Livro e Gerar 3 Exemplares</button>
+      </form>
+    </div>
+
+    <div class="lg:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+      <h2 class="text-xl font-bold font-headline-lg text-primary-container mb-4">Livros Cadastrados Recentemente</h2>
+      <div class="space-y-4">
+        <div class="p-4 rounded-xl border border-gray-100 bg-surface-container-low flex justify-between items-center">
+          <div>
+            <h3 class="font-bold text-primary-container">Dom Casmurro</h3>
+            <p class="text-xs text-gray-500">Machado de Assis • 208 págs • Médio-padrão</p>
+            <p class="text-xs font-semibold text-secondary">3 cópias físicas cadastradas</p>
+          </div>
+          <button class="px-3 py-1 bg-white rounded-lg text-xs font-bold border hover:bg-gray-50">Editar</button>
+        </div>
+        <div class="p-4 rounded-xl border border-gray-100 bg-surface-container-low flex justify-between items-center">
+          <div>
+            <h3 class="font-bold text-primary-container">O Pequeno Príncipe</h3>
+            <p class="text-xs text-gray-500">Antoine de Saint-Exupéry • 96 págs • Pequeno</p>
+            <p class="text-xs font-semibold text-secondary">3 cópias físicas cadastradas</p>
+          </div>
+          <button class="px-3 py-1 bg-white rounded-lg text-xs font-bold border hover:bg-gray-50">Editar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+</div>
+<script>
+function recalcTamanho(p) {
+  const pages = parseInt(p) || 0;
+  let text = 'Pequeno (até 100 págs)';
+  if (pages > 250) text = 'Grande (mais de 250 págs)';
+  else if (pages > 150) text = 'Médio-padrão (150 a 250 págs)';
+  else if (pages > 100) text = 'Médio-pequeno (100 a 150 págs)';
+  document.getElementById('faixaTamanhoBox').value = text;
+}
+</script>
+</body></html>
