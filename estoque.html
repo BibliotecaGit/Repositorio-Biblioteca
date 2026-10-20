@@ -22,7 +22,7 @@
 <span class="material-symbols-outlined text-[18px]" translate="no">file_download</span>
           Exportar Relatório
         </button>
-<button class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-secondary text-on-primary hover:bg-on-secondary-container text-label-md font-label-md font-semibold transition-all shadow-md hover:shadow-lg" type="button">
+<button onclick="window.location.href='reestoque.html'" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-secondary text-on-primary hover:bg-on-secondary-container text-label-md font-label-md font-semibold transition-all shadow-md hover:shadow-lg" type="button">
 <span class="material-symbols-outlined text-[20px]" translate="no">add_circle</span>
           + Adicionar Exemplares
         </button>
@@ -40,7 +40,7 @@
 </div>
 </div>
 <div class="flex items-baseline gap-2">
-<span class="font-headline-md text-headline-md font-bold text-primary-container">142</span>
+<span id="metric-total-books" class="font-headline-md text-headline-md font-bold text-primary-container">--</span>
 <span class="font-label-sm text-label-sm text-on-surface-variant">obras</span>
 </div>
 <span class="text-label-sm font-label-sm text-secondary mt-1 flex items-center gap-1">
@@ -56,7 +56,7 @@
 </div>
 </div>
 <div class="flex items-baseline gap-2">
-<span class="font-headline-md text-headline-md font-bold text-secondary">285</span>
+<span id="metric-avail-copies" class="font-headline-md text-headline-md font-bold text-secondary">--</span>
 <span class="font-label-sm text-label-sm text-on-surface-variant">cópias livres</span>
 </div>
 <div class="w-full bg-surface-container rounded-full h-1.5 mt-2 overflow-hidden">
@@ -72,7 +72,7 @@
 </div>
 </div>
 <div class="flex items-baseline gap-2">
-<span class="font-headline-md text-headline-md font-bold text-primary-container">141</span>
+<span id="metric-rented-copies" class="font-headline-md text-headline-md font-bold text-primary-container">--</span>
 <span class="font-label-sm text-label-sm text-on-surface-variant">cópias em uso</span>
 </div>
 <span class="text-label-sm font-label-sm text-on-surface-variant mt-1">33% do acervo total</span>
@@ -113,11 +113,11 @@
 <div class="inline-flex p-1 rounded-xl bg-surface-container">
 <button class="tab-btn px-4 py-2 rounded-lg text-label-md font-label-md font-semibold bg-surface-container-lowest text-primary-container shadow-sm transition-all flex items-center gap-2" id="tab-all" onclick="switchTab('all')">
 <span class="">Visão Geral Completa</span>
-<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">142</span>
+<span id="tab-count-all" class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">--</span>
 </button>
 <button class="tab-btn px-4 py-2 rounded-lg text-label-md font-label-md font-medium text-on-surface-variant hover:text-primary transition-all flex items-center gap-2" id="tab-available" onclick="switchTab('available')">
 <span class="">Exemplares Livres</span>
-<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-label-sm font-label-sm font-semibold">118</span>
+<span id="tab-count-available" class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-label-sm font-label-sm font-semibold">--</span>
 </button>
 <button class="tab-btn px-4 py-2 rounded-lg text-label-md font-label-md font-medium text-on-surface-variant hover:text-primary transition-all flex items-center gap-2" id="tab-unavailable" onclick="switchTab('unavailable')">
 <span class="">Indisponíveis / Filas</span>
@@ -182,515 +182,7 @@
 <th class="py-4 px- space-md pr-6 text-right">Ações de Gestão</th>
 </tr>
 </thead>
-<tbody class="font-body-sm text-body-sm divide-y-0" id="inventoryList">
-<!-- Item 1: Torto Arado -->
-<tr class="book-row hover:bg-surface-container-low/60 transition-colors" data-genre="Ficção Literária" data-status="livre" data-title="torto arado itamar vieira junior">
-<td class="py-4 px-space-md pl-6">
-<div class="flex items-center gap-3">
-<div class="w-12 h-16 rounded-md bg-primary-container text-on-primary flex-shrink-0 flex items-center justify-center shadow-sm relative overflow-hidden">
-<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary"></div>
-<span class="material-symbols-outlined text-secondary-fixed text-[24px]" translate="no">book</span>
-</div>
-<div class="flex flex-col min-w-0">
-<span class="font-title-md text-title-md font-semibold text-primary truncate">Torto Arado</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Itamar Vieira Junior</span>
-<span class="text-[11px] font-label-sm text-outline tracking-widest mt-0.5">AUR-BR-0842</span>
-</div>
-</div>
-</td>
-<td class="py-4 px-space-md">
-<span class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface font-label-sm text-label-sm">Ficção Literária</span>
-</td>
-<td class="py-4 px-space-md text-center">
-<div class="inline-flex flex-col items-center">
-<span class="font-title-md text-title-md font-bold text-secondary">2 / 3</span>
-<span class="text-[11px] text-on-surface-variant font-label-sm">livres no estoque</span>
-</div>
-</td>
-<td class="py-4 px-space-md font-medium text-on-surface">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[15px] text-secondary" translate="no">shelves</span>
-                Prateleira 04-B
-              </span>
-</td>
-<td class="py-4 px-space-md font-semibold text-primary">R$ 14,90</td>
-<td class="py-4 px-space-md">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
-<span class="w-2 h-2 rounded-full bg-secondary"></span>
-                Sem fila - Imediato
-              </span>
-</td>
-<td class="py-4 px-space-md pr-6 text-right">
-<div class="inline-flex items-center gap-1">
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="Ajustar Cópias" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">edit_note</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-secondary hover:bg-secondary-fixed transition-colors" title="Ver Fila de Espera" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">people</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="Histórico de Locação" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">history</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Item 2: Duna -->
-<tr class="book-row hover:bg-surface-container-low/60 transition-colors" data-genre="Ficção Científica" data-status="aberta" data-title="duna frank herbert">
-<td class="py-4 px-space-md pl-6">
-<div class="flex items-center gap-3">
-<div class="w-12 h-16 rounded-md bg-primary-container text-on-primary flex-shrink-0 flex items-center justify-center shadow-sm relative overflow-hidden">
-<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary-fixed"></div>
-<span class="material-symbols-outlined text-secondary-fixed text-[24px]" translate="no">rocket_launch</span>
-</div>
-<div class="flex flex-col min-w-0">
-<span class="font-title-md text-title-md font-semibold text-primary truncate">Duna</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Frank Herbert</span>
-<span class="text-[11px] font-label-sm text-outline tracking-widest mt-0.5">AUR-FC-1965</span>
-</div>
-</div>
-</td>
-<td class="py-4 px-space-md">
-<span class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface font-label-sm text-label-sm">Ficção Científica</span>
-</td>
-<td class="py-4 px-space-md text-center">
-<div class="inline-flex flex-col items-center">
-<span class="font-title-md text-title-md font-bold text-on-surface-variant">0 / 3</span>
-<span class="text-[11px] text-error font-label-sm font-semibold">esgotado</span>
-</div>
-</td>
-<td class="py-4 px-space-md font-medium text-on-surface">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[15px] text-secondary" translate="no">shelves</span>
-                Prateleira 11-A
-              </span>
-</td>
-<td class="py-4 px-space-md font-semibold text-primary">R$ 18,50</td>
-<td class="py-4 px-space-md">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">
-<span class="w-2 h-2 rounded-full bg-secondary"></span>
-                Fila: 4 / 10 aguardando
-              </span>
-</td>
-<td class="py-4 px-space-md pr-6 text-right">
-<div class="inline-flex items-center gap-1">
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="Ajustar Cópias" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">edit_note</span>
-</button>
-<button class="p-2 rounded-lg text-secondary bg-secondary-fixed hover:bg-secondary hover:text-on-primary transition-colors" title="Ver Fila de Espera" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">people</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="Histórico de Locação" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">history</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Item 3: Rápido e Devagar (Fila Lotada 10/10) -->
-<tr class="book-row bg-error-container/20 hover:bg-error-container/30 transition-colors" data-genre="Psicologia &amp; Economia" data-status="lotada" data-title="rápido e devagar daniel kahneman">
-<td class="py-4 px-space-md pl-6">
-<div class="flex items-center gap-3">
-<div class="w-12 h-16 rounded-md bg-error text-on-error flex-shrink-0 flex items-center justify-center shadow-sm relative overflow-hidden">
-<div class="absolute left-0 top-0 bottom-0 w-1 bg-surface-container-lowest"></div>
-<span class="material-symbols-outlined text-on-error text-[24px]" translate="no">psychology</span>
-</div>
-<div class="flex flex-col min-w-0">
-<span class="font-title-md text-title-md font-semibold text-primary truncate">Rápido e Devagar</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Daniel Kahneman</span>
-<span class="text-[11px] font-label-sm text-error font-bold tracking-widest mt-0.5">AUR-NF-3011</span>
-</div>
-</div>
-</td>
-<td class="py-4 px-space-md">
-<span class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface font-label-sm text-label-sm">Psicologia &amp; Economia</span>
-</td>
-<td class="py-4 px-space-md text-center">
-<div class="inline-flex flex-col items-center">
-<span class="font-title-md text-title-md font-bold text-error">0 / 3</span>
-<span class="text-[11px] text-error font-label-sm font-bold">100% locado</span>
-</div>
-</td>
-<td class="py-4 px-space-md font-medium text-on-surface">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[15px] text-secondary" translate="no">shelves</span>
-                Prateleira 02-C
-              </span>
-</td>
-<td class="py-4 px-space-md font-semibold text-primary">R$ 19,90</td>
-<td class="py-4 px-space-md">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-error text-on-error font-label-sm text-label-sm font-bold tracking-wide">
-<span class="w-2 h-2 rounded-full bg-on-error animate-ping"></span>
-                FILA LOTADA: 10/10 PENDENTE
-              </span>
-</td>
-<td class="py-4 px-space-md pr-6 text-right">
-<div class="inline-flex items-center gap-1">
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold hover:bg-secondary transition-colors" title="Solicitar novo exemplar" type="button">
-                  + Reestocar
-                </button>
-<button class="p-2 rounded-lg text-error bg-error-container hover:bg-error hover:text-on-error transition-colors" title="Ver Fila de Espera Cheia" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">priority_high</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Item 4: 1984 -->
-<tr class="book-row hover:bg-surface-container-low/60 transition-colors" data-genre="Distopia" data-status="livre" data-title="1984 george orwell">
-<td class="py-4 px-space-md pl-6">
-<div class="flex items-center gap-3">
-<div class="w-12 h-16 rounded-md bg-primary-container text-on-primary flex-shrink-0 flex items-center justify-center shadow-sm relative overflow-hidden">
-<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary"></div>
-<span class="material-symbols-outlined text-secondary-fixed text-[24px]" translate="no">visibility</span>
-</div>
-<div class="flex flex-col min-w-0">
-<span class="font-title-md text-title-md font-semibold text-primary truncate">1984</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant truncate">George Orwell</span>
-<span class="text-[11px] font-label-sm text-outline tracking-widest mt-0.5">AUR-DS-1949</span>
-</div>
-</div>
-</td>
-<td class="py-4 px-space-md">
-<span class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface font-label-sm text-label-sm">Distopia</span>
-</td>
-<td class="py-4 px-space-md text-center">
-<div class="inline-flex flex-col items-center">
-<span class="font-title-md text-title-md font-bold text-secondary">3 / 3</span>
-<span class="text-[11px] text-secondary font-label-sm font-medium">completo</span>
-</div>
-</td>
-<td class="py-4 px-space-md font-medium text-on-surface">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[15px] text-secondary" translate="no">shelves</span>
-                Prateleira 05-D
-              </span>
-</td>
-<td class="py-4 px-space-md font-semibold text-primary">R$ 12,00</td>
-<td class="py-4 px-space-md">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
-<span class="w-2 h-2 rounded-full bg-secondary"></span>
-                Sem fila - Imediato
-              </span>
-</td>
-<td class="py-4 px-space-md pr-6 text-right">
-<div class="inline-flex items-center gap-1">
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="Ajustar Cópias" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">edit_note</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-secondary hover:bg-secondary-fixed transition-colors" title="Ver Fila de Espera" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">people</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="Histórico de Locação" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">history</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Item 5: Memórias do Subsolo -->
-<tr class="book-row hover:bg-surface-container-low/60 transition-colors" data-genre="Filosofia Clássica" data-status="aberta" data-title="memórias do subsolo fiodor dostoievski">
-<td class="py-4 px-space-md pl-6">
-<div class="flex items-center gap-3">
-<div class="w-12 h-16 rounded-md bg-primary-container text-on-primary flex-shrink-0 flex items-center justify-center shadow-sm relative overflow-hidden">
-<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary-fixed"></div>
-<span class="material-symbols-outlined text-secondary-fixed text-[24px]" translate="no">history_edu</span>
-</div>
-<div class="flex flex-col min-w-0">
-<span class="font-title-md text-title-md font-semibold text-primary truncate">Memórias do Subsolo</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Fiódor Dostoiévski</span>
-<span class="text-[11px] font-label-sm text-outline tracking-widest mt-0.5">AUR-FL-1864</span>
-</div>
-</div>
-</td>
-<td class="py-4 px-space-md">
-<span class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface font-label-sm text-label-sm">Filosofia Clássica</span>
-</td>
-<td class="py-4 px-space-md text-center">
-<div class="inline-flex flex-col items-center">
-<span class="font-title-md text-title-md font-bold text-on-surface-variant">0 / 3</span>
-<span class="text-[11px] text-error font-label-sm font-semibold">esgotado</span>
-</div>
-</td>
-<td class="py-4 px-space-md font-medium text-on-surface">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[15px] text-secondary" translate="no">shelves</span>
-                Prateleira 08-A
-              </span>
-</td>
-<td class="py-4 px-space-md font-semibold text-primary">R$ 15,00</td>
-<td class="py-4 px-space-md">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">
-<span class="w-2 h-2 rounded-full bg-secondary"></span>
-                Fila: 2 / 10 aguardando
-              </span>
-</td>
-<td class="py-4 px-space-md pr-6 text-right">
-<div class="inline-flex items-center gap-1">
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="Ajustar Cópias" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">edit_note</span>
-</button>
-<button class="p-2 rounded-lg text-secondary bg-secondary-fixed hover:bg-secondary hover:text-on-primary transition-colors" title="Ver Fila de Espera" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">people</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="Histórico de Locação" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">history</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Item 6: Cem Anos de Solidão -->
-<tr class="book-row hover:bg-surface-container-low/60 transition-colors" data-genre="Ficção Literária" data-status="livre" data-title="cem anos de solidão gabriel garcia marquez">
-<td class="py-4 px-space-md pl-6">
-<div class="flex items-center gap-3">
-<div class="w-12 h-16 rounded-md bg-primary-container text-on-primary flex-shrink-0 flex items-center justify-center shadow-sm relative overflow-hidden">
-<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary"></div>
-<span class="material-symbols-outlined text-secondary-fixed text-[24px]" translate="no">auto_stories</span>
-</div>
-<div class="flex flex-col min-w-0">
-<span class="font-title-md text-title-md font-semibold text-primary truncate">Cem Anos de Solidão</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Gabriel García Márquez</span>
-<span class="text-[11px] font-label-sm text-outline tracking-widest mt-0.5">AUR-FL-1967</span>
-</div>
-</div>
-</td>
-<td class="py-4 px-space-md">
-<span class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface font-label-sm text-label-sm">Ficção Literária</span>
-</td>
-<td class="py-4 px-space-md text-center">
-<div class="inline-flex flex-col items-center">
-<span class="font-title-md text-title-md font-bold text-secondary">1 / 3</span>
-<span class="text-[11px] text-on-surface-variant font-label-sm">último exemplar</span>
-</div>
-</td>
-<td class="py-4 px-space-md font-medium text-on-surface">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[15px] text-secondary" translate="no">shelves</span>
-                Prateleira 03-C
-              </span>
-</td>
-<td class="py-4 px-space-md font-semibold text-primary">R$ 16,90</td>
-<td class="py-4 px-space-md">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
-<span class="w-2 h-2 rounded-full bg-secondary"></span>
-                Sem fila - Imediato
-              </span>
-</td>
-<td class="py-4 px-space-md pr-6 text-right">
-<div class="inline-flex items-center gap-1">
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="Ajustar Cópias" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">edit_note</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-secondary hover:bg-secondary-fixed transition-colors" title="Ver Fila de Espera" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">people</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="Histórico de Locação" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">history</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Item 7: A Metamorfose -->
-<tr class="book-row hover:bg-surface-container-low/60 transition-colors" data-genre="Ficção Literária" data-status="livre" data-title="a metamorfose franz kafka">
-<td class="py-4 px-space-md pl-6">
-<div class="flex items-center gap-3">
-<div class="w-12 h-16 rounded-md bg-primary-container text-on-primary flex-shrink-0 flex items-center justify-center shadow-sm relative overflow-hidden">
-<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary"></div>
-<span class="material-symbols-outlined text-secondary-fixed text-[24px]" translate="no">bug_report</span>
-</div>
-<div class="flex flex-col min-w-0">
-<span class="font-title-md text-title-md font-semibold text-primary truncate">A Metamorfose</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Franz Kafka</span>
-<span class="text-[11px] font-label-sm text-outline tracking-widest mt-0.5">AUR-CL-1915</span>
-</div>
-</div>
-</td>
-<td class="py-4 px-space-md">
-<span class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface font-label-sm text-label-sm">Ficção Literária</span>
-</td>
-<td class="py-4 px-space-md text-center">
-<div class="inline-flex flex-col items-center">
-<span class="font-title-md text-title-md font-bold text-secondary">2 / 3</span>
-<span class="text-[11px] text-on-surface-variant font-label-sm">livres no estoque</span>
-</div>
-</td>
-<td class="py-4 px-space-md font-medium text-on-surface">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[15px] text-secondary" translate="no">shelves</span>
-                Prateleira 06-B
-              </span>
-</td>
-<td class="py-4 px-space-md font-semibold text-primary">R$ 11,50</td>
-<td class="py-4 px-space-md">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
-<span class="w-2 h-2 rounded-full bg-secondary"></span>
-                Sem fila - Imediato
-              </span>
-</td>
-<td class="py-4 px-space-md pr-6 text-right">
-<div class="inline-flex items-center gap-1">
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="Ajustar Cópias" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">edit_note</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-secondary hover:bg-secondary-fixed transition-colors" title="Ver Fila de Espera" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">people</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="Histórico de Locação" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">history</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Item 8: O Pequeno Príncipe -->
-<tr class="book-row hover:bg-surface-container-low/60 transition-colors" data-genre="Infantojuvenil" data-status="aberta" data-title="o pequeno príncipe antoine de saint-exupéry">
-<td class="py-4 px-space-md pl-6">
-<div class="flex items-center gap-3">
-<div class="w-12 h-16 rounded-md bg-primary-container text-on-primary flex-shrink-0 flex items-center justify-center shadow-sm relative overflow-hidden">
-<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary-fixed"></div>
-<span class="material-symbols-outlined text-secondary-fixed text-[24px]" translate="no">star</span>
-</div>
-<div class="flex flex-col min-w-0">
-<span class="font-title-md text-title-md font-semibold text-primary truncate">O Pequeno Príncipe</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Antoine de Saint-Exupéry</span>
-<span class="text-[11px] font-label-sm text-outline tracking-widest mt-0.5">AUR-IJ-1943</span>
-</div>
-</div>
-</td>
-<td class="py-4 px-space-md">
-<span class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface font-label-sm text-label-sm">Infantojuvenil</span>
-</td>
-<td class="py-4 px-space-md text-center">
-<div class="inline-flex flex-col items-center">
-<span class="font-title-md text-title-md font-bold text-on-surface-variant">0 / 3</span>
-<span class="text-[11px] text-error font-label-sm font-semibold">esgotado</span>
-</div>
-</td>
-<td class="py-4 px-space-md font-medium text-on-surface">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[15px] text-secondary" translate="no">shelves</span>
-                Prateleira 01-A
-              </span>
-</td>
-<td class="py-4 px-space-md font-semibold text-primary">R$ 10,00</td>
-<td class="py-4 px-space-md">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">
-<span class="w-2 h-2 rounded-full bg-secondary"></span>
-                Fila: 6 / 10 aguardando
-              </span>
-</td>
-<td class="py-4 px-space-md pr-6 text-right">
-<div class="inline-flex items-center gap-1">
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="Ajustar Cópias" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">edit_note</span>
-</button>
-<button class="p-2 rounded-lg text-secondary bg-secondary-fixed hover:bg-secondary hover:text-on-primary transition-colors" title="Ver Fila de Espera" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">people</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="Histórico de Locação" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">history</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Item 9: Leonardo da Vinci -->
-<tr class="book-row hover:bg-surface-container-low/60 transition-colors" data-genre="Biografia" data-status="livre" data-title="leonardo da vinci walter isaacson">
-<td class="py-4 px-space-md pl-6">
-<div class="flex items-center gap-3">
-<div class="w-12 h-16 rounded-md bg-primary-container text-on-primary flex-shrink-0 flex items-center justify-center shadow-sm relative overflow-hidden">
-<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary"></div>
-<span class="material-symbols-outlined text-secondary-fixed text-[24px]" translate="no">palette</span>
-</div>
-<div class="flex flex-col min-w-0">
-<span class="font-title-md text-title-md font-semibold text-primary truncate">Leonardo da Vinci</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Walter Isaacson</span>
-<span class="text-[11px] font-label-sm text-outline tracking-widest mt-0.5">AUR-BG-2017</span>
-</div>
-</div>
-</td>
-<td class="py-4 px-space-md">
-<span class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface font-label-sm text-label-sm">Biografia</span>
-</td>
-<td class="py-4 px-space-md text-center">
-<div class="inline-flex flex-col items-center">
-<span class="font-title-md text-title-md font-bold text-secondary">3 / 3</span>
-<span class="text-[11px] text-secondary font-label-sm font-medium">completo</span>
-</div>
-</td>
-<td class="py-4 px-space-md font-medium text-on-surface">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[15px] text-secondary" translate="no">shelves</span>
-                Prateleira 07-D
-              </span>
-</td>
-<td class="py-4 px-space-md font-semibold text-primary">R$ 21,00</td>
-<td class="py-4 px-space-md">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
-<span class="w-2 h-2 rounded-full bg-secondary"></span>
-                Sem fila - Imediato
-              </span>
-</td>
-<td class="py-4 px-space-md pr-6 text-right">
-<div class="inline-flex items-center gap-1">
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="Ajustar Cópias" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">edit_note</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-secondary hover:bg-secondary-fixed transition-colors" title="Ver Fila de Espera" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">people</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="Histórico de Locação" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">history</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Item 10: A Hora da Estrela -->
-<tr class="book-row hover:bg-surface-container-low/60 transition-colors" data-genre="Ficção Literária" data-status="livre" data-title="a hora da estrela clarice lispector">
-<td class="py-4 px-space-md pl-6">
-<div class="flex items-center gap-3">
-<div class="w-12 h-16 rounded-md bg-primary-container text-on-primary flex-shrink-0 flex items-center justify-center shadow-sm relative overflow-hidden">
-<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary"></div>
-<span class="material-symbols-outlined text-secondary-fixed text-[24px]" translate="no">local_florist</span>
-</div>
-<div class="flex flex-col min-w-0">
-<span class="font-title-md text-title-md font-semibold text-primary truncate">A Hora da Estrela</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Clarice Lispector</span>
-<span class="text-[11px] font-label-sm text-outline tracking-widest mt-0.5">AUR-BR-1977</span>
-</div>
-</div>
-</td>
-<td class="py-4 px-space-md">
-<span class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface font-label-sm text-label-sm">Ficção Literária</span>
-</td>
-<td class="py-4 px-space-md text-center">
-<div class="inline-flex flex-col items-center">
-<span class="font-title-md text-title-md font-bold text-secondary">2 / 3</span>
-<span class="text-[11px] text-on-surface-variant font-label-sm">livres no estoque</span>
-</div>
-</td>
-<td class="py-4 px-space-md font-medium text-on-surface">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[15px] text-secondary" translate="no">shelves</span>
-                Prateleira 04-A
-              </span>
-</td>
-<td class="py-4 px-space-md font-semibold text-primary">R$ 13,00</td>
-<td class="py-4 px-space-md">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
-<span class="w-2 h-2 rounded-full bg-secondary"></span>
-                Sem fila - Imediato
-              </span>
-</td>
-<td class="py-4 px-space-md pr-6 text-right">
-<div class="inline-flex items-center gap-1">
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="Ajustar Cópias" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">edit_note</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-secondary hover:bg-secondary-fixed transition-colors" title="Ver Fila de Espera" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">people</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="Histórico de Locação" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">history</span>
-</button>
-</div>
-</td>
-</tr>
-</tbody>
+<tbody class="font-body-sm text-body-sm divide-y-0" id="inventoryList"></tbody>
 </table>
 </div>
 <!-- Inventory Policy Footer & Interactive Pagination Bar -->
@@ -735,6 +227,7 @@
 </div>
 <script>
   let currentTab = 'all';
+  let allInventoryBooks = [];
 
   function switchTab(tabKey) {
     currentTab = tabKey;
@@ -748,37 +241,136 @@
       activeBtn.className = 'tab-btn px-4 py-2 rounded-lg text-label-md font-label-md font-semibold bg-surface-container-lowest text-primary-container shadow-sm transition-all flex items-center gap-2';
     }
 
-    filterBooks();
+    renderInventoryTable();
   }
 
-  function filterBooks() {
-    const searchVal = document.getElementById('searchInput').value.toLowerCase();
-    const genreVal = document.getElementById('genreFilter').value;
-    const queueVal = document.getElementById('queueFilter').value;
-    const rows = document.querySelectorAll('.book-row');
+  async function loadInventory() {
+    const list = document.getElementById('inventoryList');
+    if (!list) return;
+    list.innerHTML = '<tr><td colspan="7" class="py-12 text-center text-on-surface-variant text-sm">Carregando acervo em tempo real do banco de dados...</td></tr>';
 
-    rows.forEach(row => {
-      const titleMatch = row.getAttribute('data-title').includes(searchVal);
-      const genre = row.getAttribute('data-genre');
-      const status = row.getAttribute('data-status');
+    try {
+      allInventoryBooks = await AuroraAPI.getBooks();
 
-      let matchesGenre = genreVal === '' || genre === genreVal;
-      let matchesQueue = queueVal === '' || status === queueVal;
+      const totalBooks = allInventoryBooks.length;
+      let totalAvail = 0;
+      let totalCopies = 0;
 
-      let matchesTab = true;
-      if (currentTab === 'available') {
-        matchesTab = (status === 'livre');
-      } else if (currentTab === 'unavailable') {
-        matchesTab = (status === 'aberta' || status === 'lotada');
-      }
+      allInventoryBooks.forEach(b => {
+        totalAvail += (b.copiasDisponiveis || 0);
+        totalCopies += (b.totalCopias || 3);
+      });
 
-      if (titleMatch && matchesGenre && matchesQueue && matchesTab) {
-        row.style.display = '';
-      } else {
-        row.style.display = 'none';
-      }
+      const rented = Math.max(0, totalCopies - totalAvail);
+
+      if (document.getElementById('metric-total-books')) document.getElementById('metric-total-books').textContent = totalBooks;
+      if (document.getElementById('metric-avail-copies')) document.getElementById('metric-avail-copies').textContent = totalAvail;
+      if (document.getElementById('metric-rented-copies')) document.getElementById('metric-rented-copies').textContent = rented;
+      if (document.getElementById('tab-count-all')) document.getElementById('tab-count-all').textContent = totalBooks;
+      if (document.getElementById('tab-count-available')) document.getElementById('tab-count-available').textContent = allInventoryBooks.filter(b => (b.copiasDisponiveis || 0) > 0).length;
+
+      renderInventoryTable();
+    } catch (err) {
+      list.innerHTML = '<tr><td colspan="7" class="py-12 text-center text-error text-sm">Erro ao carregar estoque: ' + err.message + '</td></tr>';
+    }
+  }
+
+  function renderInventoryTable() {
+    const list = document.getElementById('inventoryList');
+    if (!list) return;
+
+    const searchVal = (document.getElementById('searchInput') ? document.getElementById('searchInput').value : '').toLowerCase().trim();
+    const genreVal = document.getElementById('genreFilter') ? document.getElementById('genreFilter').value : '';
+
+    let filtered = allInventoryBooks.filter(book => {
+      const matchSearch = !searchVal || (book.titulo || '').toLowerCase().includes(searchVal) || (book.autor || '').toLowerCase().includes(searchVal);
+      const matchGenre = !genreVal || (book.genero || '').toLowerCase() === genreVal.toLowerCase();
+
+      let matchTab = true;
+      if (currentTab === 'available') matchTab = (book.copiasDisponiveis || 0) > 0;
+      else if (currentTab === 'unavailable') matchTab = (book.copiasDisponiveis || 0) === 0;
+
+      return matchSearch && matchGenre && matchTab;
     });
+
+    if (filtered.length === 0) {
+      list.innerHTML = '<tr><td colspan="7" class="py-12 text-center text-on-surface-variant text-sm">Nenhum livro encontrado para os filtros selecionados.</td></tr>';
+      return;
+    }
+
+    list.innerHTML = filtered.map(b => {
+      const avail = b.copiasDisponiveis || 0;
+      const total = b.totalCopias || 3;
+      const isFree = avail > 0;
+      const priceFmt = Number(b.precoAluguel || 8.90).toFixed(2).replace('.', ',');
+      const shelfLoc = 'Prateleira ' + String(b.id).padStart(2, '0') + '-A';
+      const code = 'AUR-LIV-' + String(b.id).padStart(4, '0');
+
+      return `
+        <tr class="book-row hover:bg-surface-container-low/60 transition-colors border-b border-surface-container/40" data-genre="${b.genero}" data-status="${isFree ? 'livre' : 'aberta'}" data-title="${(b.titulo + ' ' + b.autor).toLowerCase()}">
+          <td class="py-4 px-space-md pl-6">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-16 rounded-md bg-primary-container text-on-primary flex-shrink-0 flex items-center justify-center shadow-sm relative overflow-hidden">
+                <img src="${b.capaUrl}" class="w-full h-full object-cover" onerror="this.src='img/logo.svg'">
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="font-title-md text-title-md font-semibold text-primary truncate max-w-xs">${b.titulo}</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant truncate">${b.autor}</span>
+                <span class="text-[11px] font-label-sm text-outline tracking-widest mt-0.5">${code}</span>
+              </div>
+            </div>
+          </td>
+          <td class="py-4 px-space-md">
+            <span class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface font-label-sm text-label-sm">${b.genero}</span>
+          </td>
+          <td class="py-4 px-space-md text-center">
+            <div class="inline-flex flex-col items-center">
+              <span class="font-title-md text-title-md font-bold ${isFree ? 'text-secondary' : 'text-error'}">${avail} / ${total}</span>
+              <span class="text-[11px] text-on-surface-variant font-label-sm">${isFree ? 'livres no estoque' : 'todos alugados'}</span>
+            </div>
+          </td>
+          <td class="py-4 px-space-md font-medium text-on-surface">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-surface-container text-on-surface font-label-sm text-label-sm">
+              <span class="material-symbols-outlined text-[15px] text-secondary" translate="no">shelves</span>
+              ${shelfLoc}
+            </span>
+          </td>
+          <td class="py-4 px-space-md font-semibold text-primary">R$ ${priceFmt}</td>
+          <td class="py-4 px-space-md">
+            ${isFree ? `
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+                <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                Sem fila - Imediato
+              </span>
+            ` : `
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
+                <span class="w-2 h-2 rounded-full bg-error"></span>
+                Em Espera
+              </span>
+            `}
+          </td>
+          <td class="py-4 px-space-md pr-6 text-right">
+            <div class="inline-flex items-center gap-1">
+              <button onclick="window.location.href='reestoque.html'" class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="Reabastecer / Adicionar" type="button">
+                <span class="material-symbols-outlined text-[18px]" translate="no">edit_note</span>
+              </button>
+              <button onclick="window.location.href='fila.html?livroId=${b.id}'" class="p-2 rounded-lg text-on-surface-variant hover:text-secondary hover:bg-secondary-fixed transition-colors" title="Ver Fila de Espera" type="button">
+                <span class="material-symbols-outlined text-[18px]" translate="no">people</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
   }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadInventory();
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.addEventListener('input', renderInventoryTable);
+    const genreFilter = document.getElementById('genreFilter');
+    if (genreFilter) genreFilter.addEventListener('change', renderInventoryTable);
+  });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/supabase-config.js"></script>

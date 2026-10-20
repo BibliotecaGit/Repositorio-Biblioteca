@@ -103,7 +103,7 @@
 <div class="space-y-1.5">
 <label class="font-label-md text-label-md text-on-surface-variant font-semibold">Gênero Literário Primário *</label>
 <div class="relative">
-<select class="w-full px-4 py-2.5 bg-surface-container-low rounded-xl text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 appearance-none transition-all" required="">
+<select id="bookGenre" class="w-full px-4 py-2.5 bg-surface-container-low rounded-xl text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 appearance-none transition-all" required="">
 <option disabled="" selected="" value="">Selecione um gênero...</option>
 <option value="Ficção Literária">Ficção Literária</option>
 <option value="Ficção Científica">Ficção Científica</option>
@@ -191,7 +191,7 @@
 <label class="font-label-md text-label-md text-on-surface-variant font-semibold">Aluguel Mensal (R$) *</label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3.5 top-3 text-[18px] text-outline" translate="no">payments</span>
-<input class="w-full pl-10 pr-3 py-2.5 bg-surface-container-low rounded-xl text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 transition-all" required="" type="text" value="R$ 8,90 / mês">
+<input id="bookPrice" class="w-full pl-10 pr-3 py-2.5 bg-surface-container-low rounded-xl text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 transition-all" required="" type="text" value="R$ 8,90 / mês">
 </div>
 </div>
 </div>
@@ -207,7 +207,7 @@
 <label class="font-label-md text-label-md text-on-surface-variant font-semibold">Sinopse Oficial e Notas do Bibliotecário</label>
 <span class="font-label-sm text-label-sm text-outline">Aparece na página do leitor</span>
 </div>
-<textarea class="w-full p-4 bg-surface-container-low rounded-xl text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 transition-all resize-y" placeholder="Escreva a contextualização editorial da obra, tópicos temáticos abordados e notas de recomendação literária para os leitores da Aurora..." rows="4"></textarea>
+<textarea id="bookSynopsis" class="w-full p-4 bg-surface-container-low rounded-xl text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 transition-all resize-y" placeholder="Escreva a contextualização editorial da obra, tópicos temáticos abordados e notas de recomendação literária para os leitores da Aurora..." rows="4"></textarea>
 </div>
 </div>
 <!-- STEP 4: Initial Physical Copy Activation -->
@@ -565,39 +565,74 @@
   }
 
   // Publication handler
-  function publishBook() {
-    const title = document.getElementById('bookTitle').value;
-    const author = document.getElementById('bookAuthor').value;
+  // Publication handler com salvamento real no banco
+  async function publishBook() {
+    const title = document.getElementById('bookTitle').value.trim();
+    const author = document.getElementById('bookAuthor').value.trim();
+    const genre = (document.getElementById('bookGenre') ? document.getElementById('bookGenre').value : '') || 'Ficção Literária';
+    const pages = Number(document.getElementById('pageCount').value) || 150;
+    const priceText = document.getElementById('bookPrice') ? document.getElementById('bookPrice').value : '8.90';
+    const price = parseFloat(priceText.replace(/[^0-9,.]/g, '').replace(',', '.')) || 8.90;
+    const synopsis = document.getElementById('bookSynopsis') ? document.getElementById('bookSynopsis').value.trim() : '';
+    const coverUrl = document.getElementById('coverPreviewImg') ? document.getElementById('coverPreviewImg').src : '';
+    const copies = initialCopies || 3;
 
-    showToast('Obra Publicada!', `"${title}" foi integrada ao catálogo com ${initialCopies} exemplares ativos.`);
-
-    // Prepend to recent list
-    const recentList = document.getElementById('recentList');
-    if (recentList) {
-      const newItem = document.createElement('div');
-      newItem.className = 'flex items-center justify-between p-2.5 rounded-xl bg-secondary-fixed/30 hover:bg-surface-container-low transition-colors';
-      newItem.innerHTML = `
-        <div class="flex items-center gap-3 min-w-0">
-          <div class="w-10 h-14 rounded bg-primary-container shadow-sm flex items-center justify-center text-surface-bright shrink-0">
-            <span class="material-symbols-outlined text-[20px]" translate="no">auto_stories</span>
-          </div>
-          <div class="flex flex-col min-w-0">
-            <span class="font-title-md text-title-md text-on-surface truncate font-semibold">${title}</span>
-            <span class="font-body-sm text-body-sm text-on-surface-variant truncate">${author} &bull; Agora mesmo</span>
-          </div>
-        </div>
-        <span class="shrink-0 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary text-on-secondary text-label-sm font-label-sm font-semibold">
-          <span class="w-1.5 h-1.5 rounded-full bg-surface-bright"></span>
-          Novo
-        </span>
-      `;
-      recentList.insertBefore(newItem, recentList.firstChild);
+    const submitBtn = document.querySelector('#bookForm button[type="submit"]');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="material-symbols-outlined text-[20px] animate-spin" translate="no">refresh</span> Gravando no Supabase...';
     }
 
-    // Reset Form
-    document.getElementById('bookForm').reset();
-    document.getElementById('previewLabel').innerText = 'Nova Obra';
-    updatePaceBadge(0);
+    try {
+      if (window.AuroraAPI) {
+        await AuroraAPI.createBook({
+          titulo: title,
+          autor: author,
+          genero: genre,
+          numPaginas: pages,
+          precoAluguel: price,
+          valorLivro: price * 4,
+          capaUrl: coverUrl,
+          descricao: synopsis,
+          copias: copies
+        });
+      }
+
+      showToast('Obra Publicada!', "" foi salva no Supabase com  exemplares ativos.);
+
+      const recentList = document.getElementById('recentList');
+      if (recentList) {
+        const newItem = document.createElement('div');
+        newItem.className = 'flex items-center justify-between p-2.5 rounded-xl bg-secondary-fixed/30 hover:bg-surface-container-low transition-colors';
+        newItem.innerHTML = 
+          <div class="flex items-center gap-3 min-w-0">
+            <div class="w-10 h-14 rounded bg-primary-container shadow-sm flex items-center justify-center text-surface-bright shrink-0 overflow-hidden">
+              <img src="" class="w-full h-full object-cover" onerror="this.style.display='none'">
+            </div>
+            <div class="flex flex-col min-w-0">
+              <span class="font-title-md text-title-md text-on-surface truncate font-semibold"></span>
+              <span class="font-body-sm text-body-sm text-on-surface-variant truncate"> &bull; Agora mesmo</span>
+            </div>
+          </div>
+          <span class="shrink-0 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary text-on-secondary text-label-sm font-label-sm font-semibold">
+            <span class="w-1.5 h-1.5 rounded-full bg-surface-bright"></span>
+            Salvo no Supabase
+          </span>
+        ;
+        recentList.insertBefore(newItem, recentList.firstChild);
+      }
+
+      document.getElementById('bookForm').reset();
+      document.getElementById('previewLabel').innerText = 'Nova Obra';
+      updatePaceBadge(0);
+    } catch (err) {
+      showToast('Erro ao Publicar', err.message || 'Falha ao salvar obra no banco.', 'error');
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]" translate="no">publish</span> Publicar no Catálogo da Aurora';
+      }
+    }
   }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

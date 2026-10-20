@@ -580,6 +580,58 @@ const AuroraSupabaseStore = {
       return books;
     }
 
+    // 4.1 Books: Cadastro de Nova Obra pelo Bibliotecário no Supabase
+    if (url === '/books' && method === 'POST') {
+      const body = JSON.parse(options.body || '{}');
+      const pags = Number(body.numPaginas || body.num_paginas || 120);
+      let faixa = 'medio_padrao';
+      if (pags <= 100) faixa = 'pequeno';
+      else if (pags <= 150) faixa = 'medio_pequeno';
+      else if (pags <= 250) faixa = 'medio_padrao';
+      else faixa = 'grande';
+
+      const genero = body.genero || 'Geral';
+      const ehInfantil = body.ehInfantil ?? (genero.toLowerCase().includes('infantil'));
+
+      const { data: newBook, error: bookErr } = await sb
+        .from('livro')
+        .insert({
+          titulo: body.titulo,
+          autor: body.autor,
+          genero: genero,
+          num_paginas: pags,
+          valor_livro: Number(body.valorLivro || 38.00),
+          preco_aluguel: Number(body.precoAluguel || 8.90),
+          faixa_tamanho: faixa,
+          capa_url: body.capaUrl || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80',
+          data_lancamento: new Date().toISOString().split('T')[0],
+          avaliacao_media: 5.0,
+          total_avaliacoes: 1,
+          alugueis_ultimo_ano: 0,
+          eh_infantil: ehInfantil
+        })
+        .select()
+        .single();
+
+      if (bookErr) throw bookErr;
+
+      const numCopies = Math.max(1, Number(body.copias || 3));
+      const exemplaresRows = [];
+      for (let i = 0; i < numCopies; i++) {
+        exemplaresRows.push({
+          id_livro: newBook.id_livro,
+          status: 'disponivel'
+        });
+      }
+
+      await sb.from('exemplar').insert(exemplaresRows);
+
+      return this.mapBook({
+        ...newBook,
+        exemplar: exemplaresRows.map((e, idx) => ({ id_exemplar: idx + 1, status: 'disponivel' }))
+      });
+    }
+
     // 5. Novidades / Destaques / Infantis
     if (url === '/books/novidades') {
       const books = await this.handle('/books', { method: 'GET' });
@@ -1112,6 +1164,96 @@ const AuroraSupabaseStore = {
       }
     }
 
+    // 18. Admin: Lista de Usuários e Equipe no Supabase
+    if (url === '/admin/users' && method === 'GET') {
+      const { data: users, error } = await sb
+        .from('usuario')
+        .select('id_usuario, nome, email, tipo, end_cidade, end_uf, created_at')
+        .order('id_usuario', { ascending: false });
+
+      if (error) throw error;
+      return (users || []).map(u => ({
+        id: u.id_usuario,
+        nome: u.nome,
+        email: u.email,
+        tipo: u.tipo,
+        cidade: u.end_cidade || '',
+        uf: u.end_uf || '',
+        createdAt: u.created_at
+      }));
+    }
+
+    if (url === '/admin/users' && method === 'POST') {
+      const body = JSON.parse(options.body || '{}');
+      const { data: newUser, error } = await sb
+        .from('usuario')
+        .insert({
+          nome: body.nome,
+          email: (body.email || '').toLowerCase().trim(),
+          senha_hash: body.senha || '123456',
+          tipo: body.tipo || 'aluno',
+          end_cidade: body.cidade || 'São Paulo',
+          end_uf: body.uf || 'SP'
+        })
+        .select()
+        .single();
+
+      if (error) throw error;
+      return {
+        id: newUser.id_usuario,
+        nome: newUser.nome,
+        email: newUser.email,
+        tipo: newUser.tipo
+      };
+    }
+
+    const delUserMatch = url.match(/^\/admin\/users\/(\d+)$/);
+    if (delUserMatch && method === 'DELETE') {
+      const idUsuario = parseInt(delUserMatch[1], 10);
+      const { error } = await sb.from('usuario').delete().eq('id_usuario', idUsuario);
+      if (error) throw error;
+      return { success: true };
+    }
+
+    // 19. Admin: Circulação e Aluguéis Ativos em Tempo Real no Supabase
+    if (url === '/admin/rentals/active' && method === 'GET') {
+      const { data: rentals, error } = await sb
+        .from('aluguel')
+        .select('*, usuario(*), exemplar(id_exemplar, id_livro, livro(*))')
+        .eq('status', 'ativo')
+        .order('id_aluguel', { ascending: false });
+
+      if (error) throw error;
+
+      const userMap = new Map();
+      (rentals || []).forEach(r => {
+        const u = r.usuario || { id_usuario: r.id_usuario, nome: 'Usuário #' + r.id_usuario, email: '' };
+        if (!userMap.has(u.id_usuario)) {
+          userMap.set(u.id_usuario, {
+            user: {
+              id: u.id_usuario,
+              nome: u.nome,
+              email: u.email,
+              tipo: u.tipo || 'aluno'
+            },
+            rentals: []
+          });
+        }
+        const b = r.exemplar && r.exemplar.livro;
+        userMap.get(u.id_usuario).rentals.push({
+          idAluguel: r.id_aluguel,
+          bookId: r.exemplar ? r.exemplar.id_livro : null,
+          bookTitle: b ? b.titulo : 'Obra #' + r.id_exemplar,
+          dataAluguel: r.data_aluguel ? r.data_aluguel.split('T')[0] : '',
+          dataPrevistaDevolucao: r.data_devolucao_prevista,
+          status: r.status,
+          precoCobrado: r.preco_cobrado
+        });
+      });
+
+      return Array.from(userMap.values());
+    }
+
     return {};
   }
 };
@@ -1373,6 +1515,47 @@ const AuroraMockStore = {
         books = books.filter(b => b.ehInfantil === true);
       }
       return books;
+    }
+
+    // 4.1 Books: Cadastro de Nova Obra pelo Bibliotecário (Mock)
+    if (url === '/books' && method === 'POST') {
+      const body = JSON.parse(options.body || '{}');
+      const pags = Number(body.numPaginas || body.num_paginas || 120);
+      let faixa = 'medio_padrao';
+      if (pags <= 100) faixa = 'pequeno';
+      else if (pags <= 150) faixa = 'medio_pequeno';
+      else if (pags <= 250) faixa = 'medio_padrao';
+      else faixa = 'grande';
+
+      const genero = body.genero || 'Geral';
+      const ehInfantil = body.ehInfantil ?? (genero.toLowerCase().includes('infantil'));
+      const books = this.getBooks();
+      const numCopies = Math.max(1, Number(body.copias || 3));
+
+      const newBook = {
+        id: Date.now(),
+        titulo: body.titulo,
+        autor: body.autor,
+        genero: genero,
+        numPaginas: pags,
+        valorLivro: Number(body.valorLivro || 38.00),
+        precoAluguel: Number(body.precoAluguel || 8.90),
+        copiasDisponiveis: numCopies,
+        totalCopias: numCopies,
+        disponivel: true,
+        faixaTamanho: faixa,
+        capaUrl: body.capaUrl || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80',
+        dataLancamento: new Date().toISOString().split('T')[0],
+        avaliacaoMedia: 5.0,
+        totalAvaliacoes: 1,
+        alugueisUltimoAno: 0,
+        ehInfantil: ehInfantil,
+        descricao: body.descricao || ''
+      };
+
+      books.unshift(newBook);
+      this.saveBooks(books);
+      return newBook;
     }
 
     if (url === '/books/novidades') {
@@ -1707,6 +1890,79 @@ const AuroraMockStore = {
         if (body.tipo === 'biblio') this._set('codigo_biblio', body.key);
         return { success: true, tipo: body.tipo, key: body.key };
       }
+    }
+
+    // 19. Admin (Mock)
+    if (url === '/admin/users' && method === 'GET') {
+      const users = this.getUsers();
+      return users.map(u => ({
+        id: u.id,
+        nome: u.nome,
+        email: u.email,
+        tipo: u.tipo || 'aluno',
+        cidade: u.cidade || 'São Paulo',
+        uf: u.uf || 'SP',
+        createdAt: u.createdAt || new Date().toISOString()
+      }));
+    }
+
+    if (url === '/admin/users' && method === 'POST') {
+      const body = JSON.parse(options.body || '{}');
+      const users = this.getUsers();
+      const newUser = {
+        id: Date.now(),
+        nome: body.nome,
+        email: (body.email || '').toLowerCase().trim(),
+        senha: body.senha || '123456',
+        tipo: body.tipo || 'aluno',
+        cidade: body.cidade || 'São Paulo',
+        uf: body.uf || 'SP',
+        createdAt: new Date().toISOString()
+      };
+      users.push(newUser);
+      this._set('users', users);
+      return newUser;
+    }
+
+    const delUserMock = url.match(/^\/admin\/users\/(\d+)$/);
+    if (delUserMock && method === 'DELETE') {
+      const id = parseInt(delUserMock[1], 10);
+      let users = this.getUsers();
+      users = users.filter(u => u.id !== id);
+      this._set('users', users);
+      return { success: true };
+    }
+
+    if (url === '/admin/rentals/active' && method === 'GET') {
+      const rentals = this.getRentals().filter(r => r.status === 'ativo');
+      const users = this.getUsers();
+      const userMap = new Map();
+
+      rentals.forEach(r => {
+        const u = users.find(user => user.id === r.userId) || { id: r.userId, nome: 'Usuário #' + r.userId, email: '' };
+        if (!userMap.has(u.id)) {
+          userMap.set(u.id, {
+            user: {
+              id: u.id,
+              nome: u.nome,
+              email: u.email,
+              tipo: u.tipo || 'aluno'
+            },
+            rentals: []
+          });
+        }
+        userMap.get(u.id).rentals.push({
+          idAluguel: r.id,
+          bookId: r.bookId || r.idLivro,
+          bookTitle: r.bookTitle || (r.livro ? r.livro.titulo : 'Obra'),
+          dataAluguel: r.dataAluguel,
+          dataPrevistaDevolucao: r.dataPrevistaDevolucao || r.dataDevolucaoPrevista,
+          status: r.status,
+          precoCobrado: r.valorAluguel
+        });
+      });
+
+      return Array.from(userMap.values());
     }
 
     return {};
@@ -2045,6 +2301,34 @@ const AuroraAPI = {
       method: 'PUT',
       body: JSON.stringify({ tipo, key })
     });
+  },
+
+  async createBook(bookData) {
+    return await this.apiFetch('/books', {
+      method: 'POST',
+      body: JSON.stringify(bookData)
+    });
+  },
+
+  async getAdminUsers() {
+    return await this.apiFetch('/admin/users');
+  },
+
+  async createAdminUser(userData) {
+    return await this.apiFetch('/admin/users', {
+      method: 'POST',
+      body: JSON.stringify(userData)
+    });
+  },
+
+  async deleteAdminUser(id) {
+    return await this.apiFetch(`/admin/users/${id}`, {
+      method: 'DELETE'
+    });
+  },
+
+  async getActiveCirculation() {
+    return await this.apiFetch('/admin/rentals/active');
   },
 
   // ---------------------------------------------------------------------------

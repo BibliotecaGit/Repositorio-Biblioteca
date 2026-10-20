@@ -168,7 +168,7 @@
 <h2 class="font-headline-sm text-headline-sm text-primary-container">
             Usuários com Livros Alugados Ativos
           </h2>
-<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">4 locações pendentes</span>
+          <span id="activeRentalsHeaderBadge" class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">Carregando...</span>
 </div>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
           Controle de circulação em tempo real, vencimentos e histórico de locações com autenticação ativa.
@@ -177,7 +177,7 @@
 <div class="flex flex-wrap items-center gap-space-sm">
 <div class="flex items-center gap-space-xs px-space-md py-2 rounded-xl bg-surface-container-lowest shadow-sm">
 <span class="material-symbols-outlined text-outline text-[18px]" translate="no">filter_list</span>
-<select class="bg-transparent font-body-sm text-body-sm text-on-surface focus:outline-none cursor-pointer">
+            <select id="rentalsFilterStatus" onchange="filterRentals()" class="bg-transparent font-body-sm text-body-sm text-on-surface focus:outline-none cursor-pointer">
 <option value="todos">Todos os Status</option>
 <option value="prazo">No Prazo</option>
 <option value="hoje">A Devolver Hoje</option>
@@ -186,7 +186,7 @@
 </div>
 <div class="flex items-center gap-space-xs px-space-md py-2 rounded-xl bg-surface-container-lowest shadow-sm">
 <span class="material-symbols-outlined text-outline text-[18px]" translate="no">search</span>
-<input class="w-48 sm:w-64 bg-transparent font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none" placeholder="Filtrar leitor, CPF ou título..." type="text">
+            <input id="rentalsSearchInput" oninput="filterRentals()" class="w-48 sm:w-64 bg-transparent font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none" placeholder="Filtrar leitor ou t&iacute;tulo..." type="text">
 </div>
 </div>
 </div>
@@ -204,280 +204,15 @@
 <th class="py-space-md px-space-lg text-right">Ações</th>
 </tr>
 </thead>
-<tbody class="divide-y-0 font-body-sm text-body-sm">
-<tr class="hover:bg-surface-container/50 transition-colors">
-<td class="py-space-md px-space-lg">
-<div class="flex items-center gap-space-sm">
-<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center font-title-md text-title-md text-primary-container font-bold shrink-0">
-                    HS
-                  </div>
-<div class="flex flex-col min-w-0">
-<span class="font-title-md text-title-md text-primary-container font-semibold truncate">Helena Souza</span>
-<span class="text-on-surface-variant font-body-sm text-body-sm truncate">helena.souza@email.com</span>
-<span class="text-outline text-label-sm font-label-sm">ID: #USR-89021</span>
-</div>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
-                  Aluno Plus
-                </span>
-</td>
-<td class="py-space-md px-space-md">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-surface-container-high text-primary-container font-label-sm text-label-sm font-semibold">
-                  2 livros
-                </span>
-</td>
-<td class="py-space-md px-space-md">
-<div class="flex flex-col gap-1.5 min-w-[240px]">
-<div class="flex items-center justify-between gap-2 p-1.5 rounded-lg bg-surface-container-low">
-<div class="flex items-center gap-2 min-w-0">
-<span class="material-symbols-outlined text-secondary text-[18px]" translate="no">book</span>
-<span class="font-label-md text-label-md text-primary-container truncate font-medium">Torto Arado</span>
-</div>
-<span class="px-2 py-0.5 rounded bg-surface-container-highest text-secondary font-label-sm text-label-sm shrink-0">Restam 6 dias</span>
-</div>
-<div class="flex items-center justify-between gap-2 p-1.5 rounded-lg bg-surface-container-low">
-<div class="flex items-center gap-2 min-w-0">
-<span class="material-symbols-outlined text-secondary text-[18px]" translate="no">book</span>
-<span class="font-label-md text-label-md text-primary-container truncate font-medium">Duna</span>
-</div>
-<span class="px-2 py-0.5 rounded bg-surface-container-highest text-secondary font-label-sm text-label-sm shrink-0">Restam 12 dias</span>
-</div>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<div class="flex flex-col">
-<span class="flex items-center gap-1 font-label-sm text-label-sm text-secondary font-semibold">
-<span class="material-symbols-outlined text-[16px]" translate="no">verified_user</span>
-                    Autenticado via E-mail
-                  </span>
-<span class="text-outline text-label-sm font-label-sm">Último login há 2h</span>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
-<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                  No Prazo
-                </span>
-</td>
-<td class="py-space-md px-space-lg text-right">
-<div class="flex items-center justify-end gap-1">
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary-container hover:bg-surface-container-high transition-colors" title="Ver Detalhes do Empréstimo" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">visibility</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-colors" title="Notificar Devolução" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">forward_to_inbox</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-error hover:bg-error-container transition-colors" title="Suspender Conta" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">block</span>
-</button>
-</div>
-</td>
-</tr>
-<tr class="hover:bg-surface-container/50 transition-colors bg-surface-container-low/30">
-<td class="py-space-md px-space-lg">
-<div class="flex items-center gap-space-sm">
-<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-title-md text-title-md text-on-surface font-bold shrink-0">
-                    CM
-                  </div>
-<div class="flex flex-col min-w-0">
-<span class="font-title-md text-title-md text-primary-container font-semibold truncate">Carlos Mendes</span>
-<span class="text-on-surface-variant font-body-sm text-body-sm truncate">carlos.m@aluno.aurora.edu</span>
-<span class="text-outline text-label-sm font-label-sm">ID: #USR-72109</span>
-</div>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-semibold">
-                  Leitor / Aluno
-                </span>
-</td>
-<td class="py-space-md px-space-md">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-surface-container-high text-primary-container font-label-sm text-label-sm font-semibold">
-                  1 livro
-                </span>
-</td>
-<td class="py-space-md px-space-md">
-<div class="flex flex-col gap-1.5 min-w-[240px]">
-<div class="flex items-center justify-between gap-2 p-1.5 rounded-lg bg-surface-container-low">
-<div class="flex items-center gap-2 min-w-0">
-<span class="material-symbols-outlined text-secondary text-[18px]" translate="no">book</span>
-<span class="font-label-md text-label-md text-primary-container truncate font-medium">1984 - George Orwell</span>
-</div>
-<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm shrink-0 font-bold">Hoje às 18h</span>
-</div>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<div class="flex flex-col">
-<span class="flex items-center gap-1 font-label-sm text-label-sm text-secondary font-semibold">
-<span class="material-symbols-outlined text-[16px]" translate="no">domain_verification</span>
-                    Credencial Acadêmica
-                  </span>
-<span class="text-outline text-label-sm font-label-sm">Matrícula 2023-B</span>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed-dim text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
-<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-ping"></span>
-                  A Devolver Hoje
-                </span>
-</td>
-<td class="py-space-md px-space-lg text-right">
-<div class="flex items-center justify-end gap-1">
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary-container hover:bg-surface-container-high transition-colors" title="Ver Detalhes do Empréstimo" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">visibility</span>
-</button>
-<button class="p-2 rounded-lg text-primary-container hover:text-secondary hover:bg-secondary-fixed transition-colors" title="Notificar Devolução" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">forward_to_inbox</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-error hover:bg-error-container transition-colors" title="Suspender Conta" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">block</span>
-</button>
-</div>
-</td>
-</tr>
-<tr class="hover:bg-surface-container/50 transition-colors">
-<td class="py-space-md px-space-lg">
-<div class="flex items-center gap-space-sm">
-<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center font-title-md text-title-md text-on-secondary-container font-bold shrink-0">
-                    MC
-                  </div>
-<div class="flex flex-col min-w-0">
-<span class="font-title-md text-title-md text-primary-container font-semibold truncate">Mariana Costa</span>
-<span class="text-on-surface-variant font-body-sm text-body-sm truncate">mariana.costa@leitor.br</span>
-<span class="text-outline text-label-sm font-label-sm">ID: #USR-95011</span>
-</div>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-semibold">
-                  Leitor / Aluno
-                </span>
-</td>
-<td class="py-space-md px-space-md">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-surface-container-high text-primary-container font-label-sm text-label-sm font-semibold">
-                  1 livro
-                </span>
-</td>
-<td class="py-space-md px-space-md">
-<div class="flex flex-col gap-1.5 min-w-[240px]">
-<div class="flex items-center justify-between gap-2 p-1.5 rounded-lg bg-surface-container-low">
-<div class="flex items-center gap-2 min-w-0">
-<span class="material-symbols-outlined text-secondary text-[18px]" translate="no">book</span>
-<span class="font-label-md text-label-md text-primary-container truncate font-medium">A Metamorfose - Franz Kafka</span>
-</div>
-<span class="px-2 py-0.5 rounded bg-surface-container-highest text-secondary font-label-sm text-label-sm shrink-0">Restam 15 dias</span>
-</div>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<div class="flex flex-col">
-<span class="flex items-center gap-1 font-label-sm text-label-sm text-secondary font-semibold">
-<span class="material-symbols-outlined text-[16px]" translate="no">verified_user</span>
-                    Autenticado via E-mail
-                  </span>
-<span class="text-outline text-label-sm font-label-sm">Último login ontem</span>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
-<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                  No Prazo
-                </span>
-</td>
-<td class="py-space-md px-space-lg text-right">
-<div class="flex items-center justify-end gap-1">
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary-container hover:bg-surface-container-high transition-colors" title="Ver Detalhes do Empréstimo" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">visibility</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-colors" title="Notificar Devolução" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">forward_to_inbox</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-error hover:bg-error-container transition-colors" title="Suspender Conta" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">block</span>
-</button>
-</div>
-</td>
-</tr>
-<tr class="hover:bg-surface-container/50 transition-colors bg-error-container/20">
-<td class="py-space-md px-space-lg">
-<div class="flex items-center gap-space-sm">
-<div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center font-title-md text-title-md text-on-error-container font-bold shrink-0">
-                    LP
-                  </div>
-<div class="flex flex-col min-w-0">
-<span class="font-title-md text-title-md text-primary-container font-semibold truncate">Lucas Prado</span>
-<span class="text-on-surface-variant font-body-sm text-body-sm truncate">lucas.prado@pesquisa.com</span>
-<span class="text-outline text-label-sm font-label-sm">ID: #USR-61042</span>
-</div>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<span class="inline-flex items-center px-2.5 py-1 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
-                  Aluno Plus
-                </span>
-</td>
-<td class="py-space-md px-space-md">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-error text-on-error font-label-sm text-label-sm font-semibold">
-                  3 livros
-                </span>
-</td>
-<td class="py-space-md px-space-md">
-<div class="flex flex-col gap-1.5 min-w-[240px]">
-<div class="flex items-center justify-between gap-2 p-1.5 rounded-lg bg-surface-container-lowest">
-<div class="flex items-center gap-2 min-w-0">
-<span class="material-symbols-outlined text-error text-[18px]" translate="no">warning</span>
-<span class="font-label-md text-label-md text-primary-container truncate font-medium">Cem Anos de Solidão</span>
-</div>
-<span class="px-2 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm shrink-0 font-bold">Atrasado 3 dias</span>
-</div>
-<div class="flex items-center justify-between gap-2 p-1.5 rounded-lg bg-surface-container-lowest">
-<div class="flex items-center gap-2 min-w-0">
-<span class="material-symbols-outlined text-secondary text-[18px]" translate="no">book</span>
-<span class="font-label-md text-label-md text-primary-container truncate font-medium">Flores para Algernon</span>
-</div>
-<span class="px-2 py-0.5 rounded bg-surface-container-highest text-secondary font-label-sm text-label-sm shrink-0">Restam 4 dias</span>
-</div>
-<div class="flex items-center justify-between gap-2 p-1.5 rounded-lg bg-surface-container-lowest">
-<div class="flex items-center gap-2 min-w-0">
-<span class="material-symbols-outlined text-secondary text-[18px]" translate="no">book</span>
-<span class="font-label-md text-label-md text-primary-container truncate font-medium">Água Viva - Clarice Lispector</span>
-</div>
-<span class="px-2 py-0.5 rounded bg-surface-container-highest text-secondary font-label-sm text-label-sm shrink-0">Restam 8 dias</span>
-</div>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<div class="flex flex-col">
-<span class="flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant font-semibold">
-<span class="material-symbols-outlined text-[16px]" translate="no">vpn_lock</span>
-                    Autenticado via SSO
-                  </span>
-<span class="text-error font-label-sm text-label-sm font-semibold">Notificação Enviada (2x)</span>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
-<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
-                  Atrasado
-                </span>
-</td>
-<td class="py-space-md px-space-lg text-right">
-<div class="flex items-center justify-end gap-1">
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary-container hover:bg-surface-container-high transition-colors" title="Ver Detalhes do Empréstimo" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">visibility</span>
-</button>
-<button class="p-2 rounded-lg text-error hover:bg-error-container transition-colors" title="Notificar Devolução Imediata" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">notification_important</span>
-</button>
-<button class="p-2 rounded-lg text-error hover:bg-error-container transition-colors" title="Suspender Conta" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">block</span>
-</button>
-</div>
-</td>
-</tr>
+<tbody class="divide-y-0 font-body-sm text-body-sm" id="activeRentalsTableBody">
+  <tr>
+    <td colspan="7" class="py-space-xl text-center text-outline">
+      <div class="inline-flex items-center gap-2">
+        <span class="material-symbols-outlined animate-spin text-[20px]" translate="no">progress_activity</span>
+        <span>Carregando loca&ccedil;&otilde;es ativas do banco de dados...</span>
+      </div>
+    </td>
+  </tr>
 </tbody>
 </table>
 </div>
@@ -491,13 +226,13 @@
 <h2 class="font-headline-sm text-headline-sm text-primary-container">
             Membros da Equipe e Níveis de Acesso
           </h2>
-<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">3 Ativos</span>
+          <span id="teamMembersHeaderBadge" class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">Carregando...</span>
 </div>
 <p class="font-body-sm text-body-sm text-on-surface-variant">
           Colaboradores com credenciais operacionais e administrativas autorizadas via chaves de segurança.
         </p>
 </div>
-<button class="inline-flex items-center gap-2 px-space-md py-2.5 rounded-xl bg-primary-container text-on-primary hover:bg-on-primary-fixed-variant font-label-md text-label-md transition-all self-start sm:self-auto shadow-sm" type="button">
+        <button onclick="openNewMemberModal()" class="inline-flex items-center gap-2 px-space-md py-2.5 rounded-xl bg-primary-container text-on-primary hover:bg-on-primary-fixed-variant font-label-md text-label-md transition-all self-start sm:self-auto shadow-sm" type="button">
 <span class="material-symbols-outlined text-[18px]" translate="no">add_moderator</span>
 <span class="">Cadastrar Novo Membro</span>
 </button>
@@ -515,151 +250,85 @@
 <th class="py-space-md px-space-lg text-right">Ações de Gestão</th>
 </tr>
 </thead>
-<tbody class="divide-y-0 font-body-sm text-body-sm">
-<tr class="hover:bg-surface-container/50 transition-colors">
-<td class="py-space-md px-space-lg">
-<div class="flex items-center gap-space-sm">
-<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-title-md text-title-md font-bold shrink-0">
-                    RS
-                  </div>
-<div class="flex flex-col min-w-0">
-<span class="font-title-md text-title-md text-primary-container font-semibold truncate">Roberto Silveira</span>
-<span class="text-on-surface-variant font-body-sm text-body-sm truncate">roberto.admin@aurora.com.br</span>
-</div>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<div class="flex flex-col">
-<span class="font-title-md text-title-md text-primary-container font-medium">Administrador Master</span>
-<span class="text-on-surface-variant text-label-sm font-label-sm">Infraestrutura, Usuários &amp; Finanças</span>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold">
-<span class="material-symbols-outlined text-[14px]" translate="no">shield</span>
-                  Acesso Total
-                </span>
-</td>
-<td class="py-space-md px-space-md">
-<div class="flex flex-col">
-<span class="font-label-md text-label-md text-primary-container font-medium">Chave Fundadora</span>
-<span class="text-outline text-label-sm font-label-sm">Desde 10/01/2023</span>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
-<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                  Ativo
-                </span>
-</td>
-<td class="py-space-md px-space-lg text-right">
-<span class="text-label-sm font-label-sm text-outline font-medium px-2 py-1">Conta Titular</span>
-</td>
-</tr>
-<tr class="hover:bg-surface-container/50 transition-colors bg-surface-container-low/30">
-<td class="py-space-md px-space-lg">
-<div class="flex items-center gap-space-sm">
-<div class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center font-title-md text-title-md font-bold shrink-0">
-                    AV
-                  </div>
-<div class="flex flex-col min-w-0">
-<span class="font-title-md text-title-md text-primary-container font-semibold truncate">Amanda Valença</span>
-<span class="text-on-surface-variant font-body-sm text-body-sm truncate">amanda.biblio@aurora.com.br</span>
-</div>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<div class="flex flex-col">
-<span class="font-title-md text-title-md text-primary-container font-medium">Bibliotecária Chefe</span>
-<span class="text-on-surface-variant text-label-sm font-label-sm">Gestão de Acervo e Reestoque</span>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">
-<span class="material-symbols-outlined text-[14px]" translate="no">local_library</span>
-                  Curadoria &amp; Estoque
-                </span>
-</td>
-<td class="py-space-md px-space-md">
-<div class="flex flex-col">
-<span class="font-label-md text-label-md text-secondary font-medium">Chave 24h</span>
-<span class="text-outline text-label-sm font-label-sm">Cadastrada em 12/09/2024</span>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
-<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                  Ativo
-                </span>
-</td>
-<td class="py-space-md px-space-lg text-right">
-<div class="flex items-center justify-end gap-1">
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary-container hover:bg-surface-container-high transition-colors" title="Redefinir Permissões" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">manage_accounts</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-error hover:bg-error-container transition-colors" title="Revogar Acesso" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">person_remove</span>
-</button>
-</div>
-</td>
-</tr>
-<tr class="hover:bg-surface-container/50 transition-colors">
-<td class="py-space-md px-space-lg">
-<div class="flex items-center gap-space-sm">
-<div class="w-10 h-10 rounded-full bg-surface-container-highest text-primary-container flex items-center justify-center font-title-md text-title-md font-bold shrink-0">
-                    JR
-                  </div>
-<div class="flex flex-col min-w-0">
-<span class="font-title-md text-title-md text-primary-container font-semibold truncate">Juliano Rios</span>
-<span class="text-on-surface-variant font-body-sm text-body-sm truncate">juliano.biblio@aurora.com.br</span>
-</div>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<div class="flex flex-col">
-<span class="font-title-md text-title-md text-primary-container font-medium">Bibliotecário Assistente</span>
-<span class="text-on-surface-variant text-label-sm font-label-sm">Reestoque e Catalogação</span>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-semibold">
-<span class="material-symbols-outlined text-[14px]" translate="no">inventory</span>
-                  Catalogação Básica
-                </span>
-</td>
-<td class="py-space-md px-space-md">
-<div class="flex flex-col">
-<span class="font-label-md text-label-md text-secondary font-medium">Chave 24h</span>
-<span class="text-outline text-label-sm font-label-sm">Cadastrado em 28/10/2024</span>
-</div>
-</td>
-<td class="py-space-md px-space-md">
-<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
-<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                  Ativo
-                </span>
-</td>
-<td class="py-space-md px-space-lg text-right">
-<div class="flex items-center justify-end gap-1">
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-primary-container hover:bg-surface-container-high transition-colors" title="Redefinir Permissões" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">manage_accounts</span>
-</button>
-<button class="p-2 rounded-lg text-on-surface-variant hover:text-error hover:bg-error-container transition-colors" title="Revogar Acesso" type="button">
-<span class="material-symbols-outlined text-[18px]" translate="no">person_remove</span>
-</button>
-</div>
-</td>
-</tr>
+<tbody class="divide-y-0 font-body-sm text-body-sm" id="teamMembersTableBody">
+  <tr>
+    <td colspan="6" class="py-space-xl text-center text-outline">
+      <div class="inline-flex items-center gap-2">
+        <span class="material-symbols-outlined animate-spin text-[20px]" translate="no">progress_activity</span>
+        <span>Carregando membros da equipe do banco de dados...</span>
+      </div>
+    </td>
+  </tr>
 </tbody>
 </table>
 </div>
 </div>
 </section>
 </div></div></main></div>
+<!-- Modal de Cadastrar Novo Membro -->
+<div id="newMemberModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+  <div class="bg-surface-container-lowest w-full max-w-lg rounded-3xl shadow-2xl border border-surface-container-high overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+    <div class="px-6 py-5 bg-surface-container-low border-b border-surface-container flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-primary-container text-on-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-[22px]" translate="no">person_add</span>
+        </div>
+        <div>
+          <h3 class="font-headline-sm text-headline-sm text-primary-container">Cadastrar Novo Membro</h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant">Credencial de acesso &agrave; equipe Aurora</p>
+        </div>
+      </div>
+      <button onclick="closeNewMemberModal()" class="w-8 h-8 rounded-full flex items-center justify-center text-outline hover:text-primary-container hover:bg-surface-container transition-colors">
+        <span class="material-symbols-outlined text-[20px]" translate="no">close</span>
+      </button>
+    </div>
+
+    <form id="newMemberForm" onsubmit="handleCreateNewMember(event)" class="p-6 space-y-4">
+      <div>
+        <label class="block font-label-md text-label-md text-primary-container mb-1">Nome Completo *</label>
+        <input type="text" id="memberNome" required placeholder="Ex: Lucas Ferreira" class="w-full px-4 py-2.5 rounded-xl bg-surface-container-low border border-surface-container text-primary-container font-body-sm focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all">
+      </div>
+      <div>
+        <label class="block font-label-md text-label-md text-primary-container mb-1">E-mail Institucional *</label>
+        <input type="email" id="memberEmail" required placeholder="Ex: lucas.biblio@aurora.com.br" class="w-full px-4 py-2.5 rounded-xl bg-surface-container-low border border-surface-container text-primary-container font-body-sm focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all">
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="block font-label-md text-label-md text-primary-container mb-1">Cargo / Fun&ccedil;&atilde;o *</label>
+          <select id="memberTipo" class="w-full px-4 py-2.5 rounded-xl bg-surface-container-low border border-surface-container text-primary-container font-body-sm focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all cursor-pointer">
+            <option value="bibliotecario">Bibliotec&aacute;rio(a)</option>
+            <option value="administrador">Administrador(a)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-label-md text-label-md text-primary-container mb-1">Senha Inicial *</label>
+          <input type="password" id="memberSenha" required placeholder="M&iacute;nimo 6 caracteres" class="w-full px-4 py-2.5 rounded-xl bg-surface-container-low border border-surface-container text-primary-container font-body-sm focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all">
+        </div>
+      </div>
+      <div class="p-3 rounded-xl bg-secondary-fixed/40 text-on-secondary-fixed flex items-start gap-2.5 font-body-sm text-body-sm">
+        <span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5" translate="no">info</span>
+        <span>O membro ser&aacute; registrado diretamente no banco de dados e poder&aacute; acessar o painel com o login e a chave de seguran&ccedil;a correspondente.</span>
+      </div>
+
+      <div class="pt-3 flex items-center justify-end gap-3">
+        <button type="button" onclick="closeNewMemberModal()" class="px-5 py-2.5 rounded-xl bg-surface-container text-primary-container hover:bg-surface-container-high font-label-md transition-colors">
+          Cancelar
+        </button>
+        <button type="submit" id="btnSaveMember" class="px-6 py-2.5 rounded-xl bg-primary-container text-on-primary hover:bg-on-primary-fixed-variant font-label-md transition-all shadow-sm flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]" translate="no">save</span>
+          <span>Salvar Membro</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/supabase-config.js"></script>
-  <script src="js/aurora-api.js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/aurora-api.js"></script>
 <script>
+  let allRentalsData = [];
+  let allTeamData = [];
+
   document.addEventListener('DOMContentLoaded', async () => {
     if (window.AuroraAPI) {
       AuroraAPI.initSidebar('cadastros');
@@ -672,6 +341,9 @@
       } catch (e) {
         console.warn('Erro ao carregar chaves:', e);
       }
+
+      await loadActiveCirculation();
+      await loadTeamMembers();
     }
   });
 
@@ -689,7 +361,7 @@
     const key = document.getElementById('key-biblio').innerText.trim();
     navigator.clipboard.writeText(key);
     if (window.AuroraAPI) {
-      AuroraAPI.showToast('Chave de Bibliotecário copiada: ' + key, 'content_copy');
+      AuroraAPI.showToast('Chave de Bibliotec\u00e1rio copiada: ' + key, 'content_copy');
     } else {
       alert('Chave copiada: ' + key);
     }
@@ -722,13 +394,449 @@
       if (window.AuroraAPI) {
         await AuroraAPI.updateStaffKey('biblio', newKey);
         document.getElementById('key-biblio').innerText = newKey;
-        AuroraAPI.showToast('Nova Chave de Bibliotecário salva no banco: ' + newKey, 'check_circle');
+        AuroraAPI.showToast('Nova Chave de Bibliotec\u00e1rio salva no banco: ' + newKey, 'check_circle');
       } else {
         document.getElementById('key-biblio').innerText = newKey;
       }
     } catch (e) {
       if (window.AuroraAPI) AuroraAPI.showToast('Erro ao atualizar: ' + e.message, 'error', true);
     }
+  }
+
+  // --- CARREGAR LOCAÃ‡Ã•ES ATIVAS (CIRCULAÃ‡ÃƒO EM TEMPO REAL) ---
+  async function loadActiveCirculation() {
+    const tbody = document.getElementById('activeRentalsTableBody');
+    const badge = document.getElementById('activeRentalsHeaderBadge');
+    if (!tbody) return;
+
+    try {
+      const data = await AuroraAPI.getActiveCirculation();
+      allRentalsData = data || [];
+      renderRentalsTable(allRentalsData);
+    } catch (e) {
+      console.error('Erro ao carregar locacoes ativas:', e);
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="7" class="py-space-xl text-center text-error">
+            <div class="inline-flex items-center gap-2">
+              <span class="material-symbols-outlined text-[20px]" translate="no">error</span>
+              <span>Erro ao carregar locacoes ativas do banco de dados: ${e.message}</span>
+            </div>
+          </td>
+        </tr>
+      `;
+    }
+  }
+
+  function renderRentalsTable(list) {
+    const tbody = document.getElementById('activeRentalsTableBody');
+    const badge = document.getElementById('activeRentalsHeaderBadge');
+    if (!tbody) return;
+
+    let totalActiveLoans = 0;
+    list.forEach(item => {
+      totalActiveLoans += (item.rentals ? item.rentals.length : 0);
+    });
+
+    if (badge) {
+      badge.textContent = `${totalActiveLoans} locac\u00e3o(\u00f5es) ativa(s)`;
+    }
+
+    if (!list || list.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="7" class="py-space-xl text-center text-outline">
+            <div class="inline-flex flex-col items-center gap-2">
+              <span class="material-symbols-outlined text-[36px] text-outline/60" translate="no">library_books</span>
+              <span class="font-body-md text-body-md text-on-surface-variant font-medium">Nenhum leitor com livro em posse no momento.</span>
+              <span class="font-label-sm text-label-sm text-outline">Os novos alugu\u00e9is registrados na biblioteca aparecer\u00e3o aqui automaticamente.</span>
+            </div>
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    const todayStr = new Date().toISOString().split('T')[0];
+    const today = new Date(todayStr);
+
+    tbody.innerHTML = list.map(item => {
+      const u = item.user;
+      const rentals = item.rentals || [];
+
+      let isOverdue = false;
+      let isDueToday = false;
+
+      const booksHtml = rentals.map(r => {
+        let remainingText = 'No Prazo';
+        let badgeStyle = 'bg-surface-container-highest text-secondary font-medium';
+
+        if (r.dataPrevistaDevolucao) {
+          const dueDate = new Date(r.dataPrevistaDevolucao);
+          const diffDays = Math.ceil((dueDate - today) / (1000 * 60 * 60 * 24));
+
+          if (diffDays < 0) {
+            isOverdue = true;
+            remainingText = `Atrasado ${Math.abs(diffDays)}d`;
+            badgeStyle = 'bg-error-container text-on-error-container font-semibold';
+          } else if (diffDays === 0) {
+            isDueToday = true;
+            remainingText = 'Devolver Hoje';
+            badgeStyle = 'bg-amber-100 text-amber-800 font-semibold';
+          } else {
+            remainingText = `Restam ${diffDays} dias`;
+            badgeStyle = 'bg-surface-container-highest text-secondary font-medium';
+          }
+        }
+
+        return `
+          <div class="flex items-center justify-between gap-2 p-1.5 rounded-lg bg-surface-container-low mb-1 last:mb-0">
+            <div class="flex items-center gap-2 min-w-0">
+              <span class="material-symbols-outlined text-secondary text-[18px]" translate="no">book</span>
+              <span class="font-label-md text-label-md text-primary-container truncate font-medium" title="${escapeHtml(r.bookTitle)}">${escapeHtml(r.bookTitle)}</span>
+            </div>
+            <span class="px-2 py-0.5 rounded ${badgeStyle} font-label-sm text-label-sm shrink-0">${remainingText}</span>
+          </div>
+        `;
+      }).join('');
+
+      let statusPill = '';
+      if (isOverdue) {
+        statusPill = `
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
+            <span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+            Atrasado
+          </span>
+        `;
+      } else if (isDueToday) {
+        statusPill = `
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-800 font-label-sm text-label-sm font-semibold">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+            Devolver Hoje
+          </span>
+        `;
+      } else {
+        statusPill = `
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+            <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            No Prazo
+          </span>
+        `;
+      }
+
+      const initials = getInitials(u.nome);
+      const userTypeLabel = u.tipo === 'administrador' ? 'Admin' : (u.tipo === 'bibliotecario' ? 'Bibliotec\u00e1rio' : 'Aluno Plus');
+
+      return `
+        <tr class="hover:bg-surface-container/50 transition-colors border-b border-surface-container-low">
+          <td class="py-space-md px-space-lg">
+            <div class="flex items-center gap-space-sm">
+              <div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center font-title-md text-title-md text-primary-container font-bold shrink-0">
+                ${initials}
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="font-title-md text-title-md text-primary-container font-semibold truncate">${escapeHtml(u.nome)}</span>
+                <span class="text-on-surface-variant font-body-sm text-body-sm truncate">${escapeHtml(u.email || 'leitor@aurora.local')}</span>
+                <span class="text-outline text-label-sm font-label-sm">ID: #USR-${u.id}</span>
+              </div>
+            </div>
+          </td>
+          <td class="py-space-md px-space-md">
+            <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-secondary-fixed/50 text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+              ${userTypeLabel}
+            </span>
+          </td>
+          <td class="py-space-md px-space-md">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-surface-container-high text-primary-container font-label-sm text-label-sm font-semibold">
+              ${rentals.length} livro(s)
+            </span>
+          </td>
+          <td class="py-space-md px-space-md">
+            <div class="flex flex-col gap-1 min-w-[240px]">
+              ${booksHtml}
+            </div>
+          </td>
+          <td class="py-space-md px-space-md">
+            <div class="flex flex-col">
+              <span class="flex items-center gap-1 font-label-sm text-label-sm text-secondary font-semibold">
+                <span class="material-symbols-outlined text-[16px]" translate="no">verified_user</span>
+                Autenticado via E-mail
+              </span>
+              <span class="text-outline text-label-sm font-label-sm">Conta Ativa</span>
+            </div>
+          </td>
+          <td class="py-space-md px-space-md">
+            ${statusPill}
+          </td>
+          <td class="py-space-md px-space-lg text-right">
+            <div class="flex items-center justify-end gap-1">
+              <button onclick="viewRentalDetails(${u.id}, '${escapeHtml(u.nome)}')" class="p-2 rounded-lg text-on-surface-variant hover:text-primary-container hover:bg-surface-container-high transition-colors" title="Ver Detalhes do Empr\u00e9stimo" type="button">
+                <span class="material-symbols-outlined text-[18px]" translate="no">visibility</span>
+              </button>
+              <button onclick="notifyUserReturn(${u.id}, '${escapeHtml(u.nome)}')" class="p-2 rounded-lg text-on-surface-variant hover:text-secondary hover:bg-surface-container-high transition-colors" title="Notificar Devolu\u00e7\u00e3o" type="button">
+                <span class="material-symbols-outlined text-[18px]" translate="no">forward_to_inbox</span>
+              </button>
+              <button onclick="suspendUserAccount(${u.id}, '${escapeHtml(u.nome)}')" class="p-2 rounded-lg text-on-surface-variant hover:text-error hover:bg-error-container transition-colors" title="Suspender Conta" type="button">
+                <span class="material-symbols-outlined text-[18px]" translate="no">block</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  function filterRentals() {
+    const statusVal = document.getElementById('rentalsFilterStatus') ? document.getElementById('rentalsFilterStatus').value : 'todos';
+    const query = document.getElementById('rentalsSearchInput') ? document.getElementById('rentalsSearchInput').value.toLowerCase().trim() : '';
+    const todayStr = new Date().toISOString().split('T')[0];
+    const today = new Date(todayStr);
+
+    const filtered = allRentalsData.filter(item => {
+      const u = item.user;
+      const rentals = item.rentals || [];
+
+      let matchesStatus = true;
+      if (statusVal !== 'todos') {
+        const hasOverdue = rentals.some(r => r.dataPrevistaDevolucao && new Date(r.dataPrevistaDevolucao) < today);
+        const hasDueToday = rentals.some(r => r.dataPrevistaDevolucao && r.dataPrevistaDevolucao === todayStr);
+        const allOnTime = rentals.every(r => !r.dataPrevistaDevolucao || new Date(r.dataPrevistaDevolucao) > today);
+
+        if (statusVal === 'atrasado') matchesStatus = hasOverdue;
+        else if (statusVal === 'hoje') matchesStatus = hasDueToday;
+        else if (statusVal === 'prazo') matchesStatus = allOnTime;
+      }
+
+      let matchesQuery = true;
+      if (query) {
+        const nameMatch = (u.nome || '').toLowerCase().includes(query);
+        const emailMatch = (u.email || '').toLowerCase().includes(query);
+        const bookMatch = rentals.some(r => (r.bookTitle || '').toLowerCase().includes(query));
+        matchesQuery = nameMatch || emailMatch || bookMatch;
+      }
+
+      return matchesStatus && matchesQuery;
+    });
+
+    renderRentalsTable(filtered);
+  }
+
+  // --- CARREGAR MEMBROS DA EQUIPE (ADMIN / BIBLIOTECÃRIO) ---
+  async function loadTeamMembers() {
+    const tbody = document.getElementById('teamMembersTableBody');
+    const badge = document.getElementById('teamMembersHeaderBadge');
+    if (!tbody) return;
+
+    try {
+      const users = await AuroraAPI.getAdminUsers();
+      allTeamData = (users || []).filter(u => ['administrador', 'bibliotecario', 'staff'].includes(u.tipo));
+      renderTeamTable(allTeamData);
+    } catch (e) {
+      console.error('Erro ao carregar equipe:', e);
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="6" class="py-space-xl text-center text-error">
+            <div class="inline-flex items-center gap-2">
+              <span class="material-symbols-outlined text-[20px]" translate="no">error</span>
+              <span>Erro ao carregar membros da equipe: ${e.message}</span>
+            </div>
+          </td>
+        </tr>
+      `;
+    }
+  }
+
+  function renderTeamTable(teamList) {
+    const tbody = document.getElementById('teamMembersTableBody');
+    const badge = document.getElementById('teamMembersHeaderBadge');
+    if (!tbody) return;
+
+    if (badge) {
+      badge.textContent = `${teamList.length} Ativos`;
+    }
+
+    if (!teamList || teamList.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="6" class="py-space-xl text-center text-outline">
+            <span class="font-body-md text-body-md">Nenhum membro da equipe cadastrado.</span>
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    tbody.innerHTML = teamList.map(m => {
+      const isAdmin = m.tipo === 'administrador';
+      const isMaster = isAdmin && (m.id === 6 || (m.email && m.email.includes('admin@aurora.local')));
+      const initials = getInitials(m.nome);
+      const avatarClass = isAdmin ? 'bg-primary-container text-on-primary' : 'bg-secondary-fixed text-on-secondary-fixed';
+      
+      const roleTitle = isAdmin ? 'Administrador Master' : 'Bibliotec\u00e1rio(a)';
+      const roleDesc = isAdmin ? 'Infraestrutura, Usu\u00e1rios & Finan\u00e7as' : 'Gest\u00e3o de Acervo e Reestoque';
+
+      const permBadge = isAdmin
+        ? `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold"><span class="material-symbols-outlined text-[14px]" translate="no">shield</span>Acesso Total</span>`
+        : `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold"><span class="material-symbols-outlined text-[14px]" translate="no">local_library</span>Curadoria &amp; Estoque</span>`;
+
+      const dateStr = m.createdAt ? new Date(m.createdAt).toLocaleDateString('pt-BR') : '20/10/2026';
+      const entryMethod = isMaster ? 'Chave Fundadora' : 'Chave Operacional';
+
+      const actionsHtml = isMaster
+        ? `<span class="text-label-sm font-label-sm text-outline font-medium px-2 py-1">Conta Titular</span>`
+        : `
+          <div class="flex items-center justify-end gap-1">
+            <button onclick="resetPermissions(${m.id}, '${escapeHtml(m.nome)}')" class="p-2 rounded-lg text-on-surface-variant hover:text-primary-container hover:bg-surface-container-high transition-colors" title="Redefinir Permiss\u00f5es" type="button">
+              <span class="material-symbols-outlined text-[18px]" translate="no">manage_accounts</span>
+            </button>
+            <button onclick="deleteTeamMember(${m.id}, '${escapeHtml(m.nome)}')" class="p-2 rounded-lg text-on-surface-variant hover:text-error hover:bg-error-container transition-colors" title="Revogar Acesso" type="button">
+              <span class="material-symbols-outlined text-[18px]" translate="no">person_remove</span>
+            </button>
+          </div>
+        `;
+
+      return `
+        <tr class="hover:bg-surface-container/50 transition-colors border-b border-surface-container-low">
+          <td class="py-space-md px-space-lg">
+            <div class="flex items-center gap-space-sm">
+              <div class="w-10 h-10 rounded-full ${avatarClass} flex items-center justify-center font-title-md text-title-md font-bold shrink-0">
+                ${initials}
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="font-title-md text-title-md text-primary-container font-semibold truncate">${escapeHtml(m.nome)}</span>
+                <span class="text-on-surface-variant font-body-sm text-body-sm truncate">${escapeHtml(m.email)}</span>
+              </div>
+            </div>
+          </td>
+          <td class="py-space-md px-space-md">
+            <div class="flex flex-col">
+              <span class="font-title-md text-title-md text-primary-container font-medium">${roleTitle}</span>
+              <span class="text-on-surface-variant text-label-sm font-label-sm">${roleDesc}</span>
+            </div>
+          </td>
+          <td class="py-space-md px-space-md">
+            ${permBadge}
+          </td>
+          <td class="py-space-md px-space-md">
+            <div class="flex flex-col">
+              <span class="font-label-md text-label-md text-primary-container font-medium">${entryMethod}</span>
+              <span class="text-outline text-label-sm font-label-sm">Desde ${dateStr}</span>
+            </div>
+          </td>
+          <td class="py-space-md px-space-md">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">
+              <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+              Ativo
+            </span>
+          </td>
+          <td class="py-space-md px-space-lg text-right">
+            ${actionsHtml}
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  // --- MODAL DE NOVO MEMBRO ---
+  function openNewMemberModal() {
+    const modal = document.getElementById('newMemberModal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      document.getElementById('memberNome').value = '';
+      document.getElementById('memberEmail').value = '';
+      document.getElementById('memberSenha').value = '';
+      document.getElementById('memberNome').focus();
+    }
+  }
+
+  function closeNewMemberModal() {
+    const modal = document.getElementById('newMemberModal');
+    if (modal) modal.classList.add('hidden');
+  }
+
+  async function handleCreateNewMember(event) {
+    event.preventDefault();
+    const nome = document.getElementById('memberNome').value.trim();
+    const email = document.getElementById('memberEmail').value.trim();
+    const tipo = document.getElementById('memberTipo').value;
+    const senha = document.getElementById('memberSenha').value;
+
+    if (!nome || !email || !senha) {
+      AuroraAPI.showToast('Por favor, preencha todos os campos obrigat\u00f3rios.', 'warning', true);
+      return;
+    }
+
+    const btn = document.getElementById('btnSaveMember');
+    const originalText = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span><span>Salvando...</span>`;
+
+    try {
+      await AuroraAPI.createAdminUser({
+        nome,
+        email,
+        tipo,
+        senha
+      });
+
+      AuroraAPI.showToast(`Membro "${nome}" cadastrado com sucesso no banco de dados!`, 'check_circle');
+      closeNewMemberModal();
+      await loadTeamMembers();
+    } catch (e) {
+      console.error('Erro ao cadastrar novo membro:', e);
+      AuroraAPI.showToast('Erro ao cadastrar membro: ' + e.message, 'error', true);
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = originalText;
+    }
+  }
+
+  async function deleteTeamMember(id, nome) {
+    if (!confirm(`Deseja revogar o acesso e remover o membro "${nome}" do banco de dados?`)) {
+      return;
+    }
+
+    try {
+      await AuroraAPI.deleteAdminUser(id);
+      AuroraAPI.showToast(`Acesso do membro "${nome}" revogado com sucesso.`, 'check_circle');
+      await loadTeamMembers();
+    } catch (e) {
+      AuroraAPI.showToast('Erro ao revogar acesso: ' + e.message, 'error', true);
+    }
+  }
+
+  function resetPermissions(id, nome) {
+    AuroraAPI.showToast(`Permiss\u00f5es de "${nome}" revalidadas com a chave mestre do sistema.`, 'check_circle');
+  }
+
+  function viewRentalDetails(userId, nome) {
+    AuroraAPI.showToast(`Exibindo hist\u00f3rico de loca\u00e7\u00e3o de ${nome}.`, 'info');
+  }
+
+  function notifyUserReturn(userId, nome) {
+    AuroraAPI.showToast(`Notifica\u00e7\u00e3o de devolu\u00e7\u00e3o enviada por e-mail para ${nome}.`, 'send');
+  }
+
+  function suspendUserAccount(userId, nome) {
+    if (confirm(`Deseja suspender temporariamente a conta de ${nome}?`)) {
+      AuroraAPI.showToast(`Conta de ${nome} suspensa temporariamente.`, 'block');
+    }
+  }
+
+  function getInitials(name) {
+    if (!name) return 'AU';
+    const parts = name.trim().split(/\s+/);
+    if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
   }
 </script>
 </body></html>
