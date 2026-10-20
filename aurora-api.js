@@ -781,7 +781,17 @@ const AuroraMockStore = {
     }
     if (url === '/collections/ratings/my-ratings') {
       const userId = this.getCurrentUserId();
-      return this.getRatings().filter(r => r.userId === userId);
+      const ratings = this.getRatings().filter(r => r.userId === userId);
+      const books = this.getBooks();
+      return ratings.map(r => {
+        const b = books.find(book => book.id === (r.bookId || r.idLivro));
+        return {
+          ...r,
+          bookTitle: b ? b.titulo : (r.bookTitle || `Livro #${r.bookId}`),
+          autor: b ? b.autor : (r.autor || ''),
+          capaUrl: b ? b.capaUrl : (r.capaUrl || '')
+        };
+      });
     }
 
     // 14. Sugestões

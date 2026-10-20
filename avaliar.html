@@ -1,344 +1,449 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Avaliar Livros – Aurora</title>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-<style>
-  @layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}
-  ::-webkit-scrollbar{display:none;}
-  .star-btn { background:none;border:none;cursor:pointer;padding:2px;transition:transform .15s; }
-  .star-btn:hover { transform:scale(1.15); }
-  .star-btn .material-symbols-outlined { font-size:2rem; color:#d97706; }
-  .star-btn.empty .material-symbols-outlined { color:#c6c5d0; }
-</style>
-<script src="https://cdn.tailwindcss.com"></script>
-<script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-tertiary": "#ffffff", "surface-container": "#f0eee8", "surface-bright": "#fbf9f3", "inverse-surface": "#30312d", "inverse-primary": "#bac3fe", "primary": "#00021d", "surface": "#fbf9f3", "primary-fixed": "#dee0ff", "outline-variant": "#c6c5d0", "error-container": "#ffdad6", "on-primary-fixed-variant": "#3a4375", "on-error": "#ffffff", "surface-tint": "#525b8f", "surface-dim": "#dcdad4", "outline": "#767680", "surface-container-lowest": "#ffffff", "tertiary-fixed-dim": "#a9cbe5", "on-surface-variant": "#46464f", "surface-container-high": "#eae8e2", "surface-container-low": "#f5f3ee", "error": "#ba1a1a", "surface-variant": "#e4e2dd", "secondary-container": "#95ccfe", "on-primary-fixed": "#0c1648", "tertiary": "#00060c", "tertiary-container": "#002132", "on-primary": "#ffffff", "on-secondary-container": "#125783", "on-secondary-fixed": "#001d32", "surface-container-highest": "#e4e2dd", "on-tertiary-fixed": "#001e2e", "inverse-on-surface": "#f2f1eb", "on-secondary-fixed-variant": "#004b74", "on-background": "#1b1c19", "background": "#fbf9f3", "on-error-container": "#93000a", "on-surface": "#1b1c19", "on-tertiary-fixed-variant": "#284a60", "secondary": "#25638f", "primary-fixed-dim": "#bac3fe", "on-secondary": "#ffffff", "tertiary-fixed": "#c8e6ff", "secondary-fixed": "#cde5ff", "primary-container": "#0f194a", "on-primary-container": "#7983b9", "on-tertiary-container": "#698aa2", "secondary-fixed-dim": "#95ccfe" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-xl": "2.5rem", "margin-mobile": "1.25rem", "space-lg": "1.5rem", "space-md": "1rem", "margin": "2.5rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "gutter": "1.5rem", "gutter-mobile": "1rem", "space-2xl": "4rem" }, "fontFamily": { "body-lg": ["Open Sans"], "display-lg": ["Montserrat"], "body-md": ["Open Sans"], "label-md": ["Montserrat"], "body-sm": ["Open Sans"], "label-lg": ["Montserrat"], "headline-md": ["Montserrat"], "display-lg-mobile": ["Montserrat"], "headline-sm": ["Montserrat"], "title-lg": ["Montserrat"], "label-sm": ["Montserrat"], "title-md": ["Montserrat"], "headline-lg-mobile": ["Montserrat"], "headline-lg": ["Montserrat"] }, "fontSize": { "body-lg": ["18px",{"lineHeight":"28px","fontWeight":"400"}], "display-lg": ["48px",{"lineHeight":"56px","letterSpacing":"-0.02em","fontWeight":"700"}], "body-md": ["15px",{"lineHeight":"24px","fontWeight":"400"}], "label-md": ["12px",{"lineHeight":"16px","letterSpacing":"0.06em","fontWeight":"600"}], "body-sm": ["13px",{"lineHeight":"20px","fontWeight":"400"}], "label-lg": ["14px",{"lineHeight":"20px","letterSpacing":"0.04em","fontWeight":"600"}], "headline-md": ["28px",{"lineHeight":"36px","fontWeight":"600"}], "display-lg-mobile": ["32px",{"lineHeight":"40px","letterSpacing":"-0.01em","fontWeight":"700"}], "headline-sm": ["22px",{"lineHeight":"30px","fontWeight":"600"}], "title-lg": ["18px",{"lineHeight":"26px","fontWeight":"600"}], "label-sm": ["11px",{"lineHeight":"14px","letterSpacing":"0.08em","fontWeight":"700"}], "title-md": ["16px",{"lineHeight":"24px","fontWeight":"600"}], "headline-lg-mobile": ["26px",{"lineHeight":"34px","fontWeight":"700"}], "headline-lg": ["36px",{"lineHeight":"44px","letterSpacing":"-0.015em","fontWeight":"700"}] } } } };
-</script>
-<script src="js/aurora-api.js"></script>
-</head>
-<body class="bg-background font-body-md text-on-surface antialiased">
-
-<!-- Sidebar -->
-<aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between">
-  <div class="flex flex-col">
-    <div class="h-20 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest">
-      <img alt="Logo Aurora" class="w-10 h-10 object-contain rounded-lg" src="https://lh3.googleusercontent.com/aida/AEtjO1Vl0ovc58Z8FmVMNKvb05Ma0aTILPIO9JOPXsj2IF5CawjY5P-6BRC8pamuGqFbgclo-iP4nFSdWgblkn_iFgtR7hx5sEcXNDFQ9fbV-AwJfBx4pCeFmFPQVTNr3t4DZioVSZRrVP6EFMUp-f0KhQcApiY6tZP5kOR8zziL8a2vgSRU63YEX8g5BImR1JA8aEfj3fYjlk7XEfKL4Bq4XmUQx0I5I8RhoN87iEfOGuAivbWkNSYommjR_9YtExwHeZv_id0WCc67WRs">
-      <div class="flex flex-col">
-        <span class="font-title-lg text-title-lg text-primary-container tracking-tight">Aurora</span>
-        <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Aluguel de Livros</span>
-      </div>
-    </div>
-    <div class="px-space-md py-space-sm">
-      <nav class="flex flex-col gap-space-xs">
-        <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" href="index.html"><span>Início</span></a>
-        <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" href="prateleira.html"><span>Prateleira</span></a>
-        <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" href="sugestoes.html"><span>Sugestões</span></a>
-        <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" href="ja-lidos.html"><span>Já Lidos</span></a>
-        <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" href="desejos.html"><span>Lista de Desejos</span></a>
-        <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl bg-primary-container text-on-primary font-bold shadow-sm" href="avaliar.html"><span>Avaliar Livros</span></a>
-        <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-surface-container-high hover:text-on-surface transition-all" href="configuracoes.html"><span>Configurações</span></a>
-      </nav>
-    </div>
-  </div>
-  <div class="p-space-md flex flex-col gap-space-sm bg-surface-container-lowest">
-    <div class="flex items-center gap-space-sm p-space-sm rounded-xl bg-surface-container-low">
-      <div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center">
-        <span class="material-symbols-outlined text-on-secondary-container text-[18px]">person</span>
-      </div>
-      <div class="flex flex-col min-w-0 flex-1">
-        <span class="font-label-lg text-label-lg text-on-surface truncate" id="sidebar-nome">Usuário</span>
-        <span class="font-label-sm text-label-sm text-secondary truncate" id="sidebar-tipo">Leitor Aurora</span>
-      </div>
-    </div>
-    <button onclick="AuroraAPI.logout()" class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg text-label-lg hover:bg-error-container hover:text-on-error-container transition-all w-full text-left">
-      <span>Sair</span>
-    </button>
-  </div>
-</aside>
-
-<!-- Content -->
-<div class="pl-72 flex flex-col min-h-screen">
-  <header class="fixed top-0 left-72 right-0 h-20 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg">
-    <h2 class="font-headline-sm text-headline-sm text-primary-container">Avaliar Livros</h2>
-    <span class="font-body-sm text-body-sm text-on-surface-variant">Avalie os livros que você leu (0 a 5 estrelas)</span>
-  </header>
-
-  <main class="w-full pt-20 bg-background flex-1">
-    <div class="max-w-7xl mx-auto px-margin-mobile lg:px-margin py-space-xl">
-
-      <!-- Pending ratings section -->
-      <div id="pending-section">
-        <h3 class="font-headline-sm text-headline-sm text-primary-container mb-space-md">Livros Lidos Aguardando Avaliação</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg" id="pending-grid"></div>
-        <div class="hidden flex-col items-center justify-center py-space-xl text-center" id="pending-empty">
-          <span class="material-symbols-outlined text-5xl text-outline mb-space-md">rate_review</span>
-          <p class="font-body-md text-body-md text-on-surface-variant">Todos os livros lidos já foram avaliados. Continue lendo!</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg" id="pending-loading">
-          <div class="animate-pulse bg-surface-container-lowest rounded-2xl p-space-md h-52"></div>
-          <div class="animate-pulse bg-surface-container-lowest rounded-2xl p-space-md h-52"></div>
-        </div>
-      </div>
-
-      <!-- My ratings section -->
-      <div class="mt-space-2xl" id="ratings-section">
-        <h3 class="font-headline-sm text-headline-sm text-primary-container mb-space-md">Minhas Avaliações</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg" id="ratings-grid"></div>
-        <div class="hidden flex-col items-center justify-center py-space-xl text-center" id="ratings-empty">
-          <span class="material-symbols-outlined text-5xl text-outline mb-space-md">star_outline</span>
-          <p class="font-body-md text-body-md text-on-surface-variant">Você ainda não fez nenhuma avaliação.</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg" id="ratings-loading">
-          <div class="animate-pulse bg-surface-container-lowest rounded-2xl p-space-md h-40"></div>
-          <div class="animate-pulse bg-surface-container-lowest rounded-2xl p-space-md h-40"></div>
-          <div class="animate-pulse bg-surface-container-lowest rounded-2xl p-space-md h-40"></div>
-        </div>
-      </div>
-    </div>
-  </main>
-</div>
-
-<!-- Rating Modal -->
-<div class="fixed inset-0 z-50 hidden items-center justify-center bg-primary/40 backdrop-blur-sm p-4" id="rating-modal">
-  <div class="bg-surface-container-lowest rounded-2xl max-w-lg w-full p-space-lg shadow-2xl flex flex-col gap-space-md">
-    <div class="flex items-start justify-between">
-      <div>
-        <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Avaliar Livro</span>
-        <h3 class="font-headline-sm text-headline-sm text-primary mt-1" id="modal-title">Título</h3>
-        <p class="font-body-sm text-body-sm text-on-surface-variant" id="modal-author">Autor</p>
-      </div>
-      <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-on-surface transition-colors">
-        <span class="material-symbols-outlined text-[18px]">close</span>
-      </button>
-    </div>
-
-    <!-- Stars -->
-    <div>
-      <label class="font-label-sm text-label-sm text-outline uppercase block mb-2">Sua nota (1 a 5)</label>
-      <div class="flex items-center gap-1" id="modal-stars">
-        <button class="star-btn empty" onclick="setStar(1)" title="1 estrela" data-val="1" type="button"><span class="material-symbols-outlined">star</span></button>
-        <button class="star-btn empty" onclick="setStar(2)" title="2 estrelas" data-val="2" type="button"><span class="material-symbols-outlined">star</span></button>
-        <button class="star-btn empty" onclick="setStar(3)" title="3 estrelas" data-val="3" type="button"><span class="material-symbols-outlined">star</span></button>
-        <button class="star-btn empty" onclick="setStar(4)" title="4 estrelas" data-val="4" type="button"><span class="material-symbols-outlined">star</span></button>
-        <button class="star-btn empty" onclick="setStar(5)" title="5 estrelas" data-val="5" type="button"><span class="material-symbols-outlined">star</span></button>
-        <span class="ml-3 font-title-md text-title-md text-primary" id="star-label">—</span>
-      </div>
-    </div>
-
-    <div id="modal-error" class="hidden rounded-xl bg-error-container text-on-error-container p-3 font-body-sm text-body-sm"></div>
-
-    <div class="flex items-center justify-end gap-space-xs pt-space-xs">
-      <button onclick="closeModal()" class="px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors">Cancelar</button>
-      <button onclick="submitRating()" id="submit-btn" class="px-4 py-2 rounded-xl bg-primary-container text-on-primary hover:bg-primary font-label-md text-label-md flex items-center gap-2 shadow-sm transition-colors">
-        <span class="material-symbols-outlined text-[18px]">star</span>
-        Enviar Avaliação
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- Toast -->
-<div class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-primary-container text-on-primary px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3" id="toast">
-  <span class="material-symbols-outlined text-secondary-container">check_circle</span>
-  <span class="font-body-sm text-body-sm" id="toast-message">Ação executada com sucesso.</span>
-</div>
-
-<script>
-  if (!AuroraAPI.isAuthenticated()) window.location.href = 'login.html';
-
-  let currentBookId = null;
-  let currentStar = 0;
-  let readBooks = [];
-  let myRatings = [];
-
-  async function initPage() {
-    const user = AuroraAPI.getUser();
-    if (user) {
-      document.getElementById('sidebar-nome').textContent = user.nome || user.email;
-      document.getElementById('sidebar-tipo').textContent = user.tipo === 'ADMIN' ? 'Administrador' : user.tipo === 'BIBLIOTECARIO' ? 'Bibliotecário' : 'Leitor Aurora';
-    }
-    AuroraAPI.getMe().then(u => {
-      if (u) {
-        document.getElementById('sidebar-nome').textContent = u.nome || u.email;
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Aurora — Avaliar Livros</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    @layer base { html,body { margin:0; padding:0; } body { overscroll-behavior:none; } }
+    ::-webkit-scrollbar { display:none; }
+    .star-btn { background:none; border:none; cursor:pointer; padding:2px; transition:transform .15s; }
+    .star-btn:hover { transform:scale(1.15); }
+    .star-btn .material-symbols-outlined { font-size:2rem; color:#f59e0b; }
+    .star-btn.empty .material-symbols-outlined { color:#c6c5d0; }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#00021d",
+            "primary-container": "#0f194a",
+            "on-primary": "#ffffff",
+            "secondary": "#25638f",
+            "secondary-container": "#95ccfe",
+            "on-secondary-container": "#125783",
+            "secondary-fixed": "#cde5ff",
+            "on-secondary-fixed": "#001d32",
+            "surface": "#fbf9f3",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f5f3ee",
+            "surface-container": "#f0eee8",
+            "surface-container-high": "#eae8e2",
+            "surface-container-highest": "#e4e2dd",
+            "outline": "#767680",
+            "on-surface": "#1b1c19",
+            "on-surface-variant": "#46464f",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a"
+          },
+          fontFamily: {
+            "body-md": ["Open Sans"],
+            "body-sm": ["Open Sans"],
+            "headline-lg": ["Montserrat"],
+            "headline-md": ["Montserrat"],
+            "headline-sm": ["Montserrat"],
+            "title-lg": ["Montserrat"],
+            "title-md": ["Montserrat"],
+            "label-lg": ["Montserrat"],
+            "label-md": ["Montserrat"],
+            "label-sm": ["Montserrat"]
+          },
+          spacing: {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2.5rem"
+          }
+        }
       }
-    });
-    await Promise.all([loadReadBooks(), loadMyRatings()]);
-  }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
 
-  async function loadReadBooks() {
-    document.getElementById('pending-loading').style.display = 'grid';
-    try {
-      readBooks = await AuroraAPI.apiFetch('/collections/read') || [];
-      renderPending();
-    } catch (e) {
-      showToast('Erro ao carregar livros lidos.', true);
-    }
-    document.getElementById('pending-loading').style.display = 'none';
-  }
-
-  async function loadMyRatings() {
-    document.getElementById('ratings-loading').style.display = 'grid';
-    try {
-      myRatings = await AuroraAPI.apiFetch('/collections/ratings/my-ratings') || [];
-      renderRatings();
-    } catch (e) {
-      showToast('Erro ao carregar avaliações.', true);
-    }
-    document.getElementById('ratings-loading').style.display = 'none';
-  }
-
-  function renderPending() {
-    const ratedIds = new Set(myRatings.map(r => r.bookId));
-    const pending = readBooks.filter(b => !ratedIds.has(b.id));
-    const grid = document.getElementById('pending-grid');
-    grid.innerHTML = '';
-    if (pending.length === 0) {
-      const el = document.getElementById('pending-empty');
-      el.classList.remove('hidden');
-      el.classList.add('flex');
-      return;
-    }
-    pending.forEach(book => {
-      const card = document.createElement('div');
-      card.className = 'bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex items-center gap-space-md hover:shadow-md transition-shadow';
-      card.innerHTML = `
-        <div class="w-16 h-24 rounded-lg ${book.capaUrl ? '' : 'bg-primary-container flex items-center justify-center'} overflow-hidden flex-shrink-0 shadow">
-          ${book.capaUrl
-            ? `<img class="w-full h-full object-cover" src="${escHtml(book.capaUrl)}" alt="${escHtml(book.titulo)}">`
-            : `<span class="material-symbols-outlined text-on-primary-container">menu_book</span>`}
+  <!-- Sidebar Lateral Fixa -->
+  <aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between">
+    <div class="flex flex-col">
+      <div class="h-20 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest">
+        <img alt="Logo Aurora" class="w-10 h-10 object-contain rounded-lg shadow-sm" src="img/logo.svg">
+        <div class="flex flex-col">
+          <span class="font-title-lg text-title-lg text-primary-container tracking-tight font-bold">Aurora</span>
+          <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Aluguel de Livros</span>
         </div>
-        <div class="flex flex-col flex-1 min-w-0">
-          <span class="font-label-sm text-label-sm text-secondary uppercase tracking-wide">${escHtml(book.genero || 'Geral')}</span>
-          <h4 class="font-title-md text-title-md text-primary-container truncate">${escHtml(book.titulo)}</h4>
-          <p class="font-body-sm text-body-sm text-on-surface-variant">${escHtml(book.autor)}</p>
-          <button onclick="openModal(${book.id}, '${escHtml(book.titulo)}', '${escHtml(book.autor)}')"
-            class="mt-2 self-start h-9 px-space-md rounded-xl bg-primary-container text-on-primary hover:bg-primary font-label-md text-label-md flex items-center gap-1.5 shadow-sm transition-colors">
-            <span class="material-symbols-outlined text-[16px] text-secondary-container">star</span>
-            Avaliar
-          </button>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
-  }
+      </div>
 
-  function renderRatings() {
-    const grid = document.getElementById('ratings-grid');
-    grid.innerHTML = '';
-    if (myRatings.length === 0) {
-      const el = document.getElementById('ratings-empty');
-      el.classList.remove('hidden');
-      el.classList.add('flex');
-      return;
-    }
-    myRatings.forEach(r => {
-      const stars = Math.round(Number(r.nota));
-      const title = r.bookTitle || (r.livro && r.livro.titulo) || r.titulo || 'Livro Aurora';
-      const bId = r.bookId || r.idLivro || r.id;
-      const card = document.createElement('div');
-      card.className = 'bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col gap-space-sm hover:shadow-md transition-shadow';
-      card.innerHTML = `
-        <div class="flex items-center justify-between">
-          <span class="text-amber-500 text-lg">${'★'.repeat(stars)}${'☆'.repeat(5 - stars)}</span>
-          <span class="font-title-md text-title-md text-primary font-bold">${Number(r.nota).toFixed(1)}</span>
+      <div class="px-space-md py-space-sm">
+        <nav class="flex flex-col gap-space-xs">
+          <!-- Renderizado dinamicamente por AuroraAPI.initSidebar() -->
+        </nav>
+      </div>
+    </div>
+
+    <!-- Perfil do Usuário na Sidebar -->
+    <div class="p-space-md flex flex-col gap-space-sm bg-surface-container-lowest">
+      <div class="flex items-center gap-space-sm p-space-sm rounded-xl bg-surface-container-low">
+        <img alt="Perfil" class="w-8 h-8 rounded-full object-cover ring-2 ring-secondary-fixed user-display-avatar" src="img/avatar-default.svg">
+        <div class="flex flex-col min-w-0 flex-1">
+          <span class="font-label-lg text-label-lg text-on-surface truncate user-display-name">Carregando...</span>
+          <span class="font-label-sm text-label-sm text-secondary truncate user-display-role">Leitor</span>
         </div>
-        <h4 class="font-title-md text-title-md text-primary-container">${escHtml(title)}</h4>
-        <span class="font-body-sm text-body-sm text-on-surface-variant">${r.dataAvaliacao ? new Date(r.dataAvaliacao).toLocaleDateString('pt-BR') : ''}</span>
-        <button onclick="openModal(${bId}, '${escHtml(title).replace(/'/g, "\\'")}', '', ${r.nota})"
-          class="self-start h-9 px-space-md rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md flex items-center gap-1.5 transition-colors">
-          <span class="material-symbols-outlined text-[16px] text-secondary">edit</span>
-          Editar
+      </div>
+      <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg hover:bg-error-container hover:text-on-error-container transition-all group" data-path="login" href="login.html" onclick="AuroraAPI.logout(); return true;">
+        <span class="material-symbols-outlined text-outline group-hover:text-error transition-colors" translate="no">logout</span>
+        <span>Sair</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Área Principal -->
+  <div class="pl-72 flex flex-col min-h-screen">
+    <header class="fixed top-0 left-72 right-0 h-20 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg">
+      <div>
+        <h2 class="font-headline-sm text-headline-sm text-primary-container font-bold">Avaliar Livros</h2>
+        <span class="font-body-sm text-xs text-on-surface-variant">Compartilhe sua nota e impressões sobre as obras que você já leu.</span>
+      </div>
+    </header>
+
+    <main class="w-full pt-24 pb-16 bg-surface flex-1">
+      <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl flex flex-col gap-space-xl">
+
+        <!-- Seção: Livros Lidos Aguardando Avaliação -->
+        <section id="pending-section">
+          <div class="flex items-center justify-between mb-space-md">
+            <h3 class="font-headline-sm text-lg text-primary-container font-bold flex items-center gap-2">
+              <span class="material-symbols-outlined text-secondary" translate="no">pending_actions</span>
+              Obras Lidas Aguardando sua Avaliação
+            </h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md" id="pending-grid"></div>
+          
+          <div class="hidden flex-col items-center justify-center py-space-lg text-center p-space-lg rounded-2xl bg-surface-container-lowest border border-surface-container/60" id="pending-empty">
+            <span class="material-symbols-outlined text-4xl text-outline mb-2" translate="no">check_circle</span>
+            <p class="font-body-md text-xs text-on-surface-variant">Todos os seus livros marcados como lidos já foram avaliados!</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md" id="pending-loading">
+            <div class="animate-pulse bg-surface-container-lowest rounded-2xl p-space-md h-40 border border-surface-container/60"></div>
+            <div class="animate-pulse bg-surface-container-lowest rounded-2xl p-space-md h-40 border border-surface-container/60"></div>
+          </div>
+        </section>
+
+        <!-- Seção: Minhas Avaliações -->
+        <section id="ratings-section">
+          <div class="flex items-center justify-between mb-space-md">
+            <h3 class="font-headline-sm text-lg text-primary-container font-bold flex items-center gap-2">
+              <span class="material-symbols-outlined text-amber-500" translate="no">stars</span>
+              Minhas Avaliações Concluídas
+            </h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md" id="ratings-grid"></div>
+          
+          <div class="hidden flex-col items-center justify-center py-space-xl text-center p-space-lg rounded-2xl bg-surface-container-lowest border border-surface-container/60" id="ratings-empty">
+            <span class="material-symbols-outlined text-5xl text-outline mb-2" translate="no">star_border</span>
+            <p class="font-body-md text-sm text-on-surface-variant">Você ainda não avaliou nenhum livro.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md" id="ratings-loading">
+            <div class="animate-pulse bg-surface-container-lowest rounded-2xl p-space-md h-48 border border-surface-container/60"></div>
+            <div class="animate-pulse bg-surface-container-lowest rounded-2xl p-space-md h-48 border border-surface-container/60"></div>
+            <div class="animate-pulse bg-surface-container-lowest rounded-2xl p-space-md h-48 border border-surface-container/60"></div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal de Avaliação / Edição -->
+  <div class="fixed inset-0 z-50 hidden items-center justify-center bg-primary/40 backdrop-blur-sm p-4" id="rating-modal">
+    <div class="bg-surface-container-lowest rounded-3xl max-w-lg w-full p-space-lg shadow-2xl flex flex-col gap-space-md border border-surface-container">
+      <div class="flex items-start justify-between">
+        <div>
+          <span class="font-label-sm text-xs uppercase tracking-wider text-secondary font-bold" id="modal-subtitle">Avaliar Livro</span>
+          <h3 class="font-headline-sm text-xl text-primary font-bold mt-1" id="modal-title">Título do Livro</h3>
+          <p class="font-body-sm text-xs text-on-surface-variant" id="modal-author">Autor</p>
+        </div>
+        <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-on-surface transition-colors">
+          <span class="material-symbols-outlined text-[18px]" translate="no">close</span>
         </button>
-      `;
-      grid.appendChild(card);
-    });
-  }
+      </div>
 
-  function openModal(bookId, title, author, existingRating = 0) {
-    currentBookId = bookId;
-    currentStar = existingRating ? Math.round(Number(existingRating)) : 0;
-    document.getElementById('modal-title').textContent = title;
-    document.getElementById('modal-author').textContent = author;
-    document.getElementById('modal-error').classList.add('hidden');
-    updateStars(currentStar);
-    const modal = document.getElementById('rating-modal');
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-  }
+      <!-- Estrelas -->
+      <div>
+        <label class="font-label-sm text-xs text-outline uppercase font-semibold block mb-2">Sua nota (1 a 5 estrelas)</label>
+        <div class="flex items-center gap-1" id="modal-stars">
+          <button class="star-btn empty" onclick="setStar(1)" title="1 estrela" type="button"><span class="material-symbols-outlined" translate="no">star</span></button>
+          <button class="star-btn empty" onclick="setStar(2)" title="2 estrelas" type="button"><span class="material-symbols-outlined" translate="no">star</span></button>
+          <button class="star-btn empty" onclick="setStar(3)" title="3 estrelas" type="button"><span class="material-symbols-outlined" translate="no">star</span></button>
+          <button class="star-btn empty" onclick="setStar(4)" title="4 estrelas" type="button"><span class="material-symbols-outlined" translate="no">star</span></button>
+          <button class="star-btn empty" onclick="setStar(5)" title="5 estrelas" type="button"><span class="material-symbols-outlined" translate="no">star</span></button>
+          <span class="ml-3 font-title-md text-sm text-primary font-bold" id="star-label">—</span>
+        </div>
+      </div>
 
-  function closeModal() {
-    const modal = document.getElementById('rating-modal');
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-    currentBookId = null;
-    currentStar = 0;
-  }
+      <!-- Comentário -->
+      <div>
+        <label for="modal-comment" class="font-label-sm text-xs text-outline uppercase font-semibold block mb-2">Comentário / Resenha</label>
+        <textarea id="modal-comment" rows="3" class="w-full p-3 bg-surface-container-low rounded-xl text-on-surface font-body-sm text-xs placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-secondary/40 border border-surface-container resize-none" placeholder="O que você achou desta obra? Dê detalhes que ajudem outros leitores..."></textarea>
+      </div>
 
-  function setStar(val) {
-    currentStar = val;
-    updateStars(val);
-  }
+      <div id="modal-error" class="hidden rounded-xl bg-error-container text-on-error-container p-3 font-body-sm text-xs"></div>
 
-  function updateStars(val) {
-    const labels = ['', '1 – Ruim', '2 – Regular', '3 – Bom', '4 – Ótimo', '5 – Excelente'];
-    document.getElementById('star-label').textContent = val ? labels[val] : '—';
-    document.querySelectorAll('#modal-stars .star-btn').forEach((btn, i) => {
-      btn.classList.toggle('empty', i >= val);
-    });
-  }
+      <div class="flex items-center justify-end gap-space-xs pt-space-xs border-t border-surface-container">
+        <button onclick="closeModal()" class="px-4 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-xs font-bold transition-colors">Cancelar</button>
+        <button onclick="submitRating()" id="submit-btn" class="px-4 py-2 rounded-xl bg-primary-container text-on-primary hover:bg-primary font-label-md text-xs font-bold flex items-center gap-1.5 shadow-sm transition-colors">
+          <span class="material-symbols-outlined text-[16px]" translate="no">star</span>
+          Salvar Avaliação
+        </button>
+      </div>
+    </div>
+  </div>
 
-  async function submitRating() {
-    if (!currentBookId || !currentStar) {
-      const errEl = document.getElementById('modal-error');
-      errEl.textContent = 'Selecione uma nota de 1 a 5 estrelas.';
-      errEl.classList.remove('hidden');
-      return;
+  <script src="js/aurora-api.js"></script>
+  <script>
+    if (!AuroraAPI.isAuthenticated()) {
+      window.location.href = 'login.html';
     }
-    const btn = document.getElementById('submit-btn');
-    btn.disabled = true;
-    btn.textContent = 'Enviando...';
-    try {
-      await AuroraAPI.apiFetch(`/collections/ratings/book/${currentBookId}`, {
-        method: 'POST',
-        body: JSON.stringify({ nota: currentStar })
-      });
-      showToast('Avaliação enviada com sucesso!');
-      closeModal();
+
+    let currentBookId = null;
+    let currentStar = 0;
+    let readBooks = [];
+    let myRatings = [];
+    let allBooksMap = new Map();
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await AuroraAPI.initSidebar('avaliar-livros');
+
+      // Pre-carrega todos os livros para garantir nomes corretos
+      try {
+        const books = await AuroraAPI.getBooks();
+        books.forEach(b => allBooksMap.set(b.id, b));
+      } catch (e) {}
+
       await Promise.all([loadReadBooks(), loadMyRatings()]);
-    } catch (e) {
-      const errEl = document.getElementById('modal-error');
-      errEl.textContent = e.message || 'Erro ao enviar avaliação.';
-      errEl.classList.remove('hidden');
+    });
+
+    async function loadReadBooks() {
+      const loading = document.getElementById('pending-loading');
+      if (loading) loading.style.display = 'grid';
+      try {
+        readBooks = await AuroraAPI.getReadBooks();
+        renderPending();
+      } catch (e) {
+        AuroraAPI.showToast('Erro ao carregar livros lidos.', 'error', true);
+      } finally {
+        if (loading) loading.style.display = 'none';
+      }
     }
-    btn.disabled = false;
-    btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">star</span> Enviar Avaliação';
-  }
 
-  function escHtml(str) {
-    if (!str) return '';
-    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-  }
+    async function loadMyRatings() {
+      const loading = document.getElementById('ratings-loading');
+      if (loading) loading.style.display = 'grid';
+      try {
+        myRatings = await AuroraAPI.getMyRatings();
+        renderRatings();
+      } catch (e) {
+        AuroraAPI.showToast('Erro ao carregar avaliações.', 'error', true);
+      } finally {
+        if (loading) loading.style.display = 'none';
+      }
+    }
 
-  function showToast(msg, isError = false) {
-    const toast = document.getElementById('toast');
-    document.getElementById('toast-message').textContent = msg;
-    toast.classList.toggle('bg-error-container', isError);
-    toast.classList.toggle('text-on-error-container', isError);
-    toast.classList.toggle('bg-primary-container', !isError);
-    toast.classList.toggle('text-on-primary', !isError);
-    toast.classList.remove('translate-y-20','opacity-0');
-    toast.classList.add('translate-y-0','opacity-100');
-    setTimeout(()=>{
-      toast.classList.remove('translate-y-0','opacity-100');
-      toast.classList.add('translate-y-20','opacity-0');
-    }, 3500);
-  }
+    function renderPending() {
+      const ratedIds = new Set(myRatings.map(r => r.bookId || r.idLivro));
+      const pending = readBooks.filter(b => !ratedIds.has(b.id));
+      const grid = document.getElementById('pending-grid');
+      const emptyEl = document.getElementById('pending-empty');
+      grid.innerHTML = '';
 
-  initPage();
-</script>
+      if (pending.length === 0) {
+        emptyEl.classList.remove('hidden');
+        emptyEl.classList.add('flex');
+        return;
+      }
+      emptyEl.classList.add('hidden');
+      emptyEl.classList.remove('flex');
+
+      pending.forEach(book => {
+        const fullBook = allBooksMap.get(book.id) || book;
+        const title = fullBook.titulo || book.titulo;
+        const author = fullBook.autor || book.autor;
+        const coverUrl = fullBook.capaUrl || book.capaUrl || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80';
+
+        const card = document.createElement('div');
+        card.className = 'bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex items-center gap-space-md hover:shadow-md transition-shadow border border-surface-container/60';
+        card.innerHTML = `
+          <div class="w-16 h-24 rounded-lg overflow-hidden flex-shrink-0 shadow-sm bg-surface-container-high">
+            <img class="w-full h-full object-cover" src="${coverUrl}" alt="${escHtml(title)}">
+          </div>
+          <div class="flex flex-col flex-1 min-w-0">
+            <span class="font-label-sm text-[11px] text-secondary uppercase font-bold tracking-wide">${escHtml(fullBook.genero || 'Geral')}</span>
+            <h4 class="font-title-md text-sm text-primary-container font-bold truncate">${escHtml(title)}</h4>
+            <p class="font-body-sm text-xs text-on-surface-variant truncate">${escHtml(author)}</p>
+            <button onclick="openModal(${book.id}, '${escHtml(title).replace(/'/g, "\\'")}', '${escHtml(author).replace(/'/g, "\\'")}', 0, '')"
+              class="mt-2 self-start h-8 px-3 rounded-xl bg-primary-container text-on-primary hover:bg-primary font-label-md text-xs font-bold flex items-center gap-1 shadow-sm transition-colors">
+              <span class="material-symbols-outlined text-[15px] text-secondary-fixed" translate="no">star</span>
+              Avaliar
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function renderRatings() {
+      const grid = document.getElementById('ratings-grid');
+      const emptyEl = document.getElementById('ratings-empty');
+      grid.innerHTML = '';
+
+      if (myRatings.length === 0) {
+        emptyEl.classList.remove('hidden');
+        emptyEl.classList.add('flex');
+        return;
+      }
+      emptyEl.classList.add('hidden');
+      emptyEl.classList.remove('flex');
+
+      myRatings.forEach(r => {
+        const bId = r.bookId || r.idLivro || r.id;
+        const fullBook = allBooksMap.get(bId);
+        const title = (fullBook && fullBook.titulo) || r.bookTitle || r.titulo || `Livro #${bId}`;
+        const author = (fullBook && fullBook.autor) || r.autor || 'Autor';
+        const coverUrl = (fullBook && fullBook.capaUrl) || r.capaUrl || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80';
+        const stars = Math.round(Number(r.nota || 5));
+        const comment = r.comentario ? escHtml(r.comentario) : '<span class="text-on-surface-variant/70 italic">Sem comentário adicional.</span>';
+
+        const card = document.createElement('div');
+        card.className = 'bg-surface-container-lowest rounded-2xl p-space-md shadow-sm flex flex-col justify-between gap-space-sm hover:shadow-md transition-shadow border border-surface-container/60';
+        card.innerHTML = `
+          <div>
+            <div class="flex items-start gap-3 mb-2">
+              <img class="w-12 h-16 rounded object-cover shadow-sm bg-surface-container-high shrink-0" src="${coverUrl}" alt="${escHtml(title)}">
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center justify-between">
+                  <span class="text-amber-500 text-sm tracking-widest">${'★'.repeat(stars)}${'☆'.repeat(5 - stars)}</span>
+                  <span class="font-title-md text-xs text-primary font-bold bg-amber-50 px-1.5 py-0.5 rounded">${Number(r.nota).toFixed(1)}</span>
+                </div>
+                <h4 class="font-title-md text-sm text-primary-container font-bold truncate mt-0.5">${escHtml(title)}</h4>
+                <p class="font-body-sm text-[11px] text-on-surface-variant truncate">${escHtml(author)}</p>
+              </div>
+            </div>
+            
+            <div class="p-2.5 rounded-xl bg-surface-container-low text-xs text-on-surface-variant leading-relaxed mb-2">
+              ${comment}
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-2 border-t border-surface-container text-xs">
+            <span class="text-[11px] text-on-surface-variant">
+              ${r.dataAvaliacao ? new Date(r.dataAvaliacao).toLocaleDateString('pt-BR') : 'Avaliado'}
+            </span>
+            <div class="flex items-center gap-2">
+              <button onclick="openModal(${bId}, '${escHtml(title).replace(/'/g, "\\'")}', '${escHtml(author).replace(/'/g, "\\'")}', ${r.nota}, '${(r.comentario || '').replace(/'/g, "\\'").replace(/\n/g, ' ')}')"
+                class="px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-semibold flex items-center gap-1 transition-colors">
+                <span class="material-symbols-outlined text-[14px] text-secondary" translate="no">edit</span>
+                Editar
+              </button>
+              <button onclick="handleDeleteRating(${bId}, '${escHtml(title).replace(/'/g, "\\'")}')"
+                class="px-2.5 py-1 rounded-lg text-error hover:bg-error-container font-semibold flex items-center gap-1 transition-colors">
+                <span class="material-symbols-outlined text-[14px]" translate="no">delete</span>
+                Excluir
+              </button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function openModal(bookId, title, author, existingRating = 0, existingComment = '') {
+      currentBookId = bookId;
+      currentStar = existingRating ? Math.round(Number(existingRating)) : 5;
+      document.getElementById('modal-subtitle').textContent = existingRating ? 'Editar Avaliação' : 'Avaliar Livro';
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-author').textContent = author;
+      document.getElementById('modal-comment').value = existingComment || '';
+      document.getElementById('modal-error').classList.add('hidden');
+      updateStars(currentStar);
+
+      const modal = document.getElementById('rating-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('rating-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      currentBookId = null;
+      currentStar = 0;
+    }
+
+    function setStar(val) {
+      currentStar = val;
+      updateStars(val);
+    }
+
+    function updateStars(val) {
+      const labels = ['', '1 – Ruim', '2 – Regular', '3 – Bom', '4 – Muito Bom', '5 – Excelente!'];
+      document.getElementById('star-label').textContent = val ? labels[val] : '—';
+      document.querySelectorAll('#modal-stars .star-btn').forEach((btn, i) => {
+        btn.classList.toggle('empty', i >= val);
+      });
+    }
+
+    async function submitRating() {
+      if (!currentBookId || !currentStar) {
+        const errEl = document.getElementById('modal-error');
+        errEl.textContent = 'Selecione uma nota de 1 a 5 estrelas.';
+        errEl.classList.remove('hidden');
+        return;
+      }
+
+      const comment = document.getElementById('modal-comment').value.trim();
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="material-symbols-outlined text-[16px] animate-spin" translate="no">refresh</span> Salvando...';
+
+      try {
+        await AuroraAPI.rateBook(currentBookId, currentStar, comment);
+        AuroraAPI.showToast('Avaliação registrada com sucesso!', 'check_circle');
+        closeModal();
+        await Promise.all([loadReadBooks(), loadMyRatings()]);
+      } catch (e) {
+        const errEl = document.getElementById('modal-error');
+        errEl.textContent = e.message || 'Erro ao registrar avaliação.';
+        errEl.classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<span class="material-symbols-outlined text-[16px]" translate="no">star</span> Salvar Avaliação';
+      }
+    }
+
+    async function handleDeleteRating(bookId, title) {
+      if (!confirm(`Deseja realmente excluir a avaliação de "${title}"?`)) {
+        return;
+      }
+      try {
+        await AuroraAPI.deleteRating(bookId);
+        AuroraAPI.showToast('Avaliação excluída com sucesso.', 'delete');
+        await Promise.all([loadReadBooks(), loadMyRatings()]);
+      } catch (e) {
+        AuroraAPI.showToast(e.message || 'Erro ao excluir avaliação.', 'error', true);
+      }
+    }
+
+    function escHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+  </script>
 </body>
 </html>
