@@ -67,3 +67,9 @@ select id_livro, 'disponivel'::exemplar_status
 from livro
 cross join (values (1), (2), (3)) as copies(n)
 where not exists (select 1 from exemplar limit 1);
+
+-- 7. Chaves Dinâmicas Iniciais de Administrador e Bibliotecário
+insert into configuracao (chave, valor) values
+  ('codigo_admin', 'AURORA-ADM-7842-X9'),
+  ('codigo_biblio', 'AURORA-BIB-3914-K2')
+on conflict (chave) do nothing;

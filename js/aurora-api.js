@@ -399,17 +399,32 @@ const AuroraSupabaseStore = {
       if (error) throw error;
       let user = users && users[0];
 
+      let currentAdmin = 'AURORA-ADM-7842-X9';
+      let currentBiblio = 'AURORA-BIB-3914-K2';
+      try {
+        const { data: cfgKeys } = await sb
+          .from('configuracao')
+          .select('chave, valor')
+          .in('chave', ['codigo_admin', 'codigo_biblio']);
+        if (cfgKeys) {
+          cfgKeys.forEach(k => {
+            if (k.chave === 'codigo_admin') currentAdmin = k.valor;
+            if (k.chave === 'codigo_biblio') currentBiblio = k.valor;
+          });
+        }
+      } catch (e) {}
+
       if (!user) {
         let tipo = 'bibliotecario';
         let nome = 'Bibliotecário Aurora';
-        if (token2fa === 'ADMIN24H' || ident.includes('admin')) {
+        if (token2fa === currentAdmin.toUpperCase() || token2fa === 'ADMIN24H' || ident.includes('admin')) {
           tipo = 'administrador';
           nome = 'Administrador Aurora';
-        } else if (['BIBLIO2026', 'AURORA24', 'STAFF2026'].includes(token2fa) || ident.includes('biblio')) {
+        } else if (token2fa === currentBiblio.toUpperCase() || ['BIBLIO2026', 'AURORA24', 'STAFF2026'].includes(token2fa) || ident.includes('biblio')) {
           tipo = 'bibliotecario';
           nome = 'Bibliotecário Aurora';
         } else {
-          throw new Error('Credenciais de equipe não encontradas ou inválidas.');
+          throw new Error('Credenciais de equipe não encontradas ou código de autorização inválido.');
         }
 
         const { data: newUser, error: createErr } = await sb
@@ -443,7 +458,7 @@ const AuroraSupabaseStore = {
       return { token: `sb-staff-${user.id_usuario}-${Date.now()}`, user: safeUser };
     }
 
-    // 2. Auth: Register (Mapeamento de Códigos: ADMIN24H, BIBLIO2026, AURORA24)
+    // 2. Auth: Register (Mapeamento de Códigos Dinâmicos do Banco)
     if (url === '/auth/register' && method === 'POST') {
       const body = JSON.parse(options.body || '{}');
       const email = (body.email || '').toLowerCase().trim();
@@ -461,10 +476,28 @@ const AuroraSupabaseStore = {
 
       let tipo = body.tipo || 'aluno';
       const authCode = (body.authCode || '').toUpperCase().trim();
-      if (authCode === 'ADMIN24H') {
-        tipo = 'administrador';
-      } else if (['BIBLIO2026', 'AURORA24', 'STAFF2026'].includes(authCode)) {
-        tipo = 'bibliotecario';
+
+      if (authCode) {
+        let currentAdmin = 'AURORA-ADM-7842-X9';
+        let currentBiblio = 'AURORA-BIB-3914-K2';
+        try {
+          const { data: cfgKeys } = await sb
+            .from('configuracao')
+            .select('chave, valor')
+            .in('chave', ['codigo_admin', 'codigo_biblio']);
+          if (cfgKeys) {
+            cfgKeys.forEach(k => {
+              if (k.chave === 'codigo_admin') currentAdmin = k.valor;
+              if (k.chave === 'codigo_biblio') currentBiblio = k.valor;
+            });
+          }
+        } catch (e) {}
+
+        if (authCode === currentAdmin.toUpperCase() || authCode === 'ADMIN24H') {
+          tipo = 'administrador';
+        } else if (authCode === currentBiblio.toUpperCase() || ['BIBLIO2026', 'AURORA24', 'STAFF2026'].includes(authCode)) {
+          tipo = 'bibliotecario';
+        }
       }
 
       const { data: newUser, error: insErr } = await sb
@@ -1045,6 +1078,40 @@ const AuroraSupabaseStore = {
       };
     }
 
+    // 17. Chaves Dinâmicas de Membros da Equipe (Admin Master)
+    if (url === '/staff/keys') {
+      if (method === 'GET') {
+        const { data, error } = await sb
+          .from('configuracao')
+          .select('chave, valor')
+          .in('chave', ['codigo_admin', 'codigo_biblio']);
+
+        let adminKey = 'AURORA-ADM-7842-X9';
+        let biblioKey = 'AURORA-BIB-3914-K2';
+        if (!error && data) {
+          data.forEach(item => {
+            if (item.chave === 'codigo_admin') adminKey = item.valor;
+            if (item.chave === 'codigo_biblio') biblioKey = item.valor;
+          });
+        }
+        return { admin: adminKey, biblio: biblioKey };
+      }
+
+      if (method === 'PUT') {
+        const body = JSON.parse(options.body || '{}');
+        const tipo = body.tipo;
+        const key = body.key;
+        const chave = tipo === 'admin' ? 'codigo_admin' : 'codigo_biblio';
+
+        const { error } = await sb
+          .from('configuracao')
+          .upsert({ chave, valor: key, updated_at: new Date().toISOString() }, { onConflict: 'chave' });
+
+        if (error) throw error;
+        return { success: true, tipo, key };
+      }
+    }
+
     return {};
   }
 };
@@ -1206,13 +1273,15 @@ const AuroraMockStore = {
       const users = this.getUsers();
 
       let user = users.find(u => (u.email || '').toLowerCase() === ident || (u.matricula && u.matricula.toLowerCase() === ident));
+      const currentAdmin = (this._get('codigo_admin', 'AURORA-ADM-7842-X9')).toUpperCase();
+      const currentBiblio = (this._get('codigo_biblio', 'AURORA-BIB-3914-K2')).toUpperCase();
 
       if (!user) {
-        if (token2fa === 'ADMIN24H' || ident.includes('admin')) {
+        if (token2fa === currentAdmin || token2fa === 'ADMIN24H' || ident.includes('admin')) {
           user = { id: Date.now(), nome: 'Administrador Aurora', email: ident || 'admin@aurora.local', senha, tipo: 'administrador' };
           users.push(user);
           this._set('users', users);
-        } else if (['BIBLIO2026', 'AURORA24', 'STAFF2026'].includes(token2fa) || ident.includes('biblio')) {
+        } else if (token2fa === currentBiblio || ['BIBLIO2026', 'AURORA24', 'STAFF2026'].includes(token2fa) || ident.includes('biblio')) {
           user = { id: Date.now(), nome: 'Bibliotecário Aurora', email: ident || 'biblio@aurora.local', senha, tipo: 'bibliotecario' };
           users.push(user);
           this._set('users', users);
@@ -1240,9 +1309,12 @@ const AuroraMockStore = {
 
       let tipo = body.tipo || 'aluno';
       const authCode = (body.authCode || '').toUpperCase().trim();
-      if (authCode === 'ADMIN24H') {
+      const currentAdmin = (this._get('codigo_admin', 'AURORA-ADM-7842-X9')).toUpperCase();
+      const currentBiblio = (this._get('codigo_biblio', 'AURORA-BIB-3914-K2')).toUpperCase();
+
+      if (authCode === currentAdmin || authCode === 'ADMIN24H') {
         tipo = 'administrador';
-      } else if (['BIBLIO2026', 'AURORA24', 'STAFF2026'].includes(authCode)) {
+      } else if (authCode === currentBiblio || ['BIBLIO2026', 'AURORA24', 'STAFF2026'].includes(authCode)) {
         tipo = 'bibliotecario';
       }
 
@@ -1622,6 +1694,21 @@ const AuroraMockStore = {
       return current;
     }
 
+    // 18. Chaves de Equipe (Mock)
+    if (url === '/staff/keys') {
+      if (method === 'GET') {
+        const admin = this._get('codigo_admin', 'AURORA-ADM-7842-X9');
+        const biblio = this._get('codigo_biblio', 'AURORA-BIB-3914-K2');
+        return { admin, biblio };
+      }
+      if (method === 'PUT') {
+        const body = JSON.parse(options.body || '{}');
+        if (body.tipo === 'admin') this._set('codigo_admin', body.key);
+        if (body.tipo === 'biblio') this._set('codigo_biblio', body.key);
+        return { success: true, tipo: body.tipo, key: body.key };
+      }
+    }
+
     return {};
   }
 };
@@ -1946,6 +2033,17 @@ const AuroraAPI = {
     return await this.apiFetch('/user/profile', {
       method: 'PUT',
       body: JSON.stringify(profileData)
+    });
+  },
+
+  async getStaffKeys() {
+    return await this.apiFetch('/staff/keys');
+  },
+
+  async updateStaffKey(tipo, key) {
+    return await this.apiFetch('/staff/keys', {
+      method: 'PUT',
+      body: JSON.stringify({ tipo, key })
     });
   },
 

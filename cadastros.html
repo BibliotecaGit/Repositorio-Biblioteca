@@ -86,7 +86,7 @@
 <span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Token do Dia</span>
 <span class="font-title-lg text-title-lg font-bold text-primary-container tracking-widest font-mono" id="key-admin">AURORA-ADM-7842-X9</span>
 </div>
-<button class="p-2.5 rounded-xl bg-surface-container-lowest hover:bg-secondary-fixed text-primary-container transition-colors shadow-sm" onclick="navigator.clipboard.writeText('AURORA-ADM-7842-X9'); alert('Chave de Administrador copiada!');" title="Copiar Chave" type="button">
+<button class="p-2.5 rounded-xl bg-surface-container-lowest hover:bg-secondary-fixed text-primary-container transition-colors shadow-sm" onclick="copyAdminKey()" title="Copiar Chave" type="button">
 <span class="material-symbols-outlined text-[20px]" translate="no">content_copy</span>
 </button>
 </div>
@@ -99,11 +99,11 @@
 </div>
 </div>
 <div class="flex items-center gap-space-sm pt-space-sm">
-<button class="flex-1 inline-flex items-center justify-center gap-2 px-space-md py-2.5 rounded-xl bg-primary-container text-on-primary hover:bg-on-primary-fixed-variant font-label-md text-label-md transition-all shadow-sm" onclick="navigator.clipboard.writeText('AURORA-ADM-7842-X9'); alert('Chave de Administrador copiada com sucesso!');" type="button">
+<button class="flex-1 inline-flex items-center justify-center gap-2 px-space-md py-2.5 rounded-xl bg-primary-container text-on-primary hover:bg-on-primary-fixed-variant font-label-md text-label-md transition-all shadow-sm" onclick="copyAdminKey()" type="button">
 <span class="material-symbols-outlined text-[18px]" translate="no">content_copy</span>
 <span class="">Copiar Código</span>
 </button>
-<button class="inline-flex items-center justify-center gap-2 px-space-md py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-primary-container font-label-md text-label-md transition-all" onclick="document.getElementById('key-admin').innerText='AURORA-ADM-' + Math.floor(1000 + Math.random() * 9000) + '-W3';" type="button">
+<button class="inline-flex items-center justify-center gap-2 px-space-md py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-primary-container font-label-md text-label-md transition-all" onclick="generateNewAdminKey()" type="button">
 <span class="material-symbols-outlined text-[18px]" translate="no">autorenew</span>
 <span class="">Gerar Nova Chave</span>
 </button>
@@ -135,7 +135,7 @@
 <span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Token do Dia</span>
 <span class="font-title-lg text-title-lg font-bold text-primary-container tracking-widest font-mono" id="key-biblio">AURORA-BIB-3914-K2</span>
 </div>
-<button class="p-2.5 rounded-xl bg-surface-container-lowest hover:bg-secondary-fixed text-primary-container transition-colors shadow-sm" onclick="navigator.clipboard.writeText('AURORA-BIB-3914-K2'); alert('Chave de Bibliotecário copiada!');" title="Copiar Chave" type="button">
+<button class="p-2.5 rounded-xl bg-surface-container-lowest hover:bg-secondary-fixed text-primary-container transition-colors shadow-sm" onclick="copyBiblioKey()" title="Copiar Chave" type="button">
 <span class="material-symbols-outlined text-[20px]" translate="no">content_copy</span>
 </button>
 </div>
@@ -148,11 +148,11 @@
 </div>
 </div>
 <div class="flex items-center gap-space-sm pt-space-sm">
-<button class="flex-1 inline-flex items-center justify-center gap-2 px-space-md py-2.5 rounded-xl bg-primary-container text-on-primary hover:bg-on-primary-fixed-variant font-label-md text-label-md transition-all shadow-sm" onclick="navigator.clipboard.writeText('AURORA-BIB-3914-K2'); alert('Chave de Bibliotecário copiada com sucesso!');" type="button">
+<button class="flex-1 inline-flex items-center justify-center gap-2 px-space-md py-2.5 rounded-xl bg-primary-container text-on-primary hover:bg-on-primary-fixed-variant font-label-md text-label-md transition-all shadow-sm" onclick="copyBiblioKey()" type="button">
 <span class="material-symbols-outlined text-[18px]" translate="no">content_copy</span>
 <span class="">Copiar Código</span>
 </button>
-<button class="inline-flex items-center justify-center gap-2 px-space-md py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-primary-container font-label-md text-label-md transition-all" onclick="document.getElementById('key-biblio').innerText='AURORA-BIB-' + Math.floor(1000 + Math.random() * 9000) + '-P8';" type="button">
+<button class="inline-flex items-center justify-center gap-2 px-space-md py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-primary-container font-label-md text-label-md transition-all" onclick="generateNewBiblioKey()" type="button">
 <span class="material-symbols-outlined text-[18px]" translate="no">autorenew</span>
 <span class="">Gerar Nova Chave</span>
 </button>
@@ -660,10 +660,75 @@
   <script src="js/supabase-config.js"></script>
   <script src="js/aurora-api.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', async () => {
     if (window.AuroraAPI) {
       AuroraAPI.initSidebar('cadastros');
+      try {
+        const keys = await AuroraAPI.getStaffKeys();
+        if (keys) {
+          if (keys.admin) document.getElementById('key-admin').innerText = keys.admin;
+          if (keys.biblio) document.getElementById('key-biblio').innerText = keys.biblio;
+        }
+      } catch (e) {
+        console.warn('Erro ao carregar chaves:', e);
+      }
     }
   });
+
+  function copyAdminKey() {
+    const key = document.getElementById('key-admin').innerText.trim();
+    navigator.clipboard.writeText(key);
+    if (window.AuroraAPI) {
+      AuroraAPI.showToast('Chave de Administrador copiada: ' + key, 'content_copy');
+    } else {
+      alert('Chave copiada: ' + key);
+    }
+  }
+
+  function copyBiblioKey() {
+    const key = document.getElementById('key-biblio').innerText.trim();
+    navigator.clipboard.writeText(key);
+    if (window.AuroraAPI) {
+      AuroraAPI.showToast('Chave de Bibliotecário copiada: ' + key, 'content_copy');
+    } else {
+      alert('Chave copiada: ' + key);
+    }
+  }
+
+  async function generateNewAdminKey() {
+    const letters = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+    const randLetter = letters[Math.floor(Math.random() * letters.length)];
+    const randNum = Math.floor(1 + Math.random() * 9);
+    const newKey = 'AURORA-ADM-' + Math.floor(1000 + Math.random() * 9000) + '-' + randLetter + randNum;
+    try {
+      if (window.AuroraAPI) {
+        await AuroraAPI.updateStaffKey('admin', newKey);
+        document.getElementById('key-admin').innerText = newKey;
+        AuroraAPI.showToast('Nova Chave de Administrador salva no banco: ' + newKey, 'check_circle');
+      } else {
+        document.getElementById('key-admin').innerText = newKey;
+      }
+    } catch (e) {
+      if (window.AuroraAPI) AuroraAPI.showToast('Erro ao atualizar: ' + e.message, 'error', true);
+    }
+  }
+
+  async function generateNewBiblioKey() {
+    const letters = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+    const randLetter = letters[Math.floor(Math.random() * letters.length)];
+    const randNum = Math.floor(1 + Math.random() * 9);
+    const newKey = 'AURORA-BIB-' + Math.floor(1000 + Math.random() * 9000) + '-' + randLetter + randNum;
+    try {
+      if (window.AuroraAPI) {
+        await AuroraAPI.updateStaffKey('biblio', newKey);
+        document.getElementById('key-biblio').innerText = newKey;
+        AuroraAPI.showToast('Nova Chave de Bibliotecário salva no banco: ' + newKey, 'check_circle');
+      } else {
+        document.getElementById('key-biblio').innerText = newKey;
+      }
+    } catch (e) {
+      if (window.AuroraAPI) AuroraAPI.showToast('Erro ao atualizar: ' + e.message, 'error', true);
+    }
+  }
 </script>
 </body></html>

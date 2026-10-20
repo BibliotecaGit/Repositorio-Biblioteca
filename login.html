@@ -215,12 +215,12 @@
           </div>
           <div class="relative">
             <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]" translate="no">verified_user</span>
-            <input class="w-full pl-11 pr-4 py-2.5 bg-surface-container-lowest rounded-xl text-sm text-on-surface placeholder:text-outline focus:outline-none transition-colors uppercase" id="reg-auth-code" placeholder="Insira o código de 24h ou deixe em branco" type="text" oninput="validateAuthCode()">
+            <input class="w-full pl-11 pr-4 py-2.5 bg-surface-container-lowest rounded-xl text-sm text-on-surface placeholder:text-outline focus:outline-none transition-colors uppercase" id="reg-auth-code" placeholder="Ex: AURORA-ADM-7842-X9 ou deixe em branco" type="text" oninput="validateAuthCode()">
           </div>
-          <p class="text-[11px] text-on-surface-variant leading-tight">Deixe em branco para cadastrar como Aluno/Leitor. Insira o código diário do admin caso pertença à equipe.</p>
+          <p class="text-[11px] text-on-surface-variant leading-tight">Deixe em branco para cadastrar como Aluno/Leitor. Insira o código da equipe gerado no painel do administrador caso pertença à equipe.</p>
           <div id="auth-code-error" class="hidden p-2 rounded-lg bg-error-container text-error text-[11px] font-body leading-tight flex items-start gap-1.5 mt-1">
             <span class="material-symbols-outlined text-[16px] shrink-0" translate="no">error</span>
-            <span>Código de 24h inválido. Deixe em branco para criar conta de aluno.</span>
+            <span>Código de autorização inválido. Deixe em branco para criar conta de aluno.</span>
           </div>
           <div id="auth-code-success" class="hidden p-2 rounded-lg bg-secondary-fixed text-on-secondary-fixed text-[11px] font-body leading-tight flex items-center gap-1.5 mt-1">
             <span class="material-symbols-outlined text-[16px] text-secondary shrink-0" translate="no">check_circle</span>
@@ -301,6 +301,16 @@
 
     let currentRole = 'reader';
     let currentAuthTab = 'login';
+    let validStaffKeys = { admin: 'AURORA-ADM-7842-X9', biblio: 'AURORA-BIB-3914-K2' };
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        if (window.AuroraAPI) {
+          const keys = await AuroraAPI.getStaffKeys();
+          if (keys) validStaffKeys = keys;
+        }
+      } catch (e) {}
+    });
 
     function showAlert(text, type = 'info') {
       const alertBox = document.getElementById('auth-alert');
@@ -415,14 +425,17 @@
         return true;
       }
 
-      if (val === 'ADMIN24H') {
+      const adminKey = (validStaffKeys.admin || 'AURORA-ADM-7842-X9').toUpperCase();
+      const biblioKey = (validStaffKeys.biblio || 'AURORA-BIB-3914-K2').toUpperCase();
+
+      if (val === adminKey || val === 'ADMIN24H') {
         errBox.classList.add('hidden');
         successBox.classList.remove('hidden');
         successText.textContent = 'Código Especial Válido: Perfil de Administrador será criado!';
         submitBtn.disabled = false;
         submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
         return true;
-      } else if (['BIBLIO2026', 'AURORA24', 'STAFF2026'].includes(val)) {
+      } else if (val === biblioKey || ['BIBLIO2026', 'AURORA24', 'STAFF2026'].includes(val)) {
         errBox.classList.add('hidden');
         successBox.classList.remove('hidden');
         successText.textContent = 'Código Especial Válido: Perfil de Bibliotecário será criado!';
