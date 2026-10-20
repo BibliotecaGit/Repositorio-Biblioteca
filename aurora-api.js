@@ -593,6 +593,11 @@ const AuroraSupabaseStore = {
       const genero = body.genero || 'Geral';
       const ehInfantil = body.ehInfantil ?? (genero.toLowerCase().includes('infantil'));
 
+      let capaUrl = body.capaUrl || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80';
+      if (typeof capaUrl === 'string' && (capaUrl.startsWith('data:') || capaUrl.length > 450)) {
+        capaUrl = 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&q=80';
+      }
+
       const { data: newBook, error: bookErr } = await sb
         .from('livro')
         .insert({
@@ -603,7 +608,7 @@ const AuroraSupabaseStore = {
           valor_livro: Number(body.valorLivro || 38.00),
           preco_aluguel: Number(body.precoAluguel || 8.90),
           faixa_tamanho: faixa,
-          capa_url: body.capaUrl || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80',
+          capa_url: capaUrl,
           data_lancamento: new Date().toISOString().split('T')[0],
           avaliacao_media: 5.0,
           total_avaliacoes: 1,

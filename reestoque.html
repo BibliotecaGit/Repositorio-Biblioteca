@@ -177,14 +177,14 @@
 <label class="font-label-md text-label-md text-on-surface-variant font-semibold">ISBN-13 ou Tombo *</label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3.5 top-3 text-[18px] text-outline" translate="no">barcode</span>
-<input class="w-full pl-10 pr-3 py-2.5 bg-surface-container-low rounded-xl text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 transition-all" placeholder="978-65-8798..." required="" type="text">
+<input id="bookIsbn" class="w-full pl-10 pr-3 py-2.5 bg-surface-container-low rounded-xl text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 transition-all" placeholder="978-65-8798..." type="text">
 </div>
 </div>
 <div class="space-y-1.5">
 <label class="font-label-md text-label-md text-on-surface-variant font-semibold">Localização Física *</label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3.5 top-3 text-[18px] text-outline" translate="no">shelves</span>
-<input class="w-full pl-10 pr-3 py-2.5 bg-surface-container-low rounded-xl text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 transition-all" placeholder="Ex: Prateleira 03-A" required="" type="text">
+<input id="bookLocation" class="w-full pl-10 pr-3 py-2.5 bg-surface-container-low rounded-xl text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 transition-all" placeholder="Ex: Prateleira 03-A" type="text">
 </div>
 </div>
 <div class="space-y-1.5">
@@ -598,27 +598,26 @@
         });
       }
 
-      showToast('Obra Publicada!', "" foi salva no Supabase com  exemplares ativos.);
+      showToast('Obra Publicada!', '"' + title + '" foi salva no Supabase com ' + copies + ' exemplares ativos.');
 
       const recentList = document.getElementById('recentList');
       if (recentList) {
         const newItem = document.createElement('div');
         newItem.className = 'flex items-center justify-between p-2.5 rounded-xl bg-secondary-fixed/30 hover:bg-surface-container-low transition-colors';
         newItem.innerHTML = 
-          <div class="flex items-center gap-3 min-w-0">
-            <div class="w-10 h-14 rounded bg-primary-container shadow-sm flex items-center justify-center text-surface-bright shrink-0 overflow-hidden">
-              <img src="" class="w-full h-full object-cover" onerror="this.style.display='none'">
-            </div>
-            <div class="flex flex-col min-w-0">
-              <span class="font-title-md text-title-md text-on-surface truncate font-semibold"></span>
-              <span class="font-body-sm text-body-sm text-on-surface-variant truncate"> &bull; Agora mesmo</span>
-            </div>
-          </div>
-          <span class="shrink-0 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary text-on-secondary text-label-sm font-label-sm font-semibold">
-            <span class="w-1.5 h-1.5 rounded-full bg-surface-bright"></span>
-            Salvo no Supabase
-          </span>
-        ;
+          '<div class="flex items-center gap-3 min-w-0">' +
+            '<div class="w-10 h-14 rounded bg-primary-container shadow-sm flex items-center justify-center text-surface-bright shrink-0 overflow-hidden">' +
+              '<img src="' + coverUrl + '" class="w-full h-full object-cover" onerror="this.style.display=\'none\'">' +
+            '</div>' +
+            '<div class="flex flex-col min-w-0">' +
+              '<span class="font-title-md text-title-md text-on-surface truncate font-semibold">' + title + '</span>' +
+              '<span class="font-body-sm text-body-sm text-on-surface-variant truncate">' + author + ' &bull; Agora mesmo</span>' +
+            '</div>' +
+          '</div>' +
+          '<span class="shrink-0 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary text-on-secondary text-label-sm font-label-sm font-semibold">' +
+            '<span class="w-1.5 h-1.5 rounded-full bg-surface-bright"></span>' +
+            'Salvo no Supabase' +
+          '</span>';
         recentList.insertBefore(newItem, recentList.firstChild);
       }
 
