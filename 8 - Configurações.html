@@ -13,7 +13,7 @@
 <p class="font-body-md text-body-md text-on-surface-variant">Gerencie suas preferências pessoais, leitura e privacidade com total autonomia.</p>
 </div>
 <!-- Quick Action Feedback Indicator -->
-<div class="opacity-0 transition-opacity duration-300 flex items-center gap-space-xs px-space-md py-space-xs rounded-xl bg-surface-container text-primary-container shadow-sm" id="saveNotification">
+<div class="transition-opacity duration-300 flex items-center gap-space-xs px-space-md py-space-xs rounded-xl bg-surface-container text-primary-container shadow-sm opacity-0" id="saveNotification">
 <span class="material-symbols-outlined text-secondary text-[20px]">check_circle</span>
 <span class="font-label-sm text-label-sm">Alterações salvas automaticamente</span>
 </div>
@@ -23,30 +23,18 @@
 <!-- Left Vertical Navigation Tabs -->
 <aside class="lg:col-span-4 flex flex-col gap-space-md sticky top-28">
 <div class="bg-surface-container-lowest rounded-xl p-space-sm shadow-sm flex flex-col gap-space-xs">
-<button class="settings-tab active flex items-center justify-between p-space-md rounded-lg text-left transition-all bg-primary-container text-on-primary font-label-lg text-label-lg shadow-sm" id="tab-usuario" onclick="switchSettingsTab('usuario')" type="button">
+<button class="settings-tab flex items-center justify-between p-space-md rounded-lg text-left transition-all text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-lg text-label-lg" id="tab-usuario" onclick="switchSettingsTab('usuario')" type="button">
 <div class="flex items-center gap-space-sm">
-<span class="material-symbols-outlined text-secondary-fixed">badge</span>
+<span class="material-symbols-outlined text-secondary">badge</span>
 <span class="">Informações de Usuário</span>
 </div>
 <span class="material-symbols-outlined text-[18px]">chevron_right</span>
 </button>
-<button class="settings-tab flex items-center justify-between p-space-md rounded-lg text-left transition-all text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-lg text-label-lg" id="tab-aparencia" onclick="switchSettingsTab('aparencia')" type="button">
+
+
+<button class="settings-tab active flex items-center justify-between p-space-md rounded-lg text-left transition-all bg-primary-container text-on-primary font-label-lg text-label-lg shadow-sm" id="tab-regiao" onclick="switchSettingsTab('regiao')" type="button">
 <div class="flex items-center gap-space-sm">
-<span class="material-symbols-outlined text-secondary">palette</span>
-<span class="">Aparência &amp; Tema</span>
-</div>
-<span class="material-symbols-outlined text-[18px] opacity-60">chevron_right</span>
-</button>
-<button class="settings-tab flex items-center justify-between p-space-md rounded-lg text-left transition-all text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-lg text-label-lg" id="tab-idioma" onclick="switchSettingsTab('idioma')" type="button">
-<div class="flex items-center gap-space-sm">
-<span class="material-symbols-outlined text-secondary">translate</span>
-<span class="">Idioma do Acervo</span>
-</div>
-<span class="material-symbols-outlined text-[18px] opacity-60">chevron_right</span>
-</button>
-<button class="settings-tab flex items-center justify-between p-space-md rounded-lg text-left transition-all text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface font-label-lg text-label-lg" id="tab-regiao" onclick="switchSettingsTab('regiao')" type="button">
-<div class="flex items-center gap-space-sm">
-<span class="material-symbols-outlined text-secondary">near_me</span>
+<span class="material-symbols-outlined text-secondary-fixed">near_me</span>
 <span class="">Região &amp; Ponto de Entrega</span>
 </div>
 <span class="material-symbols-outlined text-[18px] opacity-60">chevron_right</span>
@@ -60,25 +48,12 @@
 </button>
 </div>
 <!-- Membership Mini-Card Badge -->
-<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-sm shadow-sm relative overflow-hidden">
-<div class="flex items-center justify-between">
-<span class="px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">Assinatura Ativa</span>
-<span class="material-symbols-outlined text-secondary">verified</span>
-</div>
-<div class="flex flex-col">
-<h4 class="font-title-md text-title-md text-primary-container font-bold">Plano Leitor Aurora Plus</h4>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Até 4 empréstimos físicos simultâneos e entregas prioritárias com frete fixo.</p>
-</div>
-<div class="pt-space-xs flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
-<span class="">Renovação programada</span>
-<span class="font-semibold text-primary-container">12/11/2025</span>
-</div>
-</div>
+
 </aside>
 <!-- Right Form / Settings Area -->
 <main class="lg:col-span-8 flex flex-col gap-space-lg">
 <!-- SECTION: Informações de Usuário (Active by default) -->
-<section class="settings-panel flex flex-col gap-space-xl" id="panel-usuario">
+<section class="settings-panel flex-col gap-space-xl hidden" id="panel-usuario">
 <!-- Section Profile Header -->
 <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-lg">
 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md">
@@ -156,7 +131,7 @@
 </div>
 </section>
 <!-- SECTION: Aparência & Dark Mode -->
-<section class="settings-panel hidden flex-col gap-space-lg" id="panel-aparencia">
+<section class="settings-panel flex-col gap-space-lg hidden" id="panel-aparencia">
 <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-lg">
 <div class="flex items-center gap-space-sm">
 <span class="material-symbols-outlined text-secondary">dark_mode</span>
@@ -174,8 +149,8 @@
                 </p>
 </div>
 <!-- Interactive Custom Toggle -->
-<button aria-checked="false" class="relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full bg-surface-container-highest transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-secondary" id="darkModeToggle" onclick="toggleDarkModeSwitch()" role="switch" type="button">
-<span class="pointer-events-none inline-block h-6 w-6 translate-x-1 translate-y-1 transform rounded-full bg-surface-container-lowest shadow-md transition duration-300 ease-in-out flex items-center justify-center" id="darkModeKnob">
+<button aria-checked="false" class="relative inline-flex h-8 w-14 shrink-0 cursor-pointer rounded-full transition-colors duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-secondary bg-surface-container-highest" id="darkModeToggle" onclick="toggleDarkModeSwitch()" role="switch" type="button">
+<span class="pointer-events-none inline-block h-6 w-6 translate-y-1 transform rounded-full bg-surface-container-lowest shadow-md transition duration-300 ease-in-out flex items-center justify-center translate-x-1" id="darkModeKnob">
 <span class="material-symbols-outlined text-[16px] text-on-surface-variant" id="darkModeIcon">light_mode</span>
 </span>
 </button>
@@ -210,7 +185,7 @@
 </div>
 </section>
 <!-- SECTION: Idioma -->
-<section class="settings-panel hidden flex-col gap-space-lg" id="panel-idioma">
+<section class="settings-panel flex-col gap-space-lg hidden" id="panel-idioma">
 <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-lg">
 <div class="flex items-center gap-space-sm">
 <span class="material-symbols-outlined text-secondary">language</span>
@@ -255,7 +230,7 @@
 </div>
 </section>
 <!-- SECTION: Região no Brasil -->
-<section class="settings-panel hidden flex-col gap-space-lg" id="panel-regiao">
+<section class="settings-panel flex-col gap-space-lg flex" id="panel-regiao">
 <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-lg">
 <div class="flex items-center gap-space-sm">
 <span class="material-symbols-outlined text-secondary">explore</span>
@@ -524,6 +499,8 @@
     }
   }
 </script></main></div>
+
+
 
 
 
