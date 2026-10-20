@@ -3,9 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Aurora — Portal do Leitor</title>
+  <title>Biblioteca Aurora – Acesso & Cadastro</title>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    @layer base { html,body { margin:0; padding:0; } body { overscroll-behavior:none; } }
+    ::-webkit-scrollbar { display:none; }
+  </style>
   <script src="https://cdn.tailwindcss.com"></script>
   <script id="tailwind-config">
     tailwind.config = {
@@ -16,6 +20,7 @@
             "primary": "#00021d",
             "primary-container": "#0f194a",
             "on-primary": "#ffffff",
+            "primary-fixed": "#dee0ff",
             "secondary": "#25638f",
             "secondary-container": "#95ccfe",
             "secondary-fixed": "#cde5ff",
@@ -23,8 +28,10 @@
             "surface": "#fbf9f3",
             "surface-container-low": "#f5f3ee",
             "surface-container": "#f0eee8",
+            "surface-container-high": "#eae8e2",
             "surface-container-lowest": "#ffffff",
             "outline": "#767680",
+            "outline-variant": "#c6c5d0",
             "on-surface": "#1b1c19",
             "on-surface-variant": "#46464f",
             "error": "#ba1a1a",
@@ -32,253 +39,348 @@
             "on-error-container": "#93000a"
           },
           fontFamily: {
-            "body-md": ["Open Sans"],
-            "body-sm": ["Open Sans"],
-            "headline-sm": ["Montserrat"],
-            "label-md": ["Montserrat"],
-            "label-lg": ["Montserrat"],
-            "label-sm": ["Montserrat"]
-          },
-          spacing: {
-            "space-sm": "0.5rem",
-            "space-md": "1rem",
-            "space-lg": "1.5rem"
+            "display": ["Montserrat", "sans-serif"],
+            "body": ["Open Sans", "sans-serif"]
           }
         }
       }
     };
   </script>
 </head>
-<body class="bg-surface font-body-md text-on-surface antialiased min-h-screen flex items-center justify-center p-4">
+<body class="bg-background font-body text-on-surface antialiased min-h-screen flex items-center justify-center p-4 bg-[#fbf9f3]">
+  <main class="w-full max-w-md bg-surface-container-lowest rounded-2xl shadow-xl p-6 md:p-8 border border-surface-container/80">
+    <div class="flex flex-col w-full">
+      <!-- Cabeçalho Institucional -->
+      <div class="flex flex-col items-center text-center mb-6">
+        <div class="relative w-16 h-16 mb-2 rounded-2xl overflow-hidden shadow-sm bg-surface-container-low flex items-center justify-center p-2">
+          <img alt="Biblioteca Aurora" class="w-full h-full object-contain" src="img/logo.svg" onerror="this.src='img/logo.svg'">
+        </div>
+        <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed mb-1">
+          <span class="material-symbols-outlined text-[16px] text-secondary" translate="no">menu_book</span>
+          <span class="font-label-sm uppercase tracking-widest text-[10px] font-bold" translate="no">Portal Oficial Aurora</span>
+        </div>
+        <h1 class="font-display font-bold text-2xl text-primary tracking-tight mt-1">Biblioteca Aurora</h1>
+        <p class="text-xs text-on-surface-variant max-w-xs mt-1">Seu refúgio literário contemporâneo com acervo físico sob curadoria.</p>
 
-  <main class="w-full max-w-md bg-surface-container-lowest rounded-3xl p-6 sm:p-8 shadow-2xl border border-surface-container/60 my-8">
-    <!-- Header com Logo Editorial -->
-    <div class="flex flex-col items-center text-center mb-space-lg">
-      <div class="relative w-20 h-20 mb-space-sm rounded-full overflow-hidden shadow-sm bg-surface-container-low flex items-center justify-center">
-        <img alt="Biblioteca Aurora" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4_hfr9QgE7zVzPZcFdzSCr_OMhZJZHUmproxdnurvcw10WupCiLg0jxPaH4ZOphd5wMNpkXOffVNQG1LQ33dXlcynF27AKwSPgP_nmgxSgRy_Rr_sd1hFtc1RfrGqvdyZx35fjYyreedJuTkako80KzpgfE0IDzgHb3gXNDYvQ9KV4LNeObCgt9Rcu0fpUeKacMHGYQleKgerES_5nk1j6p_s0xn-fDeWkiQ-YXL2_FMrukEu9ZLOqv_UB76v0yl83pQ">
-      </div>
-      <span class="font-label-sm text-secondary uppercase tracking-widest text-[10px]">Portal do Leitor</span>
-      <h1 class="font-headline-sm text-primary tracking-tight mt-1 text-2xl font-bold">Biblioteca Aurora</h1>
-      <p class="font-body-sm text-on-surface-variant max-w-xs mt-1 text-xs">
-        Seu refúgio literário contemporâneo com acervo físico compartilhado e rotatividade justa.
-      </p>
-    </div>
-
-    <!-- Seletor de Abas Login / Cadastro -->
-    <div class="grid grid-cols-2 p-1 bg-surface-container rounded-xl mb-space-lg">
-      <button class="py-2.5 px-3 rounded-lg font-label-md transition-all duration-200 flex items-center justify-center gap-1.5 bg-surface-container-lowest text-primary shadow-sm" id="tab-login-btn" onclick="switchAuthTab('login')" type="button">
-        <span class="material-symbols-outlined text-[18px]">key</span>
-        <span>Entrar na Conta</span>
-      </button>
-      <button class="py-2.5 px-3 rounded-lg font-label-md transition-all duration-200 hover:text-primary flex items-center justify-center gap-1.5 text-on-surface-variant" id="tab-register-btn" onclick="switchAuthTab('register')" type="button">
-        <span class="material-symbols-outlined text-[18px]">person_add</span>
-        <span>Novo Cadastro</span>
-      </button>
-    </div>
-
-    <!-- Alert / Notificação de Status e Erros -->
-    <div class="hidden mb-4 p-3.5 rounded-xl flex items-center gap-2.5 font-body-sm text-xs transition-all duration-300" id="auth-alert">
-      <span class="material-symbols-outlined text-[20px] shrink-0" id="auth-alert-icon">info</span>
-      <span id="auth-alert-text"></span>
-    </div>
-
-    <!-- 1. Formulário de Login -->
-    <form class="flex flex-col space-y-4" id="form-login" onsubmit="handleLoginSubmit(event)">
-      <div>
-        <label class="block font-label-md text-primary mb-1.5 text-xs font-semibold" for="login-email">
-          E-mail de Leitor
-        </label>
-        <div class="relative">
-          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">mail</span>
-          <input class="w-full pl-11 pr-4 py-3 bg-surface-container-low rounded-xl font-body-md text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 focus:outline-none transition-all text-sm" id="login-email" placeholder="seu.email@exemplo.com" required type="email" autocomplete="email">
+        <!-- Seletor de Perfil: Leitor vs Equipe -->
+        <div class="w-full mt-4 p-1 bg-surface-container rounded-xl flex items-center gap-1">
+          <button type="button" id="role-reader-btn" onclick="switchRoleTab('reader')" class="flex-1 py-2 px-2 rounded-lg text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1.5 bg-surface-container-lowest text-primary shadow-sm">
+            <span class="material-symbols-outlined text-[16px]" translate="no">school</span>
+            <span>Área do Leitor / Aluno</span>
+          </button>
+          <button type="button" id="role-staff-btn" onclick="switchRoleTab('staff')" class="flex-1 py-2 px-2 rounded-lg text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1.5 text-on-surface-variant hover:text-primary">
+            <span class="material-symbols-outlined text-[16px]" translate="no">admin_panel_settings</span>
+            <span>Acesso da Equipe</span>
+          </button>
         </div>
       </div>
 
-      <div>
-        <div class="flex items-center justify-between mb-1.5">
-          <label class="font-label-md text-primary text-xs font-semibold" for="login-password">
-            Senha de Acesso
+      <!-- Sub-Abas do Leitor: Entrar vs Novo Cadastro -->
+      <div id="reader-subtabs" class="grid grid-cols-2 p-1 bg-surface-container rounded-xl mb-6">
+        <button class="py-2 px-3 rounded-lg text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1.5 bg-surface-container-lowest text-primary shadow-sm" id="tab-login-btn" onclick="switchAuthTab('login')" type="button">
+          <span class="material-symbols-outlined text-[18px]" translate="no">key</span>
+          <span>Entrar na Conta</span>
+        </button>
+        <button class="py-2 px-3 rounded-lg text-xs font-bold transition-all duration-200 hover:text-primary flex items-center justify-center gap-1.5 text-on-surface-variant" id="tab-register-btn" onclick="switchAuthTab('register')" type="button">
+          <span class="material-symbols-outlined text-[18px]" translate="no">person_add</span>
+          <span>Novo Cadastro</span>
+        </button>
+      </div>
+
+      <!-- Form 1: Login de Leitor / Aluno -->
+      <form class="flex flex-col space-y-4" id="form-login" onsubmit="handleReaderLogin(event)">
+        <div>
+          <label class="block text-xs font-bold text-primary mb-1.5" for="login-email">E-mail de Leitor</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]" translate="no">mail</span>
+            <input class="w-full pl-11 pr-4 py-3 bg-surface-container-low rounded-xl text-sm text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-colors" id="login-email" placeholder="seu.email@exemplo.com" required type="email">
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="text-xs font-bold text-primary" for="login-password">Senha de Acesso</label>
+            <button class="text-xs text-secondary hover:underline cursor-pointer" type="button" onclick="alert('Para redefinir sua senha, solicite ao bibliotecário no balcão de atendimento.')">Esqueci minha senha</button>
+          </div>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]" translate="no">lock</span>
+            <input class="w-full pl-11 pr-11 py-3 bg-surface-container-low rounded-xl text-sm text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-colors" id="login-password" placeholder="••••••••••••" required type="password">
+            <button class="absolute right-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary p-0.5" onclick="togglePasswordVisibility('login-password', this)" type="button">
+              <span class="material-symbols-outlined text-[18px]" translate="no">visibility</span>
+            </button>
+          </div>
+        </div>
+        <div class="flex items-center pt-0.5">
+          <label class="flex items-center gap-2 cursor-pointer select-none">
+            <input class="w-4 h-4 rounded text-primary-container accent-primary cursor-pointer" id="remember-me" type="checkbox" checked>
+            <span class="text-xs text-on-surface-variant">Lembrar desta sessão</span>
           </label>
-          <span class="font-label-sm text-outline text-[11px]" title="Recuperação disponível diretamente no balcão de atendimento">
-            Esqueceu a senha?
-          </span>
         </div>
-        <div class="relative">
-          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">lock</span>
-          <input class="w-full pl-11 pr-11 py-3 bg-surface-container-low rounded-xl font-body-md text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 focus:outline-none transition-all text-sm" id="login-password" placeholder="••••••••••••" required type="password" autocomplete="current-password">
-          <button class="absolute right-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary p-0.5" onclick="togglePasswordVisibility('login-password', this)" type="button">
-            <span class="material-symbols-outlined text-[18px]">visibility</span>
+        <button id="login-submit-btn" class="w-full py-3 px-4 bg-primary-container text-on-primary rounded-xl font-bold shadow-md hover:bg-primary transition-all duration-200 flex items-center justify-center gap-2 group mt-2" type="submit">
+          <span>Acessar Biblioteca Aurora</span>
+          <span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1" translate="no">arrow_forward</span>
+        </button>
+      </form>
+
+      <!-- Form 2: Acesso da Equipe (Admin e Bibliotecário com 2FA) -->
+      <div id="staff-section" class="hidden flex-col space-y-4">
+        <div class="p-3 rounded-xl bg-surface-container-low border border-outline-variant flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary text-[20px]" translate="no">lock</span>
+            <span class="text-[11px] font-bold text-primary uppercase tracking-wide">Restrito: Administrador e Bibliotecário</span>
+          </div>
+          <span class="px-2 py-0.5 rounded bg-primary-container text-on-primary text-[10px] font-bold">Equipe Interna</span>
+        </div>
+        <form class="flex flex-col space-y-4" id="form-staff-login" onsubmit="handleStaffLogin(event)">
+          <div>
+            <label class="block text-xs font-bold text-primary mb-1.5" for="staff-ident">Matrícula Funcional ou E-mail Institucional</label>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]" translate="no">badge</span>
+              <input class="w-full pl-11 pr-4 py-3 bg-surface-container-low rounded-xl text-sm text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-colors" id="staff-ident" placeholder="admin@aurora.local ou biblio@aurora.local" required type="text">
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="text-xs font-bold text-primary" for="staff-password">Senha de Acesso Funcional</label>
+              <span class="text-[11px] text-secondary">Suporte TI</span>
+            </div>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]" translate="no">shield_lock</span>
+              <input class="w-full pl-11 pr-11 py-3 bg-surface-container-low rounded-xl text-sm text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-colors" id="staff-password" placeholder="••••••••••••" required type="password">
+              <button class="absolute right-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary p-0.5" onclick="togglePasswordVisibility('staff-password', this)" type="button">
+                <span class="material-symbols-outlined text-[18px]" translate="no">visibility</span>
+              </button>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="text-xs font-bold text-primary" for="staff-2fa">Código Autenticador / Token 2FA (24h)</label>
+              <span class="text-[11px] text-outline">Opcional se credencial direta</span>
+            </div>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]" translate="no">pin</span>
+              <input class="w-full pl-11 pr-4 py-3 bg-surface-container-low rounded-xl text-sm text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-colors tracking-widest text-center uppercase" id="staff-2fa" placeholder="Ex: ADMIN24H ou BIBLIO2026" maxlength="12" type="text">
+            </div>
+          </div>
+          <button id="staff-submit-btn" class="w-full py-3.5 px-4 bg-primary text-on-primary rounded-xl font-bold shadow-md hover:bg-primary-container transition-all duration-200 flex items-center justify-center gap-2 group mt-2" type="submit">
+            <span>Autenticar no Painel de Gestão</span>
+            <span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1" translate="no">arrow_forward</span>
           </button>
+        </form>
+      </div>
+
+      <!-- Form 3: Novo Cadastro de Aluno/Leitor -->
+      <form class="flex flex-col space-y-4 hidden" id="form-register" onsubmit="handleRegistrationSubmit(event)">
+        <div>
+          <label class="block text-xs font-bold text-primary mb-1" for="reg-name">Nome Completo</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]" translate="no">person</span>
+            <input class="w-full pl-11 pr-4 py-2.5 bg-surface-container-low rounded-xl text-sm text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-colors" id="reg-name" placeholder="Clarice Lispector" required type="text">
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-primary mb-1" for="reg-email">E-mail Principal</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]" translate="no">mail</span>
+            <input class="w-full pl-11 pr-4 py-2.5 bg-surface-container-low rounded-xl text-sm text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-colors" id="reg-email" placeholder="seu.email@exemplo.com" required type="email">
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-primary mb-1" for="reg-password">Senha Segura</label>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]" translate="no">lock_reset</span>
+            <input class="w-full pl-11 pr-11 py-2.5 bg-surface-container-low rounded-xl text-sm text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-colors" id="reg-password" placeholder="Mínimo 6 caracteres" required minlength="6" type="password">
+            <button class="absolute right-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary p-0.5" onclick="togglePasswordVisibility('reg-password', this)" type="button">
+              <span class="material-symbols-outlined text-[18px]" translate="no">visibility</span>
+            </button>
+          </div>
+        </div>
+        <div class="grid grid-cols-5 gap-2">
+          <div class="col-span-2">
+            <label class="block text-xs font-bold text-primary mb-1" for="reg-cep">CEP</label>
+            <input class="w-full px-3 py-2.5 bg-surface-container-low rounded-xl text-sm text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-colors text-center" id="reg-cep" maxlength="9" placeholder="01310-100" required type="text">
+          </div>
+          <div class="col-span-3">
+            <label class="block text-xs font-bold text-primary mb-1" for="reg-city">Cidade / Região</label>
+            <input class="w-full px-3 py-2.5 bg-surface-container-low rounded-xl text-sm text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-colors" id="reg-city" placeholder="São Paulo, SP" required type="text">
+          </div>
+        </div>
+
+        <!-- Código de Autorização 24h para Equipe -->
+        <div class="p-3 bg-surface-container-low rounded-xl space-y-1.5 border border-outline-variant">
+          <div class="flex items-center justify-between">
+            <label class="block text-xs font-bold text-primary" for="reg-auth-code">
+              Código de Autorização 24h <span class="text-on-surface-variant font-normal text-[11px]">(Opcional)</span>
+            </label>
+            <span class="material-symbols-outlined text-secondary text-[18px]" translate="no">vpn_key</span>
+          </div>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]" translate="no">verified_user</span>
+            <input class="w-full pl-11 pr-4 py-2.5 bg-surface-container-lowest rounded-xl text-sm text-on-surface placeholder:text-outline focus:outline-none transition-colors uppercase" id="reg-auth-code" placeholder="Insira o código de 24h ou deixe em branco" type="text" oninput="validateAuthCode()">
+          </div>
+          <p class="text-[11px] text-on-surface-variant leading-tight">Deixe em branco para cadastrar como Aluno/Leitor. Insira o código diário do admin caso pertença à equipe.</p>
+          <div id="auth-code-error" class="hidden p-2 rounded-lg bg-error-container text-error text-[11px] font-body leading-tight flex items-start gap-1.5 mt-1">
+            <span class="material-symbols-outlined text-[16px] shrink-0" translate="no">error</span>
+            <span>Código de 24h inválido. Deixe em branco para criar conta de aluno.</span>
+          </div>
+          <div id="auth-code-success" class="hidden p-2 rounded-lg bg-secondary-fixed text-on-secondary-fixed text-[11px] font-body leading-tight flex items-center gap-1.5 mt-1">
+            <span class="material-symbols-outlined text-[16px] text-secondary shrink-0" translate="no">check_circle</span>
+            <span id="auth-code-success-text">Código válido! Perfil especial configurado.</span>
+          </div>
+        </div>
+
+        <div class="p-3 bg-surface-container-low rounded-xl">
+          <label class="flex items-start gap-2.5 cursor-pointer select-none">
+            <input class="mt-1 w-4 h-4 rounded text-primary-container accent-primary cursor-pointer shrink-0" id="terms-check" required type="checkbox">
+            <span class="text-xs text-on-surface-variant leading-tight">
+              Assumo o <strong class="text-primary font-bold">Termo de Preservação Aurora</strong>: cuidar dos exemplares físicos com respeito e integridade.
+            </span>
+          </label>
+        </div>
+
+        <button id="reg-submit-btn" class="w-full py-3.5 px-4 bg-primary-container text-on-primary rounded-xl font-bold shadow-md hover:bg-primary transition-all duration-200 flex items-center justify-center gap-2 group mt-2" type="submit">
+          <span>Concluir Cadastro & Acessar</span>
+          <span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1" translate="no">auto_stories</span>
+        </button>
+      </form>
+
+      <!-- Banner de Alerta / Status -->
+      <div class="hidden mt-4 p-3 rounded-xl flex items-center gap-2 text-xs transition-all duration-300" id="auth-alert">
+        <span class="material-symbols-outlined text-[20px]" id="auth-alert-icon" translate="no">info</span>
+        <span id="auth-alert-text"></span>
+      </div>
+
+      <!-- Vantagens do Portal Aurora -->
+      <div id="portal-perks" class="mt-6 pt-4 bg-surface-container-low rounded-xl p-3.5 space-y-2.5">
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary shrink-0">
+            <span class="material-symbols-outlined text-[16px]" translate="no">menu_book</span>
+          </div>
+          <div class="text-left">
+            <span class="text-xs font-bold text-primary block leading-tight">+10.000 títulos</span>
+            <span class="text-[11px] text-on-surface-variant leading-tight">Acervo físico selecionado sob curadoria</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary shrink-0">
+            <span class="material-symbols-outlined text-[16px]" translate="no">redeem</span>
+          </div>
+          <div class="text-left">
+            <span class="text-xs font-bold text-primary block leading-tight">Primeiro aluguel cortesia</span>
+            <span class="text-[11px] text-on-surface-variant leading-tight">Degustação literária para novos leitores</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary shrink-0">
+            <span class="material-symbols-outlined text-[16px]" translate="no">local_shipping</span>
+          </div>
+          <div class="text-left">
+            <span class="text-xs font-bold text-primary block leading-tight">Devolução descomplicada</span>
+            <span class="text-[11px] text-on-surface-variant leading-tight">Controle ágil com prorrogação e devolução</span>
+          </div>
         </div>
       </div>
 
-      <div class="flex items-center pt-0.5">
-        <label class="flex items-center gap-2 cursor-pointer select-none">
-          <input class="w-4 h-4 rounded text-primary-container accent-primary-container cursor-pointer" id="login-remember-me" type="checkbox" checked>
-          <span class="font-body-sm text-on-surface-variant text-xs">Lembrar desta sessão</span>
-        </label>
+      <div class="mt-4 text-center">
+        <span class="text-[11px] text-outline">Biblioteca Aurora © 2026 • Literatura &amp; Silêncio</span>
       </div>
-
-      <button class="w-full py-3.5 px-4 bg-primary-container text-on-primary rounded-xl font-label-lg shadow-md hover:bg-primary transition-all duration-200 flex items-center justify-center gap-2 group mt-2" id="login-submit-btn" type="submit">
-        <span>Acessar Biblioteca Aurora</span>
-        <span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1" id="login-btn-icon">arrow_forward</span>
-      </button>
-
-      <!-- Acesso Rápido para Demonstração no GitHub Pages -->
-      <div class="pt-3 border-t border-surface-container flex flex-col gap-2">
-        <span class="text-[11px] font-semibold text-secondary flex items-center gap-1">
-          <span class="material-symbols-outlined text-[15px]">bolt</span>
-          Acesso Rápido (Demonstração / Testes):
-        </span>
-        <div class="grid grid-cols-3 gap-1.5">
-          <button type="button" onclick="quickFill('aluno@aurora.local', 'aluno123')" class="px-2 py-1.5 bg-secondary-fixed text-on-secondary-fixed rounded-lg text-[11px] font-bold hover:opacity-90 transition-all text-center truncate shadow-sm">
-            Aluno
-          </button>
-          <button type="button" onclick="quickFill('biblio@aurora.local', 'biblio123')" class="px-2 py-1.5 bg-surface-container text-on-surface rounded-lg text-[11px] font-bold hover:bg-surface-container-high transition-all text-center truncate">
-            Bibliotecário
-          </button>
-          <button type="button" onclick="quickFill('admin@aurora.local', 'admin123')" class="px-2 py-1.5 bg-surface-container text-on-surface rounded-lg text-[11px] font-bold hover:bg-surface-container-high transition-all text-center truncate">
-            Admin
-          </button>
-        </div>
-      </div>
-    </form>
-
-    <!-- 2. Formulário de Cadastro -->
-    <form class="flex flex-col space-y-4 hidden" id="form-register" onsubmit="handleRegisterSubmit(event)">
-      <div>
-        <label class="block font-label-md text-primary mb-1 text-xs font-semibold" for="reg-name">
-          Nome Completo
-        </label>
-        <div class="relative">
-          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">person</span>
-          <input class="w-full pl-11 pr-4 py-2.5 bg-surface-container-low rounded-xl font-body-md text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 focus:outline-none transition-all text-sm" id="reg-name" placeholder="Clarice Lispector" required type="text" autocomplete="name">
-        </div>
-      </div>
-
-      <div>
-        <label class="block font-label-md text-primary mb-1 text-xs font-semibold" for="reg-email">
-          E-mail Principal
-        </label>
-        <div class="relative">
-          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">mail</span>
-          <input class="w-full pl-11 pr-4 py-2.5 bg-surface-container-low rounded-xl font-body-md text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 focus:outline-none transition-all text-sm" id="reg-email" placeholder="seu.email@exemplo.com" required type="email" autocomplete="email">
-        </div>
-      </div>
-
-      <div>
-        <label class="block font-label-md text-primary mb-1 text-xs font-semibold" for="reg-password">
-          Senha (mínimo 6 caracteres)
-        </label>
-        <div class="relative">
-          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">lock_reset</span>
-          <input class="w-full pl-11 pr-11 py-2.5 bg-surface-container-low rounded-xl font-body-md text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 focus:outline-none transition-all text-sm" id="reg-password" minlength="6" placeholder="Mínimo 6 caracteres" required type="password" autocomplete="new-password">
-          <button class="absolute right-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary p-0.5" onclick="togglePasswordVisibility('reg-password', this)" type="button">
-            <span class="material-symbols-outlined text-[18px]">visibility</span>
-          </button>
-        </div>
-      </div>
-
-      <div>
-        <label class="block font-label-md text-primary mb-1 text-xs font-semibold" for="reg-password-confirm">
-          Confirmar Senha
-        </label>
-        <div class="relative">
-          <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">lock_clock</span>
-          <input class="w-full pl-11 pr-11 py-2.5 bg-surface-container-low rounded-xl font-body-md text-on-surface placeholder:text-outline focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 focus:outline-none transition-all text-sm" id="reg-password-confirm" minlength="6" placeholder="Repita sua senha" required type="password" autocomplete="new-password">
-          <button class="absolute right-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary p-0.5" onclick="togglePasswordVisibility('reg-password-confirm', this)" type="button">
-            <span class="material-symbols-outlined text-[18px]">visibility</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="p-3 bg-surface-container-low rounded-xl space-y-2">
-        <label class="flex items-start gap-2.5 cursor-pointer select-none">
-          <input class="mt-1 w-4 h-4 rounded text-primary-container accent-primary-container cursor-pointer flex-shrink-0" id="terms-check" required type="checkbox">
-          <span class="font-body-sm text-on-surface-variant text-xs leading-tight">
-            Assumo o <strong class="text-primary font-label-sm">Termo de Preservação Aurora</strong>: cuidar dos exemplares físicos com respeito, cumprindo prazos de entrega e integridade das páginas (Spec v3.0).
-          </span>
-        </label>
-      </div>
-
-      <button class="w-full py-3.5 px-4 bg-primary-container text-on-primary rounded-xl font-label-lg shadow-md hover:bg-primary transition-all duration-200 flex items-center justify-center gap-2 group mt-2" id="reg-submit-btn" type="submit">
-        <span>Concluir Cadastro & Acessar</span>
-        <span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1" id="reg-btn-icon">auto_stories</span>
-      </button>
-    </form>
-
-    <!-- Badges Editoriais / Regras Oficiais Aurora v3.0 -->
-    <div class="mt-space-lg pt-space-md bg-surface-container-low rounded-xl p-3.5 space-y-2.5">
-      <div class="flex items-center gap-2.5">
-        <div class="w-7 h-7 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary flex-shrink-0">
-          <span class="material-symbols-outlined text-[16px]">menu_book</span>
-        </div>
-        <div class="text-left">
-          <span class="font-label-sm text-primary block leading-tight text-xs font-semibold">3 Cópias Físicas por Livro</span>
-          <span class="font-body-sm text-on-surface-variant text-[11px] leading-tight">Rotatividade comunitária sustentável de títulos</span>
-        </div>
-      </div>
-
-      <div class="flex items-center gap-2.5">
-        <div class="w-7 h-7 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary flex-shrink-0">
-          <span class="material-symbols-outlined text-[16px]">schedule</span>
-        </div>
-        <div class="text-left">
-          <span class="font-label-sm text-primary block leading-tight text-xs font-semibold">Prazos de 15 ou 30 Dias</span>
-          <span class="font-body-sm text-on-surface-variant text-[11px] leading-tight">Calculados proporcionalmente ao tamanho do livro</span>
-        </div>
-      </div>
-
-      <div class="flex items-center gap-2.5">
-        <div class="w-7 h-7 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary flex-shrink-0">
-          <span class="material-symbols-outlined text-[16px]">autorenew</span>
-        </div>
-        <div class="text-left">
-          <span class="font-label-sm text-primary block leading-tight text-xs font-semibold">Renovação Descomplicada</span>
-          <span class="font-body-sm text-on-surface-variant text-[11px] leading-tight">Até 2 extensões diretamente pelo seu painel</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="mt-space-md text-center">
-      <span class="font-body-sm text-outline text-[12px]">
-        Biblioteca Aurora © 2026 • Onde histórias encontram leitores
-      </span>
     </div>
   </main>
 
+  <!-- Script da API Aurora -->
   <script src="js/aurora-api.js"></script>
   <script>
-    // Se o usuário já tiver sessão ativa válida, redireciona para a Início
-    if (AuroraAPI.isAuthenticated()) {
-      window.location.href = 'index.html';
+    // Redireciona se já estiver autenticado
+    if (window.AuroraAPI && AuroraAPI.isAuthenticated()) {
+      const u = AuroraAPI.getUser();
+      if (u && u.tipo === 'administrador') window.location.href = 'cadastros.html';
+      else if (u && u.tipo === 'bibliotecario') window.location.href = 'estoque.html';
+      else window.location.href = 'index.html';
     }
 
-    // Alerta se redirecionado por sessão expirada
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('expired')) {
-      showAlert('Sua sessão expirou após 30 minutos de inatividade. Por favor, entre novamente.', 'warning');
+    let currentRole = 'reader';
+    let currentAuthTab = 'login';
+
+    function showAlert(text, type = 'info') {
+      const alertBox = document.getElementById('auth-alert');
+      const alertText = document.getElementById('auth-alert-text');
+      const alertIcon = document.getElementById('auth-alert-icon');
+      alertBox.className = 'mt-4 p-3 rounded-xl flex items-center gap-2 text-xs transition-all duration-300';
+      if (type === 'error') {
+        alertBox.classList.add('bg-error-container', 'text-on-error-container');
+        alertIcon.textContent = 'error';
+      } else if (type === 'success') {
+        alertBox.classList.add('bg-secondary-fixed', 'text-on-secondary-fixed');
+        alertIcon.textContent = 'check_circle';
+      } else {
+        alertBox.classList.add('bg-surface-container-high', 'text-primary');
+        alertIcon.textContent = 'info';
+      }
+      alertText.textContent = text;
+      alertBox.classList.remove('hidden');
+    }
+
+    function hideAlert() {
+      const alertBox = document.getElementById('auth-alert');
+      alertBox.classList.add('hidden');
+    }
+
+    function switchRoleTab(role) {
+      currentRole = role;
+      hideAlert();
+      const readerBtn = document.getElementById('role-reader-btn');
+      const staffBtn = document.getElementById('role-staff-btn');
+      const readerSubTabs = document.getElementById('reader-subtabs');
+      const loginForm = document.getElementById('form-login');
+      const regForm = document.getElementById('form-register');
+      const staffSection = document.getElementById('staff-section');
+      const perks = document.getElementById('portal-perks');
+
+      if (role === 'reader') {
+        readerBtn.className = 'flex-1 py-2 px-2 rounded-lg text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1.5 bg-surface-container-lowest text-primary shadow-sm';
+        staffBtn.className = 'flex-1 py-2 px-2 rounded-lg text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1.5 text-on-surface-variant hover:text-primary';
+        readerSubTabs.classList.remove('hidden');
+        staffSection.classList.add('hidden');
+        perks.classList.remove('hidden');
+        if (currentAuthTab === 'register') {
+          loginForm.classList.add('hidden');
+          regForm.classList.remove('hidden');
+        } else {
+          loginForm.classList.remove('hidden');
+          regForm.classList.add('hidden');
+        }
+      } else {
+        staffBtn.className = 'flex-1 py-2 px-2 rounded-lg text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1.5 bg-surface-container-lowest text-primary shadow-sm';
+        readerBtn.className = 'flex-1 py-2 px-2 rounded-lg text-xs font-bold transition-all duration-200 flex items-center justify-center gap-1.5 text-on-surface-variant hover:text-primary';
+        readerSubTabs.classList.add('hidden');
+        loginForm.classList.add('hidden');
+        regForm.classList.add('hidden');
+        staffSection.classList.remove('hidden');
+        perks.classList.add('hidden');
+      }
     }
 
     function switchAuthTab(type) {
+      currentAuthTab = type;
+      hideAlert();
       const loginForm = document.getElementById('form-login');
       const regForm = document.getElementById('form-register');
       const loginBtn = document.getElementById('tab-login-btn');
       const regBtn = document.getElementById('tab-register-btn');
-      hideAlert();
 
       if (type === 'login') {
         loginForm.classList.remove('hidden');
         regForm.classList.add('hidden');
-
-        loginBtn.className = 'py-2.5 px-3 rounded-lg font-label-md transition-all duration-200 flex items-center justify-center gap-1.5 bg-surface-container-lowest text-primary shadow-sm';
-        regBtn.className = 'py-2.5 px-3 rounded-lg font-label-md transition-all duration-200 hover:text-primary flex items-center justify-center gap-1.5 text-on-surface-variant';
+        loginBtn.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+        loginBtn.classList.remove('text-on-surface-variant');
+        regBtn.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+        regBtn.classList.add('text-on-surface-variant');
       } else {
         loginForm.classList.add('hidden');
         regForm.classList.remove('hidden');
-
-        regBtn.className = 'py-2.5 px-3 rounded-lg font-label-md transition-all duration-200 flex items-center justify-center gap-1.5 bg-surface-container-lowest text-primary shadow-sm';
-        loginBtn.className = 'py-2.5 px-3 rounded-lg font-label-md transition-all duration-200 hover:text-primary flex items-center justify-center gap-1.5 text-on-surface-variant';
+        regBtn.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+        regBtn.classList.remove('text-on-surface-variant');
+        loginBtn.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
+        loginBtn.classList.add('text-on-surface-variant');
       }
     }
 
@@ -294,100 +396,126 @@
       }
     }
 
-    function showAlert(message, type = 'error') {
-      const alertBox = document.getElementById('auth-alert');
-      const alertText = document.getElementById('auth-alert-text');
-      const alertIcon = document.getElementById('auth-alert-icon');
+    function validateAuthCode() {
+      const codeInput = document.getElementById('reg-auth-code');
+      const errBox = document.getElementById('auth-code-error');
+      const successBox = document.getElementById('auth-code-success');
+      const successText = document.getElementById('auth-code-success-text');
+      const submitBtn = document.getElementById('reg-submit-btn');
+      if (!codeInput) return true;
 
-      alertBox.classList.remove('hidden', 'bg-error-container', 'text-on-error-container', 'bg-secondary-fixed', 'text-on-secondary-fixed', 'bg-amber-100', 'text-amber-900');
-
-      if (type === 'error') {
-        alertBox.classList.add('bg-error-container', 'text-on-error-container');
-        alertIcon.textContent = 'error';
-      } else if (type === 'success') {
-        alertBox.classList.add('bg-secondary-fixed', 'text-on-secondary-fixed');
-        alertIcon.textContent = 'verified';
-      } else if (type === 'warning') {
-        alertBox.classList.add('bg-amber-100', 'text-amber-900');
-        alertIcon.textContent = 'warning';
+      const val = codeInput.value.trim().toUpperCase();
+      if (!val) {
+        errBox.classList.add('hidden');
+        successBox.classList.add('hidden');
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        return true;
       }
 
-      alertText.textContent = message;
+      if (val === 'ADMIN24H') {
+        errBox.classList.add('hidden');
+        successBox.classList.remove('hidden');
+        successText.textContent = 'Código Especial Válido: Perfil de Administrador será criado!';
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        return true;
+      } else if (['BIBLIO2026', 'AURORA24', 'STAFF2026'].includes(val)) {
+        errBox.classList.add('hidden');
+        successBox.classList.remove('hidden');
+        successText.textContent = 'Código Especial Válido: Perfil de Bibliotecário será criado!';
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        return true;
+      } else {
+        successBox.classList.add('hidden');
+        errBox.classList.remove('hidden');
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        return false;
+      }
     }
 
-    function hideAlert() {
-      document.getElementById('auth-alert').classList.add('hidden');
-    }
-
-    async function handleLoginSubmit(e) {
+    async function handleReaderLogin(e) {
       e.preventDefault();
       hideAlert();
-
       const email = document.getElementById('login-email').value.trim();
-      const senha = document.getElementById('login-password').value;
-      const remember = document.getElementById('login-remember-me').checked;
-      const submitBtn = document.getElementById('login-submit-btn');
+      const pass = document.getElementById('login-password').value;
+      const remember = document.getElementById('remember-me').checked;
+      const btn = document.getElementById('login-submit-btn');
 
-      submitBtn.disabled = true;
-      submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
-      submitBtn.querySelector('span:first-child').textContent = 'Autenticando...';
+      btn.disabled = true;
+      btn.classList.add('opacity-75');
 
       try {
-        await AuroraAPI.login(email, senha, remember);
-        showAlert('Acesso liberado! Redirecionando para a Aurora...', 'success');
+        const res = await AuroraAPI.login(email, pass, remember);
+        showAlert('Login realizado com sucesso! Carregando estante...', 'success');
         setTimeout(() => {
-          window.location.href = 'index.html';
+          if (res.user && res.user.tipo === 'administrador') window.location.href = 'cadastros.html';
+          else if (res.user && res.user.tipo === 'bibliotecario') window.location.href = 'estoque.html';
+          else window.location.href = 'index.html';
         }, 600);
       } catch (err) {
-        showAlert(err.message || 'E-mail ou senha incorretos. Tente novamente.', 'error');
-        submitBtn.disabled = false;
-        submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
-        submitBtn.querySelector('span:first-child').textContent = 'Acessar Biblioteca Aurora';
+        showAlert(err.message || 'Falha ao autenticar.', 'error');
+        btn.disabled = false;
+        btn.classList.remove('opacity-75');
       }
     }
 
-    async function handleRegisterSubmit(e) {
+    async function handleStaffLogin(e) {
       e.preventDefault();
       hideAlert();
+      const ident = document.getElementById('staff-ident').value.trim();
+      const pass = document.getElementById('staff-password').value;
+      const token2fa = document.getElementById('staff-2fa').value.trim().toUpperCase();
+      const btn = document.getElementById('staff-submit-btn');
 
-      const nome = document.getElementById('reg-name').value.trim();
-      const email = document.getElementById('reg-email').value.trim();
-      const senha = document.getElementById('reg-password').value;
-      const confirmSenha = document.getElementById('reg-password-confirm').value;
-      const submitBtn = document.getElementById('reg-submit-btn');
-
-      if (senha.length < 6) {
-        showAlert('A senha deve conter no mínimo 6 caracteres.', 'error');
-        return;
-      }
-
-      if (senha !== confirmSenha) {
-        showAlert('As senhas informadas não coincidem.', 'error');
-        return;
-      }
-
-      submitBtn.disabled = true;
-      submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
-      submitBtn.querySelector('span:first-child').textContent = 'Cadastrando...';
+      btn.disabled = true;
+      btn.classList.add('opacity-75');
 
       try {
-        await AuroraAPI.register(nome, email, senha, true);
-        showAlert('Cadastro realizado com sucesso! Conectando...', 'success');
+        const res = await AuroraAPI.loginStaff(ident, pass, token2fa);
+        showAlert(`Acesso autorizado como ${res.user.tipo}! Redirecionando...`, 'success');
         setTimeout(() => {
-          window.location.href = 'index.html';
-        }, 800);
+          if (res.user.tipo === 'administrador') window.location.href = 'cadastros.html';
+          else window.location.href = 'estoque.html';
+        }, 700);
       } catch (err) {
-        showAlert(err.message || 'Erro ao realizar cadastro. Verifique os dados.', 'error');
-        submitBtn.disabled = false;
-        submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+        showAlert(err.message || 'Credenciais de equipe inválidas.', 'error');
+        btn.disabled = false;
+        btn.classList.remove('opacity-75');
       }
     }
 
-    function quickFill(email, senha) {
-      switchAuthTab('login');
-      document.getElementById('login-email').value = email;
-      document.getElementById('login-password').value = senha;
-      document.getElementById('form-login').requestSubmit();
+    async function handleRegistrationSubmit(e) {
+      e.preventDefault();
+      if (!validateAuthCode()) return;
+      hideAlert();
+
+      const name = document.getElementById('reg-name').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const pass = document.getElementById('reg-password').value;
+      const cep = document.getElementById('reg-cep').value.trim();
+      const city = document.getElementById('reg-city').value.trim();
+      const authCode = document.getElementById('reg-auth-code').value.trim().toUpperCase();
+      const btn = document.getElementById('reg-submit-btn');
+
+      btn.disabled = true;
+      btn.classList.add('opacity-75');
+
+      try {
+        const res = await AuroraAPI.register(name, email, pass, true, { cep, cidade: city, authCode });
+        showAlert('Cadastro concluído com sucesso! Bem-vindo(a) à Aurora.', 'success');
+        setTimeout(() => {
+          if (res.user && res.user.tipo === 'administrador') window.location.href = 'cadastros.html';
+          else if (res.user && res.user.tipo === 'bibliotecario') window.location.href = 'estoque.html';
+          else window.location.href = 'index.html';
+        }, 700);
+      } catch (err) {
+        showAlert(err.message || 'Erro ao realizar cadastro.', 'error');
+        btn.disabled = false;
+        btn.classList.remove('opacity-75');
+      }
     }
   </script>
 </body>
