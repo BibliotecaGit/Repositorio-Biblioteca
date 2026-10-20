@@ -5,7 +5,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Aurora — Início</title>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
     @layer base { html,body { margin:0; padding:0; } body { overscroll-behavior:none; } }
     ::-webkit-scrollbar { display:none; }
@@ -71,7 +71,7 @@
   <aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between">
     <div class="flex flex-col">
       <div class="h-20 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest">
-        <img alt="Logo Aurora" class="w-10 h-10 object-contain rounded-lg shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4_hfr9QgE7zVzPZcFdzSCr_OMhZJZHUmproxdnurvcw10WupCiLg0jxPaH4ZOphd5wMNpkXOffVNQG1LQ33dXlcynF27AKwSPgP_nmgxSgRy_Rr_sd1hFtc1RfrGqvdyZx35fjYyreedJuTkako80KzpgfE0IDzgHb3gXNDYvQ9KV4LNeObCgt9Rcu0fpUeKacMHGYQleKgerES_5nk1j6p_s0xn-fDeWkiQ-YXL2_FMrukEu9ZLOqv_UB76v0yl83pQ">
+        <img alt="Logo Aurora" class="w-10 h-10 object-contain rounded-xl shadow-sm" src="img/logo.svg" onerror="this.src='img/logo.svg'">
         <div class="flex flex-col">
           <span class="font-title-lg text-title-lg text-primary-container tracking-tight font-bold">Aurora</span>
           <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Aluguel de Livros</span>
@@ -80,51 +80,7 @@
 
       <div class="px-space-md py-space-sm">
         <nav class="flex flex-col gap-space-xs">
-          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="inicio" href="index.html">
-            <div class="flex items-center gap-space-sm">
-              <span class="material-symbols-outlined text-secondary">auto_stories</span>
-              <span>Início</span>
-            </div>
-          </a>
-          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="prateleira" href="prateleira.html">
-            <div class="flex items-center gap-space-sm">
-              <span class="material-symbols-outlined text-secondary">shelves</span>
-              <span>Prateleira</span>
-            </div>
-            <span class="px-space-xs py-0.5 bg-secondary-container text-on-secondary-container rounded-full font-label-sm text-xs font-bold">Catálogo</span>
-          </a>
-          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="sugestoes" href="sugestoes.html">
-            <div class="flex items-center gap-space-sm">
-              <span class="material-symbols-outlined text-secondary">recommend</span>
-              <span>Sugestões</span>
-            </div>
-          </a>
-          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="ja-lidos" href="ja-lidos.html">
-            <div class="flex items-center gap-space-sm">
-              <span class="material-symbols-outlined text-secondary">library_books</span>
-              <span>Já Lidos</span>
-            </div>
-            <span class="px-space-xs py-0.5 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm text-xs font-bold">0</span>
-          </a>
-          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="lista-de-desejos" href="desejos.html">
-            <div class="flex items-center gap-space-sm">
-              <span class="material-symbols-outlined text-secondary">bookmark_heart</span>
-              <span>Lista de Desejos</span>
-            </div>
-            <span class="px-space-xs py-0.5 bg-secondary-fixed text-on-secondary-fixed rounded-full font-label-sm text-xs font-bold">0</span>
-          </a>
-          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="avaliar-livros" href="avaliar.html">
-            <div class="flex items-center gap-space-sm">
-              <span class="material-symbols-outlined text-secondary">rate_review</span>
-              <span>Avaliar Livros</span>
-            </div>
-          </a>
-          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group" data-path="configuracoes" href="configuracoes.html">
-            <div class="flex items-center gap-space-sm">
-              <span class="material-symbols-outlined text-secondary">settings</span>
-              <span>Configurações</span>
-            </div>
-          </a>
+          <!-- Renderizado dinamicamente via AuroraAPI.initSidebar() -->
         </nav>
       </div>
     </div>
@@ -132,14 +88,14 @@
     <!-- Perfil do Usuário na Sidebar -->
     <div class="p-space-md flex flex-col gap-space-sm bg-surface-container-lowest">
       <div class="flex items-center gap-space-sm p-space-sm rounded-xl bg-surface-container-low">
-        <img alt="Perfil" class="w-8 h-8 rounded-full object-cover ring-2 ring-secondary-fixed user-display-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80">
+        <img alt="Perfil" id="sidebar-avatar" class="w-8 h-8 rounded-full object-cover ring-2 ring-secondary-fixed user-display-avatar" src="img/avatar-default.svg" onerror="this.src='img/avatar-default.svg'">
         <div class="flex flex-col min-w-0 flex-1">
           <span class="font-label-lg text-label-lg text-on-surface truncate user-display-name">Carregando...</span>
           <span class="font-label-sm text-label-sm text-secondary truncate user-display-role">Leitor</span>
         </div>
       </div>
       <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg hover:bg-error-container hover:text-on-error-container transition-all group" data-path="login" href="#">
-        <span class="material-symbols-outlined text-outline group-hover:text-error transition-colors">logout</span>
+        <span class="material-symbols-outlined text-outline group-hover:text-error transition-colors" translate="no">logout</span>
         <span>Sair</span>
       </a>
     </div>
@@ -150,16 +106,16 @@
     <header class="fixed top-0 left-72 right-0 h-20 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg">
       <div class="flex items-center gap-space-md flex-1 max-w-xl">
         <form class="relative flex items-center w-full" onsubmit="event.preventDefault(); window.location.href='prateleira.html?search=' + encodeURIComponent(this.querySelector('input').value);">
-          <span class="material-symbols-outlined absolute left-4 text-on-surface-variant pointer-events-none">search</span>
+          <span class="material-symbols-outlined absolute left-4 text-on-surface-variant pointer-events-none" translate="no">search</span>
           <input class="w-full h-11 pl-11 pr-4 bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm rounded-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-all" placeholder="Pesquise títulos, autores ou gêneros..." type="text">
         </form>
       </div>
 
       <div class="flex items-center gap-space-md">
         <a class="h-11 px-space-md bg-primary-container text-on-primary rounded-xl font-label-lg flex items-center gap-space-sm hover:opacity-95 shadow-sm transition-all" data-path="sacola-de-alugueis" href="#alugueis-ativos">
-          <span class="material-symbols-outlined text-secondary-fixed">shopping_bag</span>
+          <span class="material-symbols-outlined text-secondary-fixed" translate="no">shopping_bag</span>
           <span class="hidden md:inline">Aluguéis Ativos</span>
-          <span class="ml-1 px-1.5 py-0.5 bg-secondary text-on-secondary rounded-full font-label-sm text-xs font-bold">0</span>
+          <span class="ml-1 px-1.5 py-0.5 bg-secondary text-on-secondary rounded-full font-label-sm text-xs font-bold" id="header-rental-badge">0</span>
         </a>
       </div>
     </header>
@@ -177,25 +133,25 @@
             Bem-vindo à Aurora: onde histórias encontram leitores
           </h1>
           <p class="font-body-lg text-on-primary-container text-base leading-relaxed">
-            Um refúgio literário dedicado ao conhecimento. Na Aurora, cada título conta com limite de 3 cópias físicas na rede, garantindo rotação comunitária justa e cuidado permanente com cada exemplar.
+            Um refúgio literário contemporâneo com curadoria editorial. Na Aurora, cada título conta com limite de 3 cópias físicas na rede, garantindo rotação comunitária justa e cuidado permanente com cada exemplar.
           </p>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md pt-space-md">
             <div class="flex items-center gap-space-sm p-space-sm rounded-2xl bg-surface-container-lowest/5 backdrop-blur-sm">
-              <span class="material-symbols-outlined text-secondary-fixed text-2xl">menu_book</span>
+              <span class="material-symbols-outlined text-secondary-fixed text-2xl" translate="no">menu_book</span>
               <div class="flex flex-col">
                 <span class="font-title-md text-on-primary font-bold">3 Cópias por Título</span>
                 <span class="font-label-sm text-on-primary-container text-xs">Rotação justa (RN-003)</span>
               </div>
             </div>
             <div class="flex items-center gap-space-sm p-space-sm rounded-2xl bg-surface-container-lowest/5 backdrop-blur-sm">
-              <span class="material-symbols-outlined text-secondary-fixed text-2xl">schedule</span>
+              <span class="material-symbols-outlined text-secondary-fixed text-2xl" translate="no">schedule</span>
               <div class="flex flex-col">
                 <span class="font-title-md text-on-primary font-bold">15 ou 30 Dias</span>
                 <span class="font-label-sm text-on-primary-container text-xs">Prazo por páginas</span>
               </div>
             </div>
             <div class="flex items-center gap-space-sm p-space-sm rounded-2xl bg-surface-container-lowest/5 backdrop-blur-sm">
-              <span class="material-symbols-outlined text-secondary-fixed text-2xl">autorenew</span>
+              <span class="material-symbols-outlined text-secondary-fixed text-2xl" translate="no">autorenew</span>
               <div class="flex flex-col">
                 <span class="font-title-md text-on-primary font-bold">Até 2 Extensões</span>
                 <span class="font-label-sm text-on-primary-container text-xs">Direto no painel</span>
@@ -215,7 +171,7 @@
           <div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm border border-surface-container/60 flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-2xl bg-secondary-fixed/40 flex items-center justify-center text-secondary mb-3">
-                <span class="material-symbols-outlined text-2xl">book</span>
+                <span class="material-symbols-outlined text-2xl" translate="no">book</span>
               </div>
               <h3 class="font-title-lg text-primary-container font-bold mb-1">1. Aluguel com 1 Clique</h3>
               <p class="font-body-sm text-on-surface-variant text-sm">
@@ -226,7 +182,7 @@
           <div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm border border-surface-container/60 flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-2xl bg-secondary-container/40 flex items-center justify-center text-secondary mb-3">
-                <span class="material-symbols-outlined text-2xl">hourglass_bottom</span>
+                <span class="material-symbols-outlined text-2xl" translate="no">hourglass_bottom</span>
               </div>
               <h3 class="font-title-lg text-primary-container font-bold mb-1">2. Prazo Proporcional</h3>
               <p class="font-body-sm text-on-surface-variant text-sm">
@@ -237,11 +193,11 @@
           <div class="bg-surface-container-lowest p-space-lg rounded-2xl shadow-sm border border-surface-container/60 flex flex-col justify-between">
             <div>
               <div class="w-12 h-12 rounded-2xl bg-surface-container-high flex items-center justify-center text-on-surface mb-3">
-                <span class="material-symbols-outlined text-2xl">event_repeat</span>
+                <span class="material-symbols-outlined text-2xl" translate="no">event_repeat</span>
               </div>
               <h3 class="font-title-lg text-primary-container font-bold mb-1">3. Renovação ou Devolução</h3>
               <p class="font-body-sm text-on-surface-variant text-sm">
-                Renove até 2 vezes se não estiver em atraso. Em caso de esgotamento total das 3 cópias, o botão fica indisponível até a próxima devolução.
+                Renove até 2 vezes se não estiver em atraso. Em caso de esgotamento total das 3 cópias, você pode entrar na Fila de Espera.
               </p>
             </div>
           </div>
@@ -256,7 +212,7 @@
             <h2 class="font-headline-lg text-2xl text-primary-container font-bold tracking-tight">Novidades da Aurora</h2>
           </div>
           <a href="prateleira.html" class="text-secondary font-label-md text-sm font-semibold hover:underline flex items-center gap-1">
-            Ver catálogo completo <span class="material-symbols-outlined text-base">arrow_forward</span>
+            Ver catálogo completo <span class="material-symbols-outlined text-base" translate="no">arrow_forward</span>
           </a>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md" id="novidadesGrid">
@@ -292,8 +248,7 @@
     </main>
   </div>
 
-  <script src="aurora-api.js"></script>
-  <script>if (!window.AuroraAPI) document.write('<script src="js/aurora-api.js"><\/script>');</script>
+  <script src="js/aurora-api.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
       await AuroraAPI.initSidebar('inicio');
@@ -305,12 +260,11 @@
     async function loadNovidades() {
       const container = document.getElementById('novidadesGrid');
       try {
-        const books = await AuroraAPI.getNovidades();
+        const books = await AuroraAPI.getBooks({ novidades: true });
         if (!books || books.length === 0) {
           container.innerHTML = '<div class="col-span-full py-6 text-center text-on-surface-variant text-sm">Nenhum lançamento recente encontrado.</div>';
           return;
         }
-
         container.innerHTML = books.slice(0, 4).map(book => createBookCardHtml(book)).join('');
       } catch (e) {
         container.innerHTML = '<div class="col-span-full py-6 text-center text-error text-sm">Erro ao carregar novidades do catálogo.</div>';
@@ -320,12 +274,11 @@
     async function loadDestaques() {
       const container = document.getElementById('destaquesGrid');
       try {
-        const books = await AuroraAPI.getDestaques();
+        const books = await AuroraAPI.getBooks({ destaques: true });
         if (!books || books.length === 0) {
           container.innerHTML = '<div class="col-span-full py-6 text-center text-on-surface-variant text-sm">Nenhum destaque encontrado no momento.</div>';
           return;
         }
-
         container.innerHTML = books.slice(0, 4).map(book => createBookCardHtml(book)).join('');
       } catch (e) {
         container.innerHTML = '<div class="col-span-full py-6 text-center text-error text-sm">Erro ao carregar destaques.</div>';
@@ -333,7 +286,7 @@
     }
 
     function createBookCardHtml(book) {
-      const isAvailable = book.disponivel && book.copiasDisponiveis > 0;
+      const isAvailable = book.disponivel && (book.copiasDisponiveis > 0);
       const coverUrl = book.capaUrl || 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400&q=80';
       const rating = Number(book.avaliacaoMedia || 0).toFixed(1);
 
@@ -349,7 +302,7 @@
             <div class="flex flex-col pt-1">
               <div class="flex items-center justify-between text-secondary text-xs font-semibold mb-1">
                 <span class="flex items-center gap-1 text-amber-500">
-                  <span class="material-symbols-outlined text-[16px]">star</span>
+                  <span class="material-symbols-outlined text-[16px]" translate="no">star</span>
                   <span class="font-label-md text-on-surface">${rating}</span>
                 </span>
                 <span class="font-label-md text-on-surface-variant font-medium">(${book.totalAvaliacoes || 0} avaliações)</span>
@@ -367,7 +320,7 @@
               <div class="flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full ${isAvailable ? 'bg-secondary' : 'bg-outline'}"></span>
                 <span class="font-label-sm ${isAvailable ? 'text-secondary' : 'text-outline'} font-bold text-xs">
-                  ${isAvailable ? `${book.copiasDisponiveis} de 3 livres` : 'Indisponível'}
+                  ${isAvailable ? `${book.copiasDisponiveis} de 3 livres` : '0 de 3 livres'}
                 </span>
               </div>
               ${isAvailable ? `
@@ -375,7 +328,9 @@
                   Alugar
                 </button>
               ` : `
-                <span class="px-2 py-0.5 bg-surface-container text-outline rounded text-xs font-medium">3 alugadas</span>
+                <a href="fila.html?livroId=${book.id}" class="px-2.5 py-1 bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-container rounded text-xs font-bold transition-all">
+                  Entrar na Fila
+                </a>
               `}
             </div>
           </div>
@@ -401,14 +356,16 @@
 
     async function loadMyActiveRentals() {
       const container = document.getElementById('activeRentalsContainer');
+      const headerBadge = document.getElementById('header-rental-badge');
       try {
         const rentals = await AuroraAPI.getMyRentals();
         const active = (rentals || []).filter(r => r.status === 'ativo');
+        if (headerBadge) headerBadge.textContent = active.length;
 
         if (active.length === 0) {
           container.innerHTML = `
             <div class="p-8 rounded-2xl bg-surface-container-lowest border border-surface-container/70 flex flex-col items-center justify-center text-center gap-2">
-              <span class="material-symbols-outlined text-4xl text-outline">menu_book</span>
+              <span class="material-symbols-outlined text-4xl text-outline" translate="no">menu_book</span>
               <p class="font-title-md text-primary font-bold">Você não possui aluguéis ativos</p>
               <p class="font-body-sm text-on-surface-variant text-xs max-w-sm">
                 Explore a Prateleira e descubra milhares de histórias esperando por você. Cada leitor pode alugar até 3 livros simultaneamente!
@@ -423,7 +380,7 @@
 
         container.innerHTML = active.map(r => {
           const title = r.bookTitle || (r.livro && r.livro.titulo) || 'Livro Aurora';
-          const copyId = r.bookCopyId || r.idLivro || r.id;
+          const copyId = r.bookCopyId || 1;
           const prevDate = r.dataDevolucaoPrevista || r.dataPrevistaDevolucao;
           const extensionsUsed = r.extensaoContador ?? r.extensoes ?? 0;
           const bId = r.bookId || r.idLivro || r.id;
@@ -432,7 +389,7 @@
           <div class="p-space-lg bg-surface-container-lowest rounded-2xl border border-surface-container shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-md">
             <div class="flex items-center gap-space-md min-w-0">
               <div class="w-12 h-16 rounded-lg bg-surface-container-high overflow-hidden shrink-0 shadow-sm flex items-center justify-center">
-                <span class="material-symbols-outlined text-secondary text-2xl">book</span>
+                <span class="material-symbols-outlined text-secondary text-2xl" translate="no">book</span>
               </div>
               <div class="flex flex-col min-w-0">
                 <span class="font-label-sm text-secondary uppercase text-[11px] font-bold">Exemplar #${copyId}</span>
@@ -447,7 +404,7 @@
             <div class="flex items-center gap-space-sm shrink-0 flex-wrap">
               ${extensionsUsed < 2 ? `
                 <button onclick="handleExtendRental(${r.id})" class="px-3.5 py-2 bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-container rounded-xl font-label-sm text-xs font-bold transition-all flex items-center gap-1.5">
-                  <span class="material-symbols-outlined text-[16px]">autorenew</span>
+                  <span class="material-symbols-outlined text-[16px]" translate="no">autorenew</span>
                   Renovar (+15/30d)
                 </button>
               ` : `
@@ -456,11 +413,15 @@
                 </span>
               `}
               <button onclick="handleReturnRental(${r.id}, '${title.replace(/'/g, "\\'")}')" class="px-3.5 py-2 bg-error-container hover:bg-red-200 text-on-error-container rounded-xl font-label-sm text-xs font-semibold transition-all flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-[16px]">assignment_return</span>
+                <span class="material-symbols-outlined text-[16px]" translate="no">assignment_return</span>
                 Devolver
               </button>
+              <button onclick="handleCancelRental(${r.id}, '${title.replace(/'/g, "\\'")}')" class="px-3.5 py-2 bg-surface-container hover:bg-surface-container-high text-outline hover:text-error rounded-xl font-label-sm text-xs font-semibold transition-all flex items-center gap-1.5" title="Cancelar aluguel">
+                <span class="material-symbols-outlined text-[16px]" translate="no">cancel</span>
+                Cancelar
+              </button>
               <button onclick="handleMarkAsRead(${bId})" class="px-3.5 py-2 bg-surface-container-low hover:bg-surface-container-high text-on-surface rounded-xl font-label-sm text-xs font-semibold transition-all flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
+                <span class="material-symbols-outlined text-[16px] text-secondary" translate="no">check_circle</span>
                 Já Lido
               </button>
             </div>
@@ -484,13 +445,16 @@
       }
     }
 
-    async function handleExtendRental(rentalId) {
+    async function handleCancelRental(rentalId, title) {
+      if (!confirm(`Deseja cancelar o aluguel de "${title}"? O exemplar será liberado imediatamente.`)) return;
       try {
-        await AuroraAPI.extendRental(rentalId);
-        AuroraAPI.showToast('Aluguel estendido com sucesso!', 'autorenew');
+        await AuroraAPI.cancelRental(rentalId);
+        AuroraAPI.showToast(`Aluguel cancelado e exemplar liberado.`, 'cancel');
         loadMyActiveRentals();
+        loadNovidades();
+        loadDestaques();
       } catch (err) {
-        AuroraAPI.showToast(err.message || 'Não foi possível estender o aluguel.', 'error', true);
+        AuroraAPI.showToast(err.message || 'Erro ao cancelar aluguel.', 'error', true);
       }
     }
 

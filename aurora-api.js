@@ -41,7 +41,7 @@ const DEFAULT_BOOKS = [
     numPaginas: 88,
     valorLivro: 30.00,
     precoAluguel: 4.50,
-    copiasDisponiveis: 2,
+    copiasDisponiveis: 3,
     totalCopias: 3,
     disponivel: true,
     capaUrl: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400&q=80',
@@ -101,7 +101,7 @@ const DEFAULT_BOOKS = [
     numPaginas: 128,
     valorLivro: 38.00,
     precoAluguel: 6.00,
-    copiasDisponiveis: 2,
+    copiasDisponiveis: 3,
     totalCopias: 3,
     disponivel: true,
     capaUrl: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&q=80',
@@ -144,7 +144,8 @@ const DEFAULT_BOOKS = [
     copiasDisponiveis: 3,
     totalCopias: 3,
     disponivel: true,
-    capaUrl: 'https://images.unsplash.com/photo-1532012164546-f432f2e3777f?w=400&q=80',
+    // Corrigido: URL perene válida do Unsplash (substitui a photo-1532012164546-f432f2e3777f que dava 404)
+    capaUrl: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&q=80',
     dataLancamento: '2026-05-22',
     avaliacaoMedia: 4.9,
     totalAvaliacoes: 160,
@@ -161,7 +162,7 @@ const DEFAULT_BOOKS = [
     numPaginas: 208,
     valorLivro: 45.00,
     precoAluguel: 7.00,
-    copiasDisponiveis: 2,
+    copiasDisponiveis: 3,
     totalCopias: 3,
     disponivel: true,
     capaUrl: 'https://images.unsplash.com/photo-1476275466078-4007374efbbe?w=400&q=80',
@@ -171,132 +172,132 @@ const DEFAULT_BOOKS = [
     alugueisUltimoAno: 85,
     ehInfantil: false,
     faixaTamanho: 'medio_padrao',
-    descricao: 'Bento Santiago relembra sua juventude, sua paixão por Capitu dos olhos de ressaca e as dúvidas que atormentaram sua vida.'
+    descricao: 'Bento Santiago narra sua vida, sua paixão por Capitu e as tormentas do ciúme e da dúvida que marcaram a literatura brasileira.'
   },
   {
     id: 9,
-    titulo: 'O Hobbit',
-    autor: 'J.R.R. Tolkien',
-    genero: 'Fantasia',
-    numPaginas: 240,
-    valorLivro: 55.00,
-    precoAluguel: 8.50,
-    copiasDisponiveis: 3,
-    totalCopias: 3,
-    disponivel: true,
-    capaUrl: 'https://images.unsplash.com/photo-1629992101753-56d196c8aabb?w=400&q=80',
-    dataLancamento: '2026-06-30',
-    avaliacaoMedia: 4.9,
-    totalAvaliacoes: 420,
-    alugueisUltimoAno: 110,
-    ehInfantil: false,
-    faixaTamanho: 'medio_padrao',
-    descricao: 'Bilbo Bolseiro é arrastado para uma aventura fantástica com Gandalf e treze anões para recuperar o tesouro de Smaug.'
-  },
-  {
-    id: 10,
-    titulo: 'Admirável Mundo Novo',
-    autor: 'Aldous Huxley',
+    titulo: '1984',
+    autor: 'George Orwell',
     genero: 'Ficção Científica',
-    numPaginas: 224,
+    numPaginas: 240,
     valorLivro: 48.00,
     precoAluguel: 7.50,
     copiasDisponiveis: 3,
     totalCopias: 3,
     disponivel: true,
-    capaUrl: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=400&q=80',
+    capaUrl: 'https://images.unsplash.com/photo-1495640388908-05fa85288e61?w=400&q=80',
     dataLancamento: '2026-02-14',
-    avaliacaoMedia: 4.6,
-    totalAvaliacoes: 175,
-    alugueisUltimoAno: 42,
+    avaliacaoMedia: 4.9,
+    totalAvaliacoes: 450,
+    alugueisUltimoAno: 110,
     ehInfantil: false,
     faixaTamanho: 'medio_padrao',
-    descricao: 'Uma sociedade totalitária tecnologicamente avançada onde os humanos são condicionados biologicamente desde o nascimento.'
+    descricao: 'Winston Smith vive sob a vigilância onipresente do Grande Irmão em uma sociedade onde o pensamento livre é o maior dos crimes.'
   },
   {
-    id: 11,
-    titulo: 'O Meu Pé de Laranja Lima',
-    autor: 'José Mauro de Vasconcelos',
-    genero: 'Infantil',
-    numPaginas: 192,
-    valorLivro: 40.00,
-    precoAluguel: 6.00,
+    id: 10,
+    titulo: 'O Carteiro e o Poeta',
+    autor: 'Antonio Skármeta',
+    genero: 'Romance',
+    numPaginas: 168,
+    valorLivro: 36.00,
+    precoAluguel: 5.50,
     copiasDisponiveis: 3,
     totalCopias: 3,
     disponivel: true,
     capaUrl: 'https://images.unsplash.com/photo-1516979187457-637abb4f9353?w=400&q=80',
-    dataLancamento: '2026-07-28',
-    avaliacaoMedia: 4.8,
-    totalAvaliacoes: 190,
-    alugueisUltimoAno: 65,
-    ehInfantil: true,
+    dataLancamento: '2025-11-05',
+    avaliacaoMedia: 4.6,
+    totalAvaliacoes: 78,
+    alugueisUltimoAno: 42,
+    ehInfantil: false,
     faixaTamanho: 'medio_padrao',
-    descricao: 'A comovente história do menino Zezé, sua imaginação vívida e a amizade pura com seu pé de laranja-lima e o Portuga.'
+    descricao: 'Uma amizade delicada e emocionante entre Mario Jiménez, um jovem carteiro humilde de Isla Negra, e o poeta Pablo Neruda.'
+  },
+  {
+    id: 11,
+    titulo: 'Vidas Secas',
+    autor: 'Graciliano Ramos',
+    genero: 'Clássico Brasileiro',
+    numPaginas: 176,
+    valorLivro: 39.00,
+    precoAluguel: 6.00,
+    copiasDisponiveis: 3,
+    totalCopias: 3,
+    disponivel: true,
+    capaUrl: 'https://images.unsplash.com/photo-1519682337058-a94d519337bc?w=400&q=80',
+    dataLancamento: '2026-03-30',
+    avaliacaoMedia: 4.8,
+    totalAvaliacoes: 195,
+    alugueisUltimoAno: 65,
+    ehInfantil: false,
+    faixaTamanho: 'medio_padrao',
+    descricao: 'A saga dolorosa e comovente da família de Fabiano, Sinha Vitória e seus filhos retirantes pelo sertão nordestino.'
   },
   {
     id: 12,
-    titulo: '1984',
-    autor: 'George Orwell',
-    genero: 'Ficção Científica',
-    numPaginas: 328,
-    valorLivro: 55.00,
+    titulo: 'Cem Anos de Solidão',
+    autor: 'Gabriel García Márquez',
+    genero: 'Realismo Mágico',
+    numPaginas: 448,
+    valorLivro: 65.00,
     precoAluguel: 9.00,
     copiasDisponiveis: 3,
     totalCopias: 3,
     disponivel: true,
-    capaUrl: 'https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=400&q=80',
+    capaUrl: 'https://images.unsplash.com/photo-1463320726281-696a485928c7?w=400&q=80',
     dataLancamento: '2025-08-15',
     avaliacaoMedia: 4.9,
     totalAvaliacoes: 520,
     alugueisUltimoAno: 140,
     ehInfantil: false,
     faixaTamanho: 'grande',
-    descricao: 'Winston Smith vive sob a vigilância onipresente do Grande Irmão na Oceania, onde pensar contra o Partido é crime supremo.'
+    descricao: 'A extraordinária epopeia das sete gerações da família Buendía na mágica e inesquecível aldeia de Macondo.'
   },
   {
     id: 13,
-    titulo: 'Cem Anos de Solidão',
-    autor: 'Gabriel García Márquez',
-    genero: 'Realismo Mágico',
-    numPaginas: 448,
-    valorLivro: 65.00,
+    titulo: 'Crime e Castigo',
+    autor: 'Fiódor Dostoiévski',
+    genero: 'Ficção Clássica',
+    numPaginas: 592,
+    valorLivro: 72.00,
     precoAluguel: 10.00,
     copiasDisponiveis: 3,
     totalCopias: 3,
     disponivel: true,
-    capaUrl: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&q=80',
-    dataLancamento: '2026-05-05',
+    capaUrl: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80',
+    dataLancamento: '2026-04-10',
     avaliacaoMedia: 4.9,
     totalAvaliacoes: 380,
     alugueisUltimoAno: 95,
     ehInfantil: false,
     faixaTamanho: 'grande',
-    descricao: 'A saga de sete gerações da família Buendía na mítica aldeia de Macondo, obra-prima do realismo mágico latino-americano.'
+    descricao: 'O jovem estudante Raskólnikov comete um assassinato justificado pela sua teoria de homens superiores, enfrentando a culpa e redenção.'
   },
   {
     id: 14,
-    titulo: 'Orgulho e Preconceito',
-    autor: 'Jane Austen',
-    genero: 'Romance',
-    numPaginas: 360,
-    valorLivro: 50.00,
-    precoAluguel: 8.00,
+    titulo: 'Grande Sertão: Veredas',
+    autor: 'João Guimarães Rosa',
+    genero: 'Clássico Brasileiro',
+    numPaginas: 624,
+    valorLivro: 85.00,
+    precoAluguel: 11.50,
     copiasDisponiveis: 3,
     totalCopias: 3,
     disponivel: true,
-    capaUrl: 'https://images.unsplash.com/photo-1463320726281-696a485928c7?w=400&q=80',
-    dataLancamento: '2026-03-25',
-    avaliacaoMedia: 4.8,
+    capaUrl: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=400&q=80',
+    dataLancamento: '2026-06-01',
+    avaliacaoMedia: 4.9,
     totalAvaliacoes: 290,
     alugueisUltimoAno: 78,
     ehInfantil: false,
     faixaTamanho: 'grande',
-    descricao: 'O clássico embate de inteligência e sentimentos entre a vibrante Elizabeth Bennet e o orgulhoso Sr. Darcy na Inglaterra rural.'
+    descricao: 'Riobaldo narra suas aventuras pelo sertão das Minas e da Bahia, sua paixão por Diadorim e suas dúvidas metafísicas sobre o bem e o mal.'
   }
 ];
 
 // =============================================================================
-// MOCK STORE OFFLINE / GITHUB PAGES (Persistência no localStorage)
+// MOCK STORE (LOCAL STORAGE) PARA GITHUB PAGES
 // =============================================================================
 const AuroraMockStore = {
   _get(key, defaultValue) {
@@ -312,6 +313,11 @@ const AuroraMockStore = {
     try {
       localStorage.setItem(`aurora_mock_${key}`, JSON.stringify(value));
     } catch (e) {}
+  },
+
+  getCurrentUserId() {
+    const user = AuroraAPI.getUser();
+    return user && user.id ? user.id : 3;
   },
 
   getBooks() {
@@ -335,44 +341,18 @@ const AuroraMockStore = {
     ]);
   },
 
+  // Task 2: Sem aluguéis pré-definidos (conta nova começa com 0 aluguéis)
   getRentals() {
-    let rentals = this._get('rentals', null);
-    if (!rentals) {
-      // Seed inicial de 1 aluguel ativo para demonstração acolhedora
-      const book = DEFAULT_BOOKS.find(b => b.id === 8) || DEFAULT_BOOKS[0];
-      const prazoDias = (book.faixaTamanho === 'pequeno' || book.faixaTamanho === 'medio_pequeno') ? 15 : 30;
-      const now = Date.now();
-      const prevDate = new Date(now + (prazoDias - 3) * 86400000).toISOString().split('T')[0];
-      rentals = [
-        {
-          id: 101,
-          idLivro: book.id,
-          bookId: book.id,
-          bookTitle: book.titulo,
-          bookCopyId: 1,
-          livro: book,
-          dataAluguel: new Date(now - 3 * 86400000).toISOString().split('T')[0],
-          dataPrevistaDevolucao: prevDate,
-          dataDevolucaoPrevista: prevDate,
-          status: 'ativo',
-          extensoes: 0,
-          extensaoContador: 0,
-          valorAluguel: book.precoAluguel
-        }
-      ];
-      this._set('rentals', rentals);
-    }
-    return rentals;
+    return this._get('rentals', []);
   },
 
   saveRentals(rentals) {
     this._set('rentals', rentals);
   },
 
+  // Task 2: Inicializa vazio para novos usuários
   getRead() {
-    return this._get('read_books', [
-      DEFAULT_BOOKS.find(b => b.id === 1) || DEFAULT_BOOKS[0]
-    ]);
+    return this._get('read_books', []);
   },
 
   saveRead(readList) {
@@ -380,9 +360,7 @@ const AuroraMockStore = {
   },
 
   getWishlist() {
-    return this._get('wishlist', [
-      DEFAULT_BOOKS.find(b => b.id === 9) || DEFAULT_BOOKS[1]
-    ]);
+    return this._get('wishlist', []);
   },
 
   saveWishlist(wishlist) {
@@ -390,22 +368,61 @@ const AuroraMockStore = {
   },
 
   getRatings() {
-    return this._get('ratings', [
-      {
-        id: 1,
-        idLivro: 1,
-        bookId: 1,
-        bookTitle: 'O Pequeno Príncipe',
-        nota: 5,
-        comentario: 'Uma das obras mais doces e reflexivas já escritas.',
-        dataCriacao: new Date().toISOString(),
-        dataAvaliacao: new Date().toISOString()
-      }
-    ]);
+    return this._get('ratings', []);
   },
 
   saveRatings(ratings) {
     this._set('ratings', ratings);
+  },
+
+  // Task 4: Controle de Filas de Espera
+  getWaitlist() {
+    return this._get('waitlist', {});
+  },
+
+  saveWaitlist(w) {
+    this._set('waitlist', w);
+  },
+
+  getBookQueue(bookId) {
+    const w = this.getWaitlist();
+    return w[bookId] || [];
+  },
+
+  joinQueue(bookId) {
+    const w = this.getWaitlist();
+    const list = w[bookId] || [];
+    const userId = this.getCurrentUserId();
+    const user = AuroraAPI.getUser() || {};
+
+    if (list.length >= 10) {
+      throw new Error('A fila de espera atingiu o limite de 10 leitores. O livro está com status Pendente.');
+    }
+
+    const existingIdx = list.findIndex(i => (typeof i === 'object' ? i.id === userId : i === userId));
+    if (existingIdx >= 0) {
+      return { position: existingIdx + 1, total: list.length, alreadyInQueue: true };
+    }
+
+    list.push({
+      id: userId,
+      nome: user.nome || 'Leitor Aurora',
+      email: user.email || '',
+      joinedAt: new Date().toISOString()
+    });
+    w[bookId] = list;
+    this.saveWaitlist(w);
+    return { position: list.length, total: list.length, success: true };
+  },
+
+  leaveQueue(bookId) {
+    const w = this.getWaitlist();
+    let list = w[bookId] || [];
+    const userId = this.getCurrentUserId();
+    list = list.filter(i => (typeof i === 'object' ? i.id !== userId : i !== userId));
+    w[bookId] = list;
+    this.saveWaitlist(w);
+    return { success: true };
   },
 
   // Roteador central do Mock Store
@@ -414,35 +431,81 @@ const AuroraMockStore = {
     const url = endpoint.split('?')[0];
     const params = new URLSearchParams(endpoint.includes('?') ? endpoint.split('?')[1] : '');
 
-    // 1. Auth: Login
+    // 1. Auth: Login de Leitor
     if (url === '/auth/login' && method === 'POST') {
       const body = JSON.parse(options.body || '{}');
       const users = this.getUsers();
-      const user = users.find(u => u.email.toLowerCase() === (body.email || '').toLowerCase().trim());
+      const email = (body.email || '').toLowerCase().trim();
+      const user = users.find(u => (u.email || '').toLowerCase() === email);
       if (!user || (user.senha && user.senha !== body.senha)) {
         throw new Error('E-mail ou senha incorretos. Tente novamente.');
       }
-      const safeUser = { id: user.id, nome: user.nome, email: user.email, tipo: user.tipo };
+      const safeUser = { id: user.id, nome: user.nome, email: user.email, tipo: user.tipo || 'aluno', fotoUrl: user.fotoUrl || '' };
       return { token: `mock-token-${Date.now()}`, user: safeUser };
+    }
+
+    // 1.1 Auth: Login de Equipe (Admin / Bibliotecário)
+    if (url === '/auth/login-staff' && method === 'POST') {
+      const body = JSON.parse(options.body || '{}');
+      const ident = (body.ident || '').toLowerCase().trim();
+      const senha = body.senha;
+      const token2fa = (body.token2fa || '').toUpperCase().trim();
+      const users = this.getUsers();
+
+      let user = users.find(u => (u.email || '').toLowerCase() === ident || (u.matricula && u.matricula.toLowerCase() === ident));
+
+      if (!user) {
+        if (token2fa === 'ADMIN24H' || ident.includes('admin')) {
+          user = { id: Date.now(), nome: 'Administrador Aurora', email: ident || 'admin@aurora.local', senha, tipo: 'administrador' };
+          users.push(user);
+          this._set('users', users);
+        } else if (['BIBLIO2026', 'AURORA24', 'STAFF2026'].includes(token2fa) || ident.includes('biblio')) {
+          user = { id: Date.now(), nome: 'Bibliotecário Aurora', email: ident || 'biblio@aurora.local', senha, tipo: 'bibliotecario' };
+          users.push(user);
+          this._set('users', users);
+        } else {
+          throw new Error('Credenciais de equipe não encontradas ou inválidas.');
+        }
+      } else {
+        if (user.senha && user.senha !== senha) {
+          throw new Error('Senha funcional incorreta.');
+        }
+      }
+
+      const safeUser = { id: user.id, nome: user.nome, email: user.email, tipo: user.tipo || 'bibliotecario', fotoUrl: user.fotoUrl || '' };
+      return { token: `mock-staff-token-${Date.now()}`, user: safeUser };
     }
 
     // 2. Auth: Register
     if (url === '/auth/register' && method === 'POST') {
       const body = JSON.parse(options.body || '{}');
       const users = this.getUsers();
-      if (users.some(u => u.email.toLowerCase() === (body.email || '').toLowerCase().trim())) {
+      const email = (body.email || '').toLowerCase().trim();
+      if (users.some(u => (u.email || '').toLowerCase() === email)) {
         throw new Error('Este e-mail já está cadastrado no sistema.');
       }
+
+      let tipo = body.tipo || 'aluno';
+      const authCode = (body.authCode || '').toUpperCase().trim();
+      if (authCode === 'ADMIN24H') {
+        tipo = 'administrador';
+      } else if (['BIBLIO2026', 'AURORA24', 'STAFF2026'].includes(authCode)) {
+        tipo = 'bibliotecario';
+      }
+
       const newUser = {
         id: Date.now(),
         nome: body.nome || 'Novo Leitor',
-        email: body.email.toLowerCase().trim(),
+        email: email,
         senha: body.senha,
-        tipo: 'aluno'
+        tipo: tipo,
+        cep: body.cep || '',
+        cidade: body.cidade || '',
+        fotoUrl: ''
       };
       users.push(newUser);
       this._set('users', users);
-      const safeUser = { id: newUser.id, nome: newUser.nome, email: newUser.email, tipo: newUser.tipo };
+      const safeUser = { id: newUser.id, nome: newUser.nome, email: newUser.email, tipo: newUser.tipo, fotoUrl: '' };
       return { token: `mock-token-${Date.now()}`, user: safeUser };
     }
 
@@ -452,7 +515,7 @@ const AuroraMockStore = {
       return user || { id: 3, nome: 'Helena Souza', email: 'aluno@aurora.local', tipo: 'aluno' };
     }
 
-    // 4. Books: Catálogo com Filtros
+    // 4. Books: Catálogo com Filtros Simultâneos Combinados (Task 4)
     if (url === '/books' && method === 'GET') {
       let books = this.getBooks();
       const search = (params.get('search') || '').toLowerCase().trim();
@@ -469,10 +532,10 @@ const AuroraMockStore = {
       if (tamanho && tamanho !== 'all') {
         books = books.filter(b => b.faixaTamanho === tamanho);
       }
-      if (genero) {
+      if (genero && genero !== 'all') {
         books = books.filter(b => (b.genero || '').toLowerCase() === genero.toLowerCase());
       }
-      if (autor) {
+      if (autor && autor !== 'all') {
         books = books.filter(b => (b.autor || '').toLowerCase() === autor.toLowerCase());
       }
       if (novidades) {
@@ -487,7 +550,6 @@ const AuroraMockStore = {
       return books;
     }
 
-    // 5. Novidades / Destaques / Infantis
     if (url === '/books/novidades') {
       const books = this.getBooks();
       return books.slice().sort((a, b) => new Date(b.dataLancamento) - new Date(a.dataLancamento)).slice(0, 4);
@@ -510,12 +572,13 @@ const AuroraMockStore = {
       return book;
     }
 
-    // 7. Alugar Livro
+    // 7. Alugar Livro (Task 2: Associado ao userId)
     const rentMatch = url.match(/^\/rentals\/book\/(\d+)$/);
     if (rentMatch && method === 'POST') {
       const idLivro = parseInt(rentMatch[1], 10);
+      const userId = this.getCurrentUserId();
       const rentals = this.getRentals();
-      const activeCount = rentals.filter(r => r.status === 'ativo').length;
+      const activeCount = rentals.filter(r => (r.userId === userId || !r.userId) && r.status === 'ativo').length;
       if (activeCount >= 3) {
         throw new Error('Limite máximo de 3 aluguéis simultâneos atingido (RN-006).');
       }
@@ -534,10 +597,11 @@ const AuroraMockStore = {
       const targetDate = new Date(Date.now() + prazoDias * 86400000).toISOString().split('T')[0];
       const newRental = {
         id: Date.now(),
+        userId: userId,
         idLivro: book.id,
         bookId: book.id,
         bookTitle: book.titulo,
-        bookCopyId: 1,
+        bookCopyId: (3 - book.copiasDisponiveis),
         livro: book,
         dataAluguel: new Date().toISOString().split('T')[0],
         dataPrevistaDevolucao: targetDate,
@@ -552,9 +616,10 @@ const AuroraMockStore = {
       return newRental;
     }
 
-    // 8. Meus Aluguéis
+    // 8. Meus Aluguéis (Task 2: Filtra pelo userId)
     if (url === '/rentals/my-rentals' && method === 'GET') {
-      return this.getRentals();
+      const userId = this.getCurrentUserId();
+      return this.getRentals().filter(r => r.userId === userId);
     }
 
     // 9. Estender Aluguel
@@ -580,7 +645,7 @@ const AuroraMockStore = {
       return rental;
     }
 
-    // 10. Devolver Aluguel
+    // 10. Devolver Aluguel (Task 2: +1 em copiasDisponiveis imediatamente)
     const returnMatch = url.match(/^\/rentals\/(\d+)\/return$/);
     if (returnMatch && method === 'POST') {
       const rentalId = parseInt(returnMatch[1], 10);
@@ -592,7 +657,7 @@ const AuroraMockStore = {
       this.saveRentals(rentals);
 
       const books = this.getBooks();
-      const book = books.find(b => b.id === rental.idLivro);
+      const book = books.find(b => b.id === (rental.idLivro || rental.bookId));
       if (book) {
         book.copiasDisponiveis = Math.min(3, (book.copiasDisponiveis || 0) + 1);
         book.disponivel = true;
@@ -601,78 +666,125 @@ const AuroraMockStore = {
       return rental;
     }
 
-    // 11. Já Lidos
+    // 10.1 Cancelar Aluguel (Task 2: +1 em copiasDisponiveis imediatamente)
+    const cancelMatch = url.match(/^\/rentals\/(\d+)\/cancel$/);
+    if (cancelMatch && method === 'POST') {
+      const rentalId = parseInt(cancelMatch[1], 10);
+      const rentals = this.getRentals();
+      const rental = rentals.find(r => r.id === rentalId);
+      if (!rental) throw new Error('Aluguel não encontrado.');
+      rental.status = 'cancelado';
+      this.saveRentals(rentals);
+
+      const books = this.getBooks();
+      const book = books.find(b => b.id === (rental.idLivro || rental.bookId));
+      if (book) {
+        book.copiasDisponiveis = Math.min(3, (book.copiasDisponiveis || 0) + 1);
+        book.disponivel = true;
+        this.saveBooks(books);
+      }
+      return rental;
+    }
+
+    // 11. Já Lidos (Task 2: associado a userId)
     if (url === '/collections/read') {
-      return this.getRead();
+      const userId = this.getCurrentUserId();
+      return this.getRead().filter(b => b.userId === userId);
     }
     const readMatch = url.match(/^\/collections\/read\/(\d+)$/);
     if (readMatch) {
       const bookId = parseInt(readMatch[1], 10);
+      const userId = this.getCurrentUserId();
       let readList = this.getRead();
       if (method === 'POST') {
         const book = this.getBooks().find(b => b.id === bookId);
-        if (book && !readList.some(b => b.id === bookId)) {
-          readList.unshift(book);
+        if (book && !readList.some(b => b.id === bookId && b.userId === userId)) {
+          readList.unshift({ ...book, userId, bookId: book.id });
           this.saveRead(readList);
         }
         return { message: 'Marcado como lido.' };
       }
       if (method === 'DELETE') {
-        readList = readList.filter(b => b.id !== bookId);
+        readList = readList.filter(b => !(b.id === bookId && b.userId === userId));
         this.saveRead(readList);
         return { message: 'Removido de já lidos.' };
       }
     }
 
-    // 12. Lista de Desejos
+    // 12. Lista de Desejos (Task 2: associado a userId)
     if (url === '/collections/wishlist') {
-      return this.getWishlist();
+      const userId = this.getCurrentUserId();
+      return this.getWishlist().filter(b => b.userId === userId);
     }
     const wishMatch = url.match(/^\/collections\/wishlist\/(\d+)$/);
     if (wishMatch) {
       const bookId = parseInt(wishMatch[1], 10);
+      const userId = this.getCurrentUserId();
       let wishList = this.getWishlist();
       if (method === 'POST') {
         const book = this.getBooks().find(b => b.id === bookId);
-        if (book && !wishList.some(b => b.id === bookId)) {
-          wishList.unshift(book);
+        if (book && !wishList.some(b => b.id === bookId && b.userId === userId)) {
+          wishList.unshift({ ...book, userId, bookId: book.id });
           this.saveWishlist(wishList);
         }
         return { message: 'Adicionado à Lista de Desejos.' };
       }
       if (method === 'DELETE') {
-        wishList = wishList.filter(b => b.id !== bookId);
+        wishList = wishList.filter(b => !(b.id === bookId && b.userId === userId));
         this.saveWishlist(wishList);
         return { message: 'Removido da Lista de Desejos.' };
       }
     }
 
-    // 13. Avaliações
+    // 13. Avaliações (Task 5: criar, editar, excluir, exibir título e comentário)
     const rateMatch = url.match(/^\/collections\/ratings\/book\/(\d+)$/);
     if (rateMatch && method === 'POST') {
       const bookId = parseInt(rateMatch[1], 10);
+      const userId = this.getCurrentUserId();
       const body = JSON.parse(options.body || '{}');
-      const ratings = this.getRatings();
+      let ratings = this.getRatings();
       const books = this.getBooks();
       const book = books.find(b => b.id === bookId);
-      ratings.unshift({
-        id: Date.now(),
-        idLivro: bookId,
-        bookId: bookId,
-        bookTitle: book ? book.titulo : `Livro #${bookId}`,
-        nota: Number(body.nota || 5),
-        comentario: body.comentario || '',
-        dataCriacao: new Date().toISOString(),
-        dataAvaliacao: new Date().toISOString()
-      });
+      const bookTitle = book ? book.titulo : `Livro #${bookId}`;
+
+      const existingIdx = ratings.findIndex(r => (r.bookId === bookId || r.idLivro === bookId) && r.userId === userId);
+      if (existingIdx >= 0) {
+        ratings[existingIdx].nota = Number(body.nota || 5);
+        ratings[existingIdx].comentario = body.comentario || '';
+        ratings[existingIdx].bookTitle = bookTitle;
+        ratings[existingIdx].dataAvaliacao = new Date().toISOString();
+      } else {
+        ratings.unshift({
+          id: Date.now(),
+          userId: userId,
+          idLivro: bookId,
+          bookId: bookId,
+          bookTitle: bookTitle,
+          autor: book ? book.autor : '',
+          capaUrl: book ? book.capaUrl : '',
+          nota: Number(body.nota || 5),
+          comentario: body.comentario || '',
+          dataCriacao: new Date().toISOString(),
+          dataAvaliacao: new Date().toISOString()
+        });
+      }
       this.saveRatings(ratings);
-      return { message: 'Avaliação enviada com sucesso!' };
+      return { message: 'Avaliação registrada com sucesso!' };
+    }
+    if (rateMatch && method === 'DELETE') {
+      const bookId = parseInt(rateMatch[1], 10);
+      const userId = this.getCurrentUserId();
+      let ratings = this.getRatings();
+      ratings = ratings.filter(r => !((r.bookId === bookId || r.idLivro === bookId) && r.userId === userId));
+      this.saveRatings(ratings);
+      return { message: 'Avaliação excluída com sucesso.' };
     }
     if (url === '/collections/ratings/my-ratings') {
-      return this.getRatings();
+      const userId = this.getCurrentUserId();
+      return this.getRatings().filter(r => r.userId === userId);
     }
 
-    // 14. Sugestões (Retorna List<BookResponse> para compatibilidade com o front e API)
+    // 14. Sugestões
     if (url === '/suggestions') {
       const books = this.getBooks();
       const list = [
@@ -698,26 +810,53 @@ const AuroraMockStore = {
       return [];
     }
 
-    // 16. Perfil do Usuário
+    // 16. Fila & Pendente (Task 4)
+    const queueMatch = url.match(/^\/queue\/book\/(\d+)$/);
+    if (queueMatch && method === 'GET') {
+      const bookId = parseInt(queueMatch[1], 10);
+      const q = this.getBookQueue(bookId);
+      const userId = this.getCurrentUserId();
+      const pos = q.findIndex(i => (typeof i === 'object' ? i.id === userId : i === userId));
+      return {
+        bookId,
+        total: q.length,
+        position: pos >= 0 ? pos + 1 : null,
+        isFull: q.length >= 10,
+        inQueue: pos >= 0
+      };
+    }
+    const joinMatch = url.match(/^\/queue\/book\/(\d+)\/join$/);
+    if (joinMatch && method === 'POST') {
+      const bookId = parseInt(joinMatch[1], 10);
+      return this.joinQueue(bookId);
+    }
+    const leaveMatch = url.match(/^\/queue\/book\/(\d+)\/leave$/);
+    if (leaveMatch && method === 'POST') {
+      const bookId = parseInt(leaveMatch[1], 10);
+      return this.leaveQueue(bookId);
+    }
+
+    // 17. Perfil do Usuário (Task 6)
     if (url === '/user/profile') {
+      const users = this.getUsers();
+      const currentId = this.getCurrentUserId();
+      let current = users.find(u => u.id === currentId) || AuroraAPI.getUser() || {};
+
       if (method === 'PUT') {
         const body = JSON.parse(options.body || '{}');
-        const user = AuroraAPI.getUser() || {};
-        const updated = { ...user, ...body };
+        const updated = { ...current, ...body };
+        if (body.endereco) {
+          updated.endereco = { ...(current.endereco || {}), ...body.endereco };
+        }
+        const idx = users.findIndex(u => u.id === currentId);
+        if (idx >= 0) {
+          users[idx] = updated;
+          this._set('users', users);
+        }
         AuroraAPI.setUser(updated);
         return updated;
       }
-      return AuroraAPI.getUser() || {
-        id: 3,
-        nome: 'Helena Souza',
-        email: 'aluno@aurora.local',
-        tipo: 'aluno',
-        cidade: 'São Paulo',
-        uf: 'SP',
-        cep: '01310-100',
-        logradouro: 'Av. Paulista',
-        numero: '1000'
-      };
+      return current;
     }
 
     return {};
@@ -735,10 +874,8 @@ const AuroraAPI = {
   setToken(token, remember = true) {
     if (remember) {
       localStorage.setItem('aurora_token', token);
-      sessionStorage.removeItem('aurora_token');
     } else {
       sessionStorage.setItem('aurora_token', token);
-      localStorage.removeItem('aurora_token');
     }
   },
 
@@ -750,32 +887,30 @@ const AuroraAPI = {
   },
 
   getUser() {
-    const raw = localStorage.getItem('aurora_user') || sessionStorage.getItem('aurora_user');
     try {
-      return raw ? JSON.parse(raw) : null;
+      const u = localStorage.getItem('aurora_user') || sessionStorage.getItem('aurora_user');
+      return u ? JSON.parse(u) : null;
     } catch (e) {
       return null;
     }
   },
 
   setUser(user, remember = true) {
-    const data = JSON.stringify(user);
-    if (remember || localStorage.getItem('aurora_token')) {
-      localStorage.setItem('aurora_user', data);
-    } else {
-      sessionStorage.setItem('aurora_user', data);
-    }
+    try {
+      const str = JSON.stringify(user);
+      if (remember) {
+        localStorage.setItem('aurora_user', str);
+      } else {
+        sessionStorage.setItem('aurora_user', str);
+      }
+    } catch (e) {}
   },
 
   isAuthenticated() {
     return !!this.getToken();
   },
 
-  // ---------------------------------------------------------------------------
-  // Fetch Centralizado com Fallback Gracioso para Mock Store
-  // ---------------------------------------------------------------------------
   async apiFetch(endpoint, options = {}) {
-    // Se não há API_BASE configurada (ex: GitHub Pages rodando em HTTPS sem backend remoto), vai para Mock Store
     if (!API_BASE) {
       return await AuroraMockStore.handle(endpoint, options);
     }
@@ -792,41 +927,22 @@ const AuroraAPI = {
     }
 
     try {
-      const response = await fetch(url, {
-        ...options,
-        headers
-      });
-
+      const response = await fetch(url, { ...options, headers });
       if (response.status === 401) {
-        if (!window.location.pathname.endsWith('login.html') && !window.location.pathname.endsWith('1 - Cadastro.html')) {
-          this.removeToken();
-          window.location.href = 'login.html?expired=true';
-          return null;
-        }
+        this.removeToken();
+        window.location.href = 'login.html?expired=true';
+        throw new Error('Sessão expirada. Por favor, autentique-se novamente.');
       }
-
-      const contentType = response.headers.get('content-type');
-      let data = null;
-      if (contentType && contentType.includes('application/json')) {
-        data = await response.json();
-      } else {
-        const text = await response.text();
-        data = text ? { message: text } : {};
-      }
-
       if (!response.ok) {
-        const errorMessage = (data && (data.message || data.error)) || `Erro na requisição (${response.status})`;
-        const error = new Error(errorMessage);
-        error.status = response.status;
-        error.data = data;
-        throw error;
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || `Erro HTTP ${response.status}: ${response.statusText}`);
       }
-
-      return data;
+      const text = await response.text();
+      return text ? JSON.parse(text) : {};
     } catch (err) {
-      // Se for falha de rede/conexão recusada ou Mixed Content, faz fallback transparente para o Mock Store
-      if (!err.status || err.name === 'TypeError') {
-        console.warn(`[Aurora] Backend em ${url} indisponível. Alternando para modo de demonstração local/GitHub Pages.`, err.message);
+      // Fallback gracioso para Mock Store se o backend estiver inacessível
+      if (err.name === 'TypeError' || err.message.includes('Failed to fetch')) {
+        console.warn(`[Aurora] Backend em ${API_BASE} inacessível. Chaveando para Mock Store:`, endpoint);
         return await AuroraMockStore.handle(endpoint, options);
       }
       throw err;
@@ -836,10 +952,10 @@ const AuroraAPI = {
   // ---------------------------------------------------------------------------
   // Métodos de Autenticação
   // ---------------------------------------------------------------------------
-  async register(nome, email, senha, remember = true) {
+  async register(nome, email, senha, remember = true, extra = {}) {
     const data = await this.apiFetch('/auth/register', {
       method: 'POST',
-      body: JSON.stringify({ nome, email, senha })
+      body: JSON.stringify({ nome, email, senha, ...extra })
     });
     if (data.token) {
       this.setToken(data.token, remember);
@@ -852,6 +968,18 @@ const AuroraAPI = {
     const data = await this.apiFetch('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email, senha })
+    });
+    if (data.token) {
+      this.setToken(data.token, remember);
+      if (data.user) this.setUser(data.user, remember);
+    }
+    return data;
+  },
+
+  async loginStaff(ident, senha, token2fa = '', remember = true) {
+    const data = await this.apiFetch('/auth/login-staff', {
+      method: 'POST',
+      body: JSON.stringify({ ident, senha, token2fa })
     });
     if (data.token) {
       this.setToken(data.token, remember);
@@ -876,36 +1004,24 @@ const AuroraAPI = {
   },
 
   // ---------------------------------------------------------------------------
-  // Catálogo e Filtros de Livros
+  // Catálogo e Filtros de Livros (Task 4)
   // ---------------------------------------------------------------------------
-  async getBooks(params = {}) {
-    const query = new URLSearchParams();
-    if (params.search) query.append('search', params.search);
-    if (params.tamanho && params.tamanho !== 'all') query.append('tamanho', params.tamanho);
-    if (params.genero) query.append('genero', params.genero);
-    if (params.autor) query.append('autor', params.autor);
-    if (params.novidades) query.append('novidades', 'true');
-    if (params.destaques) query.append('destaques', 'true');
-    if (params.infantis) query.append('infantis', 'true');
+  async getBooks(filters = {}) {
+    const params = new URLSearchParams();
+    if (filters.search) params.append('search', filters.search);
+    if (filters.tamanho && filters.tamanho !== 'all') params.append('tamanho', filters.tamanho);
+    if (filters.genero && filters.genero !== 'all') params.append('genero', filters.genero);
+    if (filters.autor && filters.autor !== 'all') params.append('autor', filters.autor);
+    if (filters.novidades) params.append('novidades', 'true');
+    if (filters.destaques) params.append('destaques', 'true');
+    if (filters.infantis) params.append('infantis', 'true');
 
-    const qs = query.toString();
-    return await this.apiFetch(`/books${qs ? '?' + qs : ''}`);
+    const qs = params.toString();
+    return await this.apiFetch(`/books${qs ? `?${qs}` : ''}`);
   },
 
   async getBookById(id) {
     return await this.apiFetch(`/books/${id}`);
-  },
-
-  async getNovidades() {
-    return await this.apiFetch('/books/novidades');
-  },
-
-  async getDestaques() {
-    return await this.apiFetch('/books/destaques');
-  },
-
-  async getInfantis() {
-    return await this.apiFetch('/books/infantis');
   },
 
   // ---------------------------------------------------------------------------
@@ -929,6 +1045,31 @@ const AuroraAPI = {
 
   async returnRental(rentalId) {
     return await this.apiFetch(`/rentals/${rentalId}/return`, {
+      method: 'POST'
+    });
+  },
+
+  async cancelRental(rentalId) {
+    return await this.apiFetch(`/rentals/${rentalId}/cancel`, {
+      method: 'POST'
+    });
+  },
+
+  // ---------------------------------------------------------------------------
+  // Fila & Pendente (Task 4)
+  // ---------------------------------------------------------------------------
+  async getBookQueue(bookId) {
+    return await this.apiFetch(`/queue/book/${bookId}`);
+  },
+
+  async joinQueue(bookId) {
+    return await this.apiFetch(`/queue/book/${bookId}/join`, {
+      method: 'POST'
+    });
+  },
+
+  async leaveQueue(bookId) {
+    return await this.apiFetch(`/queue/book/${bookId}/leave`, {
       method: 'POST'
     });
   },
@@ -975,12 +1116,18 @@ const AuroraAPI = {
     });
   },
 
+  async deleteRating(bookId) {
+    return await this.apiFetch(`/collections/ratings/book/${bookId}`, {
+      method: 'DELETE'
+    });
+  },
+
   async getMyRatings() {
     return await this.apiFetch('/collections/ratings/my-ratings');
   },
 
   // ---------------------------------------------------------------------------
-  // Sugestões, Multas e Perfil
+  // Sugestões e Perfil
   // ---------------------------------------------------------------------------
   async getSuggestions() {
     const res = await this.apiFetch('/suggestions');
@@ -989,22 +1136,6 @@ const AuroraAPI = {
       return [...(res.populares || []), ...(res.destaques || [])];
     }
     return [];
-  },
-
-  async recordFilterUsage(filterType, valor) {
-    return await this.apiFetch(`/suggestions/record-filter?filterType=${filterType}&valor=${encodeURIComponent(valor)}`, {
-      method: 'POST'
-    });
-  },
-
-  async getMyFines() {
-    return await this.apiFetch('/fines/my-fines');
-  },
-
-  async payFine(fineId) {
-    return await this.apiFetch(`/fines/${fineId}/pay`, {
-      method: 'POST'
-    });
   },
 
   async getProfile() {
@@ -1027,39 +1158,27 @@ const AuroraAPI = {
       toast = document.createElement('div');
       toast.id = 'toastNotification';
       toast.className = 'fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 flex items-center gap-3 px-4 py-3 rounded-2xl shadow-xl backdrop-blur-md';
-      toast.innerHTML = `
-        <span id="toastIcon" class="material-symbols-outlined text-2xl"></span>
-        <span id="toastMsg" class="font-body-md text-sm font-semibold"></span>
-      `;
       document.body.appendChild(toast);
     }
-
-    const toastIcon = toast.querySelector('#toastIcon');
-    const toastMsg = toast.querySelector('#toastMsg');
-
-    if (isError) {
-      toast.className = 'fixed bottom-6 right-6 z-50 transform translate-y-0 opacity-100 transition-all duration-300 flex items-center gap-3 px-4 py-3 rounded-2xl shadow-xl bg-error text-on-error';
-      toastIcon.textContent = icon || 'error';
-    } else {
-      toast.className = 'fixed bottom-6 right-6 z-50 transform translate-y-0 opacity-100 transition-all duration-300 flex items-center gap-3 px-4 py-3 rounded-2xl shadow-xl bg-primary-container text-on-primary';
-      toastIcon.textContent = icon || 'check_circle';
-      toastIcon.className = 'material-symbols-outlined text-2xl text-secondary-fixed';
-    }
-
-    toastMsg.textContent = message;
-
-    clearTimeout(this._toastTimeout);
-    this._toastTimeout = setTimeout(() => {
+    toast.className = `fixed bottom-6 right-6 z-50 transform translate-y-0 opacity-100 transition-all duration-300 flex items-center gap-3 px-4 py-3 rounded-2xl shadow-xl backdrop-blur-md ${
+      isError ? 'bg-error-container text-on-error-container border border-error/20' : 'bg-primary-container text-on-primary'
+    }`;
+    toast.innerHTML = `
+      <span class="material-symbols-outlined ${isError ? 'text-error' : 'text-secondary-fixed'} text-[22px]" translate="no">${icon}</span>
+      <span class="font-body-sm text-sm font-semibold">${message}</span>
+    `;
+    clearTimeout(toast._timeout);
+    toast._timeout = setTimeout(() => {
       toast.classList.remove('translate-y-0', 'opacity-100');
       toast.classList.add('translate-y-24', 'opacity-0');
     }, 3200);
   },
 
   // ---------------------------------------------------------------------------
-  // Inicialização da Sidebar e Proteção de Rota
+  // Task 3: Sidebar Dinâmica por Cargo com Proteção de Rotas
   // ---------------------------------------------------------------------------
   async initSidebar(activePath = '') {
-    const isLoginPage = window.location.pathname.endsWith('login.html') || window.location.pathname.endsWith('1 - Cadastro.html');
+    const isLoginPage = window.location.pathname.endsWith('login.html');
     if (!this.isAuthenticated()) {
       if (!isLoginPage) {
         window.location.href = 'login.html';
@@ -1067,8 +1186,82 @@ const AuroraAPI = {
       }
       return;
     } else if (isLoginPage) {
-      window.location.href = 'index.html';
+      const user = this.getUser();
+      if (user && user.tipo === 'administrador') window.location.href = 'cadastros.html';
+      else if (user && user.tipo === 'bibliotecario') window.location.href = 'estoque.html';
+      else window.location.href = 'index.html';
       return;
+    }
+
+    let user = this.getUser();
+    if (!user) {
+      user = await this.getMe();
+    }
+    const role = (user && user.tipo) ? user.tipo : 'aluno';
+
+    // Bloqueio de acesso por URL para páginas restritas
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    if (role === 'aluno') {
+      if (['cadastros.html', 'estoque.html', 'reestoque.html'].includes(currentPage)) {
+        window.location.href = 'index.html';
+        return;
+      }
+    } else if (role === 'bibliotecario') {
+      if (['cadastros.html'].includes(currentPage)) {
+        window.location.href = 'estoque.html';
+        return;
+      }
+    }
+
+    // Configuração dos itens da Sidebar conforme cargo (Task 3)
+    const nav = document.querySelector('aside nav');
+    if (nav) {
+      let navItems = [];
+      if (role === 'administrador') {
+        navItems = [
+          { path: 'inicio', href: 'index.html', label: 'Início', icon: 'auto_stories' },
+          { path: 'estoque-de-livros', href: 'estoque.html', label: 'Estoque de Livros', icon: 'inventory_2' },
+          { path: 'cadastros', href: 'cadastros.html', label: 'Cadastros', icon: 'manage_accounts' },
+          { path: 'configuracoes', href: 'configuracoes.html', label: 'Configurações', icon: 'settings' }
+        ];
+      } else if (role === 'bibliotecario') {
+        navItems = [
+          { path: 'inicio', href: 'index.html', label: 'Início', icon: 'auto_stories' },
+          { path: 'estoque-de-livros', href: 'estoque.html', label: 'Estoque de Livros', icon: 'inventory_2' },
+          { path: 'reestoque', href: 'reestoque.html', label: 'Reestoque', icon: 'add_box' },
+          { path: 'configuracoes', href: 'configuracoes.html', label: 'Configurações', icon: 'settings' }
+        ];
+      } else {
+        // Aluno / Leitor
+        navItems = [
+          { path: 'inicio', href: 'index.html', label: 'Início', icon: 'auto_stories' },
+          { path: 'prateleira', href: 'prateleira.html', label: 'Prateleira', icon: 'shelves' },
+          { path: 'sugestoes', href: 'sugestoes.html', label: 'Sugestões', icon: 'recommend' },
+          { path: 'ja-lidos', href: 'ja-lidos.html', label: 'Já Lidos', icon: 'bookmarks', badge: 'read' },
+          { path: 'lista-de-desejos', href: 'desejos.html', label: 'Lista de Desejos', icon: 'favorite', badge: 'wish' },
+          { path: 'avaliar-livros', href: 'avaliar.html', label: 'Avaliar Livros', icon: 'rate_review' },
+          { path: 'configuracoes', href: 'configuracoes.html', label: 'Configurações', icon: 'settings' }
+        ];
+      }
+
+      nav.innerHTML = navItems.map(item => {
+        const isActive = item.path === activePath;
+        const activeCls = isActive
+          ? 'bg-primary-container text-on-primary font-bold shadow-sm'
+          : 'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface';
+        const iconCls = isActive ? 'text-secondary-fixed' : 'text-secondary';
+        const badgeSpan = item.badge ? `<span id="badge-${item.badge}" class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-xs font-bold">0</span>` : '';
+
+        return `
+          <a class="flex items-center justify-between px-space-md py-space-sm rounded-xl font-label-lg transition-all group ${activeCls}" data-path="${item.path}" href="${item.href}">
+            <div class="flex items-center gap-space-sm">
+              <span class="material-symbols-outlined ${iconCls}" translate="no">${item.icon}</span>
+              <span>${item.label}</span>
+            </div>
+            ${badgeSpan}
+          </a>
+        `;
+      }).join('');
     }
 
     // Configura botões de logout
@@ -1080,45 +1273,7 @@ const AuroraAPI = {
       });
     });
 
-    // Mapeamento das rotas
-    const routes = {
-      'inicio': 'index.html',
-      'prateleira': 'prateleira.html',
-      'sugestoes': 'sugestoes.html',
-      'ja-lidos': 'ja-lidos.html',
-      'lista-de-desejos': 'desejos.html',
-      'avaliar-livros': 'avaliar.html',
-      'configuracoes': 'configuracoes.html',
-      'estoque-de-livros': 'estoque.html',
-      'reestoque': 'reestoque.html',
-      'cadastros': 'cadastros.html',
-      'fila': 'fila.html',
-      'pendente': 'pendente.html',
-      'sacola-de-alugueis': 'index.html#alugueis-ativos'
-    };
-
-    document.querySelectorAll('nav a[data-path], aside a[data-path]').forEach(link => {
-      const path = link.getAttribute('data-path');
-      if (routes[path]) {
-        link.href = routes[path];
-      }
-
-      if (path === activePath) {
-        link.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-high');
-        link.classList.add('bg-primary-container', 'text-on-primary', 'font-bold', 'shadow-[0_4px_20px_-2px_rgba(15,25,74,0.04)]');
-        const icon = link.querySelector('.material-symbols-outlined, svg');
-        if (icon && icon.classList.contains('material-symbols-outlined')) {
-          icon.className = 'material-symbols-outlined text-secondary-fixed';
-        }
-      }
-    });
-
-    // Atualiza dados do usuário logado na interface
-    let user = this.getUser();
-    if (!user) {
-      user = await this.getMe();
-    }
-
+    // Atualiza nome, cargo e avatar na interface
     if (user) {
       document.querySelectorAll('.user-display-name').forEach(el => el.textContent = user.nome || 'Helena Souza');
       document.querySelectorAll('aside span').forEach(el => {
@@ -1134,47 +1289,50 @@ const AuroraAPI = {
         };
         el.textContent = roles[user.tipo] || user.tipo || 'Leitor Aurora';
       });
-      document.querySelectorAll('.user-display-avatar').forEach(img => {
-        if (user.fotoUrl) img.src = user.fotoUrl;
+
+      const defaultAvatar = user.tipo === 'administrador' ? 'img/avatar-admin.svg' : user.tipo === 'bibliotecario' ? 'img/avatar-biblio.svg' : 'img/avatar-default.svg';
+      document.querySelectorAll('.user-display-avatar, #sidebar-avatar, #card-avatar').forEach(img => {
+        img.src = user.fotoUrl || defaultAvatar;
       });
     }
 
-    // Tratamento global para imagens com 403/404 de CDN expirada
+    // Tratamento de imagens quebradas (Task 7)
     document.querySelectorAll('img').forEach(img => {
       img.addEventListener('error', function() {
         if (!this.getAttribute('data-error-handled')) {
           this.setAttribute('data-error-handled', 'true');
-          const isAvatar = this.classList.contains('rounded-full') || (this.alt && (this.alt.toLowerCase().includes('profile') || this.alt.toLowerCase().includes('avatar') || this.alt.toLowerCase().includes('administrador')));
+          const isAvatar = this.classList.contains('rounded-full') || (this.alt && (this.alt.toLowerCase().includes('avatar') || this.alt.toLowerCase().includes('profile')));
           if (isAvatar) {
-            const name = (user && user.nome) ? encodeURIComponent(user.nome) : 'Aurora';
-            this.src = `https://ui-avatars.com/api/?name=${name}&background=0f194a&color=95ccfe&bold=true`;
+            this.src = (user && user.tipo === 'administrador') ? 'img/avatar-admin.svg' : 'img/avatar-default.svg';
           } else {
-            this.src = 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80';
+            this.src = 'img/logo.svg';
           }
         }
       });
     });
 
-    // Atualização dos badges numéricos na sidebar
-    try {
-      const [readBooks, wishlist, rentals] = await Promise.all([
-        this.getReadBooks().catch(() => []),
-        this.getWishlist().catch(() => []),
-        this.getMyRentals().catch(() => [])
-      ]);
+    // Atualização dos badges numéricos na sidebar (para o leitor)
+    if (role === 'aluno') {
+      try {
+        const [readBooks, wishlist, rentals] = await Promise.all([
+          this.getReadBooks().catch(() => []),
+          this.getWishlist().catch(() => []),
+          this.getMyRentals().catch(() => [])
+        ]);
 
-      const activeRentals = (rentals || []).filter(r => r.status === 'ativo');
+        const activeRentals = (rentals || []).filter(r => r.status === 'ativo');
 
-      const readBadge = document.querySelector('nav a[data-path="ja-lidos"] span.rounded-full');
-      if (readBadge) readBadge.textContent = readBooks.length;
+        const readBadge = document.getElementById('badge-read');
+        if (readBadge) readBadge.textContent = readBooks.length;
 
-      const wishBadge = document.querySelector('nav a[data-path="lista-de-desejos"] span.rounded-full');
-      if (wishBadge) wishBadge.textContent = wishlist.length;
+        const wishBadge = document.getElementById('badge-wish');
+        if (wishBadge) wishBadge.textContent = wishlist.length;
 
-      const rentalBadge = document.querySelector('header a[data-path="sacola-de-alugueis"] span.rounded-full');
-      if (rentalBadge) rentalBadge.textContent = activeRentals.length;
-    } catch (e) {
-      console.warn('Erro ao atualizar badges da sidebar:', e);
+        const rentalBadge = document.querySelector('header a[data-path="sacola-de-alugueis"] span.rounded-full');
+        if (rentalBadge) rentalBadge.textContent = activeRentals.length;
+      } catch (e) {
+        console.warn('Erro ao atualizar badges da sidebar:', e);
+      }
     }
   }
 };
