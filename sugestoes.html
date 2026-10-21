@@ -1,13 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0" name="viewport">
-  <title>Aurora â€” SugestÃµes</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Aurora — Sugestões</title>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
   <style>
-    @layer base { html,body { margin:0; padding:0; } }
+    @layer base { html,body { margin:0; padding:0; } body { overscroll-behavior:none; } }
     ::-webkit-scrollbar { display:none; }
   </style>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -17,285 +17,138 @@
       theme: {
         extend: {
           colors: {
-            "on-tertiary": "#ffffff",
-            "surface-container": "#f0eee8",
-            "surface-bright": "#fbf9f3",
-            "inverse-surface": "#30312d",
-            "inverse-primary": "#bac3fe",
             "primary": "#00021d",
-            "surface": "#fbf9f3",
-            "primary-fixed": "#dee0ff",
-            "outline-variant": "#c6c5d0",
-            "error-container": "#ffdad6",
-            "on-primary-fixed-variant": "#3a4375",
-            "on-error": "#ffffff",
-            "surface-tint": "#525b8f",
-            "surface-dim": "#dcdad4",
-            "outline": "#767680",
-            "surface-container-lowest": "#ffffff",
-            "tertiary-fixed-dim": "#a9cbe5",
-            "on-surface-variant": "#46464f",
-            "surface-container-high": "#eae8e2",
-            "surface-container-low": "#f5f3ee",
-            "error": "#ba1a1a",
-            "surface-variant": "#e4e2dd",
-            "secondary-container": "#95ccfe",
-            "on-primary-fixed": "#0c1648",
-            "tertiary": "#00060c",
-            "tertiary-container": "#002132",
-            "on-primary": "#ffffff",
-            "on-secondary-container": "#125783",
-            "on-secondary-fixed": "#001d32",
-            "surface-container-highest": "#e4e2dd",
-            "on-tertiary-fixed": "#001e2e",
-            "inverse-on-surface": "#f2f1eb",
-            "on-secondary-fixed-variant": "#004b74",
-            "on-background": "#1b1c19",
-            "background": "#fbf9f3",
-            "on-error-container": "#93000a",
-            "on-surface": "#1b1c19",
-            "on-tertiary-fixed-variant": "#284a60",
-            "secondary": "#25638f",
-            "primary-fixed-dim": "#bac3fe",
-            "on-secondary": "#ffffff",
-            "tertiary-fixed": "#c8e6ff",
-            "secondary-fixed": "#cde5ff",
             "primary-container": "#0f194a",
-            "on-primary-container": "#7983b9",
-            "on-tertiary-container": "#698aa2",
-            "secondary-fixed-dim": "#95ccfe"
+            "on-primary": "#ffffff",
+            "secondary": "#25638f",
+            "secondary-container": "#95ccfe",
+            "on-secondary-container": "#125783",
+            "secondary-fixed": "#cde5ff",
+            "on-secondary-fixed": "#001d32",
+            "surface": "#fbf9f3",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f5f3ee",
+            "surface-container": "#f0eee8",
+            "surface-container-high": "#eae8e2",
+            "surface-container-highest": "#e4e2dd",
+            "outline": "#767680",
+            "on-surface": "#1b1c19",
+            "on-surface-variant": "#46464f",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a"
           },
-          borderRadius: {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
+          fontFamily: {
+            "body-md": ["Open Sans"],
+            "body-sm": ["Open Sans"],
+            "headline-lg": ["Montserrat"],
+            "headline-md": ["Montserrat"],
+            "title-lg": ["Montserrat"],
+            "title-md": ["Montserrat"],
+            "label-lg": ["Montserrat"],
+            "label-md": ["Montserrat"],
+            "label-sm": ["Montserrat"]
           },
           spacing: {
             "space-xs": "0.25rem",
             "space-sm": "0.5rem",
             "space-md": "1rem",
             "space-lg": "1.5rem",
-            "space-xl": "2.5rem",
-            "space-2xl": "4rem"
-          },
-          fontFamily: {
-            "body-sm": ["Open Sans"],
-            "body-md": ["Open Sans"],
-            "body-lg": ["Open Sans"],
-            "headline-sm": ["Montserrat"],
-            "headline-md": ["Montserrat"],
-            "headline-lg": ["Montserrat"],
-            "title-md": ["Montserrat"],
-            "title-lg": ["Montserrat"],
-            "label-sm": ["Montserrat"],
-            "label-md": ["Montserrat"],
-            "label-lg": ["Montserrat"]
+            "space-xl": "2.5rem"
           }
         }
       }
     };
   </script>
 </head>
-<body class="bg-background font-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed" style="background-image: linear-gradient(rgba(251, 249, 243, 0.05) 0%, rgba(251, 249, 243, 0.45) 45%, rgba(251, 249, 243, 0.92) 80%, rgb(251, 249, 243) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuDjawlXUoCxuvimg4jTuGcKeryVxYEynFa-K8RwCNCcvAzk6Kgioy54nwL4Y2GQ-4hZ9VVGe9r2qaLZxnOHpIjCfjfLxMAq5trVI41bZ3RnfKJh91U6sbzN5jtb7Vv_bIy4DK48hOuldGieQ16lj3D6LRvNv1sYfWh1gaX0VckeMpmcUpeV9zylsrtWNGOCxmyutuqX7Kgu1yTEEM5GbDO3Pr-bLIgbKCt2Cl_u3cuFCx89WQHARkeInhAfFcPwvucg0SY'); background-size: cover; background-position: center top; background-repeat: no-repeat; background-attachment: fixed;">
+<body class="bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
 
-  <!-- Sidebar Lateral Responsiva com Drawer para Mobile -->
-  <aside id="main-sidebar" class="fixed inset-y-0 left-0 h-screen w-72 bg-surface-container-lowest shadow-2xl z-50 flex flex-col justify-between transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+  <!-- Sidebar Lateral Fixa -->
+  <aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between">
     <div class="flex flex-col">
-      <div class="h-20 px-space-lg flex items-center justify-between bg-surface-container-lowest border-b border-surface-container-low/60">
-        <div class="flex items-center gap-space-sm">
-          <img alt="Biblioteca Aurora" class="w-10 h-10 object-contain rounded-xl shadow-sm" src="img/logo.svg" onerror="this.src='img/logo.svg'">
-          <div class="flex flex-col">
-            <span class="font-title-lg text-title-lg text-primary-container tracking-tight font-bold">Aurora</span>
-            <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Aluguel de Livros</span>
-          </div>
+      <div class="h-20 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest">
+        <img alt="Logo Aurora" class="w-10 h-10 object-contain rounded-lg shadow-sm" src="img/logo.svg">
+        <div class="flex flex-col">
+          <span class="font-title-lg text-title-lg text-primary-container tracking-tight font-bold">Aurora</span>
+          <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Aluguel de Livros</span>
         </div>
-        <button id="close-sidebar-btn" class="lg:hidden p-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors" aria-label="Fechar Menu">
-          <span class="material-symbols-outlined text-[22px]" translate="no">close</span>
-        </button>
       </div>
 
-      <div class="px-space-md py-space-sm overflow-y-auto">
+      <div class="px-space-md py-space-sm">
         <nav class="flex flex-col gap-space-xs">
-          <!-- Renderizado dinamicamente via AuroraAPI.initSidebar() -->
+          <!-- Renderizado dinamicamente por AuroraAPI.initSidebar() -->
         </nav>
       </div>
     </div>
 
-    <div class="p-space-md flex flex-col gap-space-sm bg-surface-container-lowest border-t border-surface-container-low/60">
+    <!-- Perfil do Usuário na Sidebar -->
+    <div class="p-space-md flex flex-col gap-space-sm bg-surface-container-lowest">
       <div class="flex items-center gap-space-sm p-space-sm rounded-xl bg-surface-container-low">
-        <img alt="Perfil" id="sidebar-avatar" class="w-9 h-9 rounded-full object-cover ring-2 ring-secondary-fixed user-display-avatar" src="img/avatar-default.svg" onerror="this.src='img/avatar-default.svg'">
+        <img alt="Perfil" class="w-8 h-8 rounded-full object-cover ring-2 ring-secondary-fixed user-display-avatar" src="img/avatar-default.svg">
         <div class="flex flex-col min-w-0 flex-1">
           <span class="font-label-lg text-label-lg text-on-surface truncate user-display-name">Carregando...</span>
           <span class="font-label-sm text-label-sm text-secondary truncate user-display-role">Leitor</span>
         </div>
       </div>
-      <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg hover:bg-error-container hover:text-on-error-container transition-all group logout-btn" data-path="login" href="#">
+      <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg hover:bg-error-container hover:text-on-error-container transition-all group" data-path="login" href="login.html" onclick="AuroraAPI.logout(); return true;">
         <span class="material-symbols-outlined text-outline group-hover:text-error transition-colors" translate="no">logout</span>
         <span>Sair</span>
       </a>
     </div>
   </aside>
 
-  <div id="sidebar-backdrop" class="fixed inset-0 bg-primary/60 backdrop-blur-xs z-40 hidden lg:hidden transition-opacity duration-300 opacity-0"></div>
-
-  <!-- Ãrea Principal -->
-  <div class="lg:pl-72 pl-0 flex flex-col min-h-screen w-full transition-all duration-300">
-    <header class="fixed top-0 left-0 lg:left-72 right-0 h-20 bg-surface/85 backdrop-blur-xl shadow-sm z-30 flex items-center justify-between px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center gap-3 sm:gap-space-md flex-1 max-w-xl">
-        <button id="mobile-menu-btn" class="lg:hidden p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container-high text-on-surface transition-colors flex items-center justify-center shrink-0" aria-label="Abrir Menu">
-          <span class="material-symbols-outlined text-[24px]" translate="no">menu</span>
-        </button>
-
-        <form class="relative flex items-center w-full" onsubmit="event.preventDefault(); window.location.href='prateleira.html?search=' + encodeURIComponent(this.querySelector('input').value);">
-          <span class="material-symbols-outlined absolute left-3.5 text-on-surface-variant pointer-events-none text-[20px]" translate="no">search</span>
-          <input class="w-full h-11 pl-10 pr-4 bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-all" placeholder="Pesquise tÃ­tulos, autores ou gÃªneros..." type="text">
-        </form>
+  <!-- Área Principal -->
+  <div class="pl-72 flex flex-col min-h-screen">
+    <header class="fixed top-0 left-72 right-0 h-20 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg">
+      <div class="flex items-center gap-space-md flex-1 max-w-xl">
+        <div class="relative flex items-center w-full">
+          <span class="material-symbols-outlined absolute left-4 text-on-surface-variant pointer-events-none" translate="no">search</span>
+          <input class="w-full h-11 pl-11 pr-4 bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm rounded-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-all" placeholder="Pesquise títulos, autores ou gêneros..." type="text" onkeydown="if(event.key === 'Enter') window.location.href='prateleira.html?search=' + encodeURIComponent(this.value)">
+        </div>
       </div>
 
-      <div class="flex items-center gap-2 sm:gap-space-md ml-2 shrink-0">
-        <a class="h-11 px-3 sm:px-space-md bg-primary-container text-on-primary rounded-xl font-label-lg flex items-center gap-2 sm:gap-space-sm hover:opacity-95 shadow-sm transition-all" data-path="sacola-de-alugueis" href="index.html#alugueis-ativos" title="AluguÃ©is Ativos">
-          <span class="material-symbols-outlined text-secondary-fixed text-[20px]" translate="no">shopping_bag</span>
-          <span class="hidden md:inline">AluguÃ©is</span>
-          <span class="px-1.5 py-0.5 bg-secondary text-on-secondary rounded-full font-label-sm text-xs font-bold" id="header-rental-badge">0</span>
+      <div class="flex items-center gap-space-md">
+        <a class="h-11 px-space-md bg-primary-container text-on-primary rounded-xl font-label-lg flex items-center gap-space-sm hover:opacity-95 shadow-sm transition-all" data-path="sacola-de-alugueis" href="index.html#alugueis-ativos">
+          <span class="material-symbols-outlined text-secondary-fixed" translate="no">shopping_bag</span>
+          <span class="hidden md:inline">Aluguéis Ativos</span>
         </a>
       </div>
     </header>
 
-    <main class="w-full pt-24 pb-16 flex-1 px-4 sm:px-6 lg:px-space-xl max-w-7xl mx-auto flex flex-col gap-space-2xl">
-      <!-- Banner Editorial de SugestÃµes Curadas -->
-      <section class="relative overflow-hidden rounded-3xl bg-primary-container text-on-primary shadow-xl p-6 sm:p-8 lg:p-12 border border-surface-container/60">
-        <div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-secondary-fixed/20 blur-3xl pointer-events-none"></div>
-        <div class="relative z-10 flex flex-col gap-space-md max-w-2xl">
-          <div class="inline-flex items-center gap-2 px-space-sm py-1 rounded-full bg-surface-container-lowest/10 backdrop-blur-md w-fit">
-            <span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
-            <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed">Algoritmo Curatorial da Aurora</span>
+    <main class="w-full pt-24 pb-16 flex-1 px-space-md lg:px-space-xl max-w-7xl mx-auto flex flex-col gap-space-xl">
+      <!-- Painel de Sugestões Baseado em Afinidades -->
+      <section class="relative w-full rounded-3xl overflow-hidden shadow-sm bg-surface-container-lowest p-space-lg md:p-space-xl border border-surface-container/60">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-lg">
+          <div class="max-w-2xl flex flex-col gap-space-xs">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+              <span class="font-label-sm text-xs uppercase text-secondary tracking-widest font-bold">
+                RECOMENDAÇÕES PERSONALIZADAS • Algoritmo Aurora
+              </span>
+            </div>
+            <h1 class="font-headline-lg text-2xl lg:text-3xl text-primary-container font-bold tracking-tight">
+              Sugestões para o Seu Ritmo
+            </h1>
+            <p class="font-body-md text-on-surface-variant text-sm leading-relaxed">
+              O motor de recomendações da Aurora analisa suas buscas frequentes, seus gêneros mais explorados e os títulos que você marcou como lidos para sugerir próximas leituras ideais.
+            </p>
           </div>
-
-          <h1 class="font-headline-lg text-2xl sm:text-3xl lg:text-4xl text-on-primary font-bold tracking-tight">
-            SugestÃµes Personalizadas para Sua Jornada
-          </h1>
-
-          <p class="font-body-lg text-sm sm:text-base text-on-primary-container leading-relaxed">
-            RecomendaÃ§Ãµes artesanais calculadas com base nas suas leituras recentes, ritmo de leitura e livros mais admirados pelos leitores da comunidade.
-          </p>
+          <button onclick="recalculateSuggestions()" class="px-space-md py-2.5 bg-primary-container text-on-primary rounded-xl font-label-md text-xs font-bold flex items-center gap-2 shadow-sm hover:bg-primary transition-all self-start lg:self-center">
+            <span class="material-symbols-outlined text-secondary-fixed text-lg" translate="no">sync</span>
+            <span>Recalcular Sugestões</span>
+          </button>
         </div>
       </section>
 
-      <!-- 1. CombinaÃ§Ãµes Perfeitas para VocÃª -->
-      <section class="flex flex-col gap-space-lg">
+      <!-- Grade de Livros Sugeridos -->
+      <section class="flex flex-col gap-space-md">
         <div class="flex items-center justify-between">
-          <div>
-            <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">Baseado em afinidade</span>
-            <h2 class="font-headline-md text-xl sm:text-2xl text-primary-container font-bold tracking-tight">CombinaÃ§Ãµes Perfeitas para VocÃª</h2>
-          </div>
-          <span class="text-xs font-semibold text-on-surface-variant hidden sm:inline">6 obras sugeridas</span>
+          <h2 class="font-headline-md text-xl text-primary-container font-bold">Livros Recomendados para Você</h2>
+          <span class="text-xs text-on-surface-variant font-medium">Ordenado por afinidade literária</span>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg" id="suggestionsContainer">
-          <!-- Renderizado dinamicamente com os cards ricos da interface desejada -->
-        </div>
-      </section>
-
-      <!-- 2. SugestÃµes por Ritmo de Leitura (Tamanho) -->
-      <section class="flex flex-col gap-space-lg">
-        <div>
-          <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">Por Tempo DisponÃ­vel</span>
-          <h2 class="font-headline-md text-xl sm:text-2xl text-primary-container font-bold tracking-tight">SugestÃµes por Ritmo de Leitura (Tamanho)</h2>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md">
-          <a href="prateleira.html" class="p-6 rounded-2xl bg-surface-container-lowest hover:shadow-lg transition-all border border-surface-container/60 flex flex-col justify-between group">
-            <div class="flex flex-col gap-2">
-              <span class="material-symbols-outlined text-3xl text-secondary group-hover:scale-110 transition-transform" translate="no">bolt</span>
-              <h3 class="font-title-lg text-primary-container font-bold">Curtas &amp; RÃ¡pidas</h3>
-              <p class="font-body-sm text-xs text-on-surface-variant leading-relaxed">
-                Leituras intensas de atÃ© 120 pÃ¡ginas para quem quer terminar um livro em um final de semana.
-              </p>
-            </div>
-            <span class="mt-4 text-xs font-bold text-secondary group-hover:underline flex items-center gap-1">
-              <span>Explorar obras curtas</span>
-              <span class="material-symbols-outlined text-[16px]" translate="no">arrow_forward</span>
-            </span>
-          </a>
-
-          <a href="prateleira.html" class="p-6 rounded-2xl bg-surface-container-lowest hover:shadow-lg transition-all border border-surface-container/60 flex flex-col justify-between group">
-            <div class="flex flex-col gap-2">
-              <span class="material-symbols-outlined text-3xl text-secondary group-hover:scale-110 transition-transform" translate="no">menu_book</span>
-              <h3 class="font-title-lg text-primary-container font-bold">MÃ©dias &amp; Envolventes</h3>
-              <p class="font-body-sm text-xs text-on-surface-variant leading-relaxed">
-                O equilÃ­brio ideal entre 150 e 350 pÃ¡ginas com enredos cativantes e profundidade de personagens.
-              </p>
-            </div>
-            <span class="mt-4 text-xs font-bold text-secondary group-hover:underline flex items-center gap-1">
-              <span>Explorar obras mÃ©dias</span>
-              <span class="material-symbols-outlined text-[16px]" translate="no">arrow_forward</span>
-            </span>
-          </a>
-
-          <a href="prateleira.html" class="p-6 rounded-2xl bg-surface-container-lowest hover:shadow-lg transition-all border border-surface-container/60 flex flex-col justify-between group">
-            <div class="flex flex-col gap-2">
-              <span class="material-symbols-outlined text-3xl text-secondary group-hover:scale-110 transition-transform" translate="no">auto_stories</span>
-              <h3 class="font-title-lg text-primary-container font-bold">Grandes ClÃ¡ssicos</h3>
-              <p class="font-body-sm text-xs text-on-surface-variant leading-relaxed">
-                Acervo de obras densas e monumentais com mais de 400 pÃ¡ginas para mergulhos profundos.
-              </p>
-            </div>
-            <span class="mt-4 text-xs font-bold text-secondary group-hover:underline flex items-center gap-1">
-              <span>Explorar clÃ¡ssicos</span>
-              <span class="material-symbols-outlined text-[16px]" translate="no">arrow_forward</span>
-            </span>
-          </a>
-        </div>
-      </section>
-
-      <!-- 3. Autores ContemporÃ¢neos em Alta -->
-      <section class="flex flex-col gap-space-lg mb-space-xl">
-        <div>
-          <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">Vozes da Literatura</span>
-          <h2 class="font-headline-md text-xl sm:text-2xl text-primary-container font-bold tracking-tight">Autores ContemporÃ¢neos em Alta</h2>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
-          <div class="p-space-md rounded-2xl bg-surface-container-lowest border border-surface-container/60 flex items-center gap-space-sm shadow-sm">
-            <div class="w-12 h-12 rounded-full bg-secondary-fixed/50 flex items-center justify-center font-bold text-primary-container">
-              IV
-            </div>
-            <div class="flex flex-col min-w-0">
-              <h4 class="font-title-md text-sm font-bold text-primary truncate">Itamar Vieira Junior</h4>
-              <span class="font-body-sm text-xs text-on-surface-variant">Autor de Torto Arado</span>
-            </div>
-          </div>
-
-          <div class="p-space-md rounded-2xl bg-surface-container-lowest border border-surface-container/60 flex items-center gap-space-sm shadow-sm">
-            <div class="w-12 h-12 rounded-full bg-secondary-fixed/50 flex items-center justify-center font-bold text-primary-container">
-              CM
-            </div>
-            <div class="flex flex-col min-w-0">
-              <h4 class="font-title-md text-sm font-bold text-primary truncate">Carla Madeira</h4>
-              <span class="font-body-sm text-xs text-on-surface-variant">Autora de Tudo Ã© Rio</span>
-            </div>
-          </div>
-
-          <div class="p-space-md rounded-2xl bg-surface-container-lowest border border-surface-container/60 flex items-center gap-space-sm shadow-sm">
-            <div class="w-12 h-12 rounded-full bg-secondary-fixed/50 flex items-center justify-center font-bold text-primary-container">
-              MH
-            </div>
-            <div class="flex flex-col min-w-0">
-              <h4 class="font-title-md text-sm font-bold text-primary truncate">Matt Haig</h4>
-              <span class="font-body-sm text-xs text-on-surface-variant">Autor de A Biblioteca da Meia-Noite</span>
-            </div>
-          </div>
-
-          <div class="p-space-md rounded-2xl bg-surface-container-lowest border border-surface-container/60 flex items-center gap-space-sm shadow-sm">
-            <div class="w-12 h-12 rounded-full bg-secondary-fixed/50 flex items-center justify-center font-bold text-primary-container">
-              CL
-            </div>
-            <div class="flex flex-col min-w-0">
-              <h4 class="font-title-md text-sm font-bold text-primary truncate">Clarice Lispector</h4>
-              <span class="font-body-sm text-xs text-on-surface-variant">Autora de A Hora da Estrela</span>
-            </div>
-          </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-space-md" id="suggestionsGrid">
+          <div class="col-span-full py-12 text-center text-on-surface-variant text-sm">Calculando recomendações personalizadas...</div>
         </div>
       </section>
     </main>
@@ -307,142 +160,106 @@
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
       await AuroraAPI.initSidebar('sugestoes');
-      await loadSuggestions();
+      loadSuggestions();
     });
 
     async function loadSuggestions() {
-      const container = document.getElementById('suggestionsContainer');
+      const container = document.getElementById('suggestionsGrid');
+      container.innerHTML = '<div class="col-span-full py-12 text-center text-on-surface-variant text-sm">Carregando sugestões...</div>';
+
       try {
-        const books = await AuroraAPI.getBooks();
+        const books = await AuroraAPI.getSuggestions();
+
         if (!books || books.length === 0) {
-          container.innerHTML = '<div class="col-span-full py-8 text-center text-on-surface-variant text-sm">Nenhuma sugestÃ£o disponÃ­vel no momento.</div>';
+          container.innerHTML = `
+            <div class="col-span-full py-16 text-center text-on-surface-variant flex flex-col items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-4xl text-outline" translate="no">recommend</span>
+              <p class="font-title-md text-primary font-bold">Ainda não temos dados suficientes</p>
+              <p class="text-xs max-w-sm">Navegue pela Prateleira e use os filtros de autor e gênero para que o sistema aprenda suas preferências!</p>
+              <a href="prateleira.html" class="mt-2 px-4 py-2 bg-primary-container text-on-primary rounded-xl text-xs font-bold hover:bg-primary transition-all">Explorar Prateleira</a>
+            </div>
+          `;
           return;
         }
 
-        const curatedList = books.slice(0, 6);
-        const affinities = ['98% afinidade', '96% afinidade', '94% afinidade', '92% afinidade', '89% afinidade', '87% afinidade'];
-        const reasons = [
-          'Alta correlaÃ§Ã£o com leitores de clÃ¡ssicos introspectivos e ficÃ§Ã£o contemporÃ¢nea.',
-          'Recomendado por quem leu obras premiadas com forte presenÃ§a lÃ­rica e poÃ©tica.',
-          'Combina perfeitamente com suas buscas por reflexÃµes profundas sobre existÃªncia humana.',
-          'Escolhido pela curadoria como porta de entrada indispensÃ¡vel para este gÃªnero.',
-          'Leitura rÃ¡pida e transformadora altamente recomendada pela comunidade Aurora.',
-          'Narrativa envolvente com personagens inesquecÃ­veis e ritmo impecÃ¡vel.'
-        ];
-
-        container.innerHTML = curatedList.map((book, idx) => {
-          const isAvailable = book.disponivel && (book.copiasDisponiveis > 0);
+        container.innerHTML = books.map(book => {
+          const isAvailable = (book.copiasDisponiveis || 0) > 0;
           const coverUrl = book.capaUrl || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80';
-          const affinity = affinities[idx % affinities.length];
-          const reason = reasons[idx % reasons.length];
+          const rating = Number(book.avaliacaoMedia || 0).toFixed(1);
 
           return `
-            <div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm hover:shadow-md transition-all flex flex-col justify-between group border border-surface-container/60">
-              <div class="flex gap-space-md">
-                <div class="relative w-24 sm:w-28 h-36 sm:h-40 shrink-0 rounded-xl overflow-hidden shadow-md bg-surface-container-high">
-                  <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="${coverUrl}" alt="${book.titulo}">
-                  <div class="absolute inset-y-0 left-0 w-2 bg-gradient-to-r from-primary/30 via-primary/10 to-transparent pointer-events-none"></div>
+            <div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between border border-surface-container/60">
+              <div class="flex flex-col gap-space-sm">
+                <div class="relative w-full aspect-[2/3] rounded-xl overflow-hidden shadow-md bg-surface-container-high">
+                  <img class="w-full h-full object-cover" src="${coverUrl}" alt="${book.titulo}" onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80'">
+                  <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-[11px] font-bold shadow-sm">
+                    ${book.genero || 'Recomendado'}
+                  </span>
                 </div>
-
-                <div class="flex flex-col flex-1 min-w-0 justify-between">
-                  <div>
-                    <div class="flex items-center justify-between gap-1">
-                      <span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded-full font-label-sm text-[10px] font-bold">
-                        ${affinity}
-                      </span>
-                      <span class="flex items-center gap-0.5 font-label-md text-xs text-on-surface">
-                        <span class="material-symbols-outlined text-xs text-amber-500" translate="no">star</span>
-                        <strong>${Number(book.avaliacaoMedia || 4.8).toFixed(1)}</strong>
-                      </span>
-                    </div>
-
-                    <h3 class="font-title-md text-sm sm:text-base font-bold text-primary-container mt-1.5 truncate group-hover:text-secondary transition-colors" title="${book.titulo}">
-                      ${book.titulo}
-                    </h3>
-                    <p class="font-body-sm text-xs text-on-surface-variant truncate">${book.autor}</p>
-                    <p class="mt-1 text-xs text-on-surface-variant line-clamp-2 leading-relaxed">
-                      ${book.sinopse || 'Uma leitura extraordinÃ¡ria e transformadora do acervo Aurora.'}
-                    </p>
-                  </div>
-
-                  <div class="mt-2 pt-1 flex items-baseline justify-between border-t border-surface-container-high/40">
-                    <span class="font-headline-sm text-sm font-bold text-primary-container">
-                      R$ ${Number(book.precoAluguel || 8.90).toFixed(2).replace('.', ',')}
+                <div class="flex flex-col pt-1">
+                  <div class="flex items-center justify-between text-secondary text-xs font-semibold mb-1">
+                    <span class="flex items-center gap-1 text-amber-500">
+                      <span class="material-symbols-outlined text-[16px]" translate="no">star</span>
+                      <span class="font-label-md text-on-surface">${rating}</span>
                     </span>
-                    <span class="text-xs font-bold ${isAvailable ? 'text-secondary' : 'text-on-surface-variant'} flex items-center gap-1">
-                      <span class="w-1.5 h-1.5 rounded-full ${isAvailable ? 'bg-secondary' : 'bg-outline'}"></span>
-                      ${isAvailable ? `${book.copiasDisponiveis} de 3 livres` : 'Alugado'}
-                    </span>
+                    <span class="text-on-surface-variant text-[11px]">${book.numPaginas} págs</span>
                   </div>
+                  <h3 class="font-title-md text-primary font-bold line-clamp-1 text-sm">${book.titulo}</h3>
+                  <p class="font-body-sm text-on-surface-variant text-xs truncate">${book.autor}</p>
                 </div>
               </div>
 
-              <div class="mt-space-md pt-space-sm bg-surface-container-low/50 -mx-space-md -mb-space-md p-space-sm rounded-b-2xl flex flex-col gap-2">
-                <div class="flex items-center gap-2">
-                  ${isAvailable ? `
-                    <button onclick="handleRentBook(${book.id}, '${book.titulo.replace(/'/g, "\\'")}')" class="flex-1 py-2 bg-primary-container hover:bg-primary text-on-primary rounded-xl font-label-md text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition-all">
-                      <span class="material-symbols-outlined text-[16px] text-secondary-fixed" translate="no">bookmark_add</span>
-                      <span>Alugar Agora</span>
-                    </button>
-                  ` : `
-                    <a href="fila.html?livroId=${book.id}" class="flex-1 py-2 bg-secondary-container hover:bg-secondary-fixed text-on-secondary-container rounded-xl font-label-md text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition-all">
-                      <span class="material-symbols-outlined text-[16px]" translate="no">group</span>
-                      <span>Entrar na Fila</span>
-                    </a>
-                  `}
-                  <button onclick="handleWishlistBook(${book.id}, '${book.titulo.replace(/'/g, "\\'")}')" class="w-9 h-9 flex items-center justify-center bg-surface-container-lowest text-on-surface-variant hover:text-error rounded-xl shadow-sm transition-colors" title="Salvar nos Desejos">
-                    <span class="material-symbols-outlined text-[18px]" translate="no">favorite</span>
+              <div class="mt-3 pt-2.5 border-t border-surface-container/60 flex items-center justify-between">
+                <div class="flex flex-col">
+                  <span class="text-[10px] text-on-surface-variant">Aluguel:</span>
+                  <span class="font-bold text-primary-container text-xs">R$ ${Number(book.precoAluguel || 0).toFixed(2).replace('.', ',')}</span>
+                </div>
+                ${isAvailable ? `
+                  <button onclick="handleRentBook(${book.id}, '${book.titulo.replace(/'/g, "\\'")}')" class="px-3.5 py-1.5 bg-primary-container text-on-primary hover:bg-primary rounded-lg text-xs font-bold transition-all shadow-sm">
+                    Alugar Agora
                   </button>
-                </div>
-
-                <button onclick="toggleWhy(this)" class="why-trigger text-left font-label-sm text-[11px] text-on-surface-variant hover:text-secondary flex items-center gap-1 transition-colors">
-                  <span class="material-symbols-outlined text-xs" translate="no">info</span>
-                  <span>Por que foi sugerido?</span>
-                </button>
-                <div class="why-content hidden text-xs text-on-surface bg-surface-container-lowest p-2.5 rounded-lg shadow-sm border border-surface-container">
-                  ${reason}
-                </div>
+                ` : `
+                  <button onclick="handleUnavailable(${book.id})" class="px-2.5 py-1.5 bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-container rounded-lg text-xs font-bold transition-all shadow-xs flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[14px]" translate="no">group</span>
+                    Fila de Espera
+                  </button>
+                `}
               </div>
             </div>
           `;
         }).join('');
       } catch (err) {
-        console.error(err);
-        container.innerHTML = '<div class="col-span-full py-8 text-center text-error">Erro ao carregar sugestÃµes.</div>';
+        container.innerHTML = '<div class="col-span-full py-12 text-center text-error text-sm">Erro ao processar sugestões.</div>';
       }
     }
 
-    function toggleWhy(btn) {
-      const content = btn.nextElementSibling;
-      if (content) {
-        content.classList.toggle('hidden');
-      }
+    async function recalculateSuggestions() {
+      AuroraAPI.showToast('Recalculando afinidades do perfil...', 'sync');
+      await loadSuggestions();
+      AuroraAPI.showToast('Sugestões atualizadas!', 'check_circle');
     }
 
     async function handleRentBook(bookId, title) {
-      if (!AuroraAPI.isAuthenticated()) {
-        window.location.href = 'login.html';
-        return;
-      }
       try {
         await AuroraAPI.rentBook(bookId);
         AuroraAPI.showToast(`"${title}" alugado com sucesso!`, 'check_circle');
         loadSuggestions();
+        AuroraAPI.initSidebar('sugestoes');
       } catch (err) {
-        AuroraAPI.showToast(err.message || 'Erro ao processar aluguel.', 'error', true);
+        AuroraAPI.showToast(err.message || 'Erro ao realizar aluguel.', 'error', true);
       }
     }
 
-    async function handleWishlistBook(bookId, title) {
-      if (!AuroraAPI.isAuthenticated()) {
-        window.location.href = 'login.html';
-        return;
-      }
+    async function handleUnavailable(bookId) {
       try {
-        await AuroraAPI.addToWishlist(bookId);
-        AuroraAPI.showToast(`"${title}" adicionado Ã  Lista de Desejos!`, 'favorite');
-      } catch (err) {
-        AuroraAPI.showToast(err.message || 'Erro ao adicionar aos desejos.', 'error', true);
+        const queueInfo = await AuroraAPI.getBookQueue(bookId);
+        if (queueInfo && queueInfo.total >= 10) {
+          window.location.href = `pendente.html?livroId=${bookId}`;
+        } else {
+          window.location.href = `fila.html?livroId=${bookId}`;
+        }
+      } catch (e) {
+        window.location.href = `fila.html?livroId=${bookId}`;
       }
     }
   </script>

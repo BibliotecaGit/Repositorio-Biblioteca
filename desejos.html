@@ -1,13 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0" name="viewport">
-  <title>Aurora â€” Lista de Desejos</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Aurora — Lista de Desejos</title>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    @layer base { html,body { margin:0; padding:0; } }
+    @layer base { html,body { margin:0; padding:0; } body { overscroll-behavior:none; } }
     ::-webkit-scrollbar { display:none; }
   </style>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -17,199 +17,124 @@
       theme: {
         extend: {
           colors: {
-            "on-tertiary": "#ffffff",
-            "surface-container": "#f0eee8",
-            "surface-bright": "#fbf9f3",
-            "inverse-surface": "#30312d",
-            "inverse-primary": "#bac3fe",
             "primary": "#00021d",
-            "surface": "#fbf9f3",
-            "primary-fixed": "#dee0ff",
-            "outline-variant": "#c6c5d0",
-            "error-container": "#ffdad6",
-            "on-primary-fixed-variant": "#3a4375",
-            "on-error": "#ffffff",
-            "surface-tint": "#525b8f",
-            "surface-dim": "#dcdad4",
-            "outline": "#767680",
-            "surface-container-lowest": "#ffffff",
-            "tertiary-fixed-dim": "#a9cbe5",
-            "on-surface-variant": "#46464f",
-            "surface-container-high": "#eae8e2",
-            "surface-container-low": "#f5f3ee",
-            "error": "#ba1a1a",
-            "surface-variant": "#e4e2dd",
-            "secondary-container": "#95ccfe",
-            "on-primary-fixed": "#0c1648",
-            "tertiary": "#00060c",
-            "tertiary-container": "#002132",
-            "on-primary": "#ffffff",
-            "on-secondary-container": "#125783",
-            "on-secondary-fixed": "#001d32",
-            "surface-container-highest": "#e4e2dd",
-            "on-tertiary-fixed": "#001e2e",
-            "inverse-on-surface": "#f2f1eb",
-            "on-secondary-fixed-variant": "#004b74",
-            "on-background": "#1b1c19",
-            "background": "#fbf9f3",
-            "on-error-container": "#93000a",
-            "on-surface": "#1b1c19",
-            "on-tertiary-fixed-variant": "#284a60",
-            "secondary": "#25638f",
-            "primary-fixed-dim": "#bac3fe",
-            "on-secondary": "#ffffff",
-            "tertiary-fixed": "#c8e6ff",
-            "secondary-fixed": "#cde5ff",
             "primary-container": "#0f194a",
-            "on-primary-container": "#7983b9",
-            "on-tertiary-container": "#698aa2",
-            "secondary-fixed-dim": "#95ccfe"
+            "on-primary": "#ffffff",
+            "secondary": "#25638f",
+            "secondary-container": "#95ccfe",
+            "on-secondary-container": "#125783",
+            "secondary-fixed": "#cde5ff",
+            "on-secondary-fixed": "#001d32",
+            "surface": "#fbf9f3",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f5f3ee",
+            "surface-container": "#f0eee8",
+            "surface-container-high": "#eae8e2",
+            "surface-container-highest": "#e4e2dd",
+            "outline": "#767680",
+            "on-surface": "#1b1c19",
+            "on-surface-variant": "#46464f",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a"
           },
-          borderRadius: {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
+          fontFamily: {
+            "body-md": ["Open Sans"],
+            "body-sm": ["Open Sans"],
+            "headline-lg": ["Montserrat"],
+            "headline-md": ["Montserrat"],
+            "headline-sm": ["Montserrat"],
+            "title-lg": ["Montserrat"],
+            "title-md": ["Montserrat"],
+            "label-lg": ["Montserrat"],
+            "label-md": ["Montserrat"],
+            "label-sm": ["Montserrat"]
           },
           spacing: {
             "space-xs": "0.25rem",
             "space-sm": "0.5rem",
             "space-md": "1rem",
             "space-lg": "1.5rem",
-            "space-xl": "2.5rem",
-            "space-2xl": "4rem"
-          },
-          fontFamily: {
-            "body-sm": ["Open Sans"],
-            "body-md": ["Open Sans"],
-            "body-lg": ["Open Sans"],
-            "headline-sm": ["Montserrat"],
-            "headline-md": ["Montserrat"],
-            "headline-lg": ["Montserrat"],
-            "title-md": ["Montserrat"],
-            "title-lg": ["Montserrat"],
-            "label-sm": ["Montserrat"],
-            "label-md": ["Montserrat"],
-            "label-lg": ["Montserrat"]
+            "space-xl": "2.5rem"
           }
         }
       }
     };
   </script>
 </head>
-<body class="bg-background font-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed" style="background-image: linear-gradient(rgba(251, 249, 243, 0.05) 0%, rgba(251, 249, 243, 0.45) 45%, rgba(251, 249, 243, 0.92) 80%, rgb(251, 249, 243) 100%), url('https://lh3.googleusercontent.com/aida-public/AB6AXuA7XWSqNcPD-ceuLl8rQJ2bSEuXnKlfI4araCvgvO6wGi_zy3YIf7gS1fLi8Te2fOCoSp6ZRx-LBNhUNA_4EkGcHbWEFq7qVCvnXHOTlD6NSW6ay_-0cm0Sl5Uua1GkzpKKEvzzeOw3B7MfDMeE0B6lsGnKYefEvCAY5BrGBY_acABiUqwyFHkSDGbNFhbQ11f4ITdLjVFjaoQ7pJq3uBB-IdRyTztaLa8jZvdg5clVlLSKpIHh5XVn59uoXE7wmsgsOl0'); background-size: cover; background-position: center top; background-repeat: no-repeat; background-attachment: fixed;">
+<body class="bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
 
-  <!-- Sidebar Responsiva -->
-  <aside id="main-sidebar" class="fixed inset-y-0 left-0 h-screen w-72 bg-surface-container-lowest shadow-2xl z-50 flex flex-col justify-between transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+  <!-- Sidebar Lateral Fixa -->
+  <aside class="fixed left-0 top-0 h-screen w-72 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between">
     <div class="flex flex-col">
-      <div class="h-20 px-space-lg flex items-center justify-between bg-surface-container-lowest border-b border-surface-container-low/60">
-        <div class="flex items-center gap-space-sm">
-          <img alt="Biblioteca Aurora" class="w-10 h-10 object-contain rounded-xl shadow-sm" src="img/logo.svg" onerror="this.src='img/logo.svg'">
-          <div class="flex flex-col">
-            <span class="font-title-lg text-title-lg text-primary-container tracking-tight font-bold">Aurora</span>
-            <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Aluguel de Livros</span>
-          </div>
+      <div class="h-20 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest">
+        <img alt="Logo Aurora" class="w-10 h-10 object-contain rounded-lg shadow-sm" src="img/logo.svg">
+        <div class="flex flex-col">
+          <span class="font-title-lg text-title-lg text-primary-container tracking-tight font-bold">Aurora</span>
+          <span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Aluguel de Livros</span>
         </div>
-        <button id="close-sidebar-btn" class="lg:hidden p-2 rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-colors" aria-label="Fechar Menu">
-          <span class="material-symbols-outlined text-[22px]" translate="no">close</span>
-        </button>
       </div>
 
-      <div class="px-space-md py-space-sm overflow-y-auto">
+      <div class="px-space-md py-space-sm">
         <nav class="flex flex-col gap-space-xs">
-          <!-- Renderizado dinamicamente via AuroraAPI.initSidebar() -->
+          <!-- Renderizado dinamicamente por AuroraAPI.initSidebar() -->
         </nav>
       </div>
     </div>
 
-    <div class="p-space-md flex flex-col gap-space-sm bg-surface-container-lowest border-t border-surface-container-low/60">
+    <!-- Perfil do Usuário na Sidebar -->
+    <div class="p-space-md flex flex-col gap-space-sm bg-surface-container-lowest">
       <div class="flex items-center gap-space-sm p-space-sm rounded-xl bg-surface-container-low">
-        <img alt="Perfil" id="sidebar-avatar" class="w-9 h-9 rounded-full object-cover ring-2 ring-secondary-fixed user-display-avatar" src="img/avatar-default.svg" onerror="this.src='img/avatar-default.svg'">
+        <img alt="Perfil" class="w-8 h-8 rounded-full object-cover ring-2 ring-secondary-fixed user-display-avatar" src="img/avatar-default.svg">
         <div class="flex flex-col min-w-0 flex-1">
           <span class="font-label-lg text-label-lg text-on-surface truncate user-display-name">Carregando...</span>
           <span class="font-label-sm text-label-sm text-secondary truncate user-display-role">Leitor</span>
         </div>
       </div>
-      <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg hover:bg-error-container hover:text-on-error-container transition-all group logout-btn" data-path="login" href="#">
+      <a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-on-surface-variant font-label-lg hover:bg-error-container hover:text-on-error-container transition-all group" data-path="login" href="login.html" onclick="AuroraAPI.logout(); return true;">
         <span class="material-symbols-outlined text-outline group-hover:text-error transition-colors" translate="no">logout</span>
         <span>Sair</span>
       </a>
     </div>
   </aside>
 
-  <div id="sidebar-backdrop" class="fixed inset-0 bg-primary/60 backdrop-blur-xs z-40 hidden lg:hidden transition-opacity duration-300 opacity-0"></div>
-
-  <!-- Ãrea Principal -->
-  <div class="lg:pl-72 pl-0 flex flex-col min-h-screen w-full transition-all duration-300">
-    <header class="fixed top-0 left-0 lg:left-72 right-0 h-20 bg-surface/85 backdrop-blur-xl shadow-sm z-30 flex items-center justify-between px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center gap-3 sm:gap-space-md flex-1 max-w-xl">
-        <button id="mobile-menu-btn" class="lg:hidden p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container-high text-on-surface transition-colors flex items-center justify-center shrink-0" aria-label="Abrir Menu">
-          <span class="material-symbols-outlined text-[24px]" translate="no">menu</span>
-        </button>
-
-        <form class="relative flex items-center w-full" onsubmit="event.preventDefault(); window.location.href='prateleira.html?search=' + encodeURIComponent(this.querySelector('input').value);">
-          <span class="material-symbols-outlined absolute left-3.5 text-on-surface-variant pointer-events-none text-[20px]" translate="no">search</span>
-          <input class="w-full h-11 pl-10 pr-4 bg-surface-container-lowest text-on-surface placeholder:text-outline font-body-sm text-body-sm rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-all" placeholder="Pesquise tÃ­tulos, autores ou gÃªneros..." type="text">
-        </form>
-      </div>
-
-      <div class="flex items-center gap-2 sm:gap-space-md ml-2 shrink-0">
-        <a class="h-11 px-3 sm:px-space-md bg-primary-container text-on-primary rounded-xl font-label-lg flex items-center gap-2 sm:gap-space-sm hover:opacity-95 shadow-sm transition-all" data-path="sacola-de-alugueis" href="index.html#alugueis-ativos" title="AluguÃ©is Ativos">
-          <span class="material-symbols-outlined text-secondary-fixed text-[20px]" translate="no">shopping_bag</span>
-          <span class="hidden md:inline">AluguÃ©is</span>
-          <span class="px-1.5 py-0.5 bg-secondary text-on-secondary rounded-full font-label-sm text-xs font-bold" id="header-rental-badge">0</span>
-        </a>
-      </div>
+  <!-- Área Principal -->
+  <div class="pl-72 flex flex-col min-h-screen">
+    <header class="fixed top-0 left-72 right-0 h-20 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg">
+      <h2 class="font-headline-sm text-headline-sm text-primary-container font-bold">Minha Lista de Desejos</h2>
+      <span class="font-body-sm text-xs text-on-surface-variant" id="header-count">0 livros na lista</span>
     </header>
 
-    <main class="w-full pt-24 pb-16 flex-1 px-4 sm:px-6 lg:px-space-xl max-w-7xl mx-auto flex flex-col gap-space-xl">
-      <!-- CabeÃ§alho -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md bg-surface/85 backdrop-blur-md p-space-md sm:p-space-lg rounded-2xl shadow-sm border border-surface-container/60">
-        <div class="flex flex-col gap-space-xs">
-          <div class="flex items-center gap-space-xs">
-            <span class="px-2.5 py-1 bg-secondary-container text-on-secondary-container rounded-full font-label-sm text-xs uppercase tracking-widest font-bold">
-              Radar Pessoal
-            </span>
-            <span class="text-outline font-label-sm text-xs">â€¢</span>
-            <span class="font-label-sm text-xs text-on-surface-variant">Acompanhamento de Disponibilidade</span>
+    <main class="w-full pt-24 pb-16 bg-surface flex-1">
+      <div class="max-w-7xl mx-auto px-space-md lg:px-space-xl">
+
+        <!-- Search Bar -->
+        <div class="w-full mb-space-lg p-space-sm md:p-space-md rounded-2xl bg-surface-container-lowest shadow-sm flex items-center gap-space-sm border border-surface-container/60">
+          <div class="relative flex-1">
+            <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]" translate="no">search</span>
+            <input class="w-full h-11 pl-10 pr-4 bg-surface-container-low rounded-xl font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-all" id="search-input" placeholder="Filtrar por título ou autor..." type="text">
           </div>
-          <h1 class="font-headline-lg text-2xl sm:text-3xl text-primary-container font-bold tracking-tight">Lista de Desejos</h1>
-          <p class="font-body-md text-sm text-on-surface-variant max-w-2xl leading-relaxed">
-            Seus tÃ­tulos reservados para futuras leituras. Acompanhe a liberaÃ§Ã£o de cÃ³pias fÃ­sicas em tempo real e entre nas filas prioritÃ¡rias com apenas um clique.
-          </p>
         </div>
 
-        <div class="flex items-center gap-2">
-          <a href="prateleira.html" class="px-4 py-2.5 rounded-xl bg-primary-container text-on-primary font-bold text-xs flex items-center gap-2 shadow-sm hover:bg-primary transition-all">
-            <span class="material-symbols-outlined text-[18px]" translate="no">add</span>
-            <span>Adicionar Obras</span>
+        <!-- Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg" id="books-grid"></div>
+
+        <!-- Empty State -->
+        <div class="hidden flex-col items-center justify-center py-space-2xl text-center p-space-lg rounded-2xl bg-surface-container-lowest border border-surface-container/60" id="empty-state">
+          <span class="material-symbols-outlined text-6xl text-outline mb-space-md" translate="no">bookmark_heart</span>
+          <h3 class="font-headline-sm text-headline-sm text-primary-container mb-2 font-bold">Sua lista de desejos está vazia</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-space-lg">Adicione livros à lista de desejos na Prateleira para monitorar a disponibilidade de cópias.</p>
+          <a href="prateleira.html" class="h-10 px-space-md rounded-xl bg-primary-container text-on-primary font-label-lg text-label-lg flex items-center gap-2 shadow-sm hover:opacity-90 transition-opacity">
+            <span class="material-symbols-outlined text-[18px]" translate="no">shelves</span>
+            Ver Prateleira
           </a>
         </div>
-      </div>
 
-      <!-- TrÃªs Abas de Status da Lista de Desejos -->
-      <div class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none" id="statusTabs">
-        <button onclick="switchWishTab('todos')" id="tab-todos" class="wish-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-primary-container text-on-primary shadow-sm transition-all whitespace-nowrap">
-          Todos os Salvos (<span id="count-todos">0</span>)
-        </button>
-        <button onclick="switchWishTab('prontos')" id="tab-prontos" class="wish-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-surface-container-high text-on-surface-variant hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-secondary"></span>
-          <span>Prontos para Alugar (<span id="count-prontos">0</span>)</span>
-        </button>
-        <button onclick="switchWishTab('fila')" id="tab-fila" class="wish-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-surface-container-high text-on-surface-variant hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-secondary-container"></span>
-          <span>Com Fila Aberta (<span id="count-fila">0</span>)</span>
-        </button>
-        <button onclick="switchWishTab('pendente')" id="tab-pendente" class="wish-tab px-4 py-2.5 rounded-xl text-xs font-bold bg-surface-container-high text-on-surface-variant hover:text-primary transition-all whitespace-nowrap flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-outline"></span>
-          <span>Com Fila Lotada (<span id="count-pendente">0</span>)</span>
-        </button>
-      </div>
-
-      <!-- Grid de Itens Salvos -->
-      <div id="wishlistGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-space-lg">
-        <div class="col-span-full py-16 text-center text-on-surface-variant">
-          Carregando sua lista de desejos...
+        <!-- Loading Skeleton -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg" id="loading-state">
+          <div class="animate-pulse bg-surface-container-lowest rounded-2xl p-space-md h-72 border border-surface-container/60"></div>
+          <div class="animate-pulse bg-surface-container-lowest rounded-2xl p-space-md h-72 border border-surface-container/60"></div>
+          <div class="animate-pulse bg-surface-container-lowest rounded-2xl p-space-md h-72 border border-surface-container/60"></div>
         </div>
       </div>
     </main>
@@ -219,175 +144,149 @@
   <script src="js/supabase-config.js"></script>
   <script src="js/aurora-api.js"></script>
   <script>
-    let wishlistItems = [];
-    let currentTab = 'todos';
+    if (!AuroraAPI.isAuthenticated()) {
+      window.location.href = 'login.html';
+    }
+
+    let allBooks = [];
 
     document.addEventListener('DOMContentLoaded', async () => {
       await AuroraAPI.initSidebar('lista-de-desejos');
       await loadWishlist();
+
+      document.getElementById('search-input').addEventListener('input', function() {
+        const q = this.value.toLowerCase().trim();
+        const filtered = allBooks.filter(b => 
+          (b.titulo || '').toLowerCase().includes(q) || 
+          (b.autor || '').toLowerCase().includes(q)
+        );
+        renderBooks(filtered);
+      });
     });
 
     async function loadWishlist() {
-      const container = document.getElementById('wishlistGrid');
+      document.getElementById('loading-state').style.display = 'grid';
+      document.getElementById('books-grid').innerHTML = '';
+      document.getElementById('empty-state').classList.add('hidden');
+
       try {
-        wishlistItems = await AuroraAPI.getWishlist();
-
-        let prontos = 0;
-        let fila = 0;
-        let pendente = 0;
-
-        wishlistItems.forEach(item => {
-          const book = item.livro || item;
-          if (book.disponivel && book.copiasDisponiveis > 0) prontos++;
-          else if (book.filaEspera && book.filaEspera.length >= 10) pendente++;
-          else fila++;
-        });
-
-        document.getElementById('count-todos').textContent = wishlistItems.length;
-        document.getElementById('count-prontos').textContent = prontos;
-        document.getElementById('count-fila').textContent = fila;
-        document.getElementById('count-pendente').textContent = pendente;
-
-        renderWishlist();
-      } catch (err) {
-        console.error(err);
-        container.innerHTML = '<div class="col-span-full py-16 text-center text-error">Erro ao carregar lista de desejos.</div>';
+        allBooks = await AuroraAPI.getWishlist();
+        document.getElementById('header-count').textContent = `${allBooks.length} livro${allBooks.length !== 1 ? 's' : ''} na lista`;
+        renderBooks(allBooks);
+      } catch (e) {
+        AuroraAPI.showToast('Erro ao carregar lista de desejos.', 'error', true);
+      } finally {
+        document.getElementById('loading-state').style.display = 'none';
       }
     }
 
-    function switchWishTab(tab) {
-      currentTab = tab;
-      document.querySelectorAll('.wish-tab').forEach(t => {
-        t.classList.remove('bg-primary-container', 'text-on-primary', 'shadow-sm');
-        t.classList.add('bg-surface-container-high', 'text-on-surface-variant');
-      });
-      const activeBtn = document.getElementById(`tab-${tab}`);
-      if (activeBtn) {
-        activeBtn.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
-        activeBtn.classList.add('bg-primary-container', 'text-on-primary', 'shadow-sm');
-      }
-      renderWishlist();
-    }
+    function renderBooks(books) {
+      const grid = document.getElementById('books-grid');
+      grid.innerHTML = '';
 
-    function renderWishlist() {
-      const container = document.getElementById('wishlistGrid');
-
-      const filtered = wishlistItems.filter(item => {
-        const book = item.livro || item;
-        const isAvail = book.disponivel && book.copiasDisponiveis > 0;
-        const isFull = (book.copiasDisponiveis === 0) && (book.filaEspera && book.filaEspera.length >= 10);
-        const hasQueue = (book.copiasDisponiveis === 0) && !isFull;
-
-        if (currentTab === 'prontos') return isAvail;
-        if (currentTab === 'fila') return hasQueue;
-        if (currentTab === 'pendente') return isFull;
-        return true;
-      });
-
-      if (filtered.length === 0) {
-        container.innerHTML = `
-          <div class="col-span-full py-16 text-center text-on-surface-variant flex flex-col items-center gap-3">
-            <div class="w-16 h-16 rounded-2xl bg-secondary-fixed/30 flex items-center justify-center text-secondary">
-              <span class="material-symbols-outlined text-3xl" translate="no">favorite_border</span>
-            </div>
-            <h3 class="font-title-lg text-primary font-bold">Nenhum livro nesta categoria</h3>
-            <p class="font-body-sm text-sm text-on-surface-variant max-w-md">
-              Navegue pelo catÃ¡logo e favorite seus livros preferidos para acompanhar cÃ³pias disponÃ­veis!
-            </p>
-            <a href="prateleira.html" class="mt-2 px-5 py-2.5 bg-primary-container text-on-primary rounded-xl font-bold text-xs hover:bg-primary shadow-sm">
-              Explorar CatÃ¡logo
-            </a>
-          </div>
-        `;
+      if (!books || books.length === 0) {
+        const el = document.getElementById('empty-state');
+        el.classList.remove('hidden');
+        el.classList.add('flex');
         return;
       }
 
-      container.innerHTML = filtered.map(item => {
-        const book = item.livro || item;
-        const isAvail = book.disponivel && book.copiasDisponiveis > 0;
-        const isFull = (book.copiasDisponiveis === 0) && (book.filaEspera && book.filaEspera.length >= 10);
-        const coverUrl = book.capaUrl || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80';
-
-        return `
-          <div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm hover:shadow-md transition-all flex flex-col justify-between border border-surface-container/60 group">
-            <div class="flex gap-space-md">
-              <div class="relative w-24 sm:w-28 h-36 sm:h-40 shrink-0 rounded-xl overflow-hidden shadow-md bg-surface-container-high">
-                <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="${coverUrl}" alt="${book.titulo}">
-                <div class="absolute inset-y-0 left-0 w-2 bg-gradient-to-r from-primary/30 to-transparent pointer-events-none"></div>
-              </div>
-
-              <div class="flex flex-col flex-1 min-w-0 justify-between">
-                <div>
-                  <div class="flex items-center justify-between gap-1">
-                    <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${isAvail ? 'bg-secondary-fixed text-on-secondary-fixed' : isFull ? 'bg-surface-container-highest text-on-surface-variant' : 'bg-secondary-container text-on-secondary-container'}">
-                      ${isAvail ? 'DisponÃ­vel' : isFull ? 'Fila Lotada' : 'Fila Aberta'}
-                    </span>
-                    <button onclick="handleRemove(${item.id || book.id}, '${book.titulo.replace(/'/g, "\\'")}')" class="p-1 text-on-surface-variant hover:text-error transition-colors" title="Remover dos desejos">
-                      <span class="material-symbols-outlined text-[18px]" translate="no">delete</span>
-                    </button>
-                  </div>
-
-                  <h3 class="font-title-md text-sm sm:text-base font-bold text-primary-container mt-1.5 truncate group-hover:text-secondary transition-colors" title="${book.titulo}">
-                    ${book.titulo}
-                  </h3>
-                  <p class="font-body-sm text-xs text-on-surface-variant truncate">${book.autor}</p>
-                </div>
-
-                <div class="mt-2 pt-2 border-t border-surface-container-high/40 flex items-center justify-between">
-                  <span class="font-headline-sm text-sm font-bold text-primary-container">
-                    R$ ${Number(book.precoAluguel || 8.90).toFixed(2).replace('.', ',')}
-                  </span>
-                  <span class="text-xs ${isAvail ? 'text-secondary font-bold' : 'text-on-surface-variant'} flex items-center gap-1">
-                    <span class="w-1.5 h-1.5 rounded-full ${isAvail ? 'bg-secondary' : 'bg-outline'}"></span>
-                    ${isAvail ? `${book.copiasDisponiveis} de 3 livres` : '3 alugadas'}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-space-md pt-2 border-t border-surface-container-high/40 flex items-center gap-2">
-              ${isAvail ? `
-                <button onclick="handleRentBook(${book.id}, '${book.titulo.replace(/'/g, "\\'")}')" class="flex-1 py-2.5 bg-primary-container hover:bg-primary text-on-primary rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all">
-                  <span class="material-symbols-outlined text-[16px] text-secondary-fixed" translate="no">shopping_bag</span>
-                  <span>Alugar Agora</span>
-                </button>
-              ` : `
-                <a href="fila.html?livroId=${book.id}" class="flex-1 py-2.5 bg-secondary-container hover:bg-secondary-fixed text-on-secondary-container rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all">
-                  <span class="material-symbols-outlined text-[16px]" translate="no">group</span>
-                  <span>Entrar na Fila</span>
-                </a>
-              `}
-              <button onclick="handleRemove(${item.id || book.id}, '${book.titulo.replace(/'/g, "\\'")}')" class="px-3 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-bold transition-all">
-                Remover
-              </button>
-            </div>
-          </div>
-        `;
-      }).join('');
+      books.forEach(book => grid.appendChild(buildCard(book)));
     }
 
-    async function handleRentBook(bookId, title) {
-      if (!AuroraAPI.isAuthenticated()) {
-        window.location.href = 'login.html';
-        return;
+    function buildCard(book) {
+      const copies = typeof book.copiasDisponiveis === 'number' ? book.copiasDisponiveis : 0;
+      const available = copies > 0;
+      const coverUrl = book.capaUrl || 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&q=80';
+      const bId = book.bookId || book.id;
+
+      const article = document.createElement('article');
+      article.className = 'group bg-surface-container-lowest rounded-2xl p-space-md shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 border border-surface-container/60';
+      article.innerHTML = `
+        <div>
+          <div class="relative w-full aspect-[16/10] bg-surface-container-low rounded-xl overflow-hidden mb-space-sm flex items-center justify-center p-4">
+            <img class="w-28 h-40 rounded-lg object-cover shadow-xl transition-transform duration-300 group-hover:scale-105" src="${escHtml(coverUrl)}" alt="Capa de ${escHtml(book.titulo)}">
+            <div class="absolute top-3 left-3">
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full ${available ? 'bg-secondary-fixed text-on-secondary-fixed' : 'bg-surface-container text-outline'} font-label-sm text-xs font-bold shadow-xs">
+                <span class="material-symbols-outlined text-[14px]" translate="no">${available ? 'check_circle' : 'schedule'}</span>
+                ${available ? `${copies} cópia${copies !== 1 ? 's' : ''} disponível` : 'Indisponível'}
+              </span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between text-on-surface-variant font-label-sm text-xs mb-1">
+            <span class="text-secondary font-semibold">${escHtml(book.genero || 'Geral')}</span>
+            ${book.avaliacaoMedia ? `<span class="text-amber-500 font-bold">★ ${Number(book.avaliacaoMedia).toFixed(1)}</span>` : ''}
+          </div>
+          <h2 class="font-title-lg text-title-md text-primary font-bold group-hover:text-secondary transition-colors line-clamp-1">${escHtml(book.titulo)}</h2>
+          <p class="font-body-sm text-xs text-on-surface-variant mb-space-sm truncate">${escHtml(book.autor)}</p>
+        </div>
+        <div class="grid grid-cols-2 gap-space-xs pt-space-xs border-t border-surface-container">
+          <button onclick="removeWish(${bId}, this)" class="h-10 px-2 rounded-xl bg-surface-container text-on-surface hover:bg-error-container hover:text-on-error-container font-label-md text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors">
+            <span class="material-symbols-outlined text-[16px]" translate="no">bookmark_remove</span>
+            Remover
+          </button>
+          ${available ? `
+            <button onclick="rentBook(${bId}, '${escHtml(book.titulo).replace(/'/g, "\\'")}', this)"
+              class="h-10 px-2 rounded-xl bg-primary-container text-on-primary hover:bg-primary transition-colors font-label-md text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm">
+              <span class="material-symbols-outlined text-[16px] text-secondary-fixed" translate="no">shopping_bag</span>
+              Alugar
+            </button>
+          ` : `
+            <button onclick="handleUnavailable(${bId})"
+              class="h-10 px-2 rounded-xl bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-container transition-colors font-label-md text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm">
+              <span class="material-symbols-outlined text-[16px]" translate="no">group</span>
+              Fila de Espera
+            </button>
+          `}
+        </div>
+      `;
+      return article;
+    }
+
+    async function removeWish(bookId, btn) {
+      btn.disabled = true;
+      btn.textContent = 'Removendo...';
+      try {
+        await AuroraAPI.removeFromWishlist(bookId);
+        AuroraAPI.showToast('Removido da lista de desejos.', 'bookmark_remove');
+        await loadWishlist();
+        await AuroraAPI.initSidebar('lista-de-desejos');
+      } catch (e) {
+        AuroraAPI.showToast(e.message || 'Erro ao remover.', 'error', true);
+        btn.disabled = false;
+        btn.innerHTML = '<span class="material-symbols-outlined text-[16px]" translate="no">bookmark_remove</span> Remover';
       }
+    }
+
+    async function rentBook(bookId, title, btn) {
+      btn.disabled = true;
       try {
         await AuroraAPI.rentBook(bookId);
         AuroraAPI.showToast(`"${title}" alugado com sucesso!`, 'check_circle');
         await loadWishlist();
-      } catch (err) {
-        AuroraAPI.showToast(err.message || 'Erro ao alugar livro.', 'error', true);
+        await AuroraAPI.initSidebar('lista-de-desejos');
+      } catch (e) {
+        AuroraAPI.showToast(e.message || 'Erro ao alugar.', 'error', true);
+        btn.disabled = false;
       }
     }
 
-    async function handleRemove(id, title) {
+    async function handleUnavailable(bookId) {
       try {
-        await AuroraAPI.removeFromWishlist(id);
-        AuroraAPI.showToast(`"${title}" removido da sua lista de desejos.`, 'info');
-        await loadWishlist();
-      } catch (err) {
-        AuroraAPI.showToast(err.message || 'Erro ao remover dos desejos.', 'error', true);
+        const queueInfo = await AuroraAPI.getBookQueue(bookId);
+        if (queueInfo && queueInfo.total >= 10) {
+          window.location.href = `pendente.html?livroId=${bookId}`;
+        } else {
+          window.location.href = `fila.html?livroId=${bookId}`;
+        }
+      } catch (e) {
+        window.location.href = `fila.html?livroId=${bookId}`;
       }
+    }
+
+    function escHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
     }
   </script>
 </body>
