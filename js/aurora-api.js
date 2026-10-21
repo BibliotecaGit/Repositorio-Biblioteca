@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Aurora - Cliente de Integração com API REST & Modo Offline para GitHub Pages
  * Suporta conexão com Spring Boot REST API e fallback automático para armazenamento local / demo no GitHub Pages.
  */
@@ -2480,6 +2480,69 @@ const AuroraAPI = {
       const defaultAvatar = user.tipo === 'administrador' ? 'img/avatar-admin.svg' : user.tipo === 'bibliotecario' ? 'img/avatar-biblio.svg' : 'img/avatar-default.svg';
       document.querySelectorAll('.user-display-avatar, #sidebar-avatar, #card-avatar').forEach(img => {
         img.src = user.fotoUrl || defaultAvatar;
+      });
+    }
+
+    // Suporte Completo Ã  Acessibilidade e Gaveta Mobile (Mobile Drawer)
+    const aside = document.querySelector('aside');
+    if (aside) {
+      if (!aside.classList.contains('transition-transform')) {
+        aside.classList.add('transition-transform', 'duration-300', 'ease-in-out');
+      }
+
+      let backdrop = document.getElementById('sidebar-backdrop');
+      if (!backdrop) {
+        backdrop = document.createElement('div');
+        backdrop.id = 'sidebar-backdrop';
+        backdrop.className = 'fixed inset-0 bg-primary/60 backdrop-blur-xs z-40 hidden lg:hidden transition-opacity duration-300 opacity-0';
+        document.body.appendChild(backdrop);
+      }
+
+      const openMobileSidebar = () => {
+        aside.classList.remove('-translate-x-full');
+        backdrop.classList.remove('hidden');
+        requestAnimationFrame(() => {
+          backdrop.classList.remove('opacity-0');
+        });
+        document.body.classList.add('overflow-hidden');
+      };
+
+      const closeMobileSidebar = () => {
+        aside.classList.add('-translate-x-full');
+        backdrop.classList.add('opacity-0');
+        setTimeout(() => {
+          backdrop.classList.add('hidden');
+          document.body.classList.remove('overflow-hidden');
+        }, 300);
+      };
+
+      const mobileBtn = document.getElementById('mobile-menu-btn') || document.querySelector('[data-action="toggle-mobile-menu"]');
+      if (mobileBtn) {
+        mobileBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isClosed = aside.classList.contains('-translate-x-full');
+          if (isClosed) openMobileSidebar();
+          else closeMobileSidebar();
+        });
+      }
+
+      const closeBtn = document.getElementById('close-sidebar-btn');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeMobileSidebar);
+      }
+
+      backdrop.addEventListener('click', closeMobileSidebar);
+
+      aside.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth < 1024) closeMobileSidebar();
+        });
+      });
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !aside.classList.contains('-translate-x-full')) {
+          closeMobileSidebar();
+        }
       });
     }
 
